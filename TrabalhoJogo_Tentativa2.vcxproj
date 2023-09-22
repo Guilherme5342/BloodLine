@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{3269d93e-1ccc-47f2-a103-a30179674c04}</ProjectGuid>
+    <RootNamespace>TrabalhoJogoTentativa2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PublicIncludeDirectories>D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;D:\Documents\_UNB Documentos\Jogos Digitais\Jogos\TrabalhoJogo_Tentativa2\includes;D:\Documents\_UNB Documentos\Jogos Digitais\Jogos\TrabalhoJogo_Tentativa2\src;$(PublicIncludeDirectories)</PublicIncludeDirectories>
+    <IncludePath>D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>D:\Documents\_UNB Documentos\Jogos Digitais\Jogos\TrabalhoJogo_Tentativa2\includes;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.26.4\include;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.26.4\lib\x86;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>D:\GitProjetos\TrabalhoJogoIDJ_2.0\src;D:\GitProjetos\TrabalhoJogoIDJ_2.0\includes;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.26.4\include;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\GitProjetos\TrabalhoJogoIDJ_2.0\packages\sdl2.nuget.2.28.3\build\native\lib\x64;D:\GitProjetos\TrabalhoJogoIDJ_2.0\packages\sdl2_image.nuget.2.6.3\build\native\lib\x64;D:\GitProjetos\TrabalhoJogoIDJ_2.0\packages\sdl2_mixer.nuget.2.6.3\build\native\lib\x64;D:\GitProjetos\TrabalhoJogoIDJ_2.0\packages\sdl2_ttf.nuget.2.20.2\build\native\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Codigos Prontos\SDL_include.h" />
+    <ClInclude Include="includes\Collider.h" />
+    <ClInclude Include="includes\Camera.h" />
+    <ClInclude Include="includes\Collision.h" />
+    <ClInclude Include="includes\Component.h" />
+    <ClInclude Include="includes\Game.h" />
+    <ClInclude Include="includes\GameObject.h" />
+    <ClInclude Include="includes\InputSystem.h" />
+    <ClInclude Include="includes\MenuState.h" />
+    <ClInclude Include="includes\Music.h" />
+    <ClInclude Include="includes\Rect.h" />
+    <ClInclude Include="includes\Resources.h" />
+    <ClInclude Include="includes\Sound.h" />
+    <ClInclude Include="includes\Sprite.h" />
+    <ClInclude Include="includes\StageState.h" />
+    <ClInclude Include="includes\State.h" />
+    <ClInclude Include="includes\Text.h" />
+    <ClInclude Include="includes\Vector3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="includes\Collider.cpp" />
+    <ClCompile Include="includes\Sprite.cpp" />
+    <ClCompile Include="includes\Vector3.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\ColliderRender.cpp" />
+    <ClCompile Include="src\Component.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\InputSystem.cpp" />
+    <ClCompile Include="src\MenuState.cpp" />
+    <ClCompile Include="src\Music.cpp" />
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Resources.cpp" />
+    <ClCompile Include="src\Sound.cpp" />
+    <ClCompile Include="src\StageState.cpp" />
+    <ClCompile Include="src\State.cpp" />
+    <ClCompile Include="src\Text.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\sdl2.nuget.redist.2.28.3\build\native\sdl2.nuget.redist.targets" Condition="Exists('packages\sdl2.nuget.redist.2.28.3\build\native\sdl2.nuget.redist.targets')" />
+    <Import Project="packages\sdl2.nuget.2.28.3\build\native\sdl2.nuget.targets" Condition="Exists('packages\sdl2.nuget.2.28.3\build\native\sdl2.nuget.targets')" />
+    <Import Project="packages\sdl2_mixer.nuget.redist.2.6.3\build\native\sdl2_mixer.nuget.redist.targets" Condition="Exists('packages\sdl2_mixer.nuget.redist.2.6.3\build\native\sdl2_mixer.nuget.redist.targets')" />
+    <Import Project="packages\sdl2_mixer.nuget.2.6.3\build\native\sdl2_mixer.nuget.targets" Condition="Exists('packages\sdl2_mixer.nuget.2.6.3\build\native\sdl2_mixer.nuget.targets')" />
+    <Import Project="packages\sdl2_image.nuget.redist.2.6.3\build\native\sdl2_image.nuget.redist.targets" Condition="Exists('packages\sdl2_image.nuget.redist.2.6.3\build\native\sdl2_image.nuget.redist.targets')" />
+    <Import Project="packages\sdl2_image.nuget.2.6.3\build\native\sdl2_image.nuget.targets" Condition="Exists('packages\sdl2_image.nuget.2.6.3\build\native\sdl2_image.nuget.targets')" />
+    <Import Project="packages\sdl2_ttf.nuget.redist.2.20.2\build\native\sdl2_ttf.nuget.redist.targets" Condition="Exists('packages\sdl2_ttf.nuget.redist.2.20.2\build\native\sdl2_ttf.nuget.redist.targets')" />
+    <Import Project="packages\sdl2_ttf.nuget.2.20.2\build\native\sdl2_ttf.nuget.targets" Condition="Exists('packages\sdl2_ttf.nuget.2.20.2\build\native\sdl2_ttf.nuget.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\sdl2.nuget.redist.2.28.3\build\native\sdl2.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2.nuget.redist.2.28.3\build\native\sdl2.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2.nuget.2.28.3\build\native\sdl2.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2.nuget.2.28.3\build\native\sdl2.nuget.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_mixer.nuget.redist.2.6.3\build\native\sdl2_mixer.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_mixer.nuget.redist.2.6.3\build\native\sdl2_mixer.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_mixer.nuget.2.6.3\build\native\sdl2_mixer.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_mixer.nuget.2.6.3\build\native\sdl2_mixer.nuget.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_image.nuget.redist.2.6.3\build\native\sdl2_image.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_image.nuget.redist.2.6.3\build\native\sdl2_image.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_image.nuget.2.6.3\build\native\sdl2_image.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_image.nuget.2.6.3\build\native\sdl2_image.nuget.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_ttf.nuget.redist.2.20.2\build\native\sdl2_ttf.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_ttf.nuget.redist.2.20.2\build\native\sdl2_ttf.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_ttf.nuget.2.20.2\build\native\sdl2_ttf.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_ttf.nuget.2.20.2\build\native\sdl2_ttf.nuget.targets'))" />
+  </Target>
+</Project>
