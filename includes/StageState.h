@@ -3,6 +3,8 @@
 #include "State.h"
 #include "Sprite.h"
 #include "Music.h"
+#include "Rigidbody2D.h"
+
 
 #define BACKGROUND_IMAGE "assets/img/ocean.jpg"
 

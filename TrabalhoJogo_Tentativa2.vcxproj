@@ -114,7 +114,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\GitProjetos\TrabalhoJogoIDJ_2.0\src;D:\GitProjetos\TrabalhoJogoIDJ_2.0\includes;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.26.4\include;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\GitProjetos\TrabalhoJogoIDJ_2.0\src;D:\GitProjetos\TrabalhoJogoIDJ_2.0\includes;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.26.4\include;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;D:\Documents\_UNB Documentos\Jogos Digitais\Jogos\BloodLine\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Codigos Prontos\SDL_include.h" />
+    <ClInclude Include="includes\CameraFollower.h" />
     <ClInclude Include="includes\Collider.h" />
     <ClInclude Include="includes\Camera.h" />
     <ClInclude Include="includes\Collision.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="includes\Music.h" />
     <ClInclude Include="includes\Rect.h" />
     <ClInclude Include="includes\Resources.h" />
+    <ClInclude Include="includes\Rigidbody2D.h" />
     <ClInclude Include="includes\Sound.h" />
     <ClInclude Include="includes\Sprite.h" />
     <ClInclude Include="includes\StageState.h" />
@@ -164,6 +166,7 @@
     <ClCompile Include="includes\Sprite.cpp" />
     <ClCompile Include="includes\Vector3.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\CameraFollower.cpp" />
     <ClCompile Include="src\ColliderRender.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -173,6 +176,7 @@
     <ClCompile Include="src\Music.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Resources.cpp" />
+    <ClCompile Include="src\Rigidbody2D.cpp" />
     <ClCompile Include="src\Sound.cpp" />
     <ClCompile Include="src\StageState.cpp" />
     <ClCompile Include="src\State.cpp" />

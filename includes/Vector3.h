@@ -36,7 +36,7 @@ public:
 	}
 
 	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	inline Vector3 GetRotated(float angle) {
+	inline virtual Vector3 GetRotated(float angle) {
 		return Vector3(x * cos(angle) - y * sin(angle), y * cos(angle) + x * sin(angle));
 	}
 
