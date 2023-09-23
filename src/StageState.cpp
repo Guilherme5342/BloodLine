@@ -18,9 +18,10 @@ void StageState::LoadAssets()
 {
 	GameObject* bgObj = new GameObject("Background");
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
+	bgObj->AddComponent(new CameraFollower(*bgObj));
 
 	GameObject* rb = new GameObject("Body");
-	rb->AddComponent(new Sprite(*rb, "assets/img/ball.png"));
+	rb->AddComponent(new Sprite(*rb, "assets/img/ball2.png"));
 	rb->AddComponent(new Rigidbody2D(*rb));
 
 	AddObject(bgObj);

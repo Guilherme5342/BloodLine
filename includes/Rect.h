@@ -12,6 +12,10 @@ public:
 		x = y = w = h = 0;
 	}
 
+	inline Rect(float x, float y, float width, float height) {
+		this->x = x, this->y = y, this->w = width, this->h = height;
+	}
+
 	template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
 	inline Rect(T x, T y, T width, T height) {
 		this->x = x, this->y = y, this->w = width, this->h = height;

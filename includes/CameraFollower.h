@@ -6,7 +6,7 @@
 class CameraFollower : public Component {
 
 public:
-
+	CameraFollower(GameObject& associated);
 	// Herdado por meio de Component
 	void Update(float dt);
 

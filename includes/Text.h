@@ -37,7 +37,9 @@ public:
 	~Text();
 
 	void SetText(std::string text);
+	void SetTextStyle(TextStyle style);
 	void SetFontSize(int fontSize);
+	void SetColor(SDL_Color color);
 
 	inline void SetFontStyle(FontStyle fontStyle) {
 		TTF_SetFontStyle(font.get(), fontStyle);

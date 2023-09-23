@@ -11,8 +11,6 @@ void MenuState::LoadAssets() {
 
 	titleObj->AddComponent(titleCard);
 
-
-
 	objectArray.emplace_back(titleObj);
 
 }
@@ -44,6 +42,8 @@ void MenuState::Pause() {
 }
 
 void MenuState::Resume() {
+	
+	Camera::Reset();
 	StartArray();
 	RenderArray();
 }

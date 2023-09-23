@@ -6,7 +6,11 @@
 #include "InputSystem.h"
 #include "GameObject.h"
 #include "Camera.h"
+#include "CameraFollower.h"
 
+#define MAIN_IMG_FOLDER_PATH "assets/"
+
+#define BALL_PNG "img/ball2.png"
 
 class State {
 
