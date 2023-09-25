@@ -73,7 +73,7 @@ public:
 	}
 
 	inline Vector2 GetWindowCenter() {
-		return Vector2(windowWidth,windowHeight) / 2;
+		return  Vector2(windowWidth, windowHeight) / 2;
 	}
 };
 

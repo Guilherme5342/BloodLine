@@ -13,6 +13,13 @@ Text::Text(GameObject& associated, std::string filePath, int fontSize, TextStyle
 	this->style = style;
 	this->color = color;
 
+	font = Resources::GetFont(filePath, fontSize);
+
+	if (!font) {
+		cout << SDL_GetError() << endl;
+	}
+
+	RedrawTexture();
 }
 
 
@@ -23,6 +30,12 @@ Text::~Text() {
 void Text::RedrawTexture() {
 	if (texture != nullptr) {
 		SDL_DestroyTexture(texture);
+	}
+
+	font = Resources::GetFont(fontFile, fontSize);
+
+	if (!font) {
+		cout << SDL_GetError() << endl;
 	}
 
 	SDL_Surface* surface{};
@@ -53,7 +66,8 @@ void Text::Update(float dt) {
 void Text::Render() {
 
 
-	SDL_Rect srcRect {associated.box.x,associated.box.y, associated.box.w,associated.box.h}, 
+	SDL_Rect srcRect {0,0, associated.box.w,associated.box.h}, 
+
 		dstRect{associated.box.x - Camera::GetCurrentCamPos().x, associated.box.y - Camera::GetCurrentCamPos().y ,
 	associated.box.w,associated.box.h };
 

@@ -7,7 +7,7 @@ StageState::StageState() : State()
 	Vector2 vec2d_1 = Vector2(2, 3);
 	Vector3 vec2d_2 = Vector2(1, 3);
 
-	Vector2 s = vec2d_1 * vector;
+	Vector2 s = vec2d_1;
 
 	cout << vector << endl;
 	cout << vec2d_1 << endl;
@@ -18,8 +18,14 @@ void StageState::LoadAssets()
 {
 	GameObject* bgObj = new GameObject("Background");
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
+	bgObj->AddComponent(new CameraFollower(*bgObj));
+
+	GameObject* rb = new GameObject("Body");
+	rb->AddComponent(new Sprite(*rb, "assets/img/ball2.png"));
+	rb->AddComponent(new Rigidbody2D(*rb));
 
 	AddObject(bgObj);
+	AddObject(rb);
 }
 
 void StageState::Pause()

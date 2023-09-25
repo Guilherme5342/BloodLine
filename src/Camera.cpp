@@ -4,9 +4,9 @@
 
 GameObject* Camera::focus = nullptr;
 
-Vector2 Camera::pos = (0, 0);
+Vector2 Camera::pos = Vector2(0, 0);
 
-Vector2 Camera::speed = (0, 0);
+Vector2 Camera::speed = Vector2(0, 0);
 
 void Camera::Update(float dt)
 {
@@ -18,7 +18,7 @@ void Camera::Update(float dt)
 
 	if (InputSystem::Instance().IsKeyDown(SDLK_w)) {
 		speed.y = -1;
-		cout << speed.y << endl;
+		//cout << speed.y << endl;
 	}
 	if (InputSystem::Instance().IsKeyDown(SDLK_s)) {
 		speed.y = 1;
@@ -29,8 +29,10 @@ void Camera::Update(float dt)
 	if (InputSystem::Instance().IsKeyDown(SDLK_d)) {
 		speed.x = 1;
 	}
-
-	pos.Translate(speed * 200 * dt);
 	
-	speed = Vector2(0, 0);
+	pos.Translate(speed * 200 * dt);
+	//cout << pos << endl;
+	speed.x = 0;
+	speed.y = 0;
+
 }

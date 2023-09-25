@@ -1,6 +1,7 @@
 #pragma once
 
 #include "State.h"
+#include "Text.h"
 
 #define TITLE_IMAGE "assets/img/title.jpg"
 

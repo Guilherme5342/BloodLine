@@ -12,6 +12,10 @@ public:
 		x = y = w = h = 0;
 	}
 
+	inline Rect(float x, float y, float width, float height) {
+		this->x = x, this->y = y, this->w = width, this->h = height;
+	}
+
 	template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
 	inline Rect(T x, T y, T width, T height) {
 		this->x = x, this->y = y, this->w = width, this->h = height;
@@ -37,12 +41,12 @@ public:
 	}
 
 	template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
-	inline void SetCenter(T x, T y) {
+	inline void SetCenter(T const x, T const y) {
 		this->x = x - (w / 2);
 		this->y = y - (h / 2);
 	}
 
-	inline void SetCenter(Vector2 pos) {
+	inline void SetCenter(Vector2 const& pos) {
 		SetCenter(pos.x, pos.y);
 	}
 

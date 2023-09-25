@@ -20,7 +20,9 @@ public:
 	inline static void Unfollow() {
 		focus = nullptr;
 	}
-
+	inline static void Reset() {
+		pos = Vector2(0, 0);
+	}
 	static void Update(float dt);
 
 };
