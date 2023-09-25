@@ -32,5 +32,7 @@ void Camera::Update(float dt)
 
 	pos.Translate(speed * 200 * dt);
 	
-	speed = Vector2(0, 0);
+	speed.x = 0;
+	speed.y = 0;
+
 }

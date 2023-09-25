@@ -41,12 +41,12 @@ public:
 	}
 
 	template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
-	inline void SetCenter(T x, T y) {
+	inline void SetCenter(T const x, T const y) {
 		this->x = x - (w / 2);
 		this->y = y - (h / 2);
 	}
 
-	inline void SetCenter(Vector2 pos) {
+	inline void SetCenter(Vector2 const& pos) {
 		SetCenter(pos.x, pos.y);
 	}
 

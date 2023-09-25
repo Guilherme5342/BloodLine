@@ -21,11 +21,12 @@ Game::Game(string windowName, int windowWidth, int windowHeight) {
 		std::cout << "Erro de Inicializao: " << SDL_GetError() << std::endl;
 	}
 
+	this->windowWidth = windowWidth;
+	this->windowHeight = windowHeight;
+	
 	window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, 0);
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-
 
 }
 

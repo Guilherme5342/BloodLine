@@ -29,11 +29,13 @@ public:
 		this->x = x;
 		this->y = y;
 		this->z = z;
+
+		cout << this->y << endl;
 	}
 
-	inline Vector3() {
-		x = y = z = 0;
-	}
+	//inline Vector3() {
+	//	x = y = z = 0;
+	//}
 
 	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
 	inline virtual Vector3 GetRotated(float angle) {
@@ -64,18 +66,18 @@ public:
 	}
 
 
-	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector3 operator*(T const& n) const {
+	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	Vector3 operator*(const float n) const {
 		return Vector3(x * n, y * n, z * n);
 	}
 
-	template<typename T, typename = typename enable_if<is_arithmetic<T>::val,T>::type>
-	Vector3 operator/(T const& vec) const {
+	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val,T>::type>
+	Vector3 operator/(const float vec) const {
 		return Vector3(x / vec, y / vec, z / vec);
 	}
 
-	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector3 operator*=(T const& n) const {
+	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	Vector3 operator*=(const float n) const {
 		Vector3 nVec = Vector3(x, y, z);
 		nVec.x *= n;
 		nVec.y *= n;
@@ -109,9 +111,6 @@ public:
 
 	friend ostream& operator<<(ostream& out, const Vector3& vec);
 	
-
-
-	
 };
 
 struct Vector2 : public Vector3 {
@@ -144,17 +143,17 @@ public:
 	}
 
 	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector2 operator*(T const& vec) const {
-		return Vector2((T)(x * vec),(T)(y * vec));
+	Vector2 operator*(T const vec) const {
+		return Vector2(x * vec, y * vec);
 	}
 
 	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector2 operator/(T const& vec) const {
-		return Vector2((T)(x / vec), (T)(y / vec));
+	Vector2 operator/(T const vec) const {
+		return Vector2(x / vec, y / vec);
 	}
 
 	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector2 operator*=(T const& n) const {
+	Vector2 operator*=(T const n) const {
 		Vector2 nVec = Vector2(x, y);
 		nVec.x *= n;
 		nVec.y *= n;

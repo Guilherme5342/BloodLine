@@ -36,10 +36,26 @@ public:
 	Text(GameObject& associated,std::string filePath, int fontSize, TextStyle style, std::string text, SDL_Color color);
 	~Text();
 
-	void SetText(std::string text);
-	void SetTextStyle(TextStyle style);
-	void SetFontSize(int fontSize);
-	void SetColor(SDL_Color color);
+	inline void SetText(std::string text) {
+		this->text = text;
+		RedrawTexture();
+	}
+	inline void SetTextStyle(TextStyle style){
+		this->style = style;
+		RedrawTexture();
+	}
+	inline void SetFontFile(std::string fontPath) {
+		this->fontFile = fontPath;
+		RedrawTexture();
+	}
+	inline void SetFontSize(int fontSize){
+		this->fontSize = fontSize;
+		RedrawTexture();
+	}
+	inline void SetColor(SDL_Color color){
+		this->color = color;
+		RedrawTexture();
+	}
 
 	inline void SetFontStyle(FontStyle fontStyle) {
 		TTF_SetFontStyle(font.get(), fontStyle);
