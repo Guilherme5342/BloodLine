@@ -16,26 +16,20 @@ public:
 
 	float magnitude() { return sqrt(x * x + y * y + z * z); }
 
-	inline Vector3(float x = 0, float y = 0, float z = 0) {
+	inline Vector3() {
+		x = y = z = 0;
+	}
+	inline Vector3(float x, float y, float z = 0) {
 		this->x = x;
 		this->y = y;
 		this->z = z;
+
+		//cout << "Vetor Y: " << this->y << endl;
 	}
 
 	// Modelo de Classe com Restrição de Tipo
 	// O Vector3 só aceita Tipos de Variável que são considerados Aritméticos (int,double,float)
-	template<typename T , typename = typename enable_if<is_arithmetic<T>::val,T>::type>
-	inline Vector3(T x = 0, T y = 0, T z = 0) {
-		this->x = x;
-		this->y = y;
-		this->z = z;
 
-		cout << this->y << endl;
-	}
-
-	//inline Vector3() {
-	//	x = y = z = 0;
-	//}
 
 	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
 	inline virtual Vector3 GetRotated(float angle) {
@@ -66,18 +60,20 @@ public:
 	}
 
 
-	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
 	Vector3 operator*(const float n) const {
 		return Vector3(x * n, y * n, z * n);
 	}
 
-	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val,T>::type>
 	Vector3 operator/(const float vec) const {
-		return Vector3(x / vec, y / vec, z / vec);
+		Vector3 nVec;
+		nVec.x = x / vec;
+		nVec.y = y / vec;
+		nVec.z = z / vec;
+		return nVec;
 	}
 
-	//template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector3 operator*=(const float n) const {
+	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	Vector3 operator*=(const T n) const {
 		Vector3 nVec = Vector3(x, y, z);
 		nVec.x *= n;
 		nVec.y *= n;
@@ -116,12 +112,10 @@ public:
 struct Vector2 : public Vector3 {
 
 public:
-	inline Vector2(float x = 0, float y = 0) : Vector3(x, y, 0) {
+	inline Vector2() : Vector3() {
 		this->z = 0;
 	}
-
-	template<typename T, typename = typename enable_if<is_arithmetic<T>::val,T>::type>
-	inline Vector2(T x = 0, T y = 0) : Vector3(x, y, 0) {
+	inline Vector2(float x, float y) : Vector3(x, y, 0) {
 		this->z = 0;
 	}
 
@@ -142,21 +136,20 @@ public:
 		return Vector2(x / vec.x, y / vec.y);
 	}
 
-	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector2 operator*(T const vec) const {
-		return Vector2(x * vec, y * vec);
+	Vector2 operator*(const float vec) const {
+		return Vector2(this->x * vec, this->y * vec);
+	}
+
+	
+	Vector2 operator/(const float vec) const {
+		return Vector2(this->x / vec, this->y / vec);
 	}
 
 	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector2 operator/(T const vec) const {
-		return Vector2(x / vec, y / vec);
-	}
-
-	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector2 operator*=(T const n) const {
+	Vector2 operator*=(const T vec) const {
 		Vector2 nVec = Vector2(x, y);
-		nVec.x *= n;
-		nVec.y *= n;
+		nVec.x *= vec;
+		nVec.y *= vec;
 		return nVec;
 	}
 

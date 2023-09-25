@@ -159,6 +159,8 @@
     <ClInclude Include="includes\StageState.h" />
     <ClInclude Include="includes\State.h" />
     <ClInclude Include="includes\Text.h" />
+    <ClInclude Include="includes\TileMap.h" />
+    <ClInclude Include="includes\TileSet.h" />
     <ClInclude Include="includes\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +183,8 @@
     <ClCompile Include="src\StageState.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\Text.cpp" />
+    <ClCompile Include="src\TileMap.cpp" />
+    <ClCompile Include="src\TileSet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

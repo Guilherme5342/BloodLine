@@ -87,6 +87,12 @@
     <ClInclude Include="includes\Rigidbody2D.h">
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
+    <ClInclude Include="includes\TileSet.h">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\TileMap.h">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -144,6 +150,12 @@
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
     <ClCompile Include="src\Rigidbody2D.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileSet.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileMap.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
   </ItemGroup>

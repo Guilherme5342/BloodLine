@@ -18,12 +18,15 @@ void MenuState::LoadAssets() {
 	//cout << Game::Instance().GetWindowCenter() << endl;
 	textObj->box.SetCenter(Game::Instance().GetWindowCenter());
 
-	Vector2 divd = Vector2(2, 2) / 2;
-	Vector2 divd2 = Vector2(2.f, 312) * 10;
+	Vector3 divd = Vector3(2, 2, 2);
+
+	divd = divd / 2;
+
+	Vector3 divd2 = Vector2(2.f, 312) * 10;
 
 
 	cout << textObj->box.GetCenter() << endl;
-	//cout << divd << divd2 << endl;
+	cout << divd << endl;
 
 	objectArray.emplace_back(titleObj);
 	objectArray.emplace_back(textObj);
