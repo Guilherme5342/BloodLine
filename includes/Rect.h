@@ -50,9 +50,12 @@ public:
 		SetCenter(pos.x, pos.y);
 	}
 
+	inline void SetSize(float w, float h) {
+		this->w = w;
+		this->h = h;
+	}
 	inline void SetSize(Vector2 size) {
-		this->w = size.x;
-		this->h = size.y;
+		SetSize(size.x, size.y);
 	}
 
 	inline bool Contains(Rect otherRect) {

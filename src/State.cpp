@@ -34,6 +34,8 @@ void State::UpdateArray(float dt)
 			objectArray.erase(objectArray.begin() + i);
 		}
 	}
+
+	
 }
 
 void State::RenderArray()

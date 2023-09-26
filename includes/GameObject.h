@@ -2,6 +2,9 @@
 
 #include "Rect.h"
 #include "Component.h"
+#include "Collider.h"
+
+
 
 #include <vector>
 
@@ -10,11 +13,12 @@ class GameObject {
 private:
 	std::vector<std::unique_ptr<Component>> components;
 	bool dead, started;
-
 	string name;
 
 public:
-	GameObject(string name = "");
+	int layer;
+
+	GameObject(string name = "", int layer = 0);
 	~GameObject();
 
 	void Start();
@@ -24,6 +28,7 @@ public:
 	void AddComponent(Component* comp);
 	Component* GetComponent(std::string type);
 
+	void NotifyCollision(GameObject& otherObj);
 	/// <summary>
 	/// Seta IsDead como True, 
 	/// É normalmente usado no Update de GameObjects pra serem destruídos após o Request
@@ -39,6 +44,11 @@ public:
 	inline string Name() {
 		return name;
 	}
+
+	inline bool CompareLayer(GameObject& otherObj) {
+		return otherObj.layer == this->layer;
+	}
+	
 
 	float angleDeg;
 

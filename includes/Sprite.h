@@ -33,7 +33,7 @@ public:
 		clipRect = SDL_Rect{ x,y,w,h };
 	}
 
-	void Render(int x, int y);
+	void Render(int x, int y, int w, int h);
 	void Update(float dt);
 	void Render();
 

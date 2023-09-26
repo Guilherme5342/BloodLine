@@ -1,10 +1,11 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(string name)
+GameObject::GameObject(string name, int layer)
 {
 	dead = false;
 	this->name = name;
+	this->layer = layer;
 }
 
 GameObject::~GameObject()
@@ -63,4 +64,11 @@ Component* GameObject::GetComponent(std::string type) {
 	}
 	return nullptr;
 
+}
+
+void GameObject::NotifyCollision(GameObject& otherObj)
+{
+	for (auto& comp : components) {
+		comp->NotifyCollision(otherObj);
+	}
 }

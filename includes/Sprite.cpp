@@ -42,9 +42,9 @@ void Sprite::Open(std::string filePath) {
 	associated.box.h = height;
 }
 
-void Sprite::Render(int x, int y) {
+void Sprite::Render(int x, int y, int w, int h) {
 	
-	SDL_Rect dstrect = SDL_Rect{ x,y,width,height };
+	SDL_Rect dstrect = SDL_Rect{ x,y,w,h };
 
 	SDL_RenderCopyEx(Game::Instance().GetRenderer(), texture.get(),
 		&clipRect, &dstrect, associated.angleDeg, nullptr, SDL_FLIP_NONE);
@@ -53,7 +53,7 @@ void Sprite::Render(int x, int y) {
 void Sprite::Render() {
 	
 	Render(associated.box.x - Camera::GetCurrentCamPos().x, 
-		associated.box.y - Camera::GetCurrentCamPos().y);
+		associated.box.y - Camera::GetCurrentCamPos().y, width, height);
 }
 
 void Sprite::Update(float dt) {
