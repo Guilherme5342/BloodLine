@@ -52,6 +52,24 @@ void StageState::Update(float dt)
 	Camera::Update(dt);
 
 	UpdateArray(dt);
+
+	for (unsigned i = 0; i < objectArray.size(); i++)
+	{
+		Collider* currentCol = nullptr;
+		
+		if(!objectArray[i]->TryGetComponent<Collider>("Collider", currentCol))
+			continue;
+
+		for (unsigned j = i + 1; j < objectArray.size(); j++)
+		{
+			Collider* otherCol = (Collider*)objectArray[j]->GetComponent("Collider");
+			if (Collision::IsColliding(currentCol->box, otherCol->box, objectArray[i]->angleDeg, objectArray[j]->angleDeg))
+			{
+				objectArray[i]->NotifyCollision(*objectArray[j]);
+				objectArray[j]->NotifyCollision(*objectArray[i]);
+			}
+		}
+	}
 }
 
 void StageState::Render()

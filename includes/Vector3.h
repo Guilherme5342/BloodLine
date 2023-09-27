@@ -124,6 +124,12 @@ public:
 		return Vector2(x + vec.x, y + vec.y);
 	}
 
+	Vector2 operator+(const float num) const {
+
+		return Vector2(x + num, y + num);
+	}
+	
+
 	Vector2 operator*(Vector3 const& vec) {
 		return Vector2(x * vec.x, y * vec.y);
 	}
@@ -145,12 +151,17 @@ public:
 		return Vector2(this->x / vec, this->y / vec);
 	}
 
-	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector2 operator*=(const T vec) const {
-		Vector2 nVec = Vector2(x, y);
-		nVec.x *= vec;
-		nVec.y *= vec;
-		return nVec;
+	Vector2& operator+=(const Vector2& vec) {
+		this->x += vec.x;
+		this->y += vec.y;
+		return *this;
+	}
+
+	Vector2& operator*=(const float vec) {
+	
+		this->x *= vec;
+		this->y *= vec;
+		return *this;
 	}
 
 	friend ostream& operator<<(ostream& out, const Vector2& vec);

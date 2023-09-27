@@ -28,6 +28,19 @@ public:
 	void AddComponent(Component* comp);
 	Component* GetComponent(std::string type);
 
+	template<typename T, typename = is_base_of<Component,T>>
+	bool TryGetComponent(std::string type, T* component)
+	{
+		for (auto& comp : components) {
+			if (comp->Is(type)) {
+				component = (T*)comp.get();
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	void NotifyCollision(GameObject& otherObj);
 	/// <summary>
 	/// Seta IsDead como True, 

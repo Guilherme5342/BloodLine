@@ -3,13 +3,14 @@
 #include "Component.h"
 #include "GameObject.h"
 
+#define MAX_VELOCITY_Y 10.0f
 
 class Rigidbody2D : public Component {
 
 
 private:
 	float mass = 1, gravityScale;
-	Vector2 velocity;
+	Vector2 velocity, friction, acceleration, force, pos;
 
 public:
 	Rigidbody2D(GameObject& associated, float gravityScale = 9.81f);

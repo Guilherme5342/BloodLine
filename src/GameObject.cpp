@@ -1,11 +1,9 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(string name, int layer)
+GameObject::GameObject(string name, int layer) : name(name) , layer(layer) // Member Initialization Lists
 {
 	dead = false;
-	this->name = name;
-	this->layer = layer;
 }
 
 GameObject::~GameObject()

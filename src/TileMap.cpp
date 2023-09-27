@@ -1,6 +1,7 @@
 #include "TileMap.h"
 #include "Camera.h"
 #include "Collider.h"
+#include "Game.h"
 
 TileMap::TileMap(GameObject& associated, std::string filePath, TileSet* tileSet) : Component(associated)
 {
@@ -58,6 +59,8 @@ void TileMap::LoadCollisions()
 		tileObj->AddComponent(tileCollider);
 
 		tileObj->box = Rect();
+
+		Game::Instance().GetState().AddObject(tileObj);
 	}
 }
 

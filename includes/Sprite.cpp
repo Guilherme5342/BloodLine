@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Resources.h"
 
+
 Sprite::Sprite(GameObject& associated) : Component(associated)
 {
 	texture = nullptr;

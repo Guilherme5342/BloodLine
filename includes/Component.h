@@ -3,6 +3,7 @@
 #include <string>
 #include <memory>
 #include <iostream>
+#include <type_traits>
 
 class GameObject;
 
@@ -22,5 +23,9 @@ public:
 	virtual void Render() = 0;
 	virtual bool Is(std::string type) = 0;
 
+	template<class T, class = std::is_base_of<Component,T>>
+	std::string ResolveComponent() {
+		return typeid(T).name;
+	}
 	virtual void NotifyCollision(GameObject& otherObj){ }
 };

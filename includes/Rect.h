@@ -4,10 +4,11 @@
 #include <cmath>
 #include "Vector3.h"
 
-class Rect {
+struct Rect {
 
 public:
 	float x, y, w, h; // Posição X e Y e Largura + Altura
+
 	inline Rect() {
 		x = y = w = h = 0;
 	}
@@ -16,10 +17,6 @@ public:
 		this->x = x, this->y = y, this->w = width, this->h = height;
 	}
 
-	template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
-	inline Rect(T x, T y, T width, T height) {
-		this->x = x, this->y = y, this->w = width, this->h = height;
-	}
 
 	template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
 	inline Rect(Vector2 pos, T width, T height) {
@@ -62,8 +59,14 @@ public:
 		return this->x < otherRect.x && this->y < otherRect.y && this->x + w > otherRect.x && this->y + h > otherRect.y;
 	}
 
-	Rect operator+(Vector2 vec2) {
+	Rect operator+(Vector2& const vec2) {
 		return Rect(GetCenter() + vec2, GetCenter() + vec2);
+	}
+
+	Rect& operator+=(Vector2 vec) {
+		this->x += vec.x;
+		this->y += vec.y;
+		return *this;
 	}
 
 	bool operator==(Rect otherRect) {
