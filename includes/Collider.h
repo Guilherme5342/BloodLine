@@ -9,7 +9,7 @@ private:
 	Vector2 scale, offset;
 
 public:
-	Collider(GameObject& associated, Vector2 scale = {1,1}, Vector2 offset = {0,0});
+	Collider(GameObject& associated, Vector2 scale = Vector2{1,1}, Vector2 offset = Vector2{0,0});
 	~Collider();
 
 	inline void SetScale(Vector2 scale) {

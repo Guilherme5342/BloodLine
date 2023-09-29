@@ -73,12 +73,19 @@ public:
 	}
 
 	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
-	Vector3 operator*=(const T n) const {
-		Vector3 nVec = Vector3(x, y, z);
-		nVec.x *= n;
-		nVec.y *= n;
-		nVec.z *= n;
-		return nVec;
+	Vector3& operator+=(const T n) const {
+		this->x += n;
+		this->y += n;
+		this->z += n;
+		return *this;
+	}
+
+	template<typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	Vector3& operator*=(const T n) const {
+		this->x *= n;
+		this->y *= n;
+		this->z *= n;
+		return *this;
 	}
 
 

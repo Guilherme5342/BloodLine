@@ -4,7 +4,7 @@
 #include "Sprite.h"
 #include "Music.h"
 #include "Rigidbody2D.h"
-
+#include "RectDebug.h"
 
 #define BACKGROUND_IMAGE "assets/img/ocean.jpg"
 

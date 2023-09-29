@@ -152,6 +152,7 @@
     <ClInclude Include="includes\MenuState.h" />
     <ClInclude Include="includes\Music.h" />
     <ClInclude Include="includes\Rect.h" />
+    <ClInclude Include="includes\RectDebug.h" />
     <ClInclude Include="includes\Resources.h" />
     <ClInclude Include="includes\Rigidbody2D.h" />
     <ClInclude Include="includes\Sound.h" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="includes\Collider.cpp" />
+    <ClCompile Include="includes\Rect.cpp" />
     <ClCompile Include="includes\Sprite.cpp" />
     <ClCompile Include="includes\Vector3.cpp" />
     <ClCompile Include="main.cpp" />
@@ -177,6 +179,7 @@
     <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\Music.cpp" />
     <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\RectDebug.cpp" />
     <ClCompile Include="src\Resources.cpp" />
     <ClCompile Include="src\Rigidbody2D.cpp" />
     <ClCompile Include="src\Sound.cpp" />

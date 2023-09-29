@@ -93,6 +93,9 @@
     <ClInclude Include="includes\TileMap.h">
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
+    <ClInclude Include="includes\RectDebug.h">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -156,6 +159,12 @@
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
     <ClCompile Include="src\TileMap.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="includes\Rect.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RectDebug.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
   </ItemGroup>

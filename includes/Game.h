@@ -54,6 +54,9 @@ public:
 
 	void PushState(State* newState);
 
+	inline void ReRender() {
+		SDL_RenderPresent(GetRenderer());
+	}
 	inline float GetDeltaTime() {
 		return this->deltaTime;
 	}

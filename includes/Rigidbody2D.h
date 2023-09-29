@@ -3,17 +3,17 @@
 #include "Component.h"
 #include "GameObject.h"
 
-#define MAX_VELOCITY_Y 10.0f
+#define MAX_VELOCITY_Y 50.0f
 
 class Rigidbody2D : public Component {
 
 
 private:
-	float mass = 1, gravityScale;
+	float mass, gravityScale;
 	Vector2 velocity, friction, acceleration, force, pos;
 
 public:
-	Rigidbody2D(GameObject& associated, float gravityScale = 9.81f);
+	Rigidbody2D(GameObject& associated, float mass = 1.0f, float gravityScale = 9.81f);
 	~Rigidbody2D();
 
 	// Herdado por meio de Component

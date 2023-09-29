@@ -23,7 +23,7 @@ void Collider::Update(float dt)
 	
 	box.SetCenter(associated.box.GetCenter() + offset.GetRotated(associated.angleDeg));
 
-	Render();
+	//Render();
 }
 
 // Copie o conteúdo dessa função para dentro da sua e adapte o nome das funções para as suas.

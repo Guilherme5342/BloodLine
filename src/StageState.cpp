@@ -1,4 +1,5 @@
 #include "StageState.h"
+#include "Game.h"
 
 
 StageState::StageState() : State()
@@ -16,16 +17,27 @@ StageState::StageState() : State()
 
 void StageState::LoadAssets()
 {
+	Vector2 windowCenter = Game::Instance().GetWindowCenter();
+
 	GameObject* bgObj = new GameObject("Background");
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
 	bgObj->AddComponent(new CameraFollower(*bgObj));
 
 	GameObject* rb = new GameObject("Body");
 	rb->AddComponent(new Sprite(*rb, "assets/img/ball2.png"));
-	rb->AddComponent(new Rigidbody2D(*rb));
+	//rb->AddComponent(new Collider(*rb));
+	rb->AddComponent(new Rigidbody2D(*rb,50));
+
+	rb->box.SetCenter(windowCenter - Vector2(0,200));
+
 
 	AddObject(bgObj);
 	AddObject(rb);
+
+	GameObject* groundObj = new GameObject("Ground", 1);
+	groundObj->AddComponent(new RectDebugger(*groundObj,windowCenter.x - 256,windowCenter.y,1100,150));
+	AddObject(groundObj);
+
 }
 
 void StageState::Pause()
@@ -41,6 +53,10 @@ void StageState::Start()
 	StartArray();
 	started = true;
 
+
+	Rect groundRect = Rect(Game::Instance().GetWindowCenter(), 500, 100);
+
+	groundRect.FillRect();
 }
 
 void StageState::Update(float dt)
