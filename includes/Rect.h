@@ -69,7 +69,7 @@ public:
 		return Rect(GetCenter() + vec2, GetCenter() + vec2);
 	}
 
-	Rect& operator+=(Vector2 vec) {
+	Rect& operator+=(Vector2& const vec) {
 		this->x += vec.x;
 		this->y += vec.y;
 		return *this;

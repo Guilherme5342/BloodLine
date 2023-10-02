@@ -4,6 +4,7 @@
 RectDebugger::RectDebugger(GameObject& associated, float x, float y, float w,float h) : Component(associated) , gameObjectBox(x,y,w,h)
 {
 	debugRect = SDL_Rect{ (int)gameObjectBox.x, (int)gameObjectBox.y, (int)gameObjectBox.w,(int)gameObjectBox.h };
+    associated.box = gameObjectBox;
 }
 
 void RectDebugger::Update(float dt)

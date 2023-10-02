@@ -4,7 +4,8 @@
 Rect Rect::GetIntersection(Rect& otherRect)
 {
     Rect intersection = Rect(std::min(otherRect.x, this->x), std::min(otherRect.y, this->y),0,0);
-
+    intersection.SetSize(std::max(this->x + this->w, otherRect.x + otherRect.w) - intersection.x,
+        std::max(this->y + this->h, otherRect.y + otherRect.h) - intersection.y);
     return intersection;
 }
 

@@ -29,10 +29,10 @@ public:
 	Component* GetComponent(std::string type);
 
 	template<typename T, typename = is_base_of<Component,T>>
-	bool TryGetComponent(std::string type, T* component)
+	bool TryGetComponent(T* component)
 	{
 		for (auto& comp : components) {
-			if (comp->Is(type)) {
+			if (comp->Is(typeid(T).name())) {
 				component = (T*)comp.get();
 				return true;
 			}

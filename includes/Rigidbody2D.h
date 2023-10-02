@@ -24,4 +24,6 @@ public:
 		return type == "Rigidbody2D";
 	}
 
+	virtual void NotifyCollision(GameObject& otherObj) override;
+
 };

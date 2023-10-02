@@ -24,7 +24,15 @@ void Rigidbody2D::Update(float dt)
 	//cout << pos * 2000 << endl;
 }
 
+void Rigidbody2D::NotifyCollision(GameObject& otherObj) {
+	Collider* coll = (Collider*)this->associated.GetComponent("Collider");
+	Collider* otherColl = (Collider*)otherObj.GetComponent("Collider");
+
+	Rect intersectionRect = coll->box.GetIntersection(otherColl->box);
+}
+
 void Rigidbody2D::Render()
 {
 }
+
 

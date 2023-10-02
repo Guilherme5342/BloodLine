@@ -25,17 +25,20 @@ void StageState::LoadAssets()
 
 	GameObject* rb = new GameObject("Body");
 	rb->AddComponent(new Sprite(*rb, "assets/img/ball2.png"));
-	//rb->AddComponent(new Collider(*rb));
+
+	Collider* collider = new Collider(*rb, Vector2(rb->box.w,rb->box.h));
+	rb->AddComponent(collider);
 	rb->AddComponent(new Rigidbody2D(*rb,50));
 
 	rb->box.SetCenter(windowCenter - Vector2(0,200));
 
-
 	AddObject(bgObj);
 	AddObject(rb);
 
-	GameObject* groundObj = new GameObject("Ground", 1);
+	GameObject* groundObj = new GameObject("Ground");
 	groundObj->AddComponent(new RectDebugger(*groundObj,windowCenter.x - 256,windowCenter.y,1100,150));
+	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
+
 	AddObject(groundObj);
 
 }
@@ -73,7 +76,7 @@ void StageState::Update(float dt)
 	{
 		Collider* currentCol = nullptr;
 		
-		if(!objectArray[i]->TryGetComponent<Collider>("Collider", currentCol))
+		if(!objectArray[i]->TryGetComponent<Collider>(currentCol))
 			continue;
 
 		for (unsigned j = i + 1; j < objectArray.size(); j++)

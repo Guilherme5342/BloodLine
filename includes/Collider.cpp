@@ -17,13 +17,6 @@ Collider::~Collider() {
 
 void Collider::Update(float dt)
 {
-	box = associated.box;
-
-	box.SetSize(scale);
-	
-	box.SetCenter(associated.box.GetCenter() + offset.GetRotated(associated.angleDeg));
-
-	//Render();
 }
 
 // Copie o conteúdo dessa função para dentro da sua e adapte o nome das funções para as suas.
@@ -33,11 +26,19 @@ void Collider::Update(float dt)
 // Vector2::Rotate( float rad )		- Rotaciona um Vector2 pelo ângulo em radianos passado
 void Collider::Render()
 {
+	box = associated.box;
 
+	box.SetSize(scale);
+
+	box.SetCenter(associated.box.GetCenter() + offset.GetRotated(associated.angleDeg));
+
+	//Render();
+
+#pragma region Render Collider Bounds
 
 	Vector2 center(box.GetCenter());
 	SDL_Point points[5];
-	
+
 	Vector3 point = (Vector2(box.x, box.y) - center).GetRotated(associated.angleDeg / (FRAC_PI))
 		+ center - Camera::GetCurrentCamPos();
 	points[0] = { (int)point.x, (int)point.y };
@@ -57,7 +58,7 @@ void Collider::Render()
 
 	SDL_SetRenderDrawColor(Game::Instance().GetRenderer(), 255, 0, 0, SDL_ALPHA_OPAQUE);
 	SDL_RenderDrawLines(Game::Instance().GetRenderer(), points, 5);
- // DEBUG
 
-
+#pragma endregion
+	
 }
