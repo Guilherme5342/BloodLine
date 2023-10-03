@@ -36,6 +36,8 @@ void Sprite::Open(std::string filePath) {
 		return;
 	}
 	cout << "Abrindo Sprite: " << texture << endl;
+	cout << width << endl;
+	cout << height << endl;
 
 	SetClip(associated.box.x, associated.box.y, width, height);
 

@@ -32,11 +32,6 @@ void Rigidbody2D::NotifyCollision(GameObject& otherObj) {
 	Collider* otherColl = (Collider*)otherObj.GetComponent("Collider");
 
 	Rect intersectionRect = coll->box.GetIntersection(otherColl->box);
-	
-	//if (intersectionRect.w < intersectionRect.h || (intersectionRect.w < 3.0 && intersectionRect.h < 2.0f)) {
-	//	hitRight = intersectionRect.x > coll->box.x;
-
-	//}
 
 	if (intersectionRect.y > coll->box.y) {
 		acceleration.y = 0;

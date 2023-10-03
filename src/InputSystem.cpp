@@ -9,6 +9,20 @@ InputSystem::~InputSystem()
 {
 }
 
+Command* InputSystem::HandleInput()
+{
+	if (KeyPress(SDLK_SPACE))
+		return buttonSpace;
+
+	if (KeyPress(SDLK_1))
+		return buttonAlpha1;
+
+	if (KeyPress(SDLK_2))
+		return buttonAlpha2;
+
+	return nullptr;
+}
+
 InputSystem& InputSystem::Instance() {
 	static InputSystem instance;
 	return instance;

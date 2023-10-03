@@ -3,6 +3,8 @@
 #include <memory>
 #include <unordered_map>
 
+#include "Command.h"
+
 #include "SDL_events.h"
 
 using namespace std;
@@ -27,6 +29,14 @@ private:
 
 	InputSystem();
 	~InputSystem();
+
+	Command* buttonSpace;
+	Command* buttonAlpha1;
+	Command* buttonAlpha2;
+	
+
+	Command* HandleInput();
+
 public:
 	
 	static InputSystem& Instance();
