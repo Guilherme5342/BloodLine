@@ -33,5 +33,4 @@ public:
 		return type == "Sound";
 	}
 
-
 };

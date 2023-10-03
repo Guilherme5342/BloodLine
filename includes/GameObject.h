@@ -31,9 +31,16 @@ public:
 	template<typename T, typename = is_base_of<Component,T>>
 	bool TryGetComponent(T* component)
 	{
-		for (auto& comp : components) {
-			if (comp->Is(typeid(T).name())) {
-				component = (T*)comp.get();
+		for (auto& comp : components) 
+		{
+			string compName = typeid(T).name();
+			compName.erase(compName.begin() + 0, compName.begin() + 6);
+
+			cout << compName << endl;
+
+			if (comp->Is(compName)) 
+			{
+				*component = (T*)comp.get();
 				return true;
 			}
 		}

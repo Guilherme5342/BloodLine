@@ -53,6 +53,7 @@ public:
 		return type == "TileMap";
 	}
 
+
 	inline int GetWidth() {
 		return mapWidth;
 	}

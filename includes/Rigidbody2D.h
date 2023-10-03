@@ -12,6 +12,8 @@ private:
 	float mass, gravityScale;
 	Vector2 velocity, friction, acceleration, force, pos;
 
+	bool hitRight, hitLeft;
+ 
 public:
 	Rigidbody2D(GameObject& associated, float mass = 1.0f, float gravityScale = 9.81f);
 	~Rigidbody2D();

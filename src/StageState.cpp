@@ -28,7 +28,7 @@ void StageState::LoadAssets()
 
 	Collider* collider = new Collider(*rb, Vector2(rb->box.w,rb->box.h));
 	rb->AddComponent(collider);
-	rb->AddComponent(new Rigidbody2D(*rb,50));
+	rb->AddComponent(new Rigidbody2D(*rb,10,4.5f));
 
 	rb->box.SetCenter(windowCenter - Vector2(0,200));
 
@@ -74,14 +74,17 @@ void StageState::Update(float dt)
 
 	for (unsigned i = 0; i < objectArray.size(); i++)
 	{
-		Collider* currentCol = nullptr;
-		
-		if(!objectArray[i]->TryGetComponent<Collider>(currentCol))
+		Collider* currentCol = (Collider*)objectArray[i]->GetComponent("Collider");
+
+		if (currentCol == nullptr)
 			continue;
 
 		for (unsigned j = i + 1; j < objectArray.size(); j++)
 		{
 			Collider* otherCol = (Collider*)objectArray[j]->GetComponent("Collider");
+			if (otherCol == nullptr)
+				continue;
+			
 			if (Collision::IsColliding(currentCol->box, otherCol->box, objectArray[i]->angleDeg, objectArray[j]->angleDeg))
 			{
 				objectArray[i]->NotifyCollision(*objectArray[j]);
