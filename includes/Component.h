@@ -27,7 +27,7 @@ public:
 	template <class T, class = std::is_base_of<Component, T>>
 	std::string ResolveComponent()
 	{
-		return std::string(typeid(T).name);
+		return std::string(typeid(T).name());
 	}
 	virtual void NotifyCollision(GameObject &otherObj) {}
 };

@@ -6,13 +6,18 @@
 #include "Rigidbody2D.h"
 #include "RectDebug.h"
 
+#ifdef _WIN32
 #define BACKGROUND_IMAGE "assets/img/ocean.jpg"
+#else
+#define BACKGROUND_IMAGE "../assets/img/ocean.jpg"
+#endif
 
-class StageState : public State{
+class StageState : public State
+{
 
 private:
-	Sprite* bg;
-	Music* music;
+	Sprite *bg;
+	Music *music;
 
 public:
 	StageState();
