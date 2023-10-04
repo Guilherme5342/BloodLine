@@ -6,6 +6,7 @@
 #include <SDL2/SDL_mixer.h>
 #endif
 
+#include <memory>
 #include <iostream>
 #include <string.h>
 #include <string>
