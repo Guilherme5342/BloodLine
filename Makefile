@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -w -lSDL2 -lSDL2_mixer -lSDL2_image -lsdl2_ttf
+CXXFLAGS = -w -Iincludes -lSDL2 -lSDL2_mixer -lSDL2_image -lsdl2_ttf
 SRCDIR = src
 SRCDIR2 = includes
 BINDIR = bin
