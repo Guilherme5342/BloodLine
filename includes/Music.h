@@ -1,11 +1,16 @@
 #pragma once
 
+#ifdef _WIN32
 #include "SDL_mixer.h"
+#else
+#include <SDL2/SDL_mixer.h>
+#endif
 #include <iostream>
 #include <string.h>
 #include <string>
 
-class Music {
+class Music
+{
 private:
 	std::shared_ptr<Mix_Music> music;
 
@@ -18,7 +23,8 @@ public:
 	void Stop(int msToStop = 1500);
 
 	void Open(std::string filePath);
-	inline bool IsOpen() {
+	inline bool IsOpen()
+	{
 		return music != nullptr;
 	}
 };
