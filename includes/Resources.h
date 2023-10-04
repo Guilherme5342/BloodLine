@@ -19,7 +19,7 @@
 #include <SDL2/SDL_ttf.h>
 #endif
 
-static class Resources
+class Resources
 {
 
 private:
