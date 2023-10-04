@@ -112,6 +112,10 @@ public:
 		z += vec;
 	}
 
+	/*static Vector3 Clamp(Vector3 target, Vector3 a, Vector3 b) {
+		return Vector3(std::max(a, std::min(b, target)));
+	}*/
+
 	friend ostream& operator<<(ostream& out, const Vector3& vec);
 	
 };

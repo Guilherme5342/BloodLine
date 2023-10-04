@@ -12,7 +12,7 @@ Rigidbody2D::~Rigidbody2D()
 void Rigidbody2D::Update(float dt)
 {
 	acceleration.x = (force.x + friction.x) / mass;
-	acceleration.y = mass * gravityScale;
+	acceleration.y = (mass * gravityScale) + (force.y);
 
 	velocity = acceleration * dt;
 
@@ -24,6 +24,9 @@ void Rigidbody2D::Update(float dt)
 	if (associated.box.y < MAX_VELOCITY_Y)
 		associated.box.y = MAX_VELOCITY_Y;
 	
+	force.y = std::clamp(force.y, 1.f, 2000.0f);
+	force.y -= dt;
+
 	//cout << pos * 2000 << endl;
 }
 
@@ -34,7 +37,7 @@ void Rigidbody2D::NotifyCollision(GameObject& otherObj) {
 	Rect intersectionRect = coll->box.GetIntersection(otherColl->box);
 
 	if (intersectionRect.y > coll->box.y) {
-		acceleration.y = 0;
+		velocity.y = 0;
 		associated.box.y -= intersectionRect.h + .5f;
 	}
 	else

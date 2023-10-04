@@ -29,7 +29,7 @@ public:
 	Component* GetComponent(std::string type);
 
 	template<typename T, typename = is_base_of<Component,T>>
-	bool TryGetComponent(T* component)
+	bool TryGetComponent(T *component)
 	{
 		for (auto& comp : components) 
 		{
@@ -40,7 +40,8 @@ public:
 
 			if (comp->Is(compName)) 
 			{
-				*component = (T*)comp.get();
+				component = static_cast<T*>(comp.get());
+				
 				return true;
 			}
 		}

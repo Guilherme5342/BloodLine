@@ -1,5 +1,7 @@
 #include "StageState.h"
 #include "Game.h"
+#include "PlayerController.h"
+
 
 
 StageState::StageState() : State()
@@ -23,14 +25,18 @@ void StageState::LoadAssets()
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
 	bgObj->AddComponent(new CameraFollower(*bgObj));
 
-	GameObject* rb = new GameObject("Body");
+	GameObject* rb = new GameObject("PlayerBody");
 	rb->AddComponent(new Sprite(*rb, "assets/img/ball2.png"));
 
 	Collider* collider = new Collider(*rb, Vector2(rb->box.w,rb->box.h));
 	rb->AddComponent(collider);
-	rb->AddComponent(new Rigidbody2D(*rb,10,4.5f));
+	rb->AddComponent(new Rigidbody2D(*rb,10,12));
+	rb->AddComponent(new PlayerController(*rb,
+		*(Rigidbody2D*)rb->GetComponent("Rigidbody2D"), 300));
 
 	rb->box.SetCenter(windowCenter - Vector2(0,200));
+
+	Camera::Follow(rb);
 
 	AddObject(bgObj);
 	AddObject(rb);

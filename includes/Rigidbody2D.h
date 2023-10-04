@@ -28,4 +28,11 @@ public:
 
 	virtual void NotifyCollision(GameObject& otherObj) override;
 
+	inline void ApplyVelocity(Vector2 velocity) {
+		this->velocity += velocity;
+	}
+
+	inline void ApplyForce(Vector2 force) {
+		this->force = force;
+	}
 };
