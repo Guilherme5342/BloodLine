@@ -45,23 +45,23 @@ public:
 		return (T)atan2(to.y - from.y, to.x - from.x);
 	}
 
-	Vector3 operator+(Vector3 const vec)
+	Vector3 operator+(Vector3 const &vec)
 	{
 
 		return Vector3(x + vec.x, y + vec.y, z + vec.z);
 	}
 
-	Vector3 operator*(Vector3 const vec)
+	Vector3 operator*(Vector3 const &vec)
 	{
 		return Vector3(x * vec.x, y * vec.y, z * vec.z);
 	}
 
-	Vector3 operator-(Vector3 const vec)
+	Vector3 operator-(Vector3 const &vec)
 	{
 		return Vector3(x - vec.x, y - vec.y, z - vec.z);
 	}
 
-	Vector3 operator/(Vector3 const vec)
+	Vector3 operator/(Vector3 const &vec)
 	{
 		return Vector3(x / vec.x, y / vec.y, z / vec.z);
 	}
@@ -128,7 +128,7 @@ public:
 		return Vector3(std::max(a, std::min(b, target)));
 	}*/
 
-	friend ostream &operator<<(ostream &out, const Vector3 vec);
+	friend ostream &operator<<(ostream &out, const Vector3 &vec);
 };
 
 struct Vector2 : public Vector3
@@ -144,7 +144,7 @@ public:
 		this->z = 0;
 	}
 
-	Vector2 operator+(Vector3 vec)
+	Vector2 operator+(Vector3 const &vec)
 	{
 
 		return Vector2(x + vec.x, y + vec.y);
@@ -156,39 +156,39 @@ public:
 		return Vector2(x + num, y + num);
 	}
 
-	Vector2 operator*(Vector3 vec)
+	Vector2 operator*(Vector3 const &vec)
 	{
 		return Vector2(x * vec.x, y * vec.y);
 	}
 
-	Vector2 operator-(Vector3 vec)
+	Vector2 operator-(Vector3 const &vec)
 	{
 		return Vector2(x - vec.x, y - vec.y);
 	}
 
-	Vector2 operator/(Vector3 vec)
+	Vector2 operator/(Vector3 const &vec)
 	{
 		return Vector2(x / vec.x, y / vec.y);
 	}
 
-	Vector2 operator*(float vec)
+	Vector2 operator*(const float vec)
 	{
 		return Vector2(this->x * vec, this->y * vec);
 	}
 
-	Vector2 operator/(float vec)
+	Vector2 operator/(const float vec)
 	{
 		return Vector2(this->x / vec, this->y / vec);
 	}
 
-	Vector2 &operator+=(Vector2 vec)
+	Vector2 &operator+=(const Vector2 &vec)
 	{
 		this->x += vec.x;
 		this->y += vec.y;
 		return *this;
 	}
 
-	Vector2 &operator*=(float vec)
+	Vector2 &operator*=(const float vec)
 	{
 
 		this->x *= vec;
@@ -196,7 +196,7 @@ public:
 		return *this;
 	}
 
-	friend ostream &operator<<(ostream &out, Vector2 vec);
+	friend ostream &operator<<(ostream &out, const Vector2 &vec);
 };
 
 inline float Distance(Vector3 a, Vector3 b)
