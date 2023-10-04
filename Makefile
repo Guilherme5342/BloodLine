@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -w -Iincludes -lSDL2 -lSDL2_mixer -lSDL2_image -lsdl2_ttf -std=c++20
+CXXFLAGS = -w -Iincludes -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf -std=c++20
 SRCDIR = src
 BINDIR = bin
 TARGET = $(BINDIR)/game

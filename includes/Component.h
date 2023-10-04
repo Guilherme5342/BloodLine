@@ -7,27 +7,27 @@
 
 class GameObject;
 
-
-class Component {
+class Component
+{
 
 protected:
-	GameObject& associated;
+	GameObject &associated;
 
 public:
-	Component(GameObject& associated);
+	Component(GameObject &associated);
 	virtual ~Component();
 
-	virtual void Start() {
-
+	virtual void Start()
+	{
 	}
 	virtual void Update(float dt) = 0;
 	virtual void Render() = 0;
 	virtual bool Is(std::string type) = 0;
-	
 
-	template<class T, class = std::is_base_of<Component,T>>
-	std::string ResolveComponent() {
-		return typeid(T).name;
+	template <class T, class = std::is_base_of<Component, T>>
+	std::string ResolveComponent()
+	{
+		return std::string(typeid(T).name);
 	}
-	virtual void NotifyCollision(GameObject& otherObj){ }
+	virtual void NotifyCollision(GameObject &otherObj) {}
 };
