@@ -5,11 +5,16 @@
 
 #include "Command.h"
 
+#ifdef _WIN32
 #include "SDL_events.h"
+#else
+#include <SDL2/SDL_events.h>
+#endif
 
 using namespace std;
 
-class InputSystem {
+class InputSystem
+{
 
 private:
 	bool mouseState[6];
@@ -26,58 +31,63 @@ private:
 
 	int currentKey;
 
-
 	InputSystem();
 	~InputSystem();
 
-	Command* buttonSpace;
-	Command* buttonAlpha1;
-	Command* buttonAlpha2;
-	
+	Command *buttonSpace;
+	Command *buttonAlpha1;
+	Command *buttonAlpha2;
 
-	Command* HandleInput();
+	Command *HandleInput();
 
 public:
-	
-	static InputSystem& Instance();
+	static InputSystem &Instance();
 
 	void Update();
 
-	inline bool KeyPress(int keyEnum) {
+	inline bool KeyPress(int keyEnum)
+	{
 		return IsKeyDown(keyEnum) == true && (keyUpdate[keyEnum] == updateCounter);
 	}
-	inline bool KeyRelease(int keyEnum) {
+	inline bool KeyRelease(int keyEnum)
+	{
 		return IsKeyDown(keyEnum) == false && (keyUpdate[keyEnum] == updateCounter);
 	}
-	inline bool IsKeyDown(int keyEnum) {
+	inline bool IsKeyDown(int keyEnum)
+	{
 		return keyState[keyEnum];
 	}
 
-	inline bool MousePress(int button) {
+	inline bool MousePress(int button)
+	{
 		return mouseState[button] && (mouseUpdate[button] == updateCounter);
 	}
-	inline bool MouseRelease(int button){
+	inline bool MouseRelease(int button)
+	{
 		return IsMouseDown(button) == false && (mouseUpdate[button] == updateCounter);
 	}
-	inline bool IsMouseDown(int button){
+	inline bool IsMouseDown(int button)
+	{
 		return mouseState[button];
 	}
 
-
-	inline int GetMouseX() {
+	inline int GetMouseX()
+	{
 		return mouseX;
 	}
 
-	inline int GetMouseY() {
+	inline int GetMouseY()
+	{
 		return mouseY;
 	}
 
-	inline int GetCurrentKey() {
+	inline int GetCurrentKey()
+	{
 		return currentKey;
 	}
 
-	inline bool QuitRequested() {
+	inline bool QuitRequested()
+	{
 		return quitRequested;
 	}
-
 };

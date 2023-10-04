@@ -3,13 +3,18 @@
 #include "State.h"
 #include "Text.h"
 
+#ifdef _WIN32
 #define TITLE_IMAGE "assets/img/title.jpg"
+#else
+#define TITLE_IMAGE "../assets/img/title.jpg"
+#endif
 
-class MenuState : public State {
+class MenuState : public State
+{
 
 public:
 	MenuState();
-	
+
 	void LoadAssets();
 	void Start();
 	void Update(float dt);
@@ -17,5 +22,4 @@ public:
 
 	void Pause();
 	void Resume();
-
 };
