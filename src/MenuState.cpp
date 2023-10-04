@@ -4,7 +4,7 @@
 #ifdef _WIN32
 #define FONT "assets/font/Call me maybe.ttf"
 #else
-#define FONT "assets/font/Call me maybe.ttf"
+#define FONT "../assets/font/Call me maybe.ttf"
 #endif
 
 MenuState::MenuState() : State()
