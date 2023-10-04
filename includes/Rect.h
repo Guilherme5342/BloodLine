@@ -60,7 +60,7 @@ public:
 		this->y = y - (h / 2);
 	}
 
-	inline void SetCenter(Vector2 const &pos)
+	inline void SetCenter(Vector2 pos)
 	{
 		SetCenter(pos.x, pos.y);
 	}
@@ -80,12 +80,12 @@ public:
 		return this->x<otherRect.x &&this->y<otherRect.y &&this->x + w> otherRect.x &&this->y + h> otherRect.y;
 	}
 
-	Rect operator+(Vector2 &const vec2)
+	Rect operator+(Vector2 vec2)
 	{
 		return Rect(GetCenter() + vec2, GetCenter() + vec2);
 	}
 
-	Rect &operator+=(Vector2 &const vec)
+	Rect &operator+=(Vector2 vec)
 	{
 		this->x += vec.x;
 		this->y += vec.y;

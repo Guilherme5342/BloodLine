@@ -3,8 +3,10 @@
 #ifdef _WIN32
 #include "SDL_mixer.h"
 #else
+#include <memory>
 #include <SDL2/SDL_mixer.h>
 #endif
+
 #include <iostream>
 #include <string.h>
 #include <string>
