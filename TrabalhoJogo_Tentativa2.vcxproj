@@ -140,34 +140,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Codigos Prontos\SDL_include.h" />
-    <ClInclude Include="includes\CameraFollower.h" />
-    <ClInclude Include="includes\Collider.h" />
-    <ClInclude Include="includes\Camera.h" />
-    <ClInclude Include="includes\Collision.h" />
-    <ClInclude Include="includes\Command.h" />
-    <ClInclude Include="includes\Component.h" />
-    <ClInclude Include="includes\Game.h" />
-    <ClInclude Include="includes\GameObject.h" />
-    <ClInclude Include="includes\GlobalDefinitions.h" />
-    <ClInclude Include="includes\InputSystem.h" />
-    <ClInclude Include="includes\MenuState.h" />
-    <ClInclude Include="includes\Music.h" />
-    <ClInclude Include="includes\PlayerController.h" />
-    <ClInclude Include="includes\Rect.h" />
-    <ClInclude Include="includes\RectDebug.h" />
-    <ClInclude Include="includes\Resources.h" />
-    <ClInclude Include="includes\Rigidbody2D.h" />
-    <ClInclude Include="includes\Sound.h" />
-    <ClInclude Include="includes\Sprite.h" />
-    <ClInclude Include="includes\StageState.h" />
-    <ClInclude Include="includes\State.h" />
-    <ClInclude Include="includes\Text.h" />
-    <ClInclude Include="includes\TileMap.h" />
-    <ClInclude Include="includes\TileSet.h" />
-    <ClInclude Include="includes\Vector3.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\CameraFollower.cpp" />
     <ClCompile Include="src\Collider.cpp" />
@@ -194,6 +166,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\Camera.hpp" />
+    <ClInclude Include="includes\CameraFollower.hpp" />
+    <ClInclude Include="includes\Collider.hpp" />
+    <ClInclude Include="includes\Collision.hpp" />
+    <ClInclude Include="includes\Command.hpp" />
+    <ClInclude Include="includes\Component.hpp" />
+    <ClInclude Include="includes\Game.hpp" />
+    <ClInclude Include="includes\GameObject.hpp" />
+    <ClInclude Include="includes\GlobalDefinitions.hpp" />
+    <ClInclude Include="includes\InputSystem.hpp" />
+    <ClInclude Include="includes\MenuState.hpp" />
+    <ClInclude Include="includes\Music.hpp" />
+    <ClInclude Include="includes\PlayerController.hpp" />
+    <ClInclude Include="includes\Rect.hpp" />
+    <ClInclude Include="includes\RectDebug.hpp" />
+    <ClInclude Include="includes\Resources.hpp" />
+    <ClInclude Include="includes\Rigidbody2D.hpp" />
+    <ClInclude Include="includes\SDL_include.hpp" />
+    <ClInclude Include="includes\Sound.hpp" />
+    <ClInclude Include="includes\Sprite.hpp" />
+    <ClInclude Include="includes\StageState.hpp" />
+    <ClInclude Include="includes\State.hpp" />
+    <ClInclude Include="includes\Text.hpp" />
+    <ClInclude Include="includes\TileMap.hpp" />
+    <ClInclude Include="includes\TileSet.hpp" />
+    <ClInclude Include="includes\Vector3.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -33,86 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\Game.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\GameObject.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\State.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Rect.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Vector3.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Music.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Resources.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Codigos Prontos\SDL_include.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\InputSystem.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\StageState.h">
-      <Filter>Arquivos de Cabeçalho\GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Camera.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\MenuState.h">
-      <Filter>Arquivos de Cabeçalho\GameLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Collision.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\TileSet.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Component.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\CameraFollower.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Collider.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Text.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\TileMap.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\RectDebug.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Sound.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Sprite.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\PlayerController.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Command.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Rigidbody2D.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\GlobalDefinitions.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\AssetHeaders</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
@@ -185,5 +105,85 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\MenuState.hpp">
+      <Filter>Arquivos de Cabeçalho\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\StageState.hpp">
+      <Filter>Arquivos de Cabeçalho\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Camera.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Collision.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Command.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Component.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Game.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\GameObject.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\InputSystem.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Music.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Rect.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Resources.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SDL_include.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\State.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\TileSet.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Vector3.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\CameraFollower.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\GlobalDefinitions.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\AssetHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Collider.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\PlayerController.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Rigidbody2D.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Text.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Sprite.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Sound.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\TileMap.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\RectDebug.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
