@@ -1,7 +1,7 @@
 #pragma once
 
-#include "State.h"
-#include "Text.h"
+#include "State.hpp"
+#include "Text.hpp"
 
 #ifdef _WIN32
 #define TITLE_IMAGE "assets/img/title.jpg"

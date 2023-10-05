@@ -5,7 +5,7 @@
 #else
 #include <SDL2/SDL_mixer.h>
 #endif
-#include "Component.h"
+#include "Component.hpp"
 
 class Sound : public Component
 {

@@ -5,7 +5,7 @@
 #else
 #include <SDL2/SDL_image.h>
 #endif
-#include "Component.h"
+#include "Component.hpp"
 
 class Sprite : public Component
 {

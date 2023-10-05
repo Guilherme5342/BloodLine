@@ -1,10 +1,10 @@
 #pragma once
 
-#include "State.h"
-#include "Sprite.h"
-#include "Music.h"
-#include "Rigidbody2D.h"
-#include "RectDebug.h"
+#include "State.hpp"
+#include "Sprite.hpp"
+#include "Music.hpp"
+#include "Rigidbody2D.hpp"
+#include "RectDebug.hpp"
 
 #ifdef _WIN32
 #define BACKGROUND_IMAGE "assets/img/ocean.jpg"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "Component.hpp"
 
 #ifdef _WIN32
 #include "SDL_ttf.h"

@@ -3,11 +3,10 @@
 #include <memory>
 #include <vector>
 
-#include "InputSystem.h"
-#include "GameObject.h"
-#include "Camera.h"
-#include "CameraFollower.h"
-
+#include "InputSystem.hpp"
+#include "GameObject.hpp"
+#include "Camera.hpp"
+#include "CameraFollower.hpp"
 
 class State
 {

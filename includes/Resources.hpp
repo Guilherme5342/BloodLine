@@ -6,7 +6,7 @@
 
 #include <memory>
 #include <unordered_map>
-#include "SDL_include.h"
+#include "SDL_include.hpp"
 
 #ifdef _WIN32
 #include "SDL_image.h"

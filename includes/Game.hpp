@@ -23,11 +23,11 @@
 #include <stack>
 #include <typeinfo>
 
-#include "State.h"
-#include "StageState.h"
-#include "MenuState.h"
+#include "State.hpp"
+#include "StageState.hpp"
+#include "MenuState.hpp"
 
-#include "Resources.h"
+#include "Resources.hpp"
 
 #define MIX_INIT_EVERYTHING (MIX_INIT_OGG | MIX_INIT_MP3 | MIX_INIT_FLAC /*| MIX_INIT_MOD*/)
 

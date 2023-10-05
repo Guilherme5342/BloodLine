@@ -3,7 +3,7 @@
 #include <memory>
 #include <unordered_map>
 
-#include "Command.h"
+#include "Command.hpp"
 
 #ifdef _WIN32
 #include "SDL_events.h"

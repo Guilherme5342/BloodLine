@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Sprite.h"
-#include "GameObject.h"
+#include "Sprite.hpp"
+#include "GameObject.hpp"
 
-class TileSet {
+class TileSet
+{
 
 private:
 	Sprite tileSet;
@@ -13,18 +14,18 @@ private:
 	int rows, columns;
 
 public:
-	TileSet(GameObject& associated,int tileWidth, int tileHeight, std::string filePath);
+	TileSet(GameObject &associated, int tileWidth, int tileHeight, std::string filePath);
 	~TileSet();
 
 	void RenderTile(int x, int y, int layerIndex); // Tambem chamado de LayerIndex = Camada Z
 
-	inline int GetTileWidth() {
+	inline int GetTileWidth()
+	{
 		return tileWidth;
 	}
 
-	inline int GetTileHeight() {
+	inline int GetTileHeight()
+	{
 		return tileHeight;
 	}
-
-
 };

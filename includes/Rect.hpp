@@ -10,7 +10,7 @@
 #include <SDL2/SDL_image.h>
 #endif
 
-#include "Vector3.h"
+#include "Vector3.hpp"
 
 struct Rect
 {
