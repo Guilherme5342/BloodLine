@@ -75,9 +75,13 @@ void Game::Run()
 	// Atualiza��o da GAME ENGINE
 	// Nunca esquecer de colocar as atualiza��es das Features que forem feitas na GameEngine
 	// (Ex. InputSystem.Update(), Physics.Update(), Animator.Update())
+
+	// Cria instancia de input fora do loop para não re-criar instancia a cada iteração
 	InputSystem &input = InputSystem::Instance();
 
-	while (!stateStack.empty() && !GetState().QuitRequested())
+	// Checa quit requested do input, não do state (Mais otimizado), pois
+	// não é necessário criar instância de InputSystem no UpdateState()
+	while (!stateStack.empty() && !input.QuitRequested())
 	{
 		CalculateDeltaTime();
 		input.Update();
