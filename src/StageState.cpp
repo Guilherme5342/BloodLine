@@ -1,8 +1,8 @@
-#include "StageState.h"
-#include "Game.h"
-#include "PlayerController.h"
+#include "StageState.hpp"
+#include "Game.hpp"
+#include "PlayerController.hpp"
 
-#include "GlobalDefinitions.h"
+#include "GlobalDefinitions.hpp"
 
 StageState::StageState() : State()
 {

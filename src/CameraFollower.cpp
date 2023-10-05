@@ -1,8 +1,8 @@
-#include "CameraFollower.h"
-#include "GameObject.h"
-#include "Camera.h"
+#include "CameraFollower.hpp"
+#include "GameObject.hpp"
+#include "Camera.hpp"
 
-CameraFollower::CameraFollower(GameObject& associated) : Component(associated)
+CameraFollower::CameraFollower(GameObject &associated) : Component(associated)
 {
 }
 

@@ -1,4 +1,4 @@
-#include "State.h"
+#include "State.hpp"
 
 State::State()
 {
@@ -25,23 +25,24 @@ void State::StartArray()
 
 void State::UpdateArray(float dt)
 {
-	for (auto obj : objectArray) {
+	for (auto obj : objectArray)
+	{
 		obj->Update(dt);
 	}
 
-	for (int i = (int)objectArray.size() - 1; i >= 0; i--) {
-		if (objectArray[i]->isDead()) {
+	for (int i = (int)objectArray.size() - 1; i >= 0; i--)
+	{
+		if (objectArray[i]->isDead())
+		{
 			objectArray.erase(objectArray.begin() + i);
 		}
 	}
-
-	
 }
 
 void State::RenderArray()
 {
-	for (auto obj : objectArray) {
+	for (auto obj : objectArray)
+	{
 		obj->Render();
 	}
 }
-

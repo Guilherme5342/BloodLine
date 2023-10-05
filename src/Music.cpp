@@ -1,11 +1,13 @@
-#include "Music.h"
-#include "Resources.h"
+#include "Music.hpp"
+#include "Resources.hpp"
 
-Music::Music() {
+Music::Music()
+{
 	music = nullptr;
 }
 
-Music::Music(std::string filePath) : Music() {
+Music::Music(std::string filePath) : Music()
+{
 	Open(filePath);
 }
 
@@ -22,19 +24,21 @@ void Music::Play(int times)
 	Mix_PlayMusic(music.get(), times);
 }
 
-void Music::Stop(int msToStop) {
+void Music::Stop(int msToStop)
+{
 	if (!IsOpen())
 		return;
 
 	Mix_FadeOutMusic(msToStop);
 }
 
-void Music::Open(std::string filePath) {
+void Music::Open(std::string filePath)
+{
 	music = Resources::GetMusic(filePath);
 
-	if (!music) {
+	if (!music)
+	{
 		std::cout << "Erro ao abrir Musica: " << filePath.c_str() << std::endl;
 		std::cout << "Motivo " << SDL_GetError() << std::endl;
 	}
-
 }

@@ -1,7 +1,6 @@
-#include "GameObject.h"
+#include "GameObject.hpp"
 
-
-GameObject::GameObject(string name, int layer) : name(name) , layer(layer) // Member Initialization Lists
+GameObject::GameObject(string name, int layer) : name(name), layer(layer) // Member Initialization Lists
 {
 	dead = false;
 }
@@ -14,7 +13,6 @@ GameObject::~GameObject()
 	}
 
 	components.clear();
-	
 }
 
 void GameObject::Start()
@@ -25,7 +23,8 @@ void GameObject::Start()
 	}
 }
 
-void GameObject::Update(float dt) {
+void GameObject::Update(float dt)
+{
 
 	for (std::vector<std::unique_ptr<Component>>::iterator item = components.begin(); item != components.end(); item++)
 	{
@@ -33,40 +32,43 @@ void GameObject::Update(float dt) {
 	}
 }
 
-void GameObject::Render() {
+void GameObject::Render()
+{
 
 	for (std::vector<std::unique_ptr<Component>>::iterator item = components.begin(); item != components.end(); item++)
 	{
 		item->get()->Render();
 	}
-
 }
 
-void GameObject::AddComponent(Component* comp) {
+void GameObject::AddComponent(Component *comp)
+{
 
-	if (started) {
+	if (started)
+	{
 		comp->Start();
 	}
 
 	components.emplace_back(comp);
 }
 
-Component* GameObject::GetComponent(std::string type) {
+Component *GameObject::GetComponent(std::string type)
+{
 
 	for (int i = 0; i < components.size(); i++)
 	{
-		if (components[i]->Is(type)) 
+		if (components[i]->Is(type))
 		{
 			return components[i].get();
 		}
 	}
 	return nullptr;
-
 }
 
-void GameObject::NotifyCollision(GameObject& otherObj)
+void GameObject::NotifyCollision(GameObject &otherObj)
 {
-	for (auto& comp : components) {
+	for (auto &comp : components)
+	{
 		comp->NotifyCollision(otherObj);
 	}
 }

@@ -1,5 +1,5 @@
-#include "MenuState.h"
-#include "Game.h"
+#include "MenuState.hpp"
+#include "Game.hpp"
 
 #ifdef _WIN32
 #define FONT "assets/font/Call me maybe.ttf"
@@ -47,7 +47,7 @@ void MenuState::Update(float dt)
 {
 	InputSystem &input = InputSystem::Instance();
 
-	if (input.KeyPress(SDLK_ESCAPE))
+	if (input.KeyPress(SDLK_ESCAPE) || input.QuitRequested())
 	{
 		quitRequested = true;
 	}
