@@ -77,7 +77,7 @@ void Game::Run()
 	// (Ex. InputSystem.Update(), Physics.Update(), Animator.Update())
 	InputSystem &input = InputSystem::Instance();
 
-	while (!stateStack.empty() && !input.QuitRequested() && !GetState().QuitRequested())
+	while (!stateStack.empty() && !GetState().QuitRequested())
 	{
 		CalculateDeltaTime();
 		input.Update();

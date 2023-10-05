@@ -25,6 +25,13 @@ void State::StartArray()
 
 void State::UpdateArray(float dt)
 {
+	InputSystem &input = InputSystem::Instance();
+
+	if (input.KeyPress(SDLK_ESCAPE) || input.QuitRequested())
+	{
+		quitRequested = true;
+	}
+
 	for (auto obj : objectArray)
 	{
 		obj->Update(dt);
