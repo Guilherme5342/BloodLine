@@ -2,11 +2,7 @@
 #include "Game.h"
 #include "PlayerController.h"
 
-#ifdef _WIN32
-#define BALL_PNG "img/ball2.png"
-#else
-#define BALL_PNG "../assets/img/ball2.png"
-#endif
+#include "GlobalDefinitions.h"
 
 StageState::StageState() : State()
 {
