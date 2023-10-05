@@ -75,12 +75,12 @@ void Game::Run()
 	// Atualiza��o da GAME ENGINE
 	// Nunca esquecer de colocar as atualiza��es das Features que forem feitas na GameEngine
 	// (Ex. InputSystem.Update(), Physics.Update(), Animator.Update())
-	while (!stateStack.empty() && !GetState().QuitRequested())
+	InputSystem &input = InputSystem::Instance();
+
+	while (!stateStack.empty() && !input.QuitRequested() && !GetState().QuitRequested())
 	{
-
 		CalculateDeltaTime();
-
-		InputSystem::Instance().Update();
+		input.Update();
 
 		if (GetState().PopRequested())
 		{
