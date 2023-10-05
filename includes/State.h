@@ -8,13 +8,6 @@
 #include "Camera.h"
 #include "CameraFollower.h"
 
-#define MAIN_IMG_FOLDER_PATH "assets/"
-
-#ifdef _WIN32
-#define BALL_PNG "img/ball2.png"
-#else
-#define BALL_PNG "../img/ball.png"
-#endif
 
 class State
 {

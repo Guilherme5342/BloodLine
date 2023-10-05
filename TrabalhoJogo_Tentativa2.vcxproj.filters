@@ -28,6 +28,9 @@
     <Filter Include="Arquivos de Cabeçalho\EngineLogic\Components">
       <UniqueIdentifier>{45f47e1c-1f6e-43c8-90cf-207d9738e15c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Cabeçalho\EngineLogic\AssetHeaders">
+      <UniqueIdentifier>{1669840d-23f5-4c75-b82b-acabe1865888}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Game.h">
@@ -69,9 +72,6 @@
     <ClInclude Include="includes\Collision.h">
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
-    <ClInclude Include="includes\Rigidbody2D.h">
-      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
-    </ClInclude>
     <ClInclude Include="includes\TileSet.h">
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
@@ -105,6 +105,12 @@
     <ClInclude Include="includes\Command.h">
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
+    <ClInclude Include="includes\Rigidbody2D.h">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\GlobalDefinitions.h">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\AssetHeaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -125,9 +131,6 @@
     <ClCompile Include="src\StageState.cpp">
       <Filter>Arquivos de Origem\GameLogic</Filter>
     </ClCompile>
-    <ClCompile Include="includes\Sprite.cpp">
-      <Filter>Arquivos de Origem\EngineLogic</Filter>
-    </ClCompile>
     <ClCompile Include="src\Resources.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
@@ -140,9 +143,6 @@
     <ClCompile Include="src\Sound.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
-    <ClCompile Include="includes\Vector3.cpp">
-      <Filter>Arquivos de Origem\EngineLogic</Filter>
-    </ClCompile>
     <ClCompile Include="src\Camera.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
@@ -150,12 +150,6 @@
       <Filter>Arquivos de Origem\GameLogic</Filter>
     </ClCompile>
     <ClCompile Include="src\Text.cpp">
-      <Filter>Arquivos de Origem\EngineLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ColliderRender.cpp">
-      <Filter>Arquivos de Origem\EngineLogic</Filter>
-    </ClCompile>
-    <ClCompile Include="includes\Collider.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
     <ClCompile Include="src\CameraFollower.cpp">
@@ -170,13 +164,22 @@
     <ClCompile Include="src\TileMap.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
-    <ClCompile Include="includes\Rect.cpp">
-      <Filter>Arquivos de Origem\EngineLogic</Filter>
-    </ClCompile>
     <ClCompile Include="src\RectDebug.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
     <ClCompile Include="src\PlayerController.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Collider.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rect.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sprite.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector3.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
   </ItemGroup>
