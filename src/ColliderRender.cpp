@@ -3,15 +3,11 @@
 // logo após os seus includes e antes de qualquer função.
 
 #ifdef DEBUG
-#include "Camera.h"
-#include "Game.h"
+#include "Camera.hpp"
+#include "Game.hpp"
 
 #include <SDL2/SDL.h>
 #endif // DEBUG
-
-
-
-
 
 // Copie o conteúdo dessa função para dentro da sua e adapte o nome das funções para as suas.
 // Funções usadas:
@@ -27,15 +23,15 @@
 					+ center - Camera::pos;
 	points[0] = {(int)point.x, (int)point.y};
 	points[4] = {(int)point.x, (int)point.y};
-	
+
 	point = (Vec2(box.x + box.w, box.y) - center).Rotate( associated.angleDeg/(180/PI) )
 					+ center - Camera::pos;
 	points[1] = {(int)point.x, (int)point.y};
-	
+
 	point = (Vec2(box.x + box.w, box.y + box.h) - center).Rotate( associated.angleDeg/(180/PI) )
 					+ center - Camera::pos;
 	points[2] = {(int)point.x, (int)point.y};
-	
+
 	point = (Vec2(box.x, box.y + box.h) - center).Rotate( associated.angleDeg/(180/PI) )
 					+ center - Camera::pos;
 	points[3] = {(int)point.x, (int)point.y};

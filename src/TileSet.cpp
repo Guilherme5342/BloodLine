@@ -1,13 +1,14 @@
-#include "TileSet.h"
+#include "TileSet.hpp"
 
-TileSet::TileSet(GameObject& associated, int tileWidth, int tileHeight, std::string filePath) : tileSet(associated,filePath)
+TileSet::TileSet(GameObject &associated, int tileWidth, int tileHeight, std::string filePath) : tileSet(associated, filePath)
 {
 	this->tileWidth = tileWidth;
 	this->tileHeight = tileHeight;
 
 	tileSet.Open(filePath);
 
-	if (!tileSet.IsOpen()) {
+	if (!tileSet.IsOpen())
+	{
 		cout << "Erro ao abrir TileSet" << SDL_GetError() << endl;
 		return;
 	}
@@ -32,6 +33,4 @@ void TileSet::RenderTile(int x, int y, int layerIndex)
 
 	tileSet.SetClip(tileX, tileY, tileWidth, tileHeight);
 	tileSet.Render(x, y, tileWidth, tileHeight);
-
-
 }

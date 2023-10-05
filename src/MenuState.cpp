@@ -1,5 +1,5 @@
-#include "MenuState.h"
-#include "Game.h"
+#include "MenuState.hpp"
+#include "Game.hpp"
 
 #ifdef _WIN32
 #define FONT "assets/font/Call me maybe.ttf"

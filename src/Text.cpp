@@ -1,6 +1,6 @@
-#include "Text.h"
-#include "Game.h"
-#include "GameObject.h"
+#include "Text.hpp"
+#include "Game.hpp"
+#include "GameObject.hpp"
 
 Text::Text(GameObject &associated, std::string filePath, int fontSize, TextStyle style, std::string text, SDL_Color color)
 	: Component(associated)

@@ -1,10 +1,9 @@
-#include "Game.h"
+#include "Game.hpp"
 
-
-
-int main() {
-	State* menuState = new MenuState();
-	State* stageState = new StageState();
+int main()
+{
+	State *menuState = new MenuState();
+	State *stageState = new StageState();
 
 	Game::Instance().PushState(menuState);
 	Game::Instance().Run();
