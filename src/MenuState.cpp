@@ -47,7 +47,7 @@ void MenuState::Update(float dt)
 {
 	InputSystem &input = InputSystem::Instance();
 
-	if (input.KeyPress(SDLK_ESCAPE) || input.QuitRequested())
+	if (input.KeyPress(SDLK_ESCAPE))
 	{
 		quitRequested = true;
 	}
