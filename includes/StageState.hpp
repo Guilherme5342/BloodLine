@@ -16,12 +16,12 @@ class StageState : public State
 {
 
 private:
-	Sprite *bg;
+	//Sprite *bg;
 	Music *music;
 
 public:
 	StageState();
-	//~StageState();
+	~StageState();
 	// Herdado por meio de State
 	virtual void LoadAssets() override;
 	virtual void Pause() override;

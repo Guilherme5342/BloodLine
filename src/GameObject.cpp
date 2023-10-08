@@ -3,6 +3,14 @@
 GameObject::GameObject(string name, int layer) : name(name), layer(layer) // Member Initialization Lists
 {
 	dead = false;
+	started = false;
+	angleDeg = 0;
+}
+
+GameObject::GameObject(string name, Component *compArray, int layer) : GameObject(name, layer)
+{
+	AddComponent(compArray);
+	
 }
 
 GameObject::~GameObject()
@@ -17,6 +25,7 @@ GameObject::~GameObject()
 
 void GameObject::Start()
 {
+	started = true;
 	for (std::vector<std::unique_ptr<Component>>::iterator item = components.begin(); item != components.end(); item++)
 	{
 		item->get()->Start();

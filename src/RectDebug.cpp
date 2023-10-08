@@ -7,6 +7,10 @@ RectDebugger::RectDebugger(GameObject &associated, float x, float y, float w, fl
     associated.box = gameObjectBox;
 }
 
+RectDebugger::~RectDebugger()
+{
+}
+
 void RectDebugger::Update(float dt)
 {
 }

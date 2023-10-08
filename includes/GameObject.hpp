@@ -5,6 +5,7 @@
 #include "Collider.hpp"
 
 #include <vector>
+#include <array>
 
 class GameObject
 {
@@ -18,6 +19,7 @@ public:
 	int layer;
 
 	GameObject(string name = "", int layer = 0);
+	GameObject(string name , Component *compArray, int layer = 0);
 	~GameObject();
 
 	void Start();

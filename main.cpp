@@ -4,8 +4,10 @@ int main()
 {
 	State *menuState = new MenuState();
 	State *stageState = new StageState();
+	Game& game = Game::Instance();
 
-	Game::Instance().PushState(menuState);
-	Game::Instance().Run();
+	game.PushState(menuState);
+	game.Run();
+	delete& game;
 	return 0;
 }

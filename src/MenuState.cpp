@@ -11,6 +11,11 @@ MenuState::MenuState() : State()
 {
 }
 
+MenuState::~MenuState()
+{
+	objectArray.clear();
+}
+
 void MenuState::LoadAssets()
 {
 	GameObject *titleObj = new GameObject("Title State");

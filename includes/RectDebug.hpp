@@ -13,6 +13,7 @@ private:
 
 public:
 	RectDebugger(GameObject &associated, float x, float y, float h, float w);
+	~RectDebugger();
 	// Herdado por meio de Component
 	virtual void Update(float dt) override;
 	virtual void Render() override;

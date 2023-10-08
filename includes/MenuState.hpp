@@ -14,7 +14,7 @@ class MenuState : public State
 
 public:
 	MenuState();
-
+	~MenuState();
 	void LoadAssets();
 	void Start();
 	void Update(float dt);

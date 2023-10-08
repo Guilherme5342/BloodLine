@@ -5,20 +5,19 @@
 Sprite::Sprite(GameObject &associated) : Component(associated)
 {
 	texture = nullptr;
+	currentFrame = 0;
 }
 
-Sprite::Sprite(GameObject &associated, std::string filePath) : Sprite(associated)
+Sprite::Sprite(GameObject &associated, std::string filePath, int frameCount, float frameTime) : Sprite(associated)
 {
+	this->frameCount = frameCount;
+	this->frameTime = frameTime;
 	Open(filePath);
 }
 
 Sprite::~Sprite()
 {
-	if (IsOpen())
-	{
-		SDL_DestroyTexture(texture.get());
-		std::cout << "Sprite de: " << associated.Name() << std::endl;
-	}
+	std::cout << "Sprite de: " << associated.Name() << std::endl;
 }
 
 void Sprite::Open(std::string filePath)
@@ -39,19 +38,23 @@ void Sprite::Open(std::string filePath)
 		std::cout << SDL_GetError() << std::endl;
 		return;
 	}
-	cout << "Abrindo Sprite: " << texture << endl;
+	cout << "Abrindo Sprite: " << filePath << endl;
 	cout << width << endl;
 	cout << height << endl;
 
-	SetClip(associated.box.x, associated.box.y, width, height);
+	frameWidth = width / frameCount;
 
-	associated.box.w = width;
-	associated.box.h = height;
+	frameHeight = height / frameCount;
+
+	SetClip(associated.box.x, associated.box.y, frameWidth, frameHeight);
+
+
+	associated.box.w = frameWidth;
+	associated.box.h = frameHeight;
 }
 
 void Sprite::Render(int x, int y, int w, int h)
 {
-
 	SDL_Rect dstrect = SDL_Rect{x, y, w, h};
 
 	SDL_RenderCopyEx(Game::Instance().GetRenderer(), texture.get(),
@@ -60,12 +63,19 @@ void Sprite::Render(int x, int y, int w, int h)
 
 void Sprite::Render()
 {
-
-	Render(associated.box.x - Camera::GetCurrentCamPos().x,
-		   associated.box.y - Camera::GetCurrentCamPos().y, width, height);
+	Render(associated.box.x -Camera::GetCurrentCamPos().x,
+		   associated.box.y  - Camera::GetCurrentCamPos().y, width * scale.x, height * scale.y);
 }
 
 void Sprite::Update(float dt)
 {
 	timeElapsed += dt;
+
+	if (loop)
+		return;
+
+	if (timeElapsed > frameTime) {
+		currentFrame++;
+		SetFrame(currentFrame);
+	}
 }

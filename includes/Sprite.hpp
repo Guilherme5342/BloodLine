@@ -5,7 +5,11 @@
 #else
 #include <SDL2/SDL_image.h>
 #endif
+
 #include "Component.hpp"
+#include "Vector3.hpp"
+#include "GameObject.hpp"
+
 
 class Sprite : public Component
 {
@@ -15,14 +19,20 @@ private:
 	SDL_Rect clipRect;
 
 	int width, height;
+	int frameWidth, frameHeight;
 
-	int frame, frameCount, frameWidth;
+	int currentFrame, frameCount;
 
-	float timeElapsed;
+	int frameSpeed;
+	float timeElapsed, frameTime;
+
+	bool loop;
+
+	Vector2 scale = { 1,1 };
 
 public:
 	Sprite(GameObject &associated);
-	Sprite(GameObject &associated, std::string filePath);
+	Sprite(GameObject &associated, std::string filePath, int frameCount = 1, float frameTime = 1);
 	~Sprite();
 
 	void Open(std::string filePath);
@@ -38,6 +48,7 @@ public:
 	}
 
 	void Render(int x, int y, int w, int h);
+
 	void Update(float dt);
 	void Render();
 
@@ -48,16 +59,33 @@ public:
 
 	inline int GetWidth()
 	{
-		return width;
+		return frameWidth * scale.x;
 	}
 
 	inline int GetHeight()
 	{
-		return height;
+		return frameHeight * scale.y;
 	}
 
 	inline void SetFrame(int frameIndex)
 	{
-		frame = frameIndex % frameCount;
+		currentFrame = frameIndex % frameCount;
+		//Atualiza o Source da SDL_Rect
+		clipRect.x = currentFrame * frameWidth;
+		clipRect.y = currentFrame * frameHeight;
+	}
+
+	inline void SetFrameCount(int frameCount) {
+		this->frameCount = frameCount;
+		this->frameWidth = width / frameCount;
+		SetFrame(0);
+
+		clipRect.w = frameWidth;
+
+		associated.box.w = GetWidth();
+	}
+
+	inline void SetFrameTime(float frameTime) {
+		this->frameTime = frameTime;
 	}
 };

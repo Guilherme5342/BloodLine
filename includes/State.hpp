@@ -7,6 +7,7 @@
 #include "GameObject.hpp"
 #include "Camera.hpp"
 #include "CameraFollower.hpp"
+#include "Resources.hpp"
 
 class State
 {
@@ -19,6 +20,8 @@ protected:
 	virtual void StartArray();
 	virtual void UpdateArray(float dt);
 	virtual void RenderArray();
+
+	GameObject* AddStubGameObject(string name,Component* initialComp);
 
 public:
 	State();

@@ -8,9 +8,22 @@ State::State()
 
 State::~State()
 {
+	for (auto &obj : objectArray)
+	{
+		obj->RequestDelete();
+	}
 	objectArray.clear();
+	
 	cout << "Estado " << typeid(State).name() << "Deletado" << endl;
 }
+
+GameObject* State::AddStubGameObject(string Name, Component *initialComp)
+{
+	GameObject* stubObj = new GameObject("[Stub] " + Name);
+	stubObj->AddComponent(initialComp);
+	return stubObj;
+}
+
 
 void State::StartArray()
 {

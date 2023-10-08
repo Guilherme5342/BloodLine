@@ -15,6 +15,14 @@ StageState::StageState() : State()
 	cout << vector << endl;
 	cout << vec2d_1 << endl;
 	cout << vec2d_2 << endl;
+
+
+	music = nullptr;
+}
+
+StageState::~StageState()
+{
+	objectArray.clear();
 }
 
 void StageState::LoadAssets()
@@ -46,6 +54,12 @@ void StageState::LoadAssets()
 	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
 
 	AddObject(groundObj);
+
+	GameObject* animatedSprite = new GameObject("Matriz Quadrada");
+	animatedSprite->AddComponent(new Sprite(*animatedSprite, STUB_ANIMATED_SPRITE, 42, .5f));
+
+	animatedSprite->box.SetCenter(Vector2(340, 200));
+	AddObject(animatedSprite);
 }
 
 void StageState::Pause()
@@ -60,6 +74,8 @@ void StageState::Start()
 {
 	StartArray();
 	started = true;
+
+	cout << "StageState " << objectArray.size() << endl;
 
 	Rect groundRect = Rect(Game::Instance().GetWindowCenter(), 500, 100);
 

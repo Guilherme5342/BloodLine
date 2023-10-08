@@ -4,6 +4,8 @@ Game *Game::instance = nullptr;
 
 Game::Game(string windowName, int windowWidth, int windowHeight)
 {
+	storedState = nullptr;
+
 	int initiationFlag = SDL_Init(SDL_INIT_EVERYTHING);
 
 	int imageInit = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG /* | IMG_INIT_TIF*/);
@@ -28,6 +30,8 @@ Game::Game(string windowName, int windowWidth, int windowHeight)
 	window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, 0);
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	srand(time(NULL));
 }
 
 Game::~Game()
@@ -37,17 +41,27 @@ Game::~Game()
 		delete storedState;
 	}
 
+	while (!stateStack.empty()) {
+		stateStack.pop();
+	}
+
 	Resources::ClearAll();
 
 	SDL_DestroyRenderer(renderer);
 
 	SDL_DestroyWindow(window);
 
-	SDL_CloseAudio();
+	Mix_CloseAudio();
+
+	TTF_Quit();
+	
+	Mix_Quit();
 
 	IMG_Quit();
 
 	SDL_Quit();
+
+	cout << "Fechando Jogo" << endl;
 }
 
 Game &Game::Instance()
@@ -81,7 +95,8 @@ void Game::Run()
 
 	// Checa quit requested do input, não do state (Mais otimizado), pois
 	// não é necessário criar instância de InputSystem no UpdateState()
-	while (!stateStack.empty() && !input.QuitRequested())
+	// CAIO -> Não esta saindo do jogo quando se pressiona ESC no Menu
+	while (!stateStack.empty() && !GetState().QuitRequested() && !input.QuitRequested())
 	{
 		CalculateDeltaTime();
 		input.Update();
