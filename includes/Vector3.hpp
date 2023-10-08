@@ -188,9 +188,15 @@ public:
 		return *this;
 	}
 
+	Vector2& operator*=(const Vector2 &vec)
+	{
+		this->x *= vec.x;
+		this->y *= vec.y;
+		return *this;
+	}
+
 	Vector2 &operator*=(const float vec)
 	{
-
 		this->x *= vec;
 		this->y *= vec;
 		return *this;

@@ -78,9 +78,14 @@ public:
 	inline void SetFrameCount(int frameCount) {
 		this->frameCount = frameCount;
 		this->frameWidth = width / frameCount;
-		SetFrame(0);
+		
+		currentFrame = 0;
+
+		clipRect.x = currentFrame;
+		clipRect.y = currentFrame;
 
 		clipRect.w = frameWidth;
+		clipRect.h = frameHeight;
 
 		associated.box.w = GetWidth();
 	}

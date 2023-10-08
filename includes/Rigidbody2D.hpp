@@ -3,7 +3,10 @@
 #include "Component.hpp"
 #include "GameObject.hpp"
 
+
 #define MAX_VELOCITY_Y 50.0f
+
+#define WEIGHT_GRAVITY(m) m * 9.81f
 
 class Rigidbody2D : public Component
 {
@@ -11,6 +14,8 @@ class Rigidbody2D : public Component
 private:
 	float mass, gravityScale;
 	Vector2 velocity, friction, acceleration, force, pos;
+
+	bool jumping;
 
 	bool hitRight, hitLeft;
 
@@ -36,6 +41,6 @@ public:
 
 	inline void ApplyForce(Vector2 force)
 	{
-		this->force = force;
+		velocity += force ;
 	}
 };

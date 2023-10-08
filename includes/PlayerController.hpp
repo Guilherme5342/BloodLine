@@ -13,7 +13,7 @@ class PlayerController : public Component
 private:
 	int speed;
 
-	float jumpForce = 1000.0f;
+	float jumpForce = 100.0f;
 
 	bool jumping;
 
