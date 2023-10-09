@@ -41,6 +41,7 @@ public:
 
 	inline void ApplyForce(Vector2 force)
 	{
-		velocity += force ;
+		velocity += force;
+		force = Vector2(0, mass * gravityScale);
 	}
 };

@@ -13,23 +13,10 @@ void Rigidbody2D::Update(float dt)
 {
 	acceleration = force / mass;
 
-
 	velocity += acceleration * dt;
-
-	//cout << acceleration << endl;
-	//cout << velocity << endl;
 
 	associated.box.x += velocity.x * dt;
 	associated.box.y += velocity.y * dt;
-
-	cout << associated.box.GetCenter() << endl;
-	//if (associated.box.y < MAX_VELOCITY_Y)
-	//	associated.box.y = MAX_VELOCITY_Y;
-
-	//force.y = std::clamp(force.y,gravityScale, 2000.0f);
-	//force.y -= gravityScale * dt;
-
-	// cout << pos * 2000 << endl;
 }
 
 void Rigidbody2D::NotifyCollision(GameObject &otherObj)
@@ -39,18 +26,27 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 
 	Rect intersectionRect = coll->box.GetIntersection(otherColl->box);
 
+	if ((intersectionRect.w < intersectionRect.h) || ((intersectionRect.w < 1.5f) && (intersectionRect.h < 2.0f)))
+	{
+		hitRight = intersectionRect.x > coll->box.x;
+		associated.box.x += (intersectionRect.w + .5f) * (hitRight ?  (- 1) : 1);
 
-	// Batendo em cima / baixo
-	if (intersectionRect.y > coll->box.y)
-	{
-		velocity.y = 0;
-		associated.box.y -= intersectionRect.h + .5f;
+		velocity.x = 0;
 	}
-	else
+	else 
 	{
-		associated.box.y += intersectionRect.h + .5f;
+		// Batendo em cima / baixo
+		if (intersectionRect.y > coll->box.y)
+		{
+			velocity.y = 0;
+			associated.box.y -= intersectionRect.h + .5f;
+		}
+		else
+		{
+			associated.box.y += intersectionRect.h + .5f;
+		}
 	}
-	//->Update(0);
+	coll->Update(0);
 }
 
 void Rigidbody2D::Render()
