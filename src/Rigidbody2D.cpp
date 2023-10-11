@@ -11,7 +11,7 @@ Rigidbody2D::~Rigidbody2D()
 
 void Rigidbody2D::Update(float dt)
 {
-	acceleration = (force / mass);
+	acceleration = (force / mass) * 10;
 
 	velocity += acceleration * dt;
 
