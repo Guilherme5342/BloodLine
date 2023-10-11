@@ -18,7 +18,7 @@ class Rigidbody2D : public Component
 
 private:
 	float mass, gravityScale;
-	Vector2 velocity, friction, acceleration, force, pos;
+	Vector2 velocity, friction, acceleration, force, position;
 
 	bool jumping;
 
