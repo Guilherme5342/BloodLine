@@ -4,9 +4,14 @@
 #include "GameObject.hpp"
 
 
-#define MAX_VELOCITY_Y 50.0f
+#define REPULSION_FACTOR 1e-4
 
 #define WEIGHT_GRAVITY(m) m * 9.81f
+
+enum ForceType {
+	FORCE = 1,
+	IMPULSE = 5
+};
 
 class Rigidbody2D : public Component
 {
@@ -17,7 +22,7 @@ private:
 
 	bool jumping;
 
-	bool hitRight, hitLeft;
+	bool hitRight, hitLeft, hitDown, hitUp;
 
 public:
 	Rigidbody2D(GameObject &associated, float mass = 1.0f, float gravityScale = 9.81f);
@@ -39,9 +44,9 @@ public:
 		this->velocity += velocity;
 	}
 
-	inline void ApplyForce(Vector2 force)
+	inline void ApplyForce(Vector2 force, ForceType forceType = ForceType::FORCE)
 	{
-		velocity += force;
+		velocity += force * forceType;
 		force = Vector2(0, mass * gravityScale);
 	}
 };

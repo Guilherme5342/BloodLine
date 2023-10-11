@@ -11,7 +11,7 @@ Rigidbody2D::~Rigidbody2D()
 
 void Rigidbody2D::Update(float dt)
 {
-	acceleration = force / mass;
+	acceleration = (force / mass);
 
 	velocity += acceleration * dt;
 
@@ -29,7 +29,8 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 	if ((intersectionRect.w < intersectionRect.h) || ((intersectionRect.w < 1.5f) && (intersectionRect.h < 2.0f)))
 	{
 		hitRight = intersectionRect.x > coll->box.x;
-		associated.box.x += (intersectionRect.w + .5f) * (hitRight ?  (- 1) : 1);
+		hitLeft = !hitRight;
+		associated.box.x += (intersectionRect.w + REPULSION_FACTOR) * (hitRight ?  (- 1) : 1);
 
 		velocity.x = 0;
 	}
@@ -39,11 +40,11 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 		if (intersectionRect.y > coll->box.y)
 		{
 			velocity.y = 0;
-			associated.box.y -= intersectionRect.h + .5f;
+			associated.box.y -= intersectionRect.h + REPULSION_FACTOR;
 		}
 		else
 		{
-			associated.box.y += intersectionRect.h + .5f;
+			associated.box.y += intersectionRect.h + REPULSION_FACTOR;
 		}
 	}
 	coll->Update(0);
