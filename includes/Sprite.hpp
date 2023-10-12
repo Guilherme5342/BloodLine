@@ -21,7 +21,8 @@ private:
 	int width, height;
 	int frameWidth, frameHeight;
 
-	int currentFrame, frameCount;
+	
+	int currentFrame, frameCount, animColumnCount, animRowCount;
 
 	int frameSpeed;
 	float timeElapsed, frameTime;
@@ -32,7 +33,7 @@ private:
 
 public:
 	Sprite(GameObject &associated);
-	Sprite(GameObject &associated, std::string filePath, int frameCount = 1, float frameTime = 1);
+	Sprite(GameObject &associated, std::string filePath, int columnCount = 1, int rowCount = 1, float frameTime = 1);
 	~Sprite();
 
 	void Open(std::string filePath);
@@ -69,18 +70,24 @@ public:
 
 	inline void SetFrame(int frameIndex)
 	{
-		currentFrame = frameIndex % frameCount;
+		currentFrame = frameIndex % animColumnCount;
 		//Atualiza o Source da SDL_Rect
-		clipRect.x = currentFrame * frameWidth;
-		clipRect.y = currentFrame * frameHeight;
+		
+		SetClip(0 + currentFrame * frameWidth, 0 + currentFrame * frameHeight, frameWidth, frameHeight);
 	}
 
 	inline void SetFrameCount(int frameCount) {
-		this->frameCount = frameCount;
+		this->animColumnCount = frameCount;
 		this->frameWidth = width / frameCount;
-		SetFrame(0);
+		
+		
+		currentFrame = 0;
+
+		clipRect.x = currentFrame;
+		clipRect.y = currentFrame;
 
 		clipRect.w = frameWidth;
+		clipRect.h = frameHeight;
 
 		associated.box.w = GetWidth();
 	}
