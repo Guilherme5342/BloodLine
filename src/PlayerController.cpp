@@ -27,8 +27,8 @@ void PlayerController::Update(float dt)
 
 	if (InputSystem::Instance().KeyPress(SDLK_SPACE))
 	{
-		playerBody.ApplyForce(Vector2(0, -jumpForce));
-
+		playerBody.ApplyForce(Vector2(0, -jumpForce), IMPULSE);
+		
 		jumping = true;
 	}
 
