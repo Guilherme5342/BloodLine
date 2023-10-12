@@ -10,7 +10,7 @@
 
 enum ForceType {
 	FORCE = 1,
-	IMPULSE = 5
+	IMPULSE = 10
 };
 
 class Rigidbody2D : public Component
@@ -47,6 +47,7 @@ public:
 	inline void ApplyForce(Vector2 force, ForceType forceType = ForceType::FORCE)
 	{
 		velocity += force * forceType;
+		cout << velocity << endl;
 		force = Vector2(0, mass * gravityScale);
 	}
 };

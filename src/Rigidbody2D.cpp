@@ -15,6 +15,7 @@ void Rigidbody2D::Update(float dt)
 
 	velocity += acceleration * dt;
 
+
 	associated.box.x += velocity.x * dt;
 	associated.box.y += velocity.y * dt;
 }
@@ -39,7 +40,9 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 		// Batendo em cima / baixo
 		if (intersectionRect.y > coll->box.y)
 		{
-			velocity.y = 0;
+			if (velocity.y > 0) {
+				velocity.y = 0;
+			}
 			associated.box.y -= intersectionRect.h + REPULSION_FACTOR;
 		}
 		else
@@ -47,7 +50,7 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 			associated.box.y += intersectionRect.h + REPULSION_FACTOR;
 		}
 	}
-	coll->Update(0);
+	//coll->Update(0);
 }
 
 void Rigidbody2D::Render()
