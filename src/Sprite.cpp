@@ -6,11 +6,13 @@ Sprite::Sprite(GameObject &associated) : Component(associated)
 {
 	texture = nullptr;
 	currentFrame = 0;
+	frameWidth = frameHeight = frameSpeed = frameCount = 0;
 }
 
-Sprite::Sprite(GameObject &associated, std::string filePath, int frameCount, float frameTime) : Sprite(associated)
+Sprite::Sprite(GameObject &associated, std::string filePath, int columnCount, int rowCount, float frameTime) : Sprite(associated)
 {
-	this->frameCount = frameCount;
+	this->animColumnCount = columnCount;
+	this->animRowCount = rowCount;
 	this->frameTime = frameTime;
 	Open(filePath);
 }
@@ -42,12 +44,17 @@ void Sprite::Open(std::string filePath)
 	cout << width << endl;
 	cout << height << endl;
 
-	frameWidth = width / frameCount;
+	
+	frameCount = animRowCount * animColumnCount;
 
-	frameHeight = height / frameCount;
+	frameWidth = width / animRowCount;
+
+	frameHeight = height / animColumnCount;
+
+	cout << "Frame Width: " << frameWidth << endl;
+	cout << "Frame Height: " << frameHeight << endl;
 
 	SetClip(associated.box.x, associated.box.y, frameWidth, frameHeight);
-
 
 	associated.box.w = frameWidth;
 	associated.box.h = frameHeight;
@@ -64,11 +71,14 @@ void Sprite::Render(int x, int y, int w, int h)
 void Sprite::Render()
 {
 	Render(associated.box.x -Camera::GetCurrentCamPos().x,
-		   associated.box.y  - Camera::GetCurrentCamPos().y, width * scale.x, height * scale.y);
+		   associated.box.y  - Camera::GetCurrentCamPos().y, frameWidth * scale.x, frameHeight * scale.y);
 }
 
 void Sprite::Update(float dt)
 {
+	if (animColumnCount <= 1 && animRowCount <= 1)
+		return;
+
 	timeElapsed += dt;
 
 	if (loop)
@@ -77,5 +87,6 @@ void Sprite::Update(float dt)
 	if (timeElapsed > frameTime) {
 		currentFrame++;
 		SetFrame(currentFrame);
+		timeElapsed -= frameTime;
 	}
 }
