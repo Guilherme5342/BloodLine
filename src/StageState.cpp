@@ -56,7 +56,7 @@ void StageState::LoadAssets()
 	AddObject(groundObj);
 
 	GameObject* animatedSprite = new GameObject("Matriz Quadrada");
-	animatedSprite->AddComponent(new Sprite(*animatedSprite, STUB_ANIMATED_SPRITE, 42, .5f));
+	animatedSprite->AddComponent(new Sprite(*animatedSprite, STUB_ANIMATED_SPRITE, 42,6, .01f));
 
 	animatedSprite->box.SetCenter(Vector2(340, 200));
 	AddObject(animatedSprite);
