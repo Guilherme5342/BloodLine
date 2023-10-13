@@ -15,7 +15,7 @@ private:
 
 	float jumpForce = 100.0f;
 
-	bool jumping;
+	bool jumping, canJump;
 
 	Vector2 moveDir;
 
@@ -33,4 +33,6 @@ public:
 	{
 		return type == "PlayerController";
 	}
+
+	void NotifyCollision(GameObject& otherObj);
 };
