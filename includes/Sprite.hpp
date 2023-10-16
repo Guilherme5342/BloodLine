@@ -70,16 +70,15 @@ public:
 
 	inline void SetFrame(int frameIndex)
 	{
-		currentFrame = frameIndex % animColumnCount;
-		//Atualiza o Source da SDL_Rect
+		int frameX = frameIndex % animColumnCount;
+		int frameY = frameIndex / animColumnCount;
 		
-		SetClip(0 + currentFrame * frameWidth, 0 + currentFrame * frameHeight, frameWidth, frameHeight);
+		SetClip(frameX * frameWidth,frameY * frameHeight, frameWidth, frameHeight);
+
 	}
 
 	inline void SetFrameCount(int frameCount) {
-		this->animColumnCount = frameCount;
-		this->frameWidth = width / frameCount;
-		
+		this->frameCount = frameCount;
 		
 		currentFrame = 0;
 
@@ -90,6 +89,7 @@ public:
 		clipRect.h = frameHeight;
 
 		associated.box.w = GetWidth();
+		associated.box.h = GetHeight();
 	}
 
 	inline void SetFrameTime(float frameTime) {

@@ -81,11 +81,17 @@ void Sprite::Update(float dt)
 
 	timeElapsed += dt;
 
-	if (loop)
-		return;
-
 	if (timeElapsed > frameTime) {
 		currentFrame++;
+		// Checa se o frame atual esta no Ultimo frame da Sprite Sheet
+		// Caso esteja Loopando, ele repete, caso o contrário ele para no último
+		if (currentFrame >= frameCount && loop) {
+			currentFrame = 0;
+		}
+		else if(currentFrame >= frameCount && !loop)
+		{
+			currentFrame = frameCount - 1;
+		}
 		SetFrame(currentFrame);
 		timeElapsed -= frameTime;
 	}
