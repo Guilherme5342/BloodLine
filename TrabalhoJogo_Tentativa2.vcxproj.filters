@@ -197,5 +197,8 @@
     <ClInclude Include="includes\Timer.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
+    <ClInclude Include="includes\StateMachine.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

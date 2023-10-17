@@ -193,6 +193,7 @@
     <ClInclude Include="includes\Sprite.hpp" />
     <ClInclude Include="includes\StageState.hpp" />
     <ClInclude Include="includes\State.hpp" />
+    <ClInclude Include="includes\StateMachine.hpp" />
     <ClInclude Include="includes\Text.hpp" />
     <ClInclude Include="includes\TileMap.hpp" />
     <ClInclude Include="includes\TileSet.hpp" />
