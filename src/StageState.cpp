@@ -49,14 +49,17 @@ void StageState::LoadAssets()
 	AddObject(bgObj);
 	AddObject(rb);
 
-	GameObject *groundObj = new GameObject("Ground");
+	GameObject *groundObj = new GameObject("Ground", 1);
 	groundObj->AddComponent(new RectDebugger(*groundObj, windowCenter.x - 256, windowCenter.y, 1100, 150));
 	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
 
 	AddObject(groundObj);
 
 	GameObject* animatedSprite = new GameObject("Matriz Quadrada");
-	animatedSprite->AddComponent(new Sprite(*animatedSprite, STUB_ANIMATED_SPRITE, 42,6, .01f));
+	Sprite* spriteStub = new Sprite(*animatedSprite, STUB_ANIMATED_SPRITE, 4, 4, .1f);
+
+	spriteStub->SetFrameSpan(3, 10);
+	animatedSprite->AddComponent(spriteStub);
 
 	animatedSprite->box.SetCenter(Vector2(340, 200));
 	AddObject(animatedSprite);

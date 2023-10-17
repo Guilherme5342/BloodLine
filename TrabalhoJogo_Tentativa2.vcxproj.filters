@@ -102,6 +102,12 @@
     <ClCompile Include="src\Vector3.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
+    <ClCompile Include="src\CircleCollider.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Timer.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -184,6 +190,12 @@
     </ClInclude>
     <ClInclude Include="includes\RectDebug.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\CircleCollider.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Timer.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

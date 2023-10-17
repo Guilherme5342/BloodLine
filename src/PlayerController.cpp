@@ -24,7 +24,7 @@ void PlayerController::Update(float dt)
 	{
 		moveDir.x = 0;
 	}
-	cout << "CanJump: " << (canJump) << endl;
+	
 	if (InputSystem::Instance().KeyPress(SDLK_SPACE) && canJump)
 	{
 		playerBody.ApplyForce(Vector2(0, -jumpForce), IMPULSE);

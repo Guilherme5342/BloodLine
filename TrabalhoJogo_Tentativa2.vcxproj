@@ -163,6 +163,7 @@
     <ClCompile Include="src\Text.cpp" />
     <ClCompile Include="src\TileMap.cpp" />
     <ClCompile Include="src\TileSet.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +196,7 @@
     <ClInclude Include="includes\Text.hpp" />
     <ClInclude Include="includes\TileMap.hpp" />
     <ClInclude Include="includes\TileSet.hpp" />
+    <ClInclude Include="includes\Timer.hpp" />
     <ClInclude Include="includes\Vector3.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
