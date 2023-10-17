@@ -5,8 +5,9 @@
 Sprite::Sprite(GameObject &associated) : Component(associated)
 {
 	texture = nullptr;
-	currentFrame = 0;
 	frameWidth = frameHeight = frameSpeed = frameCount = 0;
+	frameStart = frameSpan = 0;
+	currentFrame = frameStart;
 }
 
 Sprite::Sprite(GameObject &associated, std::string filePath, int columnCount, int rowCount, float frameTime) : Sprite(associated)
@@ -51,6 +52,8 @@ void Sprite::Open(std::string filePath)
 
 	frameHeight = height / animColumnCount;
 
+	frameSpan = frameCount; // inicializa frameSpan (FrameFinal - FrameInical)
+
 	cout << "Frame Width: " << frameWidth << endl;
 	cout << "Frame Height: " << frameHeight << endl;
 
@@ -85,12 +88,13 @@ void Sprite::Update(float dt)
 		currentFrame++;
 		// Checa se o frame atual esta no Ultimo frame da Sprite Sheet
 		// Caso esteja Loopando, ele repete, caso o contrário ele para no último
-		if (currentFrame >= frameCount && loop) {
-			currentFrame = 0;
+		if (currentFrame >= frameStart + frameSpan && loop) {
+			currentFrame = frameStart;
+
 		}
-		else if(currentFrame >= frameCount && !loop)
+		else if(currentFrame >= frameStart + frameSpan && !loop)
 		{
-			currentFrame = frameCount - 1;
+			currentFrame = frameStart + frameSpan - 1;
 		}
 		SetFrame(currentFrame);
 		timeElapsed -= frameTime;

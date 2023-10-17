@@ -21,10 +21,12 @@ private:
 	int width, height;
 	int frameWidth, frameHeight;
 
-	
 	int currentFrame, frameCount, animColumnCount, animRowCount;
 
+	int frameStart, frameSpan;
+
 	int frameSpeed;
+
 	float timeElapsed, frameTime;
 
 	bool loop;
@@ -74,13 +76,13 @@ public:
 		int frameY = frameIndex / animColumnCount;
 		
 		SetClip(frameX * frameWidth,frameY * frameHeight, frameWidth, frameHeight);
-
+		cout << frameIndex << endl;
 	}
 
 	inline void SetFrameCount(int frameCount) {
 		this->frameCount = frameCount;
 		
-		currentFrame = 0;
+		currentFrame = frameStart;
 
 		clipRect.x = currentFrame;
 		clipRect.y = currentFrame;
@@ -94,5 +96,15 @@ public:
 
 	inline void SetFrameTime(float frameTime) {
 		this->frameTime = frameTime;
+	}
+	
+	inline void SetFrameStart(float frameStart) {
+		this->frameStart = frameStart;
+		currentFrame = frameStart;
+	}
+	inline void SetFrameSpan(int frameStart, int frameEnd) {
+		this->frameStart = frameStart;
+		frameSpan = frameEnd - frameStart;
+		currentFrame = frameStart;
 	}
 };
