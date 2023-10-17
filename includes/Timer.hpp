@@ -8,6 +8,8 @@ private:
 
 public:
 	Timer();
+	~Timer();
+
 	void Update(float dt);
 
 	inline float Get() {
