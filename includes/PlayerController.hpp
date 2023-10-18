@@ -15,7 +15,8 @@ private:
 
 	float jumpForce = 100.0f;
 
-	bool jumping, canJump;
+	bool jumping = false;
+	bool canJump = false;
 
 	Vector2 moveDir;
 

@@ -1,6 +1,7 @@
 #include "Rigidbody2D.hpp"
 
-Rigidbody2D::Rigidbody2D(GameObject &associated, float mass, float gravityScale) : Component(associated), mass(mass), gravityScale(gravityScale)
+Rigidbody2D::Rigidbody2D(GameObject &associated, float mass, float gravityScale)
+	: Component(associated), mass(mass), gravityScale(gravityScale)
 {
 	force = Vector2(0, mass * gravityScale);
 }
@@ -14,7 +15,6 @@ void Rigidbody2D::Update(float dt)
 	acceleration = (force / mass) * 10;
 
 	velocity += acceleration * dt;
-
 
 	associated.box.x += velocity.x * dt;
 	associated.box.y += velocity.y * dt;
