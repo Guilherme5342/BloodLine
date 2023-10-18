@@ -108,9 +108,15 @@
     <ClCompile Include="src\Timer.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
     </ClCompile>
+    <ClCompile Include="src\ColliderRender.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="README.md" />
+    <None Include=".gitignore" />
+    <None Include=".gitattributes" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\MenuState.hpp">
