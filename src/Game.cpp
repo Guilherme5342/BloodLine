@@ -1,12 +1,14 @@
-#include "Game.h"
+#include "Game.hpp"
 
+Game *Game::instance = nullptr;
 
-Game* Game::instance = nullptr;
+Game::Game(string windowName, int windowWidth, int windowHeight)
+{
+	storedState = nullptr;
 
-Game::Game(string windowName, int windowWidth, int windowHeight) {
 	int initiationFlag = SDL_Init(SDL_INIT_EVERYTHING);
 
-	int imageInit = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG  /* | IMG_INIT_TIF*/);
+	int imageInit = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG /* | IMG_INIT_TIF*/);
 
 	int mixInit = Mix_Init(MIX_INIT_EVERYTHING);
 
@@ -17,92 +19,108 @@ Game::Game(string windowName, int windowWidth, int windowHeight) {
 	int ttfInit = TTF_Init();
 	cout << imageInit << endl;
 
-	if (initiationFlag != 0 || imageInit == 0 || mixInit == 0 || ttfInit != 0) {
+	if (initiationFlag != 0 || imageInit == 0 || mixInit == 0 || ttfInit != 0)
+	{
 		std::cout << "Erro de Inicializao: " << SDL_GetError() << std::endl;
 	}
 
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
-	
+
 	window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, 0);
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
+	srand(time(NULL));
 }
-
 
 Game::~Game()
 {
-	if (storedState != nullptr) {
+	if (storedState != nullptr)
+	{
 		delete storedState;
 	}
 
+	while (!stateStack.empty()) {
+		stateStack.pop();
+	}
+
 	Resources::ClearAll();
-	
+
 	SDL_DestroyRenderer(renderer);
 
 	SDL_DestroyWindow(window);
 
-	SDL_CloseAudio();
+	Mix_CloseAudio();
+
+	TTF_Quit();
+	
+	Mix_Quit();
 
 	IMG_Quit();
 
 	SDL_Quit();
 
+	cout << "Fechando Jogo" << endl;
 }
 
-
-Game& Game::Instance() {
+Game &Game::Instance()
+{
 	if (instance == nullptr)
 		instance = new Game("EnginHoca");
 
 	return *instance;
 }
 
-
-
 void Game::Run()
 {
-	if (storedState != nullptr) {
+	if (storedState != nullptr)
+	{
 		stateStack.emplace(storedState);
 		storedState = nullptr;
 	}
 
-
-	if (stateStack.empty()) {
+	if (stateStack.empty())
+	{
 		return;
 	}
 
 	GetState().Start();
-	// Atualização da GAME ENGINE 
-	// Nunca esquecer de colocar as atualizações das Features que forem feitas na GameEngine 
+	// Atualizaï¿½ï¿½o da GAME ENGINE
+	// Nunca esquecer de colocar as atualizaï¿½ï¿½es das Features que forem feitas na GameEngine
 	// (Ex. InputSystem.Update(), Physics.Update(), Animator.Update())
-	while (!stateStack.empty() && !GetState().QuitRequested()) {
 
-		
+	// Cria instancia de input fora do loop para nÃ£o re-criar instancia a cada iteraÃ§Ã£o
+	InputSystem &input = InputSystem::Instance();
+
+	// Checa quit requested do input, nÃ£o do state (Mais otimizado), pois
+	// nÃ£o Ã© necessÃ¡rio criar instÃ¢ncia de InputSystem no UpdateState()
+	// CAIO -> NÃ£o esta saindo do jogo quando se pressiona ESC no Menu
+	while (!stateStack.empty() && !GetState().QuitRequested() && !input.QuitRequested())
+	{
 		CalculateDeltaTime();
+		input.Update();
 
-		InputSystem::Instance().Update();
-
-		if (GetState().PopRequested()) {
+		if (GetState().PopRequested())
+		{
 			stateStack.pop(); // Desempilha o Estado atual e Resume o Estado Anterior
 			if (!stateStack.empty())
 				GetState().Resume();
 		}
 
-		if (storedState != nullptr) {
-			
+		if (storedState != nullptr)
+		{
+
 			GetState().Pause();
-			
+
 			stateStack.emplace(storedState);
 			GetState().Start();
 			storedState = nullptr;
 		}
 
-		// Atualização do Estado atual e seus componentes do Jogo
-		if (!stateStack.empty()) {
-
-			
+		// Atualizaï¿½ï¿½o do Estado atual e seus componentes do Jogo
+		if (!stateStack.empty())
+		{
 
 			GetState().Update(deltaTime);
 			GetState().Render();
@@ -111,7 +129,5 @@ void Game::Run()
 			SDL_RenderClear(renderer);
 		}
 		SDL_Delay(32);
-		
-
 	}
 }

@@ -1,9 +1,9 @@
-CXX = g++
-CXXFLAGS = -w -lSDL2 -lSDL2_mixer -lSDL2_image
+CXX = clang++
+CXXFLAGS = -w -Iincludes -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf -std=c++20
 SRCDIR = src
 BINDIR = bin
 TARGET = $(BINDIR)/game
-SRCS = $(shell find $(SRCDIR) -name "*.cpp")
+SRCS = main.cpp $(shell find $(SRCDIR) -name "*.cpp") 
 CMD = $(CXX) $(SRCS) $(CXXFLAGS) -o $(TARGET)
 
 all:

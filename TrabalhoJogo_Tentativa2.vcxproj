@@ -114,7 +114,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>D:\GitProjetos\TrabalhoJogoIDJ_2.0\src;D:\GitProjetos\TrabalhoJogoIDJ_2.0\includes;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.26.4\include;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;D:\Documents\_UNB Documentos\Jogos Digitais\Jogos\BloodLine\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\GitProjetos\TrabalhoJogoIDJ_2.0\src;D:\GitProjetos\TrabalhoJogoIDJ_2.0\includes;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.26.4\include;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;D:\Documents\_UNB Documentos\Jogos Digitais\Jogos\BloodLine\includes;D:\GitProjetos\BloodLine\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,40 +140,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Codigos Prontos\SDL_include.h" />
-    <ClInclude Include="includes\CameraFollower.h" />
-    <ClInclude Include="includes\Collider.h" />
-    <ClInclude Include="includes\Camera.h" />
-    <ClInclude Include="includes\Collision.h" />
-    <ClInclude Include="includes\Command.h" />
-    <ClInclude Include="includes\Component.h" />
-    <ClInclude Include="includes\Game.h" />
-    <ClInclude Include="includes\GameObject.h" />
-    <ClInclude Include="includes\InputSystem.h" />
-    <ClInclude Include="includes\MenuState.h" />
-    <ClInclude Include="includes\Music.h" />
-    <ClInclude Include="includes\PlayerController.h" />
-    <ClInclude Include="includes\Rect.h" />
-    <ClInclude Include="includes\RectDebug.h" />
-    <ClInclude Include="includes\Resources.h" />
-    <ClInclude Include="includes\Rigidbody2D.h" />
-    <ClInclude Include="includes\Sound.h" />
-    <ClInclude Include="includes\Sprite.h" />
-    <ClInclude Include="includes\StageState.h" />
-    <ClInclude Include="includes\State.h" />
-    <ClInclude Include="includes\Text.h" />
-    <ClInclude Include="includes\TileMap.h" />
-    <ClInclude Include="includes\TileSet.h" />
-    <ClInclude Include="includes\Vector3.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="includes\Collider.cpp" />
-    <ClCompile Include="includes\Rect.cpp" />
-    <ClCompile Include="includes\Sprite.cpp" />
-    <ClCompile Include="includes\Vector3.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\CameraFollower.cpp" />
-    <ClCompile Include="src\ColliderRender.cpp" />
+    <ClCompile Include="src\CircleCollider.cpp" />
+    <ClCompile Include="src\Collider.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
@@ -182,18 +152,53 @@
     <ClCompile Include="src\Music.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\PlayerController.cpp" />
+    <ClCompile Include="src\Rect.cpp" />
     <ClCompile Include="src\RectDebug.cpp" />
     <ClCompile Include="src\Resources.cpp" />
     <ClCompile Include="src\Rigidbody2D.cpp" />
     <ClCompile Include="src\Sound.cpp" />
+    <ClCompile Include="src\Sprite.cpp" />
     <ClCompile Include="src\StageState.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\Text.cpp" />
     <ClCompile Include="src\TileMap.cpp" />
     <ClCompile Include="src\TileSet.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
+    <ClCompile Include="src\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\Camera.hpp" />
+    <ClInclude Include="includes\CameraFollower.hpp" />
+    <ClInclude Include="includes\CircleCollider.hpp" />
+    <ClInclude Include="includes\Collider.hpp" />
+    <ClInclude Include="includes\Collision.hpp" />
+    <ClInclude Include="includes\Command.hpp" />
+    <ClInclude Include="includes\Component.hpp" />
+    <ClInclude Include="includes\Game.hpp" />
+    <ClInclude Include="includes\GameObject.hpp" />
+    <ClInclude Include="includes\GlobalDefinitions.hpp" />
+    <ClInclude Include="includes\InputSystem.hpp" />
+    <ClInclude Include="includes\MenuState.hpp" />
+    <ClInclude Include="includes\Music.hpp" />
+    <ClInclude Include="includes\PlayerController.hpp" />
+    <ClInclude Include="includes\Rect.hpp" />
+    <ClInclude Include="includes\RectDebug.hpp" />
+    <ClInclude Include="includes\Resources.hpp" />
+    <ClInclude Include="includes\Rigidbody2D.hpp" />
+    <ClInclude Include="includes\SDL_include.hpp" />
+    <ClInclude Include="includes\Sound.hpp" />
+    <ClInclude Include="includes\Sprite.hpp" />
+    <ClInclude Include="includes\StageState.hpp" />
+    <ClInclude Include="includes\State.hpp" />
+    <ClInclude Include="includes\StateMachine.hpp" />
+    <ClInclude Include="includes\Text.hpp" />
+    <ClInclude Include="includes\TileMap.hpp" />
+    <ClInclude Include="includes\TileSet.hpp" />
+    <ClInclude Include="includes\Timer.hpp" />
+    <ClInclude Include="includes\Vector3.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
