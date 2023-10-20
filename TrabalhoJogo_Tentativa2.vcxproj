@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\HealthHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\CameraFollower.cpp" />
     <ClCompile Include="src\CircleCollider.cpp" />
@@ -163,6 +164,8 @@
     <ClCompile Include="src\Sprite.cpp" />
     <ClCompile Include="src\StageState.cpp" />
     <ClCompile Include="src\State.cpp" />
+    <ClCompile Include="src\StateMachine.cpp" />
+    <ClCompile Include="src\States.cpp" />
     <ClCompile Include="src\Text.cpp" />
     <ClCompile Include="src\TileMap.cpp" />
     <ClCompile Include="src\TileSet.cpp" />
@@ -186,6 +189,7 @@
     <ClInclude Include="includes\Game.hpp" />
     <ClInclude Include="includes\GameObject.hpp" />
     <ClInclude Include="includes\GlobalDefinitions.hpp" />
+    <ClInclude Include="includes\HealthHandler.hpp" />
     <ClInclude Include="includes\InputSystem.hpp" />
     <ClInclude Include="includes\MenuState.hpp" />
     <ClInclude Include="includes\Music.hpp" />
@@ -200,6 +204,7 @@
     <ClInclude Include="includes\StageState.hpp" />
     <ClInclude Include="includes\State.hpp" />
     <ClInclude Include="includes\StateMachine.hpp" />
+    <ClInclude Include="includes\States.hpp" />
     <ClInclude Include="includes\Text.hpp" />
     <ClInclude Include="includes\TileMap.hpp" />
     <ClInclude Include="includes\TileSet.hpp" />

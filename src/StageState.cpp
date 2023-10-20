@@ -33,12 +33,12 @@ void StageState::LoadAssets()
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
 	bgObj->AddComponent(new CameraFollower(*bgObj));
 
-	GameObject *rb = new GameObject("PlayerBody");
+	GameObject *rb = new GameObject("PlayerBody",1);
 	rb->AddComponent(new Sprite(*rb, BALL_PNG));
 
 	Collider *collider = new Collider(*rb, Vector2(rb->box.w, rb->box.h));
 	rb->AddComponent(collider);
-	rb->AddComponent(new Rigidbody2D(*rb, 1, 50));
+	rb->AddComponent(new Rigidbody2D(*rb, 1, 10));
 	rb->AddComponent(new PlayerController(*rb,
 										  *(Rigidbody2D *)rb->GetComponent("Rigidbody2D"), 300));
 
@@ -56,7 +56,7 @@ void StageState::LoadAssets()
 	AddObject(groundObj);
 
 	GameObject* animatedSprite = new GameObject("Matriz Quadrada");
-	Sprite* spriteStub = new Sprite(*animatedSprite, STUB_ANIMATED_SPRITE, 4, 4, .1f);
+	Sprite* spriteStub = new Sprite(*animatedSprite, STUB_ANIMATED_SPRITE, 4, 4, .15f);
 
 	spriteStub->SetFrameSpan(3, 10);
 	animatedSprite->AddComponent(spriteStub);
@@ -85,6 +85,11 @@ void StageState::Start()
 	groundRect.FillRect();
 }
 
+void StageState::FixedUpdate(float fixedDt) {
+
+	FixedUpdateArray(fixedDt);
+}
+
 void StageState::Update(float dt)
 {
 	if (InputSystem::Instance().KeyPress(SDLK_ESCAPE))
@@ -92,30 +97,9 @@ void StageState::Update(float dt)
 		popRequested = true;
 	}
 
-	Camera::Update(dt);
-
 	UpdateArray(dt);
 
-	for (unsigned i = 0; i < objectArray.size(); i++)
-	{
-		Collider *currentCol = (Collider *)objectArray[i]->GetComponent("Collider");
-
-		if (currentCol == nullptr)
-			continue;
-
-		for (unsigned j = i + 1; j < objectArray.size(); j++)
-		{
-			Collider *otherCol = (Collider *)objectArray[j]->GetComponent("Collider");
-			if (otherCol == nullptr)
-				continue;
-
-			if (Collision::IsColliding(currentCol->box, otherCol->box, objectArray[i]->angleDeg, objectArray[j]->angleDeg))
-			{
-				objectArray[i]->NotifyCollision(*objectArray[j]);
-				objectArray[j]->NotifyCollision(*objectArray[i]);
-			}
-		}
-	}
+	Camera::Update(dt);
 }
 
 void StageState::Render()

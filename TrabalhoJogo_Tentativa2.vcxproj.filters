@@ -111,6 +111,15 @@
     <ClCompile Include="src\ColliderRender.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="src\HealthHandler.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateMachine.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\States.cpp">
+      <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -204,6 +213,12 @@
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
     <ClInclude Include="includes\StateMachine.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\HealthHandler.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\States.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
     </ClInclude>
   </ItemGroup>

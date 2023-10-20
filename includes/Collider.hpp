@@ -24,9 +24,10 @@ public:
 	}
 
 	// Herdado por meio de Component
+	virtual void FixedUpdate(float fixedDt) override;
 	virtual void Update(float dt) override;
 	virtual void Render() override;
-
+	
 	inline virtual bool Is(std::string type) override
 	{
 		return type == "Collider";

@@ -27,6 +27,7 @@ public:
 	virtual void Pause() override;
 	virtual void Resume() override;
 	virtual void Start() override;
+	virtual void FixedUpdate(float dt) override;
 	virtual void Update(float dt) override;
 	virtual void Render() override;
 };

@@ -19,9 +19,12 @@ public:
 		return type == "HealthHandler";
 	}
 
-
 	inline void AddHealth(int health) {
 		this->health += health;
+	}
+
+	inline void RemoveHealth(int health) {
+		this->health -= health;
 	}
 
 

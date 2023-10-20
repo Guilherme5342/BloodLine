@@ -29,6 +29,7 @@ public:
 	~Rigidbody2D();
 
 	// Herdado por meio de Component
+	virtual void FixedUpdate(float fixedDt) override;
 	virtual void Update(float dt) override;
 	virtual void Render() override;
 
@@ -47,7 +48,6 @@ public:
 	inline void ApplyForce(Vector2 force, ForceType forceType = ForceType::FORCE)
 	{
 		velocity += force * forceType;
-		cout << velocity << endl;
 		force = Vector2(0, mass * (gravityScale * 10));
 	}
 };

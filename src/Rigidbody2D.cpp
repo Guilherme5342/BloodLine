@@ -10,6 +10,12 @@ Rigidbody2D::~Rigidbody2D()
 {
 }
 
+void Rigidbody2D::FixedUpdate(float fdt)
+{
+	
+
+}
+
 void Rigidbody2D::Update(float dt)
 {
 	acceleration = (force / mass) * 10;
