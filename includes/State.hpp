@@ -18,6 +18,7 @@ protected:
 	bool popRequested, quitRequested, started;
 
 	virtual void StartArray();
+	virtual void FixedUpdateArray(float fixedDt);
 	virtual void UpdateArray(float dt);
 	virtual void RenderArray();
 
@@ -38,7 +39,9 @@ public:
 	/// </summary>
 	virtual void Resume() = 0;
 	virtual void Start() = 0;
-
+	virtual void FixedUpdate(float fixedDt) {
+		
+	}
 	virtual void Update(float dt) = 0;
 	virtual void Render() = 0;
 

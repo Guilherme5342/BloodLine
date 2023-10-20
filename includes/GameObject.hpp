@@ -24,6 +24,8 @@ public:
 
 	void Start();
 	void Update(float dt);
+	void PhysicsUpdate(float fixedDt);
+
 	void Render();
 
 	void AddComponent(Component *comp);

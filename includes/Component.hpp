@@ -20,6 +20,7 @@ public:
 	virtual void Start()
 	{
 	}
+	virtual void FixedUpdate(float fixedDt) {}
 	virtual void Update(float dt) = 0;
 	virtual void Render() = 0;
 	virtual bool Is(std::string type) = 0;

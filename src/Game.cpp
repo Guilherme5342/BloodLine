@@ -6,6 +6,7 @@ Game::Game(string windowName, int windowWidth, int windowHeight)
 {
 	storedState = nullptr;
 
+	fixedDeltaTime = FIXED_DELTATIME;
 	int initiationFlag = SDL_Init(SDL_INIT_EVERYTHING);
 
 	int imageInit = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG /* | IMG_INIT_TIF*/);
@@ -100,6 +101,15 @@ void Game::Run()
 	{
 		CalculateDeltaTime();
 		input.Update();
+
+		// Update de Física
+		counter += leftOver;
+		while (counter < deltaTime) {
+			GetState().FixedUpdate(fixedDeltaTime);
+			counter += fixedDeltaTime;
+		}
+		int x = deltaTime / fixedDeltaTime;
+		leftOver = deltaTime - fixedDeltaTime * x;
 
 		if (GetState().PopRequested())
 		{

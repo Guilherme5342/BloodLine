@@ -41,6 +41,14 @@ void GameObject::Update(float dt)
 	}
 }
 
+void GameObject::PhysicsUpdate(float fixedDt)
+{
+	for (std::vector<std::unique_ptr<Component>>::iterator item = components.begin(); item != components.end(); item++)
+	{
+		item->get()->FixedUpdate(fixedDt);
+	}
+}
+
 void GameObject::Render()
 {
 

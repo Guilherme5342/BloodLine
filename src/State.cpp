@@ -36,8 +36,39 @@ void State::StartArray()
 	started = true;
 }
 
+void State::FixedUpdateArray(float fixedDt)
+{
+	for (unsigned i = 0; i < objectArray.size(); i++) {
+		objectArray[i]->PhysicsUpdate(fixedDt);
+	}
+
+	
+}
+
 void State::UpdateArray(float dt)
 {
+	
+	for (unsigned i = 0; i < objectArray.size(); i++)
+	{
+		Collider* currentCol = (Collider*)objectArray[i]->GetComponent("Collider");
+
+		if (currentCol == nullptr)
+			continue;
+
+		for (unsigned j = i + 1; j < objectArray.size(); j++)
+		{
+			Collider* otherCol = (Collider*)objectArray[j]->GetComponent("Collider");
+			if (otherCol == nullptr)
+				continue;
+
+			if (Collision::IsColliding(currentCol->box, otherCol->box, objectArray[i]->angleDeg, objectArray[j]->angleDeg))
+			{
+				objectArray[i]->NotifyCollision(*objectArray[j]);
+				objectArray[j]->NotifyCollision(*objectArray[i]);
+			}
+		}
+	}
+
 	for (auto obj : objectArray)
 	{
 		obj->Update(dt);

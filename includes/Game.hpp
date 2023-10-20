@@ -30,6 +30,7 @@
 #include "Resources.hpp"
 
 #define MIX_INIT_EVERYTHING (MIX_INIT_OGG | MIX_INIT_MP3 | MIX_INIT_FLAC /*| MIX_INIT_MOD*/)
+#define FIXED_DELTATIME 0.02f
 
 class Game
 {
@@ -45,7 +46,11 @@ private:
 	State *storedState;
 
 	int frameStart = 0; // Come�o do Frame do Jogo
-	float deltaTime;
+	float deltaTime, fixedDeltaTime;
+
+	float leftOver = 0;
+
+	float counter = 0;
 
 	int windowWidth, windowHeight;
 
@@ -75,6 +80,8 @@ public:
 		float currentTime = SDL_GetTicks64();			  // Pega o tempo atual
 		deltaTime = (currentTime - frameStart) / 1000.0f; //
 		frameStart = currentTime;
+
+		leftOver = deltaTime - fixedDeltaTime;
 	}
 
 	inline int GetWindowWidth()
