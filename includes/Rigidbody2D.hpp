@@ -48,6 +48,6 @@ public:
 	{
 		velocity += force * forceType;
 		cout << velocity << endl;
-		force = Vector2(0, mass * gravityScale);
+		force = Vector2(0, mass * (gravityScale * 10));
 	}
 };

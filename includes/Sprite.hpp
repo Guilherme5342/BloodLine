@@ -76,7 +76,7 @@ public:
 		int frameY = frameIndex / animColumnCount;
 		
 		SetClip(frameX * frameWidth,frameY * frameHeight, frameWidth, frameHeight);
-		cout << frameIndex << endl;
+
 	}
 
 	inline void SetFrameCount(int frameCount) {
