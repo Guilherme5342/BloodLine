@@ -30,7 +30,7 @@
 #include "Resources.hpp"
 
 #define MIX_INIT_EVERYTHING (MIX_INIT_OGG | MIX_INIT_MP3 | MIX_INIT_FLAC /*| MIX_INIT_MOD*/)
-#define FIXED_DELTATIME 0.02f
+#define FIXED_DELTATIME 0.006f
 
 class Game
 {

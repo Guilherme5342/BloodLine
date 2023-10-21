@@ -103,13 +103,15 @@ void Game::Run()
 		input.Update();
 
 		// Update de Física
-		counter += leftOver;
-		while (counter < deltaTime) {
+		counter -= leftOver;
+		while (counter <= deltaTime) {
 			GetState().FixedUpdate(fixedDeltaTime);
 			counter += fixedDeltaTime;
+
 		}
 		int x = deltaTime / fixedDeltaTime;
 		leftOver = deltaTime - fixedDeltaTime * x;
+		
 
 		if (GetState().PopRequested())
 		{
