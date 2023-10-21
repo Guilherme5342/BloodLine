@@ -38,7 +38,7 @@ void StageState::LoadAssets()
 
 	Collider *collider = new Collider(*rb, Vector2(rb->box.w, rb->box.h));
 	rb->AddComponent(collider);
-	rb->AddComponent(new Rigidbody2D(*rb, 1, 10));
+	rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
 	rb->AddComponent(new PlayerController(*rb,
 										  *(Rigidbody2D *)rb->GetComponent("Rigidbody2D"), 300));
 
@@ -96,10 +96,10 @@ void StageState::Update(float dt)
 	{
 		popRequested = true;
 	}
-
+	Camera::Update(dt);
 	UpdateArray(dt);
 
-	Camera::Update(dt);
+	
 }
 
 void StageState::Render()

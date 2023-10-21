@@ -38,16 +38,6 @@ void State::StartArray()
 
 void State::FixedUpdateArray(float fixedDt)
 {
-	for (unsigned i = 0; i < objectArray.size(); i++) {
-		objectArray[i]->PhysicsUpdate(fixedDt);
-	}
-
-	
-}
-
-void State::UpdateArray(float dt)
-{
-	
 	for (unsigned i = 0; i < objectArray.size(); i++)
 	{
 		Collider* currentCol = (Collider*)objectArray[i]->GetComponent("Collider");
@@ -69,6 +59,14 @@ void State::UpdateArray(float dt)
 		}
 	}
 
+	for (int i = 0; i < (int)objectArray.size(); i++) {
+		objectArray[i]->PhysicsUpdate(fixedDt);
+	}
+
+}
+
+void State::UpdateArray(float dt)
+{
 	for (auto obj : objectArray)
 	{
 		obj->Update(dt);
