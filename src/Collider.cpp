@@ -14,11 +14,20 @@ Collider::~Collider()
 
 void Collider::FixedUpdate(float fixedDt)
 {
-	
+
+	box = associated.box;
+
+	box.SetSize(scale);
+
+	box.SetCenter(associated.box.GetCenter() + offset.GetRotated(associated.angleDeg));
+
+
+
 }
 
 void Collider::Update(float dt)
 {
+
 }
 
 // Copie o conte�do dessa fun��o para dentro da sua e adapte o nome das fun��es para as suas.
@@ -28,14 +37,6 @@ void Collider::Update(float dt)
 // Vector2::Rotate( float rad )		- Rotaciona um Vector2 pelo �ngulo em radianos passado
 void Collider::Render()
 {
-	box = associated.box;
-
-	box.SetSize(scale);
-
-	box.SetCenter(associated.box.GetCenter() + offset.GetRotated(associated.angleDeg));
-
-	// Render();
-
 #pragma region Render Collider Bounds
 
 	Vector2 center(box.GetCenter());

@@ -12,18 +12,17 @@ Rigidbody2D::~Rigidbody2D()
 
 void Rigidbody2D::FixedUpdate(float fdt)
 {
-	
+	acceleration = (force / mass) * 10;
 
+	velocity += acceleration * fdt;
+
+	associated.box.x += velocity.x * fdt;
+	associated.box.y += velocity.y * fdt;
 }
 
 void Rigidbody2D::Update(float dt)
 {
-	acceleration = (force / mass) * 10;
-
-	velocity += acceleration * dt;
-
-	associated.box.x += velocity.x * dt;
-	associated.box.y += velocity.y * dt;
+	
 }
 
 void Rigidbody2D::NotifyCollision(GameObject &otherObj)
