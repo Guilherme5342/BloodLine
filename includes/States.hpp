@@ -1,9 +1,30 @@
 #pragma once
 
+#include "GlobalDefinitions.hpp"
 #include "StateMachine.hpp"
 #include "Sprite.hpp"
 #include "Timer.hpp"
 
+class IdleState : public IState {
+
+private:
+	std::string filePath;
+	Sprite* playerIdle;
+
+public:
+	IdleState(std::string filePath);
+
+
+	// Herdado por meio de IState
+	virtual void Enter(StateMachine& otherState) override;
+
+	virtual void Exit(StateMachine& otherState) override;
+
+	virtual void Update(StateMachine& state, float dt) override;
+
+	virtual void Render(StateMachine& state) override;
+
+};
 /// <summary>
 /// Estado Generico de Ataque
 /// </summary>
@@ -25,6 +46,7 @@ public:
 	void Exit(StateMachine& stateMachine);
 
 	void Update(StateMachine& stateMachine, float dt);
+	void Render(StateMachine& stateMachine);
 };
 
 
@@ -38,4 +60,5 @@ public:
 	void Exit(StateMachine& stateMachine);
 
 	void Update(StateMachine& stateMachine, float dt);
+	void Render(StateMachine& stateMachine);
 };

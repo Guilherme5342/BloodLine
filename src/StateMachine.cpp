@@ -4,6 +4,8 @@
 StateMachine::StateMachine(GameObject& associated)
 	: Component(associated)
 {
+	currentState = nullptr;
+
 }
 
 inline void StateMachine::Update(float dt)
@@ -11,10 +13,14 @@ inline void StateMachine::Update(float dt)
 	if (currentState == nullptr) {
 		return;
 	}
-	currentState->Update(*this, dt);
+	GetCurrentState().Update(*this, dt);
 }
 
 
 inline void StateMachine::Render()
 {
+	if (currentState == nullptr) {
+		return;
+	}
+	GetCurrentState().Render(*this);
 }

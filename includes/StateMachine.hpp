@@ -1,11 +1,14 @@
 #pragma once
 
 #include "Component.hpp"
+#include "GameObject.hpp"
+
 #include <stack>
 
 class StateMachine;
 
 class IState {
+
 
 public:
 	virtual ~IState(){}
@@ -13,6 +16,7 @@ public:
 	virtual void Exit(StateMachine& otherState) = 0;
 
 	virtual void Update(StateMachine& state, float dt) = 0;
+	virtual void Render(StateMachine& state) = 0;
 };
 
 class StateMachine : public Component {
@@ -38,13 +42,15 @@ public:
 
 	inline void AddState(IState* newState) {
 		if (currentState != nullptr) {
-			currentState->Exit(*this);
+			GetCurrentState().Exit(*this);
 		}
-		
-		currentState = newState;
-		newState->Enter(*this);
+		if(!stateStack.empty())
+			stateStack.pop();
 
+		currentState = newState;
 		stateStack.emplace(newState);
+
+		GetCurrentState().Enter(*this);
 	}
 
 	inline void RemoveState(IState* state) {

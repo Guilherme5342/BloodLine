@@ -15,4 +15,8 @@ public:
 	inline float Get() {
 		return time;
 	}
+
+	inline void Reset() {
+		time = 0;
+	}
 };
