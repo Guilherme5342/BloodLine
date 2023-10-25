@@ -2,13 +2,21 @@
 
 
 StateMachine::StateMachine(GameObject& associated)
-	: Component(associated)
+: Component(associated)
 {
 	currentState = nullptr;
 
 }
 
-inline void StateMachine::Update(float dt)
+StateMachine::~StateMachine()
+{
+	while (!stateStack.empty())
+	{
+		stateStack.pop();
+	}
+}
+
+void StateMachine::Update(float dt)
 {
 	if (currentState == nullptr) {
 		return;
@@ -17,7 +25,7 @@ inline void StateMachine::Update(float dt)
 }
 
 
-inline void StateMachine::Render()
+void StateMachine::Render()
 {
 	if (currentState == nullptr) {
 		return;

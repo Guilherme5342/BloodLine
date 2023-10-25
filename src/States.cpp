@@ -2,23 +2,19 @@
 #include "Collider.hpp"
 #include "Game.hpp"
 
-IdleState::IdleState(std::string filePath) 
+IdleState::IdleState() 
 {
-	this->filePath = filePath;
 
-	GameObject* idleObj = new GameObject();
-	playerIdle = new Sprite(*idleObj, filePath, 3, 2);
-	//playerIdle->Open(filePath);
-	//Game::Instance().GetState().AddObject(idleObj);
 }
 
 void IdleState::Enter(StateMachine& otherState)
 {
-
+	cout << "Entrando no Estado de Idle" << endl;
 }
 
 void IdleState::Exit(StateMachine& otherState)
 {
+	cout << "Saindo do Estado de Idle" << endl;
 }
 
 void IdleState::Update(StateMachine& state, float dt)
@@ -28,19 +24,45 @@ void IdleState::Update(StateMachine& state, float dt)
 
 void IdleState::Render(StateMachine& state)
 {
-	
+
 }
+
+MovingState::MovingState(Vector2 moveDir, float speed) : moveDir(moveDir), speed(speed)
+{
+
+}
+
+MovingState::~MovingState()
+{
+}
+
+void MovingState::Enter(StateMachine& otherState)
+{
+
+}
+
+void MovingState::Exit(StateMachine& otherState)
+{
+	moveDir = { 0,0 };
+}
+
+void MovingState::Update(StateMachine& state, float dt)
+{
+	moveDir.x += speed * dt;
+
+	moveTimer.Update(dt);
+}
+
+void MovingState::Render(StateMachine& state)
+{
+}
+
 
 #pragma region AttackState
 AttackState::AttackState(int damageAmount, std::string filePath, int range, int timeAmount)
 {
 	this->damage = damageAmount, this->range = range;
 	this->timer = timeAmount;
-
-	GameObject* attackObj = new GameObject();
-	attackAnimation = new Sprite(*attackObj, filePath,3,2,.3f);
-	//Game::Instance().GetState().AddObject(attackObj);
-
 }
 
 
@@ -50,11 +72,12 @@ AttackState::~AttackState()
 
 void AttackState::Enter(StateMachine& stateMachine)
 {
-	
+	cout << "Entrando no Estado de Ataque" << endl;
 }
 
 void AttackState::Exit(StateMachine& stateMachine)
 {
+	cout << "Saindo no Estado de Ataque" << endl;
 }
 
 void AttackState::Update(StateMachine& stateMachine, float dt)
@@ -63,14 +86,14 @@ void AttackState::Update(StateMachine& stateMachine, float dt)
 		
 		attackTimer.Reset();
 		
-		stateMachine.AddState(new IdleState(PLAYER_IDLE));
+		stateMachine.SetState(new IdleState(PLAYER_IDLE));
 	}
 	
 	attackTimer.Update(dt);
 }
 void AttackState::Render(StateMachine& stateMachine)
 {
-	
+
 }
 #pragma endregion
 
@@ -93,5 +116,4 @@ void DeathState::Render(StateMachine& stateMachine)
 }
 
 #pragma endregion
-
 

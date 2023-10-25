@@ -7,22 +7,37 @@
 
 class IdleState : public IState {
 
-private:
-	std::string filePath;
-	Sprite* playerIdle;
 
 public:
-	IdleState(std::string filePath);
-
+	IdleState();
 
 	// Herdado por meio de IState
 	virtual void Enter(StateMachine& otherState) override;
-
 	virtual void Exit(StateMachine& otherState) override;
 
 	virtual void Update(StateMachine& state, float dt) override;
-
 	virtual void Render(StateMachine& state) override;
+
+};
+
+class MovingState : public IState {
+
+private:
+	Vector2 moveDir;
+	float speed;
+
+	Timer moveTimer;
+
+public:
+	MovingState(Vector2 moveDir, float speed);
+	~MovingState();
+
+	virtual void Enter(StateMachine& otherState) override;
+	virtual void Exit(StateMachine& otherState) override;
+
+	virtual void Update(StateMachine& state, float dt) override;
+	virtual void Render(StateMachine& state) override;
+
 
 };
 /// <summary>
@@ -32,7 +47,6 @@ class AttackState : public IState {
 
 private:
 	int damage;
-	Sprite* attackAnimation;
 
 	int range, timer;
 
@@ -48,6 +62,8 @@ public:
 	void Update(StateMachine& stateMachine, float dt);
 	void Render(StateMachine& stateMachine);
 };
+
+
 
 
 /// <summary>

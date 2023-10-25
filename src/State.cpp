@@ -2,6 +2,7 @@
 
 State::State()
 {
+	popRequested = false;
 	quitRequested = false;
 	started = false;
 }

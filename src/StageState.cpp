@@ -2,6 +2,8 @@
 #include "Game.hpp"
 #include "PlayerController.hpp"
 
+#include "States.hpp"
+
 #include "GlobalDefinitions.hpp"
 
 StageState::StageState() : State()
@@ -16,8 +18,6 @@ StageState::StageState() : State()
 	cout << vec2d_1 << endl;
 	cout << vec2d_2 << endl;
 
-
-	music = nullptr;
 }
 
 StageState::~StageState()
@@ -33,14 +33,15 @@ void StageState::LoadAssets()
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
 	bgObj->AddComponent(new CameraFollower(*bgObj));
 
+    /* Criação do Player*/
 	GameObject *rb = new GameObject("PlayerBody",1);
 	rb->AddComponent(new Sprite(*rb, BALL_PNG));
 
 	Collider *collider = new Collider(*rb, Vector2(rb->box.w, rb->box.h));
 	rb->AddComponent(collider);
 	rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
-	rb->AddComponent(new PlayerController(*rb,
-										  *(Rigidbody2D *)rb->GetComponent("Rigidbody2D"), 300));
+
+	rb->AddComponent(new PlayerController(*rb,*(Rigidbody2D *)rb->GetComponent("Rigidbody2D"), 300));
 
 	rb->box.SetCenter(windowCenter - Vector2(0, 200));
 

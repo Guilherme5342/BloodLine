@@ -3,17 +3,18 @@
 #include "Component.hpp"
 #include "GameObject.hpp"
 
+#include <memory>
+#include <unordered_map>
 #include <stack>
 
 class StateMachine;
 
 class IState {
 
-
 public:
 	virtual ~IState(){}
-	virtual void Enter(StateMachine& otherState) = 0;
-	virtual void Exit(StateMachine& otherState) = 0;
+	virtual void OnEnter(StateMachine& otherState) {};
+	virtual void OnExit(StateMachine& otherState) {};
 
 	virtual void Update(StateMachine& state, float dt) = 0;
 	virtual void Render(StateMachine& state) = 0;
@@ -22,12 +23,15 @@ public:
 class StateMachine : public Component {
 
 private:
-	std::stack<std::shared_ptr<IState>> stateStack;
 
 	IState* currentState;
+
+	std::unordered_map<string, bool> transitions;
+	
+
 public:
 	StateMachine(GameObject& associated);
-	virtual ~StateMachine(){ }
+	virtual ~StateMachine();
 
 	virtual void Update(float dt);
 	virtual void Render();
@@ -37,25 +41,24 @@ public:
 	}
 
 	inline IState& GetCurrentState() {
-		return *stateStack.top();
+		return *currentState;
 	}
 
 	inline void AddState(IState* newState) {
+
 		if (currentState != nullptr) {
-			GetCurrentState().Exit(*this);
+			GetCurrentState().OnExit(*this);
 		}
-		if(!stateStack.empty())
-			stateStack.pop();
-
+			
 		currentState = newState;
-		stateStack.emplace(newState);
 
-		GetCurrentState().Enter(*this);
+		GetCurrentState().OnEnter(*this);
 	}
 
-	inline void RemoveState(IState* state) {
-
+	inline Vector2 GetCenter() {
+		return associated.box.GetCenter();
 	}
+
 };
 
 
