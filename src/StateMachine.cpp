@@ -1,8 +1,8 @@
 #include "StateMachine.hpp"
 
 
-StateMachine::StateMachine(GameObject& associated)
-: Component(associated)
+StateMachine::StateMachine(GameObject& associated, Sprite& sprite)
+: Component(associated) , sprite(sprite)
 {
 	currentState = nullptr;
 
@@ -10,10 +10,7 @@ StateMachine::StateMachine(GameObject& associated)
 
 StateMachine::~StateMachine()
 {
-	while (!stateStack.empty())
-	{
-		stateStack.pop();
-	}
+
 }
 
 void StateMachine::Update(float dt)

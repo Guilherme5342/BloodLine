@@ -1,24 +1,13 @@
 #pragma once
 
-#include "Component.hpp"
-#include "GameObject.hpp"
-
 #include <memory>
 #include <unordered_map>
 #include <stack>
 
-class StateMachine;
-
-class IState {
-
-public:
-	virtual ~IState(){}
-	virtual void OnEnter(StateMachine& otherState) {};
-	virtual void OnExit(StateMachine& otherState) {};
-
-	virtual void Update(StateMachine& state, float dt) = 0;
-	virtual void Render(StateMachine& state) = 0;
-};
+#include "Component.hpp"
+#include "GameObject.hpp"
+#include "Sprite.h"
+#include "StateInterfaces.hpp"
 
 class StateMachine : public Component {
 
@@ -27,10 +16,11 @@ private:
 	IState* currentState;
 
 	std::unordered_map<string, bool> transitions;
-	
+
+	Sprite& sprite;
 
 public:
-	StateMachine(GameObject& associated);
+	StateMachine(GameObject& associated, Sprite& sprite);
 	virtual ~StateMachine();
 
 	virtual void Update(float dt);
