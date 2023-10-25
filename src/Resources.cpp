@@ -13,7 +13,7 @@ std::shared_ptr<SDL_Texture> Resources::GetImage(std::string filePath)
 		return imageTable[filePath];
 	}
 
-	SDL_Texture *texture = IMG_LoadTexture(Game::Instance().GetRenderer(), filePath.c_str());
+	SDL_Texture* texture = IMG_LoadTexture(Game::Instance().GetRenderer(), filePath.c_str());
 
 	// Construtor + Destrutor do Shared Pointer
 	imageTable[filePath] = std::shared_ptr<SDL_Texture>(texture, [](SDL_Texture *ptr)
@@ -29,7 +29,7 @@ std::shared_ptr<Mix_Music> Resources::GetMusic(std::string filePath)
 		return musicTable[filePath];
 	}
 
-	Mix_Music *music = Mix_LoadMUS(filePath.c_str());
+	Mix_Music* music = Mix_LoadMUS(filePath.c_str());
 
 	musicTable[filePath] = std::shared_ptr<Mix_Music>(music, [](Mix_Music *mus_Ptr)
 													  { Mix_FreeMusic(mus_Ptr); });
@@ -44,7 +44,7 @@ std::shared_ptr<Mix_Chunk> Resources::GetSound(std::string filePath)
 		return soundTable[filePath];
 	}
 
-	Mix_Chunk *chunk = Mix_LoadWAV(filePath.c_str());
+	Mix_Chunk* chunk = Mix_LoadWAV(filePath.c_str());
 
 	soundTable[filePath] = std::shared_ptr<Mix_Chunk>(chunk, [](Mix_Chunk *s_Ptr)
 													  { Mix_FreeChunk(s_Ptr); });
@@ -59,7 +59,7 @@ std::shared_ptr<TTF_Font> Resources::GetFont(std::string filePath, int fontSize)
 		return fontTable[filePath];
 	}
 
-	TTF_Font *font = TTF_OpenFont(filePath.c_str(), fontSize);
+	TTF_Font* font = TTF_OpenFont(filePath.c_str(), fontSize);
 
 	fontTable[filePath] = std::shared_ptr<TTF_Font>(font, [](TTF_Font *font_Ptr)
 													{ TTF_CloseFont(font_Ptr); });

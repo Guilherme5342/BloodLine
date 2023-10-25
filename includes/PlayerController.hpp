@@ -6,8 +6,11 @@
 #include "Rigidbody2D.hpp"
 #include "InputSystem.hpp"
 #include "Command.hpp"
+#include "States.hpp"
+#include "StateMachine.hpp"
 
-class PlayerController : public Component
+
+class PlayerController : public StateMachine
 {
 
 private:
@@ -17,13 +20,16 @@ private:
 
 	bool jumping = false;
 	bool canJump = false;
+	bool moving = false;
 
 	Vector2 moveDir;
 
 	Rigidbody2D &playerBody;
 
+	AnimState* animState;
+
 public:
-	PlayerController(GameObject &associated, Rigidbody2D &body, int speed);
+	PlayerController(GameObject &associated,Sprite& sprite, Rigidbody2D &body, int speed);
 	~PlayerController();
 
 	// Herdado por meio de Component

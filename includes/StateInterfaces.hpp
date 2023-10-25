@@ -18,10 +18,10 @@ public:
 
 class AnimState : public IState {
 
-private:
+protected:
 	Sprite& spriteAnim;
 
 public:
-	AnimState(Sprite& sprite, std::string animFile);
+	AnimState(Sprite& sprite);
 	void Play(std::string animFile);
 };

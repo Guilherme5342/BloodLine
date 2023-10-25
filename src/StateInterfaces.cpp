@@ -1,14 +1,14 @@
 #include "StateInterfaces.hpp"
 
-AnimState::AnimState(Sprite& sprite,std::string animFile) : spriteAnim(sprite)
+AnimState::AnimState(Sprite& sprite) : spriteAnim(sprite)
 {
-	spriteAnim.Open(animFile);
 }
 
 void AnimState::Play(std::string animFile) {
-
+	
 	spriteAnim.Open(animFile);
 	if (spriteAnim.IsOpen()) {
 		spriteAnim.SetFrame(0);
+		cout << "Tocando animacao " << animFile << endl;
 	}
 }

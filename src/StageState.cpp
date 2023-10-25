@@ -1,10 +1,6 @@
 #include "StageState.hpp"
 #include "Game.hpp"
-#include "PlayerController.hpp"
-
-#include "States.hpp"
-
-#include "GlobalDefinitions.hpp"
+#include "Resources.hpp"
 
 StageState::StageState() : State()
 {
@@ -40,8 +36,12 @@ void StageState::LoadAssets()
 	Collider *collider = new Collider(*rb, Vector2(rb->box.w, rb->box.h));
 	rb->AddComponent(collider);
 	rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
+	//rb->AddComponent(new StateMachine(*rb, *(Sprite*)rb->GetComponent("Sprite")));
 
-	rb->AddComponent(new PlayerController(*rb,*(Rigidbody2D *)rb->GetComponent("Rigidbody2D"), 300));
+	rb->AddComponent(new PlayerController(*rb,
+		*(Sprite*)rb->GetComponent("Sprite"), 
+		*(Rigidbody2D*)rb->GetComponent("Rigidbody2D"), 300));
+
 
 	rb->box.SetCenter(windowCenter - Vector2(0, 200));
 
@@ -55,19 +55,11 @@ void StageState::LoadAssets()
 	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
 
 	AddObject(groundObj);
-
-	GameObject* animatedSprite = new GameObject("Matriz Quadrada");
-	Sprite* spriteStub = new Sprite(*animatedSprite, STUB_ANIMATED_SPRITE, 4, 4, .15f);
-
-	spriteStub->SetFrameSpan(3, 10);
-	animatedSprite->AddComponent(spriteStub);
-
-	animatedSprite->box.SetCenter(Vector2(340, 200));
-	AddObject(animatedSprite);
 }
 
 void StageState::Pause()
 {
+	Resources::ClearAll();
 }
 
 void StageState::Resume()

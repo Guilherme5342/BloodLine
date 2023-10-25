@@ -2,24 +2,23 @@
 #include "Collider.hpp"
 #include "Game.hpp"
 
-IdleState::IdleState() 
+IdleState::IdleState(Sprite& sprite) : AnimState(sprite)
 {
-
 }
 
-void IdleState::Enter(StateMachine& otherState)
+void IdleState::OnEnter(StateMachine& otherState)
 {
 	cout << "Entrando no Estado de Idle" << endl;
+	Play(PLAYER_IDLE);
 }
 
-void IdleState::Exit(StateMachine& otherState)
+void IdleState::OnExit(StateMachine& otherState)
 {
 	cout << "Saindo do Estado de Idle" << endl;
 }
 
 void IdleState::Update(StateMachine& state, float dt)
-{
-	
+{	
 }
 
 void IdleState::Render(StateMachine& state)
@@ -27,7 +26,7 @@ void IdleState::Render(StateMachine& state)
 
 }
 
-MovingState::MovingState(Vector2 moveDir, float speed) : moveDir(moveDir), speed(speed)
+MovingState::MovingState(Sprite& sprite) : AnimState(sprite)
 {
 
 }
@@ -36,20 +35,17 @@ MovingState::~MovingState()
 {
 }
 
-void MovingState::Enter(StateMachine& otherState)
+void MovingState::OnEnter(StateMachine& otherState)
 {
-
+	Play(PLAYER_RUNNING);
 }
 
-void MovingState::Exit(StateMachine& otherState)
+void MovingState::OnExit(StateMachine& otherState)
 {
-	moveDir = { 0,0 };
 }
 
 void MovingState::Update(StateMachine& state, float dt)
 {
-	moveDir.x += speed * dt;
-
 	moveTimer.Update(dt);
 }
 
@@ -59,7 +55,8 @@ void MovingState::Render(StateMachine& state)
 
 
 #pragma region AttackState
-AttackState::AttackState(int damageAmount, std::string filePath, int range, int timeAmount)
+AttackState::AttackState(Sprite& sprite, int damageAmount, int range, int timeAmount) 
+	: AnimState(sprite)
 {
 	this->damage = damageAmount, this->range = range;
 	this->timer = timeAmount;
@@ -70,12 +67,13 @@ AttackState::~AttackState()
 {
 }
 
-void AttackState::Enter(StateMachine& stateMachine)
+void AttackState::OnEnter(StateMachine& stateMachine)
 {
 	cout << "Entrando no Estado de Ataque" << endl;
+	Play(PLAYER_ATTACK);
 }
 
-void AttackState::Exit(StateMachine& stateMachine)
+void AttackState::OnExit(StateMachine& stateMachine)
 {
 	cout << "Saindo no Estado de Ataque" << endl;
 }
@@ -85,8 +83,7 @@ void AttackState::Update(StateMachine& stateMachine, float dt)
 	if (attackTimer.Get() > timer) {
 		
 		attackTimer.Reset();
-		
-		stateMachine.SetState(new IdleState(PLAYER_IDLE));
+		stateMachine.SetState(new IdleState(spriteAnim));
 	}
 	
 	attackTimer.Update(dt);
@@ -99,11 +96,15 @@ void AttackState::Render(StateMachine& stateMachine)
 
 #pragma region DeathState
 
-void DeathState::Enter(StateMachine& stateMachine)
+DeathState::DeathState(Sprite& sprite) : AnimState(sprite)
 {
 }
 
-void DeathState::Exit(StateMachine& stateMachine)
+void DeathState::OnEnter(StateMachine& stateMachine)
+{
+}
+
+void DeathState::OnExit(StateMachine& stateMachine)
 {
 }
 

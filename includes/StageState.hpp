@@ -5,6 +5,9 @@
 #include "Music.hpp"
 #include "Rigidbody2D.hpp"
 #include "RectDebug.hpp"
+#include "PlayerController.hpp"
+#include "StateMachine.hpp"
+#include "GlobalDefinitions.hpp"
 
 #ifdef _WIN32
 #define BACKGROUND_IMAGE "assets/img/ocean.jpg"

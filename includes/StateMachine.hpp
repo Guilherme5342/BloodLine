@@ -6,12 +6,11 @@
 
 #include "Component.hpp"
 #include "GameObject.hpp"
-#include "Sprite.h"
 #include "StateInterfaces.hpp"
 
 class StateMachine : public Component {
 
-private:
+protected:
 
 	IState* currentState;
 
@@ -34,7 +33,7 @@ public:
 		return *currentState;
 	}
 
-	inline void AddState(IState* newState) {
+	inline void SetState(IState* newState) {
 
 		if (currentState != nullptr) {
 			GetCurrentState().OnExit(*this);

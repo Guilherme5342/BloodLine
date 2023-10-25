@@ -31,6 +31,9 @@
     <Filter Include="Arquivos de Cabeçalho\EngineLogic\AssetHeaders">
       <UniqueIdentifier>{1669840d-23f5-4c75-b82b-acabe1865888}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Cabeçalho\EngineLogic\Interfaces">
+      <UniqueIdentifier>{4f9ca9c8-647c-4f59-8b0d-9768ba45c334}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -119,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="src\States.cpp">
       <Filter>Arquivos de Origem\EngineLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateInterfaces.cpp">
+      <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="includes\States.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\StateInterfaces.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,35 +5,33 @@
 #include "Sprite.hpp"
 #include "Timer.hpp"
 
-class IdleState : public IState {
+class IdleState : public AnimState {
 
 
 public:
-	IdleState();
+	IdleState(Sprite& sprite);
 
 	// Herdado por meio de IState
-	virtual void Enter(StateMachine& otherState) override;
-	virtual void Exit(StateMachine& otherState) override;
+	virtual void OnEnter(StateMachine& otherState) override;
+	virtual void OnExit(StateMachine& otherState) override;
 
 	virtual void Update(StateMachine& state, float dt) override;
 	virtual void Render(StateMachine& state) override;
 
 };
 
-class MovingState : public IState {
+class MovingState : public AnimState {
 
 private:
-	Vector2 moveDir;
-	float speed;
 
 	Timer moveTimer;
 
 public:
-	MovingState(Vector2 moveDir, float speed);
+	MovingState(Sprite& sprite);
 	~MovingState();
 
-	virtual void Enter(StateMachine& otherState) override;
-	virtual void Exit(StateMachine& otherState) override;
+	virtual void OnEnter(StateMachine& otherState) override;
+	virtual void OnExit(StateMachine& otherState) override;
 
 	virtual void Update(StateMachine& state, float dt) override;
 	virtual void Render(StateMachine& state) override;
@@ -43,7 +41,7 @@ public:
 /// <summary>
 /// Estado Generico de Ataque
 /// </summary>
-class AttackState : public IState {
+class AttackState : public AnimState {
 
 private:
 	int damage;
@@ -53,11 +51,11 @@ private:
 	Timer attackTimer;
 
 public:
-	AttackState(int damageAmount, std::string filePath, int range, int timer = 1);
+	AttackState(Sprite& sprite, int damageAmount, int range, int timer = 1);
 	~AttackState();
 
-	void Enter(StateMachine& stateMachine);
-	void Exit(StateMachine& stateMachine);
+	void OnEnter(StateMachine& stateMachine);
+	void OnExit(StateMachine& stateMachine);
 
 	void Update(StateMachine& stateMachine, float dt);
 	void Render(StateMachine& stateMachine);
@@ -69,11 +67,12 @@ public:
 /// <summary>
 /// Estado genérico de Morte
 /// </summary>
-class DeathState : public IState {
+class DeathState : public AnimState {
 
 public:
-	void Enter(StateMachine& stateMachine);
-	void Exit(StateMachine& stateMachine);
+	DeathState(Sprite& sprite);
+	void OnEnter(StateMachine& stateMachine);
+	void OnExit(StateMachine& stateMachine);
 
 	void Update(StateMachine& stateMachine, float dt);
 	void Render(StateMachine& stateMachine);
