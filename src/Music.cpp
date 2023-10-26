@@ -13,7 +13,8 @@ Music::Music(std::string filePath) : Music()
 
 Music::~Music()
 {
-	Stop(0);
+	std::cout << "Musica parou" << std::endl;
+	Stop();
 }
 
 void Music::Play(int times)

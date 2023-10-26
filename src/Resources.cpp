@@ -1,6 +1,7 @@
 #include "Resources.hpp"
 #include "Game.hpp"
 
+
 std::unordered_map<std::string, std::shared_ptr<SDL_Texture>> Resources::imageTable;
 std::unordered_map<std::string, std::shared_ptr<Mix_Music>> Resources::musicTable;
 std::unordered_map<std::string, std::shared_ptr<Mix_Chunk>> Resources::soundTable;
@@ -55,6 +56,8 @@ std::shared_ptr<Mix_Chunk> Resources::GetSound(std::string filePath)
 
 std::shared_ptr<TTF_Font> Resources::GetFont(std::string filePath, int fontSize)
 {
+	string uniqueStr = filePath + to_string(fontSize);
+
 	if (fontTable.find(filePath) != fontTable.end())
 	{
 		return fontTable[filePath];
@@ -62,35 +65,36 @@ std::shared_ptr<TTF_Font> Resources::GetFont(std::string filePath, int fontSize)
 
 	TTF_Font* font = TTF_OpenFont(filePath.c_str(), fontSize);
 
-	fontTable[filePath] = std::shared_ptr<TTF_Font>(font, [](TTF_Font *font_Ptr)
+	fontTable[uniqueStr] = std::shared_ptr<TTF_Font>(font, [](TTF_Font *font_Ptr)
 													{ TTF_CloseFont(font_Ptr); });
 
-	return fontTable[filePath];
+	return fontTable[uniqueStr];
 }
 
 void Resources::ClearImages()
 {
 	std::unordered_map<std::string, std::shared_ptr<SDL_Texture>>::iterator item;
+	item = imageTable.begin();
 
-	for (item = imageTable.begin();  item != imageTable.end(); item++)
+	while(item != imageTable.end())
 	{
-		if (!item->second.use_count() != 1)
-			continue;
-
-		item = imageTable.erase(item);
+		if ((int)item->second.use_count() == 1)
+			item = imageTable.erase(item);
+		item++;
 	}
-
 }
 
 void Resources::ClearFonts()
 {
 	std::unordered_map<std::string, std::shared_ptr<TTF_Font>>::iterator item;
-	for (item = fontTable.begin(); item != fontTable.end(); item++)
+
+	item = fontTable.begin();
+
+	while (item != fontTable.end())
 	{
-		if (!item->second.use_count() != 1)
-			continue;
-		cout << "Limpando Fontes" << endl;
-		item = fontTable.erase(item);
+		if ((int)item->second.use_count() == 1)
+			item = fontTable.erase(item);
+		item++;
 	}
 }
 
@@ -98,12 +102,13 @@ void Resources::ClearMusics()
 {
 	std::unordered_map<std::string, std::shared_ptr<Mix_Music>>::iterator item;
 
-	for (item = musicTable.begin(); item != musicTable.end(); item++)
-	{
-		if (!item->second.use_count() != 1)
-			continue;
+	item = musicTable.begin();
 
-		item = musicTable.erase(item);
+	while (item != musicTable.end())
+	{
+		if ((int)item->second.use_count() == 1) 
+			item = musicTable.erase(item);
+		item++;
 	}
 }
 
@@ -111,28 +116,31 @@ void Resources::ClearSounds()
 {
 	std::unordered_map<std::string, std::shared_ptr<Mix_Chunk>>::iterator item;
 
-	for (item = soundTable.begin(); item != soundTable.end(); item++)
+	item = soundTable.begin();
+
+	while (item != soundTable.end())
 	{
-		if (!item->second.use_count() != 1)
-			continue;
-		item = soundTable.erase(item);
+		if ((int)item->second.use_count() == 1)
+			item = soundTable.erase(item);
+		item++;;
 	}
 }
 
 void Resources::ClearRemaining()
 {
-	ClearFonts();
-	ClearSounds();
-	ClearMusics();
 	ClearImages();
+	ClearMusics();
+	ClearSounds();
+	ClearFonts();
 }
 
 void Resources::ClearAll()
 {
-	fontTable.clear();
-	soundTable.clear();
-	musicTable.clear();
 	imageTable.clear();
+	musicTable.clear();
+	soundTable.clear();
+	fontTable.clear();
+
 	
 	std::cout << "Tabelas Apagadas" << endl;
 }

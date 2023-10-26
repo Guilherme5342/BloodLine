@@ -117,6 +117,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>D:\GitProjetos\TrabalhoJogoIDJ_2.0\src;D:\GitProjetos\TrabalhoJogoIDJ_2.0\includes;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.26.4\include;D:\Documents\_UNB Documentos\Jogos Digitais\SDL2-PARA-VSSTUDIO\SDL2-2.28.2\include;D:\Documents\_UNB Documentos\Jogos Digitais\Jogos\BloodLine\includes;D:\GitProjetos\BloodLine\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

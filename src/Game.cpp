@@ -111,7 +111,6 @@ void Game::Run()
 		}
 		int x = deltaTime / fixedDeltaTime;
 		leftOver = deltaTime - fixedDeltaTime * x;
-		
 
 		if (GetState().PopRequested())
 		{

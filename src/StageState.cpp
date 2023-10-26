@@ -9,8 +9,9 @@ StageState::StageState() : State()
 
 StageState::~StageState()
 {
+	music->Stop();
 	objectArray.clear();
-	Resources::ClearAll();
+	//Resources::ClearAll();
 }
 
 void StageState::LoadAssets()
@@ -54,12 +55,12 @@ void StageState::LoadAssets()
 
 void StageState::Pause()
 {
-	Resources::ClearAll();
+	music->Stop();
 }
 
 void StageState::Resume()
 {
-	Resources::ClearRemaining();
+	
 }
 
 void StageState::Start()

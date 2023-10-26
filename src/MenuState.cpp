@@ -71,7 +71,6 @@ void MenuState::Render()
 
 void MenuState::Pause()
 {
-	Resources::ClearRemaining();
 }
 
 void MenuState::Resume()

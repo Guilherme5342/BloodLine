@@ -18,7 +18,7 @@
 #include <SDL2/SDL_ttf.h>
 #endif
 
-class Resources
+static class Resources
 {
 private:
 	static std::unordered_map<std::string, std::shared_ptr<SDL_Texture>> imageTable;
