@@ -20,7 +20,7 @@ Sprite::Sprite(GameObject &associated, std::string filePath, int columnCount, in
 
 Sprite::~Sprite()
 {
-	std::cout << "Sprite de: " << associated.Name() << std::endl;
+	std::cout << "Sprite de: " << associated.Name() << "Apagada" << std::endl;
 }
 
 void Sprite::Open(std::string filePath)

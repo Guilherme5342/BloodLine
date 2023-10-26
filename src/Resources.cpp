@@ -52,6 +52,7 @@ std::shared_ptr<Mix_Chunk> Resources::GetSound(std::string filePath)
 	return soundTable[filePath];
 }
 
+
 std::shared_ptr<TTF_Font> Resources::GetFont(std::string filePath, int fontSize)
 {
 	if (fontTable.find(filePath) != fontTable.end())
@@ -67,12 +68,71 @@ std::shared_ptr<TTF_Font> Resources::GetFont(std::string filePath, int fontSize)
 	return fontTable[filePath];
 }
 
+void Resources::ClearImages()
+{
+	std::unordered_map<std::string, std::shared_ptr<SDL_Texture>>::iterator item;
+
+	for (item = imageTable.begin();  item != imageTable.end(); item++)
+	{
+		if (!item->second.use_count() != 1)
+			continue;
+
+		item = imageTable.erase(item);
+	}
+
+}
+
+void Resources::ClearFonts()
+{
+	std::unordered_map<std::string, std::shared_ptr<TTF_Font>>::iterator item;
+	for (item = fontTable.begin(); item != fontTable.end(); item++)
+	{
+		if (!item->second.use_count() != 1)
+			continue;
+		cout << "Limpando Fontes" << endl;
+		item = fontTable.erase(item);
+	}
+}
+
+void Resources::ClearMusics()
+{
+	std::unordered_map<std::string, std::shared_ptr<Mix_Music>>::iterator item;
+
+	for (item = musicTable.begin(); item != musicTable.end(); item++)
+	{
+		if (!item->second.use_count() != 1)
+			continue;
+
+		item = musicTable.erase(item);
+	}
+}
+
+void Resources::ClearSounds()
+{
+	std::unordered_map<std::string, std::shared_ptr<Mix_Chunk>>::iterator item;
+
+	for (item = soundTable.begin(); item != soundTable.end(); item++)
+	{
+		if (!item->second.use_count() != 1)
+			continue;
+		item = soundTable.erase(item);
+	}
+}
+
+void Resources::ClearRemaining()
+{
+	ClearFonts();
+	ClearSounds();
+	ClearMusics();
+	ClearImages();
+}
+
 void Resources::ClearAll()
 {
-	imageTable.clear();
-	musicTable.clear();
-	soundTable.clear();
 	fontTable.clear();
-
+	soundTable.clear();
+	musicTable.clear();
+	imageTable.clear();
+	
 	std::cout << "Tabelas Apagadas" << endl;
 }

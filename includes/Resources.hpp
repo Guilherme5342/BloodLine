@@ -18,7 +18,7 @@
 #include <SDL2/SDL_ttf.h>
 #endif
 
-static class Resources
+class Resources
 {
 private:
 	static std::unordered_map<std::string, std::shared_ptr<SDL_Texture>> imageTable;
@@ -32,5 +32,11 @@ public:
 	static std::shared_ptr<Mix_Music> GetMusic(std::string filePath);
 	static std::shared_ptr<Mix_Chunk> GetSound(std::string filePath);
 
+	static void ClearImages();
+	static void ClearFonts();
+	static void ClearMusics();
+	static void ClearSounds();
+
+	static void ClearRemaining();
 	static void ClearAll();
 };

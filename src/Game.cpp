@@ -116,6 +116,7 @@ void Game::Run()
 		if (GetState().PopRequested())
 		{
 			stateStack.pop(); // Desempilha o Estado atual e Resume o Estado Anterior
+			Resources::ClearRemaining();
 			if (!stateStack.empty())
 				GetState().Resume();
 		}
