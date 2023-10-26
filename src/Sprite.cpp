@@ -15,7 +15,7 @@ Sprite::Sprite(GameObject &associated, std::string filePath, int columnCount, in
 	this->animColumnCount = columnCount;
 	this->animRowCount = rowCount;
 	this->frameTime = frameTime;
-	Open(filePath);
+	Open(filePath, columnCount, rowCount);
 }
 
 Sprite::~Sprite()
@@ -23,7 +23,7 @@ Sprite::~Sprite()
 	std::cout << "Sprite de: " << associated.Name() << "Apagada" << std::endl;
 }
 
-void Sprite::Open(std::string filePath)
+void Sprite::Open(std::string filePath, int colunmCount, int rowCount)
 {
 
 	texture = Resources::GetImage(filePath);
@@ -46,11 +46,11 @@ void Sprite::Open(std::string filePath)
 	cout << height << endl;
 
 	
-	frameCount = animRowCount * animColumnCount;
+	frameCount = colunmCount * rowCount;
 
-	frameWidth = width / animRowCount;
+	frameWidth = width / rowCount;
 
-	frameHeight = height / animColumnCount;
+	frameHeight = height / colunmCount;
 
 	frameSpan = frameCount; // inicializa frameSpan (FrameFinal - FrameInical)
 
@@ -68,7 +68,7 @@ void Sprite::Render(int x, int y, int w, int h)
 	SDL_Rect dstrect = SDL_Rect{x, y, w, h};
 
 	SDL_RenderCopyEx(Game::Instance().GetRenderer(), texture.get(),
-					 &clipRect, &dstrect, associated.angleDeg, nullptr, SDL_FLIP_NONE);
+					 &clipRect, &dstrect, associated.angleDeg, nullptr, flipRenderer);
 }
 
 void Sprite::Render()

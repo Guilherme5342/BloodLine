@@ -38,6 +38,8 @@ void PlayerController::Update(float dt)
 	}
 
 	animState->Update(*this, dt);
+
+	SetState(animState);
 }
 
 void PlayerController::NotifyCollision(GameObject& otherObj)

@@ -16,7 +16,10 @@ class Sprite : public Component
 
 private:
 	std::shared_ptr<SDL_Texture> texture;
+
 	SDL_Rect clipRect;
+
+	SDL_RendererFlip flipRenderer;
 
 	int width, height;
 	int frameWidth, frameHeight;
@@ -29,7 +32,7 @@ private:
 
 	float timeElapsed, frameTime;
 
-	bool loop;
+	bool loop, flipX;
 
 	Vector2 scale = { 1,1 };
 
@@ -38,7 +41,7 @@ public:
 	Sprite(GameObject &associated, std::string filePath, int columnCount = 1, int rowCount = 1, float frameTime = 1);
 	~Sprite();
 
-	void Open(std::string filePath);
+	void Open(std::string filePath, int colunmCount = 1, int rowCount = 1);
 
 	inline bool IsOpen()
 	{
@@ -48,6 +51,12 @@ public:
 	inline void SetClip(int x, int y, int w, int h)
 	{
 		clipRect = SDL_Rect{x, y, w, h};
+	}
+
+	inline void FlipX() {
+		flipX = !flipX;
+
+		flipRenderer = flipX ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 	}
 
 	void Render(int x, int y, int w, int h);

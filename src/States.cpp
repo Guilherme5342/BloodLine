@@ -9,7 +9,7 @@ IdleState::IdleState(Sprite& sprite) : AnimState(sprite)
 void IdleState::OnEnter(StateMachine& otherState)
 {
 	cout << "Entrando no Estado de Idle" << endl;
-	Play(PLAYER_IDLE);
+	Play(PLAYER_IDLE,3,2);
 }
 
 void IdleState::OnExit(StateMachine& otherState)
@@ -37,7 +37,7 @@ MovingState::~MovingState()
 
 void MovingState::OnEnter(StateMachine& otherState)
 {
-	Play(PLAYER_RUNNING);
+	Play(PLAYER_RUNNING,3,2);
 }
 
 void MovingState::OnExit(StateMachine& otherState)
@@ -70,7 +70,7 @@ AttackState::~AttackState()
 void AttackState::OnEnter(StateMachine& stateMachine)
 {
 	cout << "Entrando no Estado de Ataque" << endl;
-	Play(PLAYER_ATTACK);
+	Play(PLAYER_ATTACK,3,2);
 }
 
 void AttackState::OnExit(StateMachine& stateMachine)
