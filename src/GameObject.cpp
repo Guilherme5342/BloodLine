@@ -15,11 +15,6 @@ GameObject::GameObject(string name, Component *compArray, int layer) : GameObjec
 
 GameObject::~GameObject()
 {
-	for (int i = (int)components.size(); i > 0; i--)
-	{
-		components.erase(components.begin() + i);
-	}
-
 	components.clear();
 }
 

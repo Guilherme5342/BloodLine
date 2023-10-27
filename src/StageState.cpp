@@ -4,20 +4,19 @@
 
 StageState::StageState() : State()
 {
-	music = nullptr;
 }
 
 StageState::~StageState()
 {
-	music->Stop();
 	objectArray.clear();
+	cout << "StageState" << endl;
 	//Resources::ClearAll();
 }
 
 void StageState::LoadAssets()
 {
 
-	music = new Music("assets/audio/stageState.ogg");
+	music.Open("assets/audio/stageState.ogg");
 
 	Vector2 windowCenter = Game::Instance().GetWindowCenter();
 
@@ -55,7 +54,6 @@ void StageState::LoadAssets()
 
 void StageState::Pause()
 {
-	music->Stop();
 }
 
 void StageState::Resume()
@@ -68,7 +66,7 @@ void StageState::Start()
 	StartArray();
 	started = true;
 
-	music->Play();
+	music.Play();
 	cout << "StageState " << objectArray.size() << endl;
 
 	Rect groundRect = Rect(Game::Instance().GetWindowCenter(), 500, 100);

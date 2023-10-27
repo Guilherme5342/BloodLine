@@ -78,8 +78,10 @@ void Resources::ClearImages()
 
 	while(item != imageTable.end())
 	{
-		if ((int)item->second.use_count() == 1)
+		if ((int)item->second.use_count() == 1) {
 			item = imageTable.erase(item);
+			continue;
+		}
 		item++;
 	}
 }
@@ -92,8 +94,10 @@ void Resources::ClearFonts()
 
 	while (item != fontTable.end())
 	{
-		if ((int)item->second.use_count() == 1)
+		if ((int)item->second.use_count() == 1) {
 			item = fontTable.erase(item);
+			continue;
+		}
 		item++;
 	}
 }
@@ -106,8 +110,10 @@ void Resources::ClearMusics()
 
 	while (item != musicTable.end())
 	{
-		if ((int)item->second.use_count() == 1) 
+		if ((int)item->second.use_count() == 1) {
 			item = musicTable.erase(item);
+			continue;
+		}
 		item++;
 	}
 }
@@ -120,8 +126,10 @@ void Resources::ClearSounds()
 
 	while (item != soundTable.end())
 	{
-		if ((int)item->second.use_count() == 1)
+		if ((int)item->second.use_count() == 1) {
 			item = soundTable.erase(item);
+			continue;
+		}
 		item++;;
 	}
 }
