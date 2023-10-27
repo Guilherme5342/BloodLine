@@ -39,7 +39,7 @@ private:
 	static Game *instance;
 	Game(string windowName = "Enginhoca", int windowW = 1024, int windowH = 600);
 
-	std::stack<State *> stateStack;
+	std::stack<std::unique_ptr<State>> stateStack;
 
 	SDL_Renderer *renderer;
 	SDL_Window *window;
