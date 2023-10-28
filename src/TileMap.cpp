@@ -38,7 +38,11 @@ void TileMap::Load(std::string filePath)
 		string entryString;
 		std::getline(srcFile, entryString, comma);
 
-		tileMatrix.emplace_back(stoi(entryString) - 1);
+		tileMatrix.emplace_back(atoi(entryString.c_str()));
+	}
+
+	for (int c : tileMatrix) {
+		cout << "Tile Matrix: " << c << endl;
 	}
 
 	srcFile.close();
@@ -89,6 +93,6 @@ void TileMap::Render()
 {
 	for (int z = 0; z < mapDepth; z++)
 	{
-		RenderLayer(z, Camera::GetCurrentCamPos().x, Camera::GetCurrentCamPos().y);
+		RenderLayer(z, Camera::GetCurrentCamPos().x * (z + 1), Camera::GetCurrentCamPos().y * (z + 1));
 	}
 }

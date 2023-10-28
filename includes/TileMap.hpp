@@ -44,7 +44,7 @@ public:
 	/// <returns></returns>
 	inline int &At(int x, int y, int depth = 0)
 	{
-		return tileMatrix[x + y * mapWidth + depth * mapWidth * mapHeight];
+		return tileMatrix[x + (y * mapWidth) + (depth * mapWidth * mapHeight)];
 	}
 
 	// Herdado por meio de Component
