@@ -24,9 +24,15 @@ void StageState::LoadAssets()
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
 	bgObj->AddComponent(new CameraFollower(*bgObj));
 
+	GameObject* tileObj = new GameObject("TileObject");
+	TileSet* tileSet = new TileSet(*tileObj,64,64,"assets/img/tileset.png");
+	TileMap* tileMap = new TileMap(*tileObj, "assets/map/pinguim2.csv", tileSet);
+
+	tileObj->AddComponent(tileMap);
+
     /* Criação do Player*/
 	GameObject *rb = new GameObject("PlayerBody",1);
-	rb->AddComponent(new Sprite(*rb, BALL_PNG));
+	rb->AddComponent(new Sprite(*rb, BALL_PNG,3,2,.5f));
 
 	Collider *collider = new Collider(*rb, Vector2(rb->box.w, rb->box.h));
 	rb->AddComponent(collider);
@@ -43,6 +49,7 @@ void StageState::LoadAssets()
 	Camera::Follow(rb);
 
 	AddObject(bgObj);
+	AddObject(tileObj);
 	AddObject(rb);
 
 	GameObject *groundObj = new GameObject("Ground", 1);

@@ -8,6 +8,9 @@
 #include "PlayerController.hpp"
 #include "StateMachine.hpp"
 #include "GlobalDefinitions.hpp"
+#include "TileSet.hpp"
+#include "TileMap.hpp"
+
 
 #ifdef _WIN32
 #define BACKGROUND_IMAGE "assets/img/ocean.jpg"
