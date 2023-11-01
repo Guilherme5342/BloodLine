@@ -13,8 +13,10 @@ TileSet::TileSet(GameObject &associated, int tileWidth, int tileHeight, std::str
 		return;
 	}
 
-	rows = tileSet.GetWidth() / tileWidth;
-	columns = tileSet.GetHeight() / tileHeight;
+	tileSet.SetClip(0, 0, tileWidth, tileHeight);
+
+	columns = tileSet.GetWidth() / tileWidth;
+	rows = tileSet.GetHeight() / tileHeight;
 
 	associated.AddComponent(&tileSet);
 }
@@ -23,9 +25,9 @@ TileSet::~TileSet()
 {
 }
 
-void TileSet::RenderTile(int x, int y, int layerIndex)
+void TileSet::RenderTile(int x, int y, unsigned int layerIndex)
 {
-	if (layerIndex > rows * columns)
+	if (layerIndex >= rows * columns)
 		return;
 
 	int tileX = (layerIndex % columns) * tileWidth;

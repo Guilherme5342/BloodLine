@@ -29,7 +29,7 @@ void TileMap::Load(std::string filePath)
 	srcFile >> mapHeight >> comma;
 	srcFile >> mapDepth >> comma;
 
-	cout << comma << endl;
+	//cout << comma << endl;
 
 	tileMatrix.clear();
 
@@ -38,11 +38,7 @@ void TileMap::Load(std::string filePath)
 		string entryString;
 		std::getline(srcFile, entryString, comma);
 
-		tileMatrix.emplace_back(atoi(entryString.c_str()));
-	}
-
-	for (int c : tileMatrix) {
-		cout << "Tile Matrix: " << c << endl;
+		tileMatrix.push_back(atoi(entryString.c_str()));
 	}
 
 	srcFile.close();
@@ -80,7 +76,7 @@ void TileMap::RenderLayer(int layer, int cameraX, int cameraY)
 		for (int j = 0; j < mapHeight; j++)
 		{
 			tileSet->RenderTile(i * tileX + (associated.box.x - cameraX), j * tileY + (associated.box.y - cameraY),
-								At(i, j, layer));
+								(int)At(i, j, layer));
 		}
 	}
 }

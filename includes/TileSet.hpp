@@ -17,14 +17,14 @@ public:
 	TileSet(GameObject &associated, int tileWidth, int tileHeight, std::string filePath);
 	~TileSet();
 
-	void RenderTile(int x, int y, int layerIndex); // Tambem chamado de LayerIndex = Camada Z
+	void RenderTile(int x, int y, unsigned int layerIndex); // Tambem chamado de LayerIndex = Camada Z
 
-	inline int GetTileWidth()
+	inline int GetTileWidth() const
 	{
 		return tileWidth;
 	}
 
-	inline int GetTileHeight()
+	inline int GetTileHeight() const
 	{
 		return tileHeight;
 	}
