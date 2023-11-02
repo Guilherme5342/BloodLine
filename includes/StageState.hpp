@@ -24,6 +24,7 @@ class StageState : public State
 private:
 	//Sprite *bg;
 	Music music;
+	TileMap* tileMap;
 
 public:
 	StageState();

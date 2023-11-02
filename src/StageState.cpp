@@ -26,9 +26,12 @@ void StageState::LoadAssets()
 
 	GameObject* tileObj = new GameObject("TileObject");
 	TileSet* tileSet = new TileSet(*tileObj,64,64,"assets/img/tileset.png");
-	TileMap* tileMap = new TileMap(*tileObj, "assets/map/pinguim2.csv", tileSet);
+	tileMap = new TileMap(*tileObj, "assets/map/pinguim2.csv", tileSet);
 
 	tileObj->AddComponent(tileMap);
+
+	
+
 
     /* Criação do Player*/
 	GameObject *rb = new GameObject("PlayerBody",1);
@@ -56,7 +59,10 @@ void StageState::LoadAssets()
 	groundObj->AddComponent(new RectDebugger(*groundObj, windowCenter.x - 256, windowCenter.y, 1100, 150));
 	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
 
+
 	AddObject(groundObj);
+
+	//tileMap->LoadCollisions();
 }
 
 void StageState::Pause()
@@ -79,6 +85,9 @@ void StageState::Start()
 	Rect groundRect = Rect(Game::Instance().GetWindowCenter(), 500, 100);
 
 	groundRect.FillRect();
+
+	tileMap->LoadCollisions();
+
 }
 
 void StageState::FixedUpdate(float fixedDt) {

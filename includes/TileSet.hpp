@@ -14,7 +14,7 @@ private:
 	int rows, columns;
 
 public:
-	TileSet(GameObject &associated, int tileWidth, int tileHeight, std::string filePath);
+	TileSet(GameObject& associated, int tileWidth, int tileHeight, std::string filePath);
 	~TileSet();
 
 	void RenderTile(int x, int y, unsigned int layerIndex); // Tambem chamado de LayerIndex = Camada Z
@@ -28,4 +28,9 @@ public:
 	{
 		return tileHeight;
 	}
+
+	inline int Columns() const {
+		return columns;
+	}
+
 };

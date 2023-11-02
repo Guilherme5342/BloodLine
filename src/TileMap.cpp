@@ -52,13 +52,23 @@ void TileMap::LoadCollisions()
 		return;
 	}
 
+	std::vector<int> repeatedTiles;
+
+
 	for (int i = 0; i < tileMatrix.size(); i++)
 	{
-		GameObject *tileObj = new GameObject("Tile" + i);
-		Collider *tileCollider = new Collider(*tileObj);
-		tileObj->AddComponent(tileCollider);
+		int prev = tileMatrix[i];
+		int next = tileMatrix[(i + 1) % tileMatrix.size()];
 
-		tileObj->box = Rect();
+		if (prev == next) {
+			repeatedTiles.push_back(prev);
+		}
+
+
+		GameObject* tileObj = new GameObject("Tile" + to_string(i));
+		Collider *tileCollider = new Collider(*tileObj,Vector2(1,1), 
+			Vector2(i % tileSet->Columns(), i / tileSet->Columns()));
+		tileObj->AddComponent(tileCollider);
 
 		Game::Instance().GetState().AddObject(tileObj);
 	}
