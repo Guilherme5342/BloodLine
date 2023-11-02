@@ -25,8 +25,8 @@ void StageState::LoadAssets()
 	bgObj->AddComponent(new CameraFollower(*bgObj));
 
 	GameObject* tileObj = new GameObject("TileObject");
-	TileSet* tileSet = new TileSet(*tileObj,64,64,"assets/img/tileset.png");
-	tileMap = new TileMap(*tileObj, "assets/map/pinguim2.csv", tileSet);
+	TileSet* tileSet = new TileSet(*tileObj,32,32,TILESET_WATER_STUB);
+	tileMap = new TileMap(*tileObj, MAP_STUB, tileSet);
 
 	tileObj->AddComponent(tileMap);
 
