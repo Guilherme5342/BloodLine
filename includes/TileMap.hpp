@@ -27,7 +27,9 @@ public:
 
 	void RenderLayer(int layer, int cameraX = 0, int cameraY = 0);
 
-	void SetTileSet(TileSet *tileSet)
+	int Hash(std::vector<int>& vector);
+
+	inline void SetTileSet(TileSet *tileSet)
 	{
 		this->tileSet = tileSet;
 		associated.box.SetSize(tileSet->GetTileWidth(), tileSet->GetTileHeight());

@@ -51,19 +51,14 @@ void TileMap::LoadCollisions()
 		cout << "Colisoes nao podem" << endl;
 		return;
 	}
-
-	std::vector<int> repeatedTiles;
+	
+	int hashResult = Hash(tileMatrix);
 
 
 	for (int i = 0; i < tileMatrix.size(); i++)
 	{
 		int prev = tileMatrix[i];
 		int next = tileMatrix[(i + 1) % tileMatrix.size()];
-
-		if (prev == next) {
-			repeatedTiles.push_back(prev);
-		}
-
 
 		GameObject* tileObj = new GameObject("Tile" + to_string(i));
 		Collider *tileCollider = new Collider(*tileObj,Vector2(1,1), 
@@ -89,6 +84,23 @@ void TileMap::RenderLayer(int layer, int cameraX, int cameraY)
 								(int)At(i, j, layer));
 		}
 	}
+}
+
+int TileMap::Hash(std::vector<int>& vector)
+{
+	int hash;
+
+	for (int i = 0; i < vector.size(); i++)
+	{
+		int x = vector[i];
+		x = ((x >> 16) ^ x) * 0x45d9f3b;
+		x = ((x >> 16) ^ x) * 0x45d9f3b;
+		x = (x >> 16) ^ x;
+
+		hash ^= x + 0x9e3779b1 + (hash << 6) + (hash >> 2);
+	}
+
+	return hash;
 }
 
 void TileMap::Update(float dt)
