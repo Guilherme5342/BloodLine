@@ -3,7 +3,7 @@
 
 const int DASH_SPEED_MULTIPLIER = 1000;
 const float DASH_COOLDOWN = 2.0f;
-const float DASH_DURATION = 0.4f;
+const float DASH_DURATION = 0.2f;
 
 PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed)
 	: StateMachine(associated, sprite),
