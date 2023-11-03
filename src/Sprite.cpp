@@ -45,7 +45,6 @@ void Sprite::Open(std::string filePath, int colunmCount, int rowCount)
 	cout << width << endl;
 	cout << height << endl;
 
-	
 	frameCount = colunmCount * rowCount;
 
 	frameWidth = width / rowCount;
@@ -73,8 +72,8 @@ void Sprite::Render(int x, int y, int w, int h)
 
 void Sprite::Render()
 {
-	Render(associated.box.x -Camera::GetCurrentCamPos().x,
-		   associated.box.y  - Camera::GetCurrentCamPos().y, frameWidth * scale.x, frameHeight * scale.y);
+	Render(associated.box.x - Camera::GetCurrentCamPos().x,
+		   associated.box.y - Camera::GetCurrentCamPos().y, frameWidth * scale.x, frameHeight * scale.y);
 }
 
 void Sprite::Update(float dt)
@@ -84,15 +83,16 @@ void Sprite::Update(float dt)
 
 	timeElapsed += dt;
 
-	if (timeElapsed > frameTime) {
+	if (timeElapsed > frameTime)
+	{
 		currentFrame++;
 		// Checa se o frame atual esta no Ultimo frame da Sprite Sheet
-		// Caso esteja Loopando, ele repete, caso o contrário ele para no último
-		if (currentFrame >= frameStart + frameSpan && loop) {
+		// Caso esteja Loopando, ele repete, caso o contrï¿½rio ele para no ï¿½ltimo
+		if (currentFrame >= frameStart + frameSpan && loop)
+		{
 			currentFrame = frameStart;
-
 		}
-		else if(currentFrame >= frameStart + frameSpan && !loop)
+		else if (currentFrame >= frameStart + frameSpan && !loop)
 		{
 			currentFrame = frameStart + frameSpan - 1;
 		}
