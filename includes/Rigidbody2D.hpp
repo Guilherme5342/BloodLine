@@ -3,12 +3,14 @@
 #include "Component.hpp"
 #include "GameObject.hpp"
 
-
 #define REPULSION_FACTOR 1e-4
 
 #define WEIGHT_GRAVITY(m) m * 9.81f
 
-enum ForceType {
+const float damping = 0.95f;
+
+enum ForceType
+{
 	FORCE = 1,
 	IMPULSE = 10
 };

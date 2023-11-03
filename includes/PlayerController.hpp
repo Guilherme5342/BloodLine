@@ -19,9 +19,13 @@ private:
 	float dashTimer = 0.0f;
 
 	bool jumping = false;
+	bool dashing = false;
+	bool moving = false;
+
+	float dashElapsedTime;
+
 	bool canJump = false;
 	bool canDash = false;
-	bool moving = false;
 
 	Vector2 moveDir;
 
