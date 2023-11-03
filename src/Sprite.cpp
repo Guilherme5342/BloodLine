@@ -48,16 +48,16 @@ void Sprite::Open(std::string filePath, int colunmCount, int rowCount)
 	
 	frameCount = colunmCount * rowCount;
 
-	frameWidth = width / rowCount;
+	frameWidth = width / colunmCount;
 
-	frameHeight = height / colunmCount;
+	frameHeight = height / rowCount;
 
 	frameSpan = frameCount; // inicializa frameSpan (FrameFinal - FrameInical)
 
 	cout << "Frame Width: " << frameWidth << endl;
 	cout << "Frame Height: " << frameHeight << endl;
 
-	SetClip(associated.box.x, associated.box.y, frameWidth, frameHeight);
+	SetFrame(0);
 
 	associated.box.w = frameWidth;
 	associated.box.h = frameHeight;
@@ -73,8 +73,11 @@ void Sprite::Render(int x, int y, int w, int h)
 
 void Sprite::Render()
 {
-	Render(associated.box.x -Camera::GetCurrentCamPos().x,
-		   associated.box.y  - Camera::GetCurrentCamPos().y, frameWidth * scale.x, frameHeight * scale.y);
+	Rect box;
+	box = associated.box;
+
+	Render(box.x -Camera::GetCurrentCamPos().x,
+		   box.y  - Camera::GetCurrentCamPos().y, frameWidth * scale.x, frameHeight * scale.y);
 }
 
 void Sprite::Update(float dt)
