@@ -34,6 +34,12 @@
     <Filter Include="Arquivos de Cabeçalho\EngineLogic\Interfaces">
       <UniqueIdentifier>{4f9ca9c8-647c-4f59-8b0d-9768ba45c334}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Cabeçalho\EngineLogic\Components\Player">
+      <UniqueIdentifier>{e389563d-b1ee-415d-b23a-31ab4dc6f8eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\EngineLogic\Components\Enemy">
+      <UniqueIdentifier>{bbaaa879-c064-4de1-94c5-f2f3828ec044}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -126,6 +132,9 @@
     <ClCompile Include="src\StateInterfaces.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="includes\EnemyBase.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -191,9 +200,6 @@
     <ClInclude Include="includes\Collider.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
     </ClInclude>
-    <ClInclude Include="includes\PlayerController.hpp">
-      <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
-    </ClInclude>
     <ClInclude Include="includes\Rigidbody2D.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
     </ClInclude>
@@ -229,6 +235,12 @@
     </ClInclude>
     <ClInclude Include="includes\StateInterfaces.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\PlayerController.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\EnemyBase.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -26,3 +26,15 @@
 
 #define MAP_STUB "../assets/map/mapaStub2.csv"
 #endif
+
+enum Action {
+	IDLE = 0,
+	MOVE = 1,
+	ATTACK = 2,
+	MAGIC_SPELL = 3
+};
+
+enum EnemyTypePhysics { // A Física que define os tipos de inimigos
+	GROUND = (1),   
+	FLY = (1,0),
+};
