@@ -39,11 +39,6 @@ public:
 		return Vector3(x * cos(angle) - y * sin(angle), y * cos(angle) + x * sin(angle));
 	}
 
-	inline Vector2 GetRotated2(float rad)
-	{
-		return Vector2(x * cos(rad) - y * sin(rad), y * cos(rad) + x * sin(rad));
-	}
-
 	template <typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
 	static T Angle(const Vector3 &from, const Vector3 &to)
 	{
@@ -149,6 +144,11 @@ public:
 		this->z = 0;
 	}
 
+	inline Vector2 GetRotated2(float rad)
+	{
+		return Vector2(x * cos(rad) - y * sin(rad), y * cos(rad) + x * sin(rad));
+	}
+
 	Vector2 operator+(Vector3 const &vec)
 	{
 
@@ -207,7 +207,7 @@ public:
 		return *this;
 	}
 
-	float Vector2::GetMagnitude()
+	float GetMagnitude()
 	{
 		return sqrt(x * x + y * y);
 	}
