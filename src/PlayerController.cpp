@@ -13,7 +13,6 @@ PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigid
 
 PlayerController::~PlayerController()
 {
-	animState = new DeathState(sprite);
 }
 
 void PlayerController::Update(float dt)
