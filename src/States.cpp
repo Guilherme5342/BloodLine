@@ -116,10 +116,10 @@ void DeathState::Render(StateMachine &stateMachine)
 
 #pragma region DashState
 
-const float DashState::DASH_DURATION = 0.2f; // Initialize the constant
+const float DashState::DASH_DURATION = 1.0f; // Initialize the constant
 
 DashState::DashState(Sprite &sprite)
-	: sprite(sprite), dashTime(0.0f), AnimState(sprite)
+	: sprite(sprite), dashTime(1.0f), AnimState(sprite)
 {
 	// Constructor body, if needed
 }

@@ -10,7 +10,7 @@ StageState::~StageState()
 {
 	objectArray.clear();
 	cout << "StageState" << endl;
-	//Resources::ClearAll();
+	// Resources::ClearAll();
 }
 
 void StageState::LoadAssets()
@@ -24,28 +24,24 @@ void StageState::LoadAssets()
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
 	bgObj->AddComponent(new CameraFollower(*bgObj));
 
-	GameObject* tileObj = new GameObject("TileObject");
-	TileSet* tileSet = new TileSet(*tileObj,32,32,TILESET_WATER_STUB);
+	GameObject *tileObj = new GameObject("TileObject");
+	TileSet *tileSet = new TileSet(*tileObj, 32, 32, TILESET_WATER_STUB);
 	tileMap = new TileMap(*tileObj, MAP_STUB, tileSet);
 
 	tileObj->AddComponent(tileMap);
 
-	
-
-
-    /* Criação do Player*/
-	GameObject *rb = new GameObject("PlayerBody",1);
-	rb->AddComponent(new Sprite(*rb, BALL_PNG,3,2,.5f));
+	/* Criaï¿½ï¿½o do Player*/
+	GameObject *rb = new GameObject("PlayerBody", 1);
+	rb->AddComponent(new Sprite(*rb, BALL_PNG, 3, 2, .5f));
 
 	Collider *collider = new Collider(*rb, Vector2(rb->box.w, rb->box.h));
 	rb->AddComponent(collider);
 	rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
-	//rb->AddComponent(new StateMachine(*rb, *(Sprite*)rb->GetComponent("Sprite")));
+	// rb->AddComponent(new StateMachine(*rb, *(Sprite*)rb->GetComponent("Sprite")));
 
 	rb->AddComponent(new PlayerController(*rb,
-		*(Sprite*)rb->GetComponent("Sprite"), 
-		*(Rigidbody2D*)rb->GetComponent("Rigidbody2D"), 300));
-
+										  *(Sprite *)rb->GetComponent("Sprite"),
+										  *(Rigidbody2D *)rb->GetComponent("Rigidbody2D"), 300));
 
 	rb->box.SetCenter(windowCenter - Vector2(0, 200));
 
@@ -59,10 +55,9 @@ void StageState::LoadAssets()
 	groundObj->AddComponent(new RectDebugger(*groundObj, windowCenter.x - 256, windowCenter.y, 1100, 150));
 	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
 
-
 	AddObject(groundObj);
 
-	//tileMap->LoadCollisions();
+	// tileMap->LoadCollisions();
 }
 
 void StageState::Pause()
@@ -71,7 +66,6 @@ void StageState::Pause()
 
 void StageState::Resume()
 {
-	
 }
 
 void StageState::Start()
@@ -86,11 +80,11 @@ void StageState::Start()
 
 	groundRect.FillRect();
 
-	tileMap->LoadCollisions();
-
+	// tileMap->LoadCollisions();
 }
 
-void StageState::FixedUpdate(float fixedDt) {
+void StageState::FixedUpdate(float fixedDt)
+{
 
 	FixedUpdateArray(fixedDt);
 }
@@ -103,8 +97,6 @@ void StageState::Update(float dt)
 	}
 	Camera::Update(dt);
 	UpdateArray(dt);
-
-	
 }
 
 void StageState::Render()

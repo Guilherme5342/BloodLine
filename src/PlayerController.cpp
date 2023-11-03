@@ -2,8 +2,8 @@
 #include <cmath> // for std::abs
 
 // Add constants for dash mechanics
-const int DASH_SPEED_MULTIPLIER = 5; // Multiplier to the speed during a dash
-const float DASH_COOLDOWN = 1.0f;	 // Cooldown time in seconds
+const int DASH_SPEED_MULTIPLIER = 10; // Multiplier to the speed during a dash
+const float DASH_COOLDOWN = 1.0f;	  // Cooldown time in seconds
 
 PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed)
 	: StateMachine(associated, sprite), speed(speed), playerBody(body)
@@ -45,10 +45,12 @@ void PlayerController::Update(float dt)
 	if (canDash && InputSystem::Instance().KeyPress(SDLK_LSHIFT))
 	{ // Using Left Shift for dash input
 		// Apply a dash force, which is a multiple of the normal movement speed, in the direction of movement
-		float dashForce = speed * DASH_SPEED_MULTIPLIER;
-		moveDir.x += (InputSystem::Instance().IsKeyDown(SDLK_a) - InputSystem::Instance().IsKeyDown(SDLK_d)) * dashForce;
-		canDash = false;				   // Start the cooldown
-		animState = new DashState(sprite); // Change the animation state to dash
+		float dashForce = speed * DASH_SPEED_MULTIPLIER * dt;					 // Multiply by dt to keep the force consistent over time
+		int leftKeyPressed = InputSystem::Instance().IsKeyDown(SDLK_a) ? 1 : 0;	 // Will be 1 if left key is pressed, otherwise 0
+		int rightKeyPressed = InputSystem::Instance().IsKeyDown(SDLK_d) ? 1 : 0; // Will be 1 if right key is pressed, otherwise 0
+		moveDir.x += (rightKeyPressed - leftKeyPressed) * dashForce;			 // Right key should add to the force, left key should subtractIsKeyDown(SDLK_d)) * dashForce;
+		canDash = false;														 // Start the cooldown
+		animState = new DashState(sprite);										 // Change the animation state to dash
 	}
 
 	// cout << associated.box.x << endl;
