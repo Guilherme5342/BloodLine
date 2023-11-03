@@ -9,6 +9,10 @@
 #include "States.hpp"
 #include "StateMachine.hpp"
 
+const int DASH_SPEED_MULTIPLIER = 1000;
+const float DASH_COOLDOWN = 2.0f;
+const float DASH_DURATION = 0.2f;
+
 class PlayerController : public StateMachine
 {
 
