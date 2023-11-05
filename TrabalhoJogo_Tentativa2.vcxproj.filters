@@ -132,7 +132,13 @@
     <ClCompile Include="src\StateInterfaces.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="includes\EnemyBase.cpp">
+    <ClCompile Include="src\EnemyBase.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bullet.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PawnEnemy.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -240,6 +246,12 @@
       <Filter>Arquivos de Cabeçalho\EngineLogic\Components\Player</Filter>
     </ClInclude>
     <ClInclude Include="includes\EnemyBase.hpp">
+      <Filter>Arquivos de Cabeçalho\EngineLogic\Components\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Bullet.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\PawnEnemy.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic\Components\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

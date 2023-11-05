@@ -143,7 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="includes\EnemyBase.cpp" />
+    <ClCompile Include="src\PawnEnemy.cpp" />
+    <ClCompile Include="src\EnemyBase.cpp" />
+    <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\StateInterfaces.cpp" />
     <ClCompile Include="src\HealthHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -182,6 +184,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\Bullet.hpp" />
     <ClInclude Include="includes\Camera.hpp" />
     <ClInclude Include="includes\CameraFollower.hpp" />
     <ClInclude Include="includes\CircleCollider.hpp" />
@@ -197,6 +200,7 @@
     <ClInclude Include="includes\InputSystem.hpp" />
     <ClInclude Include="includes\MenuState.hpp" />
     <ClInclude Include="includes\Music.hpp" />
+    <ClInclude Include="includes\PawnEnemy.hpp" />
     <ClInclude Include="includes\PlayerController.hpp" />
     <ClInclude Include="includes\Rect.hpp" />
     <ClInclude Include="includes\RectDebug.hpp" />

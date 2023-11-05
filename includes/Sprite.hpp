@@ -10,6 +10,13 @@
 #include "Vector3.hpp"
 #include "GameObject.hpp"
 
+// Ideia: criar uma Struct que guarda os Dados relevantes da Sprite
+struct SpriteData {
+public:
+	std::string filePath;
+	int width, height;
+
+};
 
 class Sprite : public Component
 {
