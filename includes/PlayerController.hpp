@@ -8,16 +8,23 @@
 #include "Command.hpp"
 #include "States.hpp"
 #include "StateMachine.hpp"
+#include "Spell.hpp"
+
+#include <map>
 
 const int DASH_SPEED_MULTIPLIER = 1000;
 const float DASH_COOLDOWN = 2.0f;
 const float DASH_DURATION = 0.2f;
+
+class Spell;
 
 class PlayerController : public StateMachine
 {
 
 private:
 	int speed;
+
+	int health = 100;
 
 	float jumpForce = 100.0f;
 	float dashTimer = 0.0f;
@@ -37,18 +44,25 @@ private:
 
 	AnimState *animState;
 
+	map<string, Spell *> spells;
+
 public:
 	PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed);
 	~PlayerController();
+
+	int GetHealth();
 
 	// Herdado por meio de Component
 	virtual void Update(float dt) override;
 	virtual void Render() override;
 
-	inline virtual bool Is(std::string type) override
+	inline virtual bool Is(string type) override
 	{
 		return type == "PlayerController";
 	}
+
+	void CastSpell(string spellName);
+	void AddSpell(string spellName, Spell *spell);
 
 	void NotifyCollision(GameObject &otherObj);
 };

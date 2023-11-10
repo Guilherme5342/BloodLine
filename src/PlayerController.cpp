@@ -1,4 +1,5 @@
 #include "PlayerController.hpp"
+#include "Spell.hpp"
 #include <cmath>
 
 PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed)
@@ -9,6 +10,8 @@ PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigid
 	canDash = true;
 	dashTimer = 0.0f;
 	dashElapsedTime = 0.0f;
+
+	spells = std::map<std::string, Spell *>();
 }
 
 PlayerController::~PlayerController()
@@ -66,9 +69,28 @@ void PlayerController::Update(float dt)
 		animState = new AttackState(sprite, 10, 30, .2f);
 	}
 
+	if (InputSystem::Instance().KeyPress(SDLK_b))
+	{
+		CastSpell("BloodSpell");
+	}
+
 	animState->Update(*this, dt);
 
 	SetState(animState);
+}
+
+void PlayerController::CastSpell(std::string spellName)
+{
+	if (spells.find(spellName) != spells.end() && spells[spellName]->canCast(*this))
+	{
+		spells[spellName]->Activate();
+		health -= spells[spellName]->GetHealthCost(); // Assuming each spell has a health cost
+	}
+}
+
+void PlayerController::AddSpell(std::string spellName, Spell *spell)
+{
+	spells[spellName] = spell;
 }
 
 void PlayerController::NotifyCollision(GameObject &otherObj)
@@ -79,4 +101,9 @@ void PlayerController::NotifyCollision(GameObject &otherObj)
 void PlayerController::Render()
 {
 	animState->Render(*this);
+}
+
+int PlayerController::GetHealth()
+{
+	return health;
 }

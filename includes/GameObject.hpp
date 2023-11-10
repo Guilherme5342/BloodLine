@@ -19,7 +19,7 @@ public:
 	int layer;
 
 	GameObject(string name = "G", int layer = 0);
-	GameObject(string name , Component *compArray, int layer = 0);
+	GameObject(string name, Component *compArray, int layer = 0);
 	~GameObject();
 
 	void Start();
