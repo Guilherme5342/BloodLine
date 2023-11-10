@@ -18,6 +18,7 @@ PlayerController::~PlayerController()
 {
 }
 
+float lastDashVel;
 void PlayerController::Update(float dt)
 {
 
@@ -36,6 +37,7 @@ void PlayerController::Update(float dt)
 
 	if (canDash && InputSystem::Instance().KeyPress(SDLK_LSHIFT))
 	{
+		lastDashVel = dashVelocity;
 
 		playerBody.ApplyVelocity(Vector2(dashVelocity, 0));
 		canDash = false;
@@ -49,7 +51,7 @@ void PlayerController::Update(float dt)
 		if (dashElapsedTime >= DASH_DURATION)
 		{
 
-			playerBody.ApplyVelocity(Vector2(-dashVelocity, 0));
+			playerBody.ApplyVelocity(Vector2(-lastDashVel, 0));
 			canDash = true;
 			dashTimer = 0.0f;
 		}
