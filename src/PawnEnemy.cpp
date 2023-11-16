@@ -13,7 +13,7 @@ PawnEnemy::~PawnEnemy()
 
 void PawnEnemy::Idle(float dt)
 {
-	waitingTimer.Update(Game::Instance().GetDeltaTime());
+	waitingTimer.Update(dt);
 	if (waitingTimer.Get() > 2) 
 	{
 		SetActionState(MOVE);
@@ -29,9 +29,14 @@ void PawnEnemy::Move(float dt)
 	Vector2 destination = invertMove ? leftPoint : rightPoint;
 	float distance = Distance(associated.box.GetCenter(), destination);
 
-	if (distance >= 1) {
+	if (distance <= 1) {
 		SetActionState(IDLE);
 	}
+	else {
+		associated.box += speed.normalized() * dt * 400;
+	}
+
+	
 
 }
 

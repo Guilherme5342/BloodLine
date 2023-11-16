@@ -85,6 +85,13 @@ public:
 		return Rect(GetCenter() + vec2, GetCenter() + vec2);
 	}
 
+	Rect& operator+=(const Vector3& vec)
+	{
+		this->x += vec.x;
+		this->y += vec.y;
+		return *this;
+	}
+
 	Rect &operator+=(const Vector2 &vec)
 	{
 		this->x += vec.x;

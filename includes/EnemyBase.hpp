@@ -24,7 +24,7 @@ protected:
 	Timer waitingTimer;
 	Sprite sprite;
 
-	Vector2 speed;
+	Vector2 speed = { 1,1 };
 
 	int damage;
 

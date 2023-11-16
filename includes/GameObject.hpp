@@ -13,7 +13,7 @@ class GameObject
 private:
 	std::vector<std::unique_ptr<Component>> components;
 	bool dead, started;
-	string name;
+	std::string name;
 
 public:
 	int layer;
@@ -67,7 +67,7 @@ public:
 		return dead;
 	}
 
-	inline string Name()
+	inline string Name() const
 	{
 		return name;
 	}
