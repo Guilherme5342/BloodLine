@@ -27,6 +27,8 @@ protected:
 
 	Vector2 speed = { 1,1 };
 
+	Vector2 speed;
+
 	int damage;
 	bool isOnFloor = false;
 
