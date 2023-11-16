@@ -11,7 +11,7 @@ private:
 	bool invertMove = false;
 
 public:
-	PawnEnemy(GameObject associated, std::weak_ptr<GameObject> player,std::string filePath,int health,int damage, Action enemyAction,EnemyTypePhysics phys, 
+	PawnEnemy(GameObject& associated, std::weak_ptr<GameObject> player,Sprite& sprite,int health,int damage, Action enemyAction,EnemyTypePhysics phys, 
 		float radius);
 	~PawnEnemy();
 
@@ -20,10 +20,10 @@ public:
 	}
 
 	// Herdado por meio de EnemyBase
-	void Idle();
-	void Move();
-	void Attack();
-	void SpecialAttack();
+	void Idle(float dt);
+	void Move(float dt);
+	void Attack(float dt);
+	void SpecialAttack(float dt);
 
 	inline bool DetectPlayer() {
 		return player.lock() != nullptr;

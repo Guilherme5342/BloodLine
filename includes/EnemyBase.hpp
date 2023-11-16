@@ -1,6 +1,5 @@
 #pragma once
 
-#include <xmemory>
 
 #include "Component.hpp"
 #include "GameObject.hpp"
@@ -29,6 +28,8 @@ protected:
 
 	int damage;
 
+	Collider hitBox;
+
 public:
 	/// <summary>
 	/// Esta é a classe base abstrata do Inimigo
@@ -40,7 +41,7 @@ public:
 	/// <param name="damage"> Dano do Inimigo </param>
 	/// <param name="enemyPhys"> Comportamento da Física do Inimigo</param>
 	EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player,
-		std::string filePath,int health, int damage, Action initialAction = IDLE, EnemyTypePhysics enemyPhys = GROUND);
+		Sprite& sprite,int health, int damage, Action initialAction = IDLE, EnemyTypePhysics enemyPhys = GROUND);
 
 	virtual ~EnemyBase();
 
@@ -53,10 +54,10 @@ public:
 		return type == "EnemyBase";
 	}
 
-	virtual void Idle() {}
-	virtual void Move() = 0;
-	virtual void Attack() = 0;
-	virtual void SpecialAttack() = 0;
+	virtual void Idle(float dt) {}
+	virtual void Move(float dt) = 0;
+	virtual void Attack(float dt) = 0;
+	virtual void SpecialAttack(float dt) = 0;
 
 
 	inline void SetActionState(Action action) {
