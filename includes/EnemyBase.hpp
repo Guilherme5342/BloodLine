@@ -10,16 +10,22 @@
 #include "HealthHandler.hpp"
 
 #include "GlobalDefinitions.hpp"
+#include "Timer.hpp";
 
 class EnemyBase : public Component {
 
 protected:
 	Action enemyAction;
 
+	std::weak_ptr<GameObject> player;
+
 	HealthHandler health;
 	Rigidbody2D rb;
 
+	Timer waitingTimer;
 	Sprite sprite;
+
+	Vector2 speed;
 
 	int damage;
 
@@ -28,12 +34,15 @@ public:
 	/// Esta é a classe base abstrata do Inimigo
 	/// </summary>
 	/// <param name="associated"> GameObject associado ao inimigo</param>
+	/// <param name="player"> Referencia pro Player principal</param>
 	/// <param name="enemySprite"> Sprite para o Inimigo </param>
 	/// <param name="health">Vida do Inimigo</param>
 	/// <param name="damage"> Dano do Inimigo </param>
 	/// <param name="enemyPhys"> Comportamento da Física do Inimigo</param>
-	EnemyBase(GameObject& associated,Sprite& enemySprite,int health, int damage, EnemyTypePhysics enemyPhys);
-	EnemyBase(GameObject& associated,std::string filePath,int health, int damage, EnemyTypePhysics enemyPhys);
+	EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player,
+		std::string filePath,int health, int damage, Action initialAction = IDLE, EnemyTypePhysics enemyPhys = GROUND);
+
+	virtual ~EnemyBase();
 
 	// Herdado por meio de Component
 	virtual void Update(float dt);
@@ -44,9 +53,14 @@ public:
 		return type == "EnemyBase";
 	}
 
+	virtual void Idle() {}
 	virtual void Move() = 0;
 	virtual void Attack() = 0;
 	virtual void SpecialAttack() = 0;
 
+
+	inline void SetActionState(Action action) {
+		this->enemyAction = action;
+	}
 };
 
