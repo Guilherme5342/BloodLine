@@ -1,10 +1,11 @@
 #include "PlayerController.hpp"
 #include "Spell.hpp"
+#include "BloodSpell.hpp"
 #include <cmath>
 
 PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed)
 	: StateMachine(associated, sprite),
-	  speed(speed), playerBody(body)
+	  speed(speed), playerBody(body), spells({{"BloodSpell", new BloodSpell(associated, 10.0, 10.0, 10, *this)}})
 {
 	animState = nullptr;
 	canDash = true;
