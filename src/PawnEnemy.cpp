@@ -11,11 +11,33 @@ PawnEnemy::~PawnEnemy()
 {
 }
 
+void PawnEnemy::Render() {
+
+	Vector2 leftPoint = associated.box.GetCenter() - Vector2(1, 0);
+	Vector2 rightPoint = associated.box.GetCenter() + Vector2(1, 0);
+
+	SDL_Point pointLeft = { leftPoint.x,leftPoint.y };
+	SDL_Point pointRight = { rightPoint.x,rightPoint.y };
+
+	SDL_Point offsetPoints[] = {pointLeft,pointRight};
+
+	SDL_SetRenderDrawColor(Game::Instance().GetRenderer(), 255, 255, 8, 255);
+	SDL_SetRenderDrawBlendMode(Game::Instance().GetRenderer(), SDL_BLENDMODE_BLEND);
+
+	SDL_RenderDrawPoints(Game::Instance().GetRenderer(), offsetPoints,2);
+
+}
+
 void PawnEnemy::Idle(float dt)
 {
 	waitingTimer.Update(dt);
 	if (waitingTimer.Get() > 2) 
 	{
+		Vector2 leftPoint = Vector2(-100, associated.box.y);
+		Vector2 rightPoint = Vector2(10, associated.box.y);
+
+		destination = invertMove ? leftPoint : rightPoint;
+		cout << destination << endl;
 		SetActionState(MOVE);
 		waitingTimer.Reset();
 	}
@@ -23,20 +45,18 @@ void PawnEnemy::Idle(float dt)
 
 void PawnEnemy::Move(float dt)
 {
-	Vector2 leftPoint = associated.box.GetCenter() - Vector2(20, 20);
-	Vector2 rightPoint = associated.box.GetCenter() + Vector2(20,20);
-	
-	Vector2 destination = invertMove ? leftPoint : rightPoint;
+
 	float distance = Distance(associated.box.GetCenter(), destination);
+	cout << distance << endl;
 
 	if (distance <= 1) {
 		SetActionState(IDLE);
+		invertMove = !invertMove;
 	}
 	else {
-		associated.box += speed.normalized() * dt * 400;
+		associated.box += speed.normalized() * dt * 100;
 	}
 
-	
 
 }
 
