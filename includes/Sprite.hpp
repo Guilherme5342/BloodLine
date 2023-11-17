@@ -66,6 +66,10 @@ public:
 		flipRenderer = flipX ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 	}
 
+	inline void SetLoop(bool loop) {
+		this->loop = loop;
+	}
+
 	void Render(int x, int y, int w, int h);
 
 	void Update(float dt);

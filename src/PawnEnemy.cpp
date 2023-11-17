@@ -36,9 +36,10 @@ void PawnEnemy::Idle(float dt)
 		Vector2 leftPoint = Vector2(-100, associated.box.y);
 		Vector2 rightPoint = Vector2(10, associated.box.y);
 
-		destination = invertMove ? leftPoint : rightPoint;
-		cout << destination << endl;
+		destination = !invertMove ? leftPoint : rightPoint;
+		sprite.Open("assets/img/enemies/knight/_Run.png", 10, 1);
 		SetActionState(MOVE);
+		
 		waitingTimer.Reset();
 	}
 }
@@ -50,7 +51,9 @@ void PawnEnemy::Move(float dt)
 	cout << distance << endl;
 
 	if (distance <= 1) {
+		sprite.Open("assets/img/enemies/knight/_Idle.png", 10, 1);
 		SetActionState(IDLE);
+		
 		invertMove = !invertMove;
 	}
 	else {

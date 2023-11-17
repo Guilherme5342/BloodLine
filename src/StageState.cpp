@@ -1,6 +1,8 @@
 #include "StageState.hpp"
 #include "Game.hpp"
 #include "Resources.hpp"
+#include "PawnEnemy.hpp"
+
 
 StageState::StageState() : State()
 {
@@ -32,23 +34,40 @@ void StageState::LoadAssets()
 
 	/* Cria��o do Player*/
 	GameObject *rb = new GameObject("PlayerBody", 1);
-	rb->AddComponent(new Sprite(*rb, BALL_PNG, 3, 2, .5f));
+	Sprite* playerSprite = new Sprite(*rb, BALL_PNG, 3, 2, .1f);
+	playerSprite->SetLoop(true);
+	rb->AddComponent(playerSprite);
 
 	Collider *collider = new Collider(*rb, Vector2(rb->box.w, rb->box.h));
 	rb->AddComponent(collider);
 	rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
+
+	
 	// rb->AddComponent(new StateMachine(*rb, *(Sprite*)rb->GetComponent("Sprite")));
 
 	rb->AddComponent(new PlayerController(*rb,
-										  *(Sprite *)rb->GetComponent("Sprite"),
-										  *(Rigidbody2D *)rb->GetComponent("Rigidbody2D"), 300));
+					*playerSprite,
+					*(Rigidbody2D*)rb->GetComponent("Rigidbody2D"), 300));
 
 	rb->box.SetCenter(windowCenter - Vector2(0, 200));
 
 	Camera::Follow(rb);
 
+	GameObject* enemyObj = new GameObject("Enemy1");
+	Sprite* enemySprite = new Sprite(*enemyObj, "assets/img/enemies/knight/_Idle.png", 10, 1, .3f);
+	enemySprite->SetLoop(true);
+
+	EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(rb),
+		*enemySprite, 10, 1, IDLE, GROUND, 4);
+
+	enemyObj->AddComponent(enemyTest);
+
+	enemyObj->box.SetCenter(rb->box.GetCenter() + Vector2(20, 0));
+
+
 	AddObject(bgObj);
 	AddObject(tileObj);
+	AddObject(enemyObj);
 	AddObject(rb);
 
 	GameObject *groundObj = new GameObject("Ground", 1);
