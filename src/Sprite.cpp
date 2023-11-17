@@ -25,8 +25,16 @@ Sprite::~Sprite()
 
 void Sprite::Open(std::string filePath, int colunmCount, int rowCount)
 {
+	std::shared_ptr<SDL_Texture> oldTex;
+	if(IsOpen())
+		oldTex = texture;
 
 	texture = Resources::GetImage(filePath);
+	
+	if (texture == oldTex) {
+		cout << "Textura ja em uso" << endl;
+		return;
+	}
 
 	if (!texture)
 	{
@@ -41,9 +49,10 @@ void Sprite::Open(std::string filePath, int colunmCount, int rowCount)
 		std::cout << SDL_GetError() << std::endl;
 		return;
 	}
-	cout << "Abrindo Sprite: " << filePath << endl;
-	cout << width << endl;
-	cout << height << endl;
+
+	//cout << "Abrindo Sprite: " << filePath << endl;
+	//cout << width << endl;
+	//cout << height << endl;
 
 	
 	frameCount = colunmCount * rowCount;
@@ -54,8 +63,8 @@ void Sprite::Open(std::string filePath, int colunmCount, int rowCount)
 
 	frameSpan = frameCount; // inicializa frameSpan (FrameFinal - FrameInical)
 
-	cout << "Frame Width: " << frameWidth << endl;
-	cout << "Frame Height: " << frameHeight << endl;
+	//cout << "Frame Width: " << frameWidth << endl;
+	//cout << "Frame Height: " << frameHeight << endl;
 
 	SetFrame(0);
 
