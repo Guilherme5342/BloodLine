@@ -42,6 +42,11 @@ public:
 		this->w = size.x, this->h = size.y;
 	}
 
+	inline Vector2 GetLocalCenter() 
+	{
+		return Vector2(w / 2, h / 2);
+	}
+
 	inline Vector2 GetCenter()
 	{
 		return Vector2(x + w / 2, y + h / 2);

@@ -20,7 +20,7 @@ void Collider::Start()
 	if (setManually)
 		return;
 
-	box.SetSize(scale);
+	box.SetSize(associated.box.w,associated.box.h);
 }
 
 void Collider::FixedUpdate(float fixedDt)

@@ -52,21 +52,17 @@ void TileMap::LoadCollisions()
 		return;
 	}
 	
-	int hashResult = Hash(tileMatrix);
+	Vector2 size = associated.box.GetCenter() + Vector2(tileSet->GetTileWidth() * GetWidth(),
+		tileSet->GetTileHeight() * GetHeight());
 
+	cout << size << endl;
 
-	for (int i = 0; i < tileMatrix.size(); i++)
-	{
-		int prev = tileMatrix[i];
-		int next = tileMatrix[(i + 1) % tileMatrix.size()];
+	Collider* coll = new Collider(associated, size);
 
-		GameObject* tileObj = new GameObject("Tile" + to_string(i));
-		Collider *tileCollider = new Collider(*tileObj,Vector2(1,1), 
-			Vector2(i % tileSet->Columns(), i / tileSet->Columns()));
-		tileObj->AddComponent(tileCollider);
+	if (associated.GetComponent("Collider") != nullptr)
+		associated.RemoveComponent(coll);
 
-		Game::Instance().GetState().AddObject(tileObj);
-	}
+	associated.AddComponent(coll);
 }
 
 void TileMap::RenderLayer(int layer, int cameraX, int cameraY)

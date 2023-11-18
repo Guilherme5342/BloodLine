@@ -31,7 +31,7 @@ void StageState::LoadAssets()
 	tileMap = new TileMap(*tileObj, MAP_STUB, tileSet);
 
 	tileObj->AddComponent(tileMap);
-	tileMap->LoadCollisions();
+	
 
 	/* Cria��o do Player*/
 	GameObject *rb = new GameObject("PlayerBody", 1);
@@ -98,7 +98,7 @@ void StageState::Start()
 
 	groundRect.FillRect();
 
-	// tileMap->LoadCollisions();
+	tileMap->LoadCollisions();
 }
 
 void StageState::FixedUpdate(float fixedDt)

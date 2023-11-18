@@ -5,6 +5,7 @@ PawnEnemy::PawnEnemy(GameObject& associated, std::weak_ptr<GameObject> player, S
 	int damage, Action enemyAction, EnemyTypePhysics phys, float radius)
   :  EnemyBase(associated, player,filePath,health,damage, enemyAction,phys), rangeDetection(radius)
 {
+
 }
 
 PawnEnemy::~PawnEnemy()
@@ -13,7 +14,7 @@ PawnEnemy::~PawnEnemy()
 
 void PawnEnemy::Start()
 {
-	hitBox.SetOffset(associated.box.GetCenter());
+	hitBox.SetScale(Vector2(25,50));
 }
 
 void PawnEnemy::Render() {
@@ -59,9 +60,6 @@ void PawnEnemy::Move(float dt)
 		invertMove = !invertMove;
 	}
 	else {
-
-		float angle = Vector2::Angle(associated.box.GetCenter(), destination);
-		speed = Vector2::DirectionFrom(angle);
 
 		associated.box += speed.normalized() * dt * 100;
 	}
