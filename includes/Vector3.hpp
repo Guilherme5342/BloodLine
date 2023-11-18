@@ -212,6 +212,16 @@ public:
 		return sqrt(x * x + y * y);
 	}
 
+	//template <typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	static float Angle(const Vector2& from, const Vector2& to)
+	{
+		return (float)atan2(to.y - from.y, to.x - from.x);
+	}
+
+	static Vector2 DirectionFrom(float angle) {
+		return Vector2(cos(angle), sin(angle));
+	}
+
 	friend ostream &operator<<(ostream &out, const Vector2 &vec);
 };
 

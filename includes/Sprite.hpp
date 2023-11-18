@@ -70,6 +70,13 @@ public:
 		this->loop = loop;
 	}
 
+	inline void SetScale(float x, float y) {
+		this->scale = Vector2(x, y);
+	}
+
+	inline void SetScale(Vector2 scale) {
+		SetScale(scale.x, scale.y);
+	}
 	void Render(int x, int y, int w, int h);
 
 	void Update(float dt);

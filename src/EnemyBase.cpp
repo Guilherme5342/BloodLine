@@ -15,7 +15,7 @@ EnemyBase::EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player, S
 
 	Vector2 spriteScale = Vector2(sprite.GetWidth(), sprite.GetHeight());
 
-	hitBox.SetScale(Vector2(sprite.GetWidth(), sprite.GetHeight()));
+	//.SetScale(Vector2(sprite.GetWidth(), sprite.GetHeight()));
 	associated.box.SetSize(spriteScale);
 
 	associated.AddComponent(&sprite);
@@ -49,4 +49,9 @@ void EnemyBase::Update(float dt)
 
 void EnemyBase::Render()
 {
+}
+
+void EnemyBase::NotifyCollision(GameObject& other)
+{
+	isOnFloor = associated.CompareLayer(other);
 }

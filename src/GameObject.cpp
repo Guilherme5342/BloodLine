@@ -1,7 +1,8 @@
 #include "GameObject.hpp"
 
-GameObject::GameObject(string name, int layer) : name(name), layer(layer) // Member Initialization Lists
+GameObject::GameObject(string name, int layer) : layer(layer) // Member Initialization Lists
 {
+	this->name = name;
 	dead = false;
 	started = false;
 	angleDeg = 0;

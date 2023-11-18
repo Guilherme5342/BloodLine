@@ -27,6 +27,7 @@ protected:
 	Vector2 speed = { 1,1 };
 
 	int damage;
+	bool isOnFloor = false;
 
 	Collider hitBox;
 
@@ -45,6 +46,7 @@ public:
 
 	virtual ~EnemyBase();
 
+	virtual void Start(){}
 	// Herdado por meio de Component
 	virtual void Update(float dt);
 
@@ -53,6 +55,8 @@ public:
 	inline virtual bool Is(std::string type) {
 		return type == "EnemyBase";
 	}
+
+	virtual void NotifyCollision(GameObject& other);
 
 	virtual void Idle(float dt) {}
 	virtual void Move(float dt) = 0;

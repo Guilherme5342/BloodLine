@@ -11,10 +11,15 @@ PawnEnemy::~PawnEnemy()
 {
 }
 
+void PawnEnemy::Start()
+{
+	hitBox.SetOffset(associated.box.GetCenter());
+}
+
 void PawnEnemy::Render() {
 
-	Vector2 leftPoint = associated.box.GetCenter() - Vector2(1, 0);
-	Vector2 rightPoint = associated.box.GetCenter() + Vector2(1, 0);
+	Vector2 leftPoint = associated.box.GetCenter() - Vector2(102, associated.box.y);
+	Vector2 rightPoint = associated.box.GetCenter() + Vector2(102, associated.box.y);
 
 	SDL_Point pointLeft = { leftPoint.x,leftPoint.y };
 	SDL_Point pointRight = { rightPoint.x,rightPoint.y };
@@ -31,12 +36,13 @@ void PawnEnemy::Render() {
 void PawnEnemy::Idle(float dt)
 {
 	waitingTimer.Update(dt);
-	if (waitingTimer.Get() > 2) 
-	{
-		Vector2 leftPoint = Vector2(-100, associated.box.y);
-		Vector2 rightPoint = Vector2(10, associated.box.y);
 
-		destination = !invertMove ? leftPoint : rightPoint;
+
+	if (waitingTimer.Get() > 2.5f && isOnFloor) 
+	{
+		
+		ChangeMovePoint();
+
 		sprite.Open("assets/img/enemies/knight/_Run.png", 10, 1);
 		SetActionState(MOVE);
 		
@@ -46,17 +52,17 @@ void PawnEnemy::Idle(float dt)
 
 void PawnEnemy::Move(float dt)
 {
-
-	float distance = Distance(associated.box.GetCenter(), destination);
-	cout << distance << endl;
-
-	if (distance <= 1) {
+	
+	if (distanceBetweenPoint <= 1) {
 		sprite.Open("assets/img/enemies/knight/_Idle.png", 10, 1);
 		SetActionState(IDLE);
-		
 		invertMove = !invertMove;
 	}
 	else {
+
+		float angle = Vector2::Angle(associated.box.GetCenter(), destination);
+		speed = Vector2::DirectionFrom(angle);
+
 		associated.box += speed.normalized() * dt * 100;
 	}
 
