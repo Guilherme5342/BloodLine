@@ -5,7 +5,13 @@ GameObject::GameObject(string name, int layer) : layer(layer) // Member Initiali
 	this->name = name;
 	dead = false;
 	started = false;
+	this->label = "";
 	angleDeg = 0;
+}
+
+GameObject::GameObject(string name, string tag, int layer) : GameObject(name,layer)
+{
+	SetTag(tag);
 }
 
 GameObject::GameObject(string name, Component *compArray, int layer) : GameObject(name, layer)
@@ -76,6 +82,26 @@ Component *GameObject::GetComponent(std::string type)
 		}
 	}
 	return nullptr;
+}
+
+void GameObject::RemoveComponent(Component* compToRemove)
+{
+	bool foundItem = false;
+	int index = (int)components.size() - 1;
+
+	while (index >= 0 && !foundItem)
+	{
+		if (components[index].get() == compToRemove) 
+		{
+			foundItem = true;	
+		}
+		else 
+		{
+			index--;
+		}
+	}
+
+	components.erase(components.begin() + index);
 }
 
 void GameObject::NotifyCollision(GameObject &otherObj)

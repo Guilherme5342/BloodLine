@@ -13,12 +13,15 @@ class GameObject
 private:
 	std::vector<std::unique_ptr<Component>> components;
 	bool dead, started;
+
 	std::string name;
+	std::string label;
 
 public:
 	int layer;
 
 	GameObject(string name = "", int layer = 0);
+	GameObject(string name = "",string tag = "Tag1", int layer = 0);
 	GameObject(string name , Component *compArray, int layer = 0);
 	~GameObject();
 
@@ -30,6 +33,7 @@ public:
 
 	void AddComponent(Component *comp);
 	Component *GetComponent(std::string type);
+	void RemoveComponent(Component* comp);
 
 	template <typename T, typename = is_base_of<Component, T>>
 	bool TryGetComponent(T *component)
@@ -77,6 +81,9 @@ public:
 		return otherObj.layer == this->layer;
 	}
 
+	inline void SetTag(std::string tag) {
+		this->label = tag;
+	}
 	float angleDeg;
 
 	Rect box;

@@ -26,6 +26,8 @@ private:
 
 	bool hitRight, hitLeft, hitDown, hitUp;
 
+	std::vector<std::string> collisionLabels;
+
 public:
 	Rigidbody2D(GameObject &associated, float mass = 1.0f, float gravityScale = 9.81f);
 	~Rigidbody2D();

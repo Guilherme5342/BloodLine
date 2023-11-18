@@ -32,6 +32,14 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 
 	Rect intersectionRect = coll->box.GetIntersection(otherColl->box);
 
+	if (coll->IsTrigger() || otherColl->IsTrigger()) {
+		return;
+	}
+
+	for (std::string label : collisionLabels) {
+		
+	}
+
 	if ((intersectionRect.w < intersectionRect.h) || ((intersectionRect.w < 1.5f) && (intersectionRect.h < 2.0f)))
 	{
 		hitRight = intersectionRect.x > coll->box.x;
