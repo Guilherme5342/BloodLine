@@ -21,7 +21,14 @@ public:
 	int layer;
 
 	GameObject(string name = "", int layer = 0);
-	GameObject(string name = "",string tag = "Tag1", int layer = 0);
+	/// <summary>
+	/// 
+	/// 
+	/// </summary>
+	/// <param name="name">Nome do Objeto</param>
+	/// <param name="tag"> Tag do Objeto (Usado nos Colliders) </param>
+	/// <param name="layer">Layer de Colisão do Objeto</param>
+	GameObject(string name,string tag, int layer = 0);
 	GameObject(string name , Component *compArray, int layer = 0);
 	~GameObject();
 

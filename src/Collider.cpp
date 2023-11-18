@@ -2,11 +2,13 @@
 #include "GameObject.hpp"
 #include "Game.hpp"
 
-Collider::Collider(GameObject &associated, Vector2 scale, Vector2 offset, bool trigger) : Component(associated)
+Collider::Collider(GameObject &associated, Vector2 scale, Vector2 offset,
+	bool trigger, bool setManually) : Component(associated)
 {
 	this->scale = scale;
 	this->offset = offset;
 	this->isTrigger = trigger;
+	this->setManually = setManually;
 }
 
 Collider::~Collider()
@@ -15,17 +17,15 @@ Collider::~Collider()
 
 void Collider::Start()
 {
+	if (setManually)
+		return;
+
 	box.SetSize(scale);
 }
 
 void Collider::FixedUpdate(float fixedDt)
 {
-
-	box = associated.box;
-
 	box.SetCenter(associated.box.GetCenter() + offset.GetRotated(associated.angleDeg * FRAC_PI));
-
-
 
 }
 

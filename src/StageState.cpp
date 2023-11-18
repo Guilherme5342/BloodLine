@@ -26,11 +26,12 @@ void StageState::LoadAssets()
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
 	bgObj->AddComponent(new CameraFollower(*bgObj));
 
-	GameObject *tileObj = new GameObject("TileObject");
+	GameObject *tileObj = new GameObject("TileObject",1);
 	TileSet *tileSet = new TileSet(*tileObj, 32, 32, TILESET_WATER_STUB);
 	tileMap = new TileMap(*tileObj, MAP_STUB, tileSet);
 
 	tileObj->AddComponent(tileMap);
+	tileMap->LoadCollisions();
 
 	/* Cria��o do Player*/
 	GameObject *rb = new GameObject("PlayerBody", 1);
@@ -42,8 +43,6 @@ void StageState::LoadAssets()
 	rb->AddComponent(collider);
 	rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
 
-	
-	// rb->AddComponent(new StateMachine(*rb, *(Sprite*)rb->GetComponent("Sprite")));
 
 	rb->AddComponent(new PlayerController(*rb,
 					*playerSprite,
