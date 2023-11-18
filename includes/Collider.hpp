@@ -29,6 +29,10 @@ public:
 		SetScale(Vector2(x, y));
 	}
 
+	inline void SetScale(float x, float y) {
+		SetScale(Vector2(x, y));
+	}
+
 	inline void SetOffset(Vector2 offset)
 	{
 		this->offset = offset;
