@@ -15,9 +15,9 @@ void BloodSpell::Activate()
 
     GameObject *bulletObject = new GameObject();
     float angle = 90;
-    float speed = 20;
+    float speed = 200;
     int damage = 20;
-    float maxDistance = 300;
+    float maxDistance = 100;
     string sprite = "../assets/img/bullet.png";
     bool targetsPlayer = false;
     int frameCount = 1;
