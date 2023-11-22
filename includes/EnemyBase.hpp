@@ -11,7 +11,8 @@
 #include "GlobalDefinitions.hpp"
 #include "Timer.hpp";
 
-class EnemyBase : public Component {
+class EnemyBase : public Component
+{
 
 protected:
 	Action enemyAction;
@@ -33,14 +34,14 @@ protected:
 
 public:
 	/// <summary>
-	/// Esta é a classe base abstrata do Inimigo
+	/// Esta ï¿½ a classe base abstrata do Inimigo
 	/// </summary>
 	/// <param name="associated"> GameObject associado ao inimigo</param>
 	/// <param name="player"> Referencia pro Player principal</param>
 	/// <param name="enemySprite"> Sprite para o Inimigo </param>
 	/// <param name="health">Vida do Inimigo</param>
 	/// <param name="damage"> Dano do Inimigo </param>
-	/// <param name="enemyPhys"> Comportamento da Física do Inimigo</param>
+	/// <param name="enemyPhys"> Comportamento da Fï¿½sica do Inimigo</param>
 	EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player,
 		Sprite& sprite,int health, int damage, Action initialAction = IDLE, EnemyTypePhysics enemyPhys = GROUND);
 
@@ -52,7 +53,8 @@ public:
 
 	virtual void Render();
 
-	inline virtual bool Is(std::string type) {
+	inline virtual bool Is(std::string type)
+	{
 		return type == "EnemyBase";
 	}
 
@@ -68,4 +70,3 @@ public:
 		this->enemyAction = action;
 	}
 };
-
