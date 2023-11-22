@@ -11,8 +11,6 @@ PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigid
 	canDash = true;
 	dashTimer = 0.0f;
 	dashElapsedTime = 0.0f;
-
-	spells = std::map<std::string, Spell *>();
 }
 
 PlayerController::~PlayerController()
