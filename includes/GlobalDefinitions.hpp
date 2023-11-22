@@ -5,7 +5,8 @@
 #define STUB_ANIMATED_SPRITE "assets/img/packedSpriteSheet1.png"s
 
 #define PLAYER_IDLE "assets/img/player/idle.png"
-#define PLAYER_RUNNING "assets/img/player/running.png"
+#define PLAYER_JUMP "assets/img/player/jump.png"
+#define PLAYER_RUNNING "assets/img/player/run.png"
 #define PLAYER_ATTACK "assets/img/player/jump.png"
 
 
@@ -27,7 +28,8 @@
 #define STUB_ANIMATED_SPRITE "../assets/img/packedSpriteSheet1.png"
 
 #define PLAYER_IDLE "../assets/img/player/idle.png"
-#define PLAYER_RUNNING "../assets/img/player/running.png"
+#define PLAYER_JUMP "../assets/img/player/jump.png"
+#define PLAYER_RUNNING "../assets/img/player/run.png"
 #define PLAYER_ATTACK "../assets/img/player/jump.png"
 
 

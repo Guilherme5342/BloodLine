@@ -143,9 +143,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\BloodSpell.cpp" />
     <ClCompile Include="src\PawnEnemy.cpp" />
     <ClCompile Include="src\EnemyBase.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\Spell.cpp" />
     <ClCompile Include="src\StateInterfaces.cpp" />
     <ClCompile Include="src\HealthHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -184,6 +186,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\BloodSpell.hpp" />
     <ClInclude Include="includes\Bullet.hpp" />
     <ClInclude Include="includes\Camera.hpp" />
     <ClInclude Include="includes\CameraFollower.hpp" />
@@ -208,6 +211,7 @@
     <ClInclude Include="includes\Rigidbody2D.hpp" />
     <ClInclude Include="includes\SDL_include.hpp" />
     <ClInclude Include="includes\Sound.hpp" />
+    <ClInclude Include="includes\Spell.hpp" />
     <ClInclude Include="includes\Sprite.hpp" />
     <ClInclude Include="includes\StageState.hpp" />
     <ClInclude Include="includes\State.hpp" />
@@ -219,6 +223,9 @@
     <ClInclude Include="includes\TileSet.hpp" />
     <ClInclude Include="includes\Timer.hpp" />
     <ClInclude Include="includes\Vector3.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\bullet.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

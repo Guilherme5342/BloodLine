@@ -39,7 +39,9 @@ void StageState::LoadAssets()
 	playerSprite->SetLoop(true);
 	rb->AddComponent(playerSprite);
 
-	Collider *collider = new Collider(*rb, Vector2(rb->box.w, rb->box.h));
+	Collider* collider = new Collider(*rb);
+	collider->SetScale({ 25,35 });
+
 	rb->AddComponent(collider);
 	rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
 
@@ -52,6 +54,7 @@ void StageState::LoadAssets()
 
 	Camera::Follow(rb);
 
+	// Enemies 
 	GameObject* enemyObj = new GameObject("Enemy1");
 	Sprite* enemySprite = new Sprite(*enemyObj, "assets/img/enemies/knight/_Idle.png", 10, 1, .3f);
 	enemySprite->SetLoop(true);
@@ -63,6 +66,7 @@ void StageState::LoadAssets()
 
 	enemyObj->box.SetCenter(rb->box.GetCenter() + Vector2(20, 0));
 
+	enemyTest->GetHitBox().SetScale(25, 50);
 
 	AddObject(bgObj);
 	AddObject(tileObj);

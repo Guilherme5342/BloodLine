@@ -33,7 +33,7 @@ void Sprite::Open(std::string filePath, int colunmCount, int rowCount)
 	texture = Resources::GetImage(filePath);
 	
 	if (texture == oldTex) {
-		cout << "Textura ja em uso " << filePath << endl;
+		//cout << "Textura ja em uso " << filePath << endl;
 		return;
 	}
 
@@ -87,8 +87,8 @@ void Sprite::Render()
 	Rect box;
 	box = associated.box;
 
-	Render(box.x -Camera::GetCurrentCamPos().x,
-		   box.y  - Camera::GetCurrentCamPos().y, frameWidth * scale.x, frameHeight * scale.y);
+	Render(static_cast<int>(box.x -Camera::GetCurrentCamPos().x),
+		   static_cast<int>(box.y  - Camera::GetCurrentCamPos().y), static_cast<int>(frameWidth * scale.x), static_cast<int>(frameHeight * scale.y));
 }
 
 void Sprite::Update(float dt)

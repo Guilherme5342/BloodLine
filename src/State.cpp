@@ -68,9 +68,9 @@ void State::FixedUpdateArray(float fixedDt)
 
 void State::UpdateArray(float dt)
 {
-	for (auto obj : objectArray)
+	for (int i = 0; i < (int)objectArray.size(); i++)
 	{
-		obj->Update(dt);
+		objectArray[i]->Update(dt);
 	}
 
 	for (int i = (int)objectArray.size() - 1; i >= 0; i--)

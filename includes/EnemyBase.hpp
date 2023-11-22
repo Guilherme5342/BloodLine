@@ -23,7 +23,7 @@ protected:
 	Rigidbody2D rb;
 
 	Timer waitingTimer;
-	Sprite sprite;
+	Sprite& sprite;
 
 	Vector2 speed = { 1,1 };
 
@@ -68,5 +68,9 @@ public:
 
 	inline void SetActionState(Action action) {
 		this->enemyAction = action;
+	}
+
+	inline Collider GetHitBox() const {
+		return this->hitBox;
 	}
 };

@@ -14,7 +14,8 @@ PawnEnemy::~PawnEnemy()
 
 void PawnEnemy::Start()
 {
-	hitBox.SetScale(Vector2(25,50));
+	hitBox.SetScale(12, 35);
+	hitBox.SetOffset({ -1,10 });
 }
 
 void PawnEnemy::Render() {
@@ -37,14 +38,11 @@ void PawnEnemy::Render() {
 void PawnEnemy::Idle(float dt)
 {
 	waitingTimer.Update(dt);
-
-
-	if (waitingTimer.Get() > 2.5f && isOnFloor) 
+	cout << waitingTimer.Get() << endl;
+	if (waitingTimer.Get() > 2.5f /*&& isOnFloor*/)
 	{
-		
-		ChangeMovePoint();
-
 		sprite.Open("assets/img/enemies/knight/_Run.png", 10, 1);
+		ChangeMovePoint();
 		SetActionState(MOVE);
 		
 		waitingTimer.Reset();
@@ -60,8 +58,10 @@ void PawnEnemy::Move(float dt)
 		invertMove = !invertMove;
 	}
 	else {
-
+		cout << distanceBetweenPoint << endl;
 		associated.box += speed.normalized() * dt * 100;
+		distanceBetweenPoint = Distance(associated.box.GetCenter(), Vector2(450, associated.box.GetCenter().y));
+		sprite.Open("assets/img/enemies/knight/_Run.png", 10, 1);
 	}
 
 
