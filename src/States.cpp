@@ -9,7 +9,7 @@ IdleState::IdleState(Sprite &sprite) : AnimState(sprite)
 void IdleState::OnEnter(StateMachine &otherState)
 {
 	cout << "Entrando no Estado de Idle" << endl;
-	Play(PLAYER_IDLE, 3, 2);
+	Play(PLAYER_IDLE, 10, 1);
 }
 
 void IdleState::OnExit(StateMachine &otherState)
@@ -35,7 +35,7 @@ MovingState::~MovingState()
 
 void MovingState::OnEnter(StateMachine &otherState)
 {
-	Play(PLAYER_RUNNING, 3, 2);
+	Play(PLAYER_RUNNING, 8, 1);
 }
 
 void MovingState::OnExit(StateMachine &otherState)
