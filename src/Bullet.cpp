@@ -17,8 +17,6 @@ Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, flo
     associated.AddComponent(spritetmp);
     associated.AddComponent(new Collider(associated));
     associated.box.SetCenter(associated.box.GetCenter() + Vector2(125, 0).GetRotated(angle));
-
-    cout << "Bullet created" << endl;
 }
 
 void Bullet::Update(float dt)
