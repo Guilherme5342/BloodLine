@@ -14,17 +14,16 @@ State::~State()
 		obj->RequestDelete();
 	}
 	objectArray.clear();
-	
+
 	cout << "Estado " << typeid(State).name() << "Deletado" << endl;
 }
 
-GameObject* State::AddStubGameObject(string Name, Component *initialComp)
+GameObject *State::AddStubGameObject(string Name, Component *initialComp)
 {
-	GameObject* stubObj = new GameObject("[Stub] " + Name);
+	GameObject *stubObj = new GameObject("[Stub] " + Name);
 	stubObj->AddComponent(initialComp);
 	return stubObj;
 }
-
 
 void State::StartArray()
 {
@@ -41,14 +40,14 @@ void State::FixedUpdateArray(float fixedDt)
 {
 	for (unsigned i = 0; i < objectArray.size(); i++)
 	{
-		Collider* currentCol = (Collider*)objectArray[i]->GetComponent("Collider");
+		Collider *currentCol = (Collider *)objectArray[i]->GetComponent("Collider");
 
 		if (currentCol == nullptr)
 			continue;
 
 		for (unsigned j = i + 1; j < objectArray.size(); j++)
 		{
-			Collider* otherCol = (Collider*)objectArray[j]->GetComponent("Collider");
+			Collider *otherCol = (Collider *)objectArray[j]->GetComponent("Collider");
 			if (otherCol == nullptr)
 				continue;
 
@@ -60,15 +59,15 @@ void State::FixedUpdateArray(float fixedDt)
 		}
 	}
 
-	for (int i = 0; i < (int)objectArray.size(); i++) {
+	for (int i = 0; i < (int)objectArray.size(); i++)
+	{
 		objectArray[i]->PhysicsUpdate(fixedDt);
 	}
-
 }
 
 void State::UpdateArray(float dt)
 {
-	for (int i = 0; i < (int)objectArray.size(); i++)
+	for (int i = 0; i < objectArray.size(); i++)
 	{
 		objectArray[i]->Update(dt);
 	}
