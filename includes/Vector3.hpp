@@ -218,7 +218,7 @@ public:
 		return (float)atan2(to.y - from.y, to.x - from.x);
 	}
 
-	static Vector2 DirectionFrom(float angle) {
+	Vector2 DirectionFrom(float angle) {
 		return Vector2(cos(angle), sin(angle));
 	}
 

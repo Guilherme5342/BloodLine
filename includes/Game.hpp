@@ -98,6 +98,14 @@ public:
 	{
 		return Vector2(windowWidth, windowHeight) / 2;
 	}
+
+	inline GameObject* Instantiate(Component* component, Vector2 position) {
+		GameObject* gameObj = new GameObject();
+		gameObj->AddComponent(component);
+		gameObj->box.SetCenter(position);
+		GetState().AddObject(gameObj);
+		return gameObj;
+	}
 };
 
 inline SDL_Renderer *Game::GetRenderer()

@@ -5,13 +5,12 @@ GameObject::GameObject(string name, int layer) : layer(layer) // Member Initiali
 	this->name = name;
 	dead = false;
 	started = false;
-	this->label = "";
 	angleDeg = 0;
 }
 
 GameObject::GameObject(string name, string tag, int layer) : GameObject(name,layer)
 {
-	SetTag(tag);
+	this->tag = tag;
 }
 
 GameObject::GameObject(string name, Component *compArray, int layer) : GameObject(name, layer)
@@ -69,6 +68,10 @@ void GameObject::AddComponent(Component *comp)
 	}
 
 	components.emplace_back(comp);
+}
+
+void GameObject::AddComponents(std::vector<Component*> comps)
+{
 }
 
 Component *GameObject::GetComponent(std::string type)

@@ -96,7 +96,7 @@ void PlayerController::AddSpell(std::string spellName, Spell *spell)
 
 void PlayerController::NotifyCollision(GameObject &otherObj)
 {
-	canJump = otherObj.layer == 1;
+	canJump = otherObj.tag == "Ground";
 }
 
 void PlayerController::Render()

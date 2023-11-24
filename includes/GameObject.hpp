@@ -15,7 +15,6 @@ private:
 	bool dead, started;
 
 	std::string name;
-	std::string label;
 
 public:
 	int layer;
@@ -39,6 +38,8 @@ public:
 	void Render();
 
 	void AddComponent(Component *comp);
+	void AddComponents(std::vector<Component*> comps);
+
 	Component *GetComponent(std::string type);
 	void RemoveComponent(Component* comp);
 
@@ -88,10 +89,9 @@ public:
 		return otherObj.layer == this->layer;
 	}
 
-	inline void SetTag(std::string tag) {
-		this->label = tag;
-	}
 	float angleDeg;
 
 	Rect box;
+
+	std::string tag;
 };

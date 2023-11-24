@@ -23,6 +23,8 @@ public:
 		return type == "PawnEnemy";
 	}
 	void Render();
+	void NotifyCollision(GameObject& otherObj);
+
 	// Herdado por meio de EnemyBase
 	void Idle(float dt);
 	void Move(float dt);
@@ -36,11 +38,11 @@ public:
 	inline void ChangeMovePoint() {
 		Vector2 pos = associated.box.GetCenter();
 
-		Vector2 leftPoint = pos - Vector2(102, 0);
-		Vector2 rightPoint = pos + Vector2(102, 0);
+		Vector2 leftPoint = pos.DirectionFrom(270);
+		Vector2 rightPoint = pos.DirectionFrom(0);
 
 		destination = !invertMove ? leftPoint : rightPoint;
-		distanceBetweenPoint = Distance(pos, destination);
+		//distanceBetweenPoint = Distance(pos, destination);
 
 	}
 };

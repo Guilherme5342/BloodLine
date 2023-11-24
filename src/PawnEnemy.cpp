@@ -5,17 +5,24 @@ PawnEnemy::PawnEnemy(GameObject& associated, std::weak_ptr<GameObject> player, S
 	int damage, Action enemyAction, EnemyTypePhysics phys, float radius)
   :  EnemyBase(associated, player,filePath,health,damage, enemyAction,phys), rangeDetection(radius)
 {
-
+	
+	
 }
 
 PawnEnemy::~PawnEnemy()
 {
+
 }
 
 void PawnEnemy::Start()
 {
 	hitBox.SetScale(12, 35);
 	hitBox.SetOffset({ -1,10 });
+
+	Collider* squareDetectorRight = new Collider(associated, { 25,25 }, { associated.box.x + 50,0 }, true);
+	Collider* squareDetectorLeft = new Collider(associated, { 25,25 }, { -associated.box.x - 50,0 }, true);
+
+	Game::Instance().Instantiate(squareDetectorLeft, Vector2(25, 25));
 }
 
 void PawnEnemy::Render() {
@@ -35,36 +42,40 @@ void PawnEnemy::Render() {
 
 }
 
+void PawnEnemy::NotifyCollision(GameObject& otherObj)
+{
+	Collider* otherColl = (Collider*)otherObj.GetComponent("Collider");
+	
+	Rect edgeRect = hitBox.box.GetIntersection(otherColl->box);
+
+	if (otherObj.tag == "Ground") {
+		
+		cout << edgeRect.x << " " << hitBox.box.x << endl;
+		if (edgeRect.x < hitBox.box.x) 
+		{
+			sprite.Open("assets/img/enemies/knight/_Idle.png", 10, 1);
+			SetActionState(IDLE);
+			ChangeMovePoint();
+		}
+
+	}
+}
+
 void PawnEnemy::Idle(float dt)
 {
 	waitingTimer.Update(dt);
-	cout << waitingTimer.Get() << endl;
-	if (waitingTimer.Get() > 2.5f /*&& isOnFloor*/)
+	if (waitingTimer.Get() > 1.5f /*&& isOnFloor*/)
 	{
 		sprite.Open("assets/img/enemies/knight/_Run.png", 10, 1);
 		ChangeMovePoint();
 		SetActionState(MOVE);
-		
 		waitingTimer.Reset();
 	}
 }
 
 void PawnEnemy::Move(float dt)
 {
-	
-	if (distanceBetweenPoint <= 1) {
-		sprite.Open("assets/img/enemies/knight/_Idle.png", 10, 1);
-		SetActionState(IDLE);
-		invertMove = !invertMove;
-	}
-	else {
-		cout << distanceBetweenPoint << endl;
-		associated.box += speed.normalized() * dt * 100;
-		distanceBetweenPoint = Distance(associated.box.GetCenter(), Vector2(450, associated.box.GetCenter().y));
-		sprite.Open("assets/img/enemies/knight/_Run.png", 10, 1);
-	}
-
-
+	associated.box += speed.normalized() * dt * 100;
 }
 
 void PawnEnemy::Attack(float dt)

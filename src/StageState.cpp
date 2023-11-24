@@ -73,7 +73,7 @@ void StageState::LoadAssets()
 	AddObject(enemyObj);
 	AddObject(rb);
 
-	GameObject *groundObj = new GameObject("Ground", 1);
+	GameObject *groundObj = new GameObject("FirstGround","Ground", 1);
 	groundObj->AddComponent(new RectDebugger(*groundObj, windowCenter.x - 256, windowCenter.y, 1100, 150));
 	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
 
