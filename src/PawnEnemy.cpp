@@ -30,8 +30,8 @@ void PawnEnemy::Render() {
 	Vector2 leftPoint = associated.box.GetCenter() - Vector2(102, associated.box.y);
 	Vector2 rightPoint = associated.box.GetCenter() + Vector2(102, associated.box.y);
 
-	SDL_Point pointLeft = { leftPoint.x,leftPoint.y };
-	SDL_Point pointRight = { rightPoint.x,rightPoint.y };
+	SDL_Point pointLeft = { static_cast<int>(leftPoint.x), static_cast<int>(leftPoint.y) };
+	SDL_Point pointRight = { static_cast<int>(rightPoint.x), static_cast<int>(rightPoint.y) };
 
 	SDL_Point offsetPoints[] = {pointLeft,pointRight};
 
