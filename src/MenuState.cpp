@@ -19,13 +19,13 @@ MenuState::~MenuState()
 void MenuState::LoadAssets()
 {
 	GameObject *titleObj = new GameObject("Title State");
-	Sprite *titleCard = new Sprite(*titleObj, TITLE_IMAGE);
+	Sprite *titleCard = new Sprite(*titleObj, TITLE_IMAGE, 40, 1, .3f);
 
 	titleObj->AddComponent(titleCard);
 
 	GameObject *textObj = new GameObject("Title Text");
-	textObj->AddComponent(new Text(*textObj, FONT, 75, TextStyle::BLENDED,
-								   "Insira NomeJogo aqui", SDL_Color{255, 100, 255, 255}));
+	textObj->AddComponent(new Text(*textObj, FONT, 75, TextStyle::SOLID,
+								   "Bloodline", SDL_Color{255, 0, 0, 255}));
 
 	// cout << Game::Instance().GetWindowCenter() << endl;
 	textObj->box.SetCenter(Game::Instance().GetWindowCenter());

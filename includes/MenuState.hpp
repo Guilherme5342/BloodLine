@@ -6,7 +6,7 @@
 #ifdef _WIN32
 #define TITLE_IMAGE "assets/img/title.jpg"
 #else
-#define TITLE_IMAGE "../assets/img/title.jpg"
+#define TITLE_IMAGE "../assets/img/MainMenu.png"
 #endif
 
 class MenuState : public State
