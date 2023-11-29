@@ -19,7 +19,7 @@ MenuState::~MenuState()
 void MenuState::LoadAssets()
 {
 	GameObject *titleObj = new GameObject("Title State");
-	Sprite *titleCard = new Sprite(*titleObj, TITLE_IMAGE, 40, 1, .3f);
+	Sprite *titleCard = new Sprite(*titleObj, TITLE_IMAGE);
 
 	titleObj->AddComponent(titleCard);
 

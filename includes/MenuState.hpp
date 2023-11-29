@@ -4,9 +4,9 @@
 #include "Text.hpp"
 
 #ifdef _WIN32
-#define TITLE_IMAGE "assets/img/title.jpg"
+#define TITLE_IMAGE "assets/img/staticMenu.jpg"
 #else
-#define TITLE_IMAGE "../assets/img/MainMenu.png"
+#define TITLE_IMAGE "../assets/img/staticMenu.png"
 #endif
 
 class MenuState : public State
