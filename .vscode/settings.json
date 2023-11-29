@@ -1,6 +1,7 @@
 {
   "dotnet.defaultSolution": "TrabalhoJogo_Tentativa2.sln",
   "files.associations": {
-    "new": "cpp"
+    "new": "cpp",
+    "iostream": "cpp"
   }
 }

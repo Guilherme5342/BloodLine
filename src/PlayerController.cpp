@@ -20,6 +20,15 @@ PlayerController::~PlayerController()
 float lastDashVel;
 void PlayerController::Update(float dt)
 {
+	if(health <= 0) {
+		dead = true;
+	}
+
+	if(dead){
+		animState = new DeathState(sprite);
+		cout << "Player is dead" << endl;
+		return;
+	}
 
 	moving = (!jumping) && (InputSystem::Instance().IsKeyDown(SDLK_a) || InputSystem::Instance().IsKeyDown(SDLK_d));
 
@@ -107,4 +116,9 @@ void PlayerController::Render()
 int PlayerController::GetHealth()
 {
 	return health;
+}
+
+bool PlayerController::IsDead()
+{
+	return dead;
 }

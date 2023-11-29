@@ -38,6 +38,8 @@ private:
 	bool canJump = false;
 	bool canDash = false;
 
+	bool dead = false;
+
 	Vector2 moveDir;
 
 	Rigidbody2D &playerBody;
@@ -60,6 +62,8 @@ public:
 	{
 		return type == "PlayerController";
 	}
+
+	bool IsDead();
 
 	void CastSpell(string spellName);
 	void AddSpell(string spellName, Spell *spell);
