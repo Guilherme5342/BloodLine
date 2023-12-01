@@ -19,13 +19,15 @@ MenuState::~MenuState()
 void MenuState::LoadAssets()
 {
 	GameObject *titleObj = new GameObject("Title State");
-	Sprite *titleCard = new Sprite(*titleObj, TITLE_IMAGE);
-
+	Sprite *titleCard = new Sprite(*titleObj, TITLE_IMAGE, 7, 6, .6f);
+	titleCard->SetScale(Vector2(2.2f, 2.2f));
+	titleCard->SetFrameSpan(0, 40);
+	titleCard->SetLoop(true);
 	titleObj->AddComponent(titleCard);
 
 	GameObject *textObj = new GameObject("Title Text");
 	textObj->AddComponent(new Text(*textObj, FONT, 75, TextStyle::SOLID,
-								   "Bloodline", SDL_Color{255, 0, 0, 255}));
+								   "Bloodline", SDL_Color{255, 0, 0, 255})); 
 
 	// cout << Game::Instance().GetWindowCenter() << endl;
 	textObj->box.SetCenter(Game::Instance().GetWindowCenter());
@@ -36,11 +38,11 @@ void MenuState::LoadAssets()
 
 	Vector3 divd2 = Vector2(2.f, 312) * 10;
 
-	cout << textObj->box.GetCenter() << endl;
+	// cout << textObj->box.GetCenter() << endl;
 	cout << divd << endl;
 
 	objectArray.emplace_back(titleObj);
-	objectArray.emplace_back(textObj);
+	// objectArray.emplace_back(textObj);
 }
 
 void MenuState::Start()
@@ -61,7 +63,7 @@ void MenuState::Update(float dt)
 		Game::Instance().PushState(new StageState());
 	}
 
-	// UpdateArray(dt);
+	UpdateArray(dt);
 }
 
 void MenuState::Render()

@@ -87,7 +87,7 @@ void Sprite::Render()
 	Rect box;
 	box = associated.box;
 
-	Render(static_cast<int>(box.x -Camera::GetCurrentCamPos().x),
+	Render(static_cast<int>(box.x - Camera::GetCurrentCamPos().x),
 		   static_cast<int>(box.y  - Camera::GetCurrentCamPos().y), static_cast<int>(frameWidth * scale.x), static_cast<int>(frameHeight * scale.y));
 }
 
@@ -96,12 +96,12 @@ void Sprite::Update(float dt)
 	if (animColumnCount <= 1 && animRowCount <= 1)
 		return;
 
-	timeElapsed += dt;
+	timeElapsed *= 1 + dt;
 
 	if (timeElapsed > frameTime) {
 		currentFrame++;
 		// Checa se o frame atual esta no Ultimo frame da Sprite Sheet
-		// Caso esteja Loopando, ele repete, caso o contrário ele para no último
+		// Caso esteja Loopando, ele repete, caso o contrï¿½rio ele para no ï¿½ltimo
 		if (currentFrame >= frameStart + frameSpan && loop) {
 			currentFrame = frameStart;
 
