@@ -5,7 +5,7 @@
 #include "Game.hpp"
 
 BloodSpell::BloodSpell(GameObject &associated, float damage, float range, int healthCost, PlayerController &playerController)
-    : Spell(associated, damage, range, healthCost, playerController)
+    : Spell(associated, damage, range, healthCost, playerController), associated(associated)
 {
 }
 
@@ -14,10 +14,11 @@ void BloodSpell::Activate()
     cout << "Shoot -------------" << endl;
 
     GameObject *bulletObject = new GameObject();
-    float angle = 90;
+    bulletObject->box.SetCenter(associated.box.GetCenter());
+    float angle = 0;
     float speed = 200;
     int damage = 20;
-    float maxDistance = 100;
+    float maxDistance = 200;
     string sprite = "../assets/img/bullet.png";
     bool targetsPlayer = false;
     int frameCount = 1;
