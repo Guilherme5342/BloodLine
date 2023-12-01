@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="includes\PlayerAttack.cpp" />
     <ClCompile Include="src\AttackGeneric.cpp" />
     <ClCompile Include="src\BloodSpell.cpp" />
     <ClCompile Include="src\PawnEnemy.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="includes\MenuState.hpp" />
     <ClInclude Include="includes\Music.hpp" />
     <ClInclude Include="includes\PawnEnemy.hpp" />
+    <ClInclude Include="includes\PlayerAttack.hpp" />
     <ClInclude Include="includes\PlayerController.hpp" />
     <ClInclude Include="includes\Rect.hpp" />
     <ClInclude Include="includes\RectDebug.hpp" />

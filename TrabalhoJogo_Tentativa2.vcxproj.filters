@@ -150,6 +150,9 @@
     <ClCompile Include="src\AttackGeneric.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="includes\PlayerAttack.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -271,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="includes\AttackGeneric.hpp">
       <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\PlayerAttack.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

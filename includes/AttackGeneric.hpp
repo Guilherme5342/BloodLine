@@ -7,7 +7,7 @@
 
 class AttackGeneric : public Component {
 
-private:
+protected:
 	std::weak_ptr<GameObject> externalAssociated;
 	Collider* attackCollider;
 

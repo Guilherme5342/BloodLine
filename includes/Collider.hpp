@@ -13,6 +13,8 @@ private:
 	bool setManually = false;
 	bool isTrigger;
 
+	bool debug = false;
+
 public:
 	Collider(GameObject &associated, Vector2 scale = Vector2{1, 1}, Vector2 offset = Vector2{0, 0},
 		bool trigger = false, bool manually = false);

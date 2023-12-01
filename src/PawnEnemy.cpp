@@ -50,8 +50,8 @@ void PawnEnemy::NotifyCollision(GameObject& otherObj)
 
 	if (otherObj.tag == "Ground") {
 		
-		cout << edgeRect.x << " " << hitBox.box.x << endl;
-		if (edgeRect.x < hitBox.box.x) 
+		//cout << edgeRect.x << " " << hitBox.box.x << endl;
+		if (edgeRect.x <= hitBox.box.x) 
 		{
 			sprite.Open("assets/img/enemies/knight/_Idle.png", 10, 1);
 			SetActionState(IDLE);
