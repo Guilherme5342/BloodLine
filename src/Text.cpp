@@ -79,3 +79,17 @@ void Text::Render()
 
 	SDL_RenderCopyEx(Game::Instance().GetRenderer(), texture, &srcRect, &dstRect, associated.angleDeg, nullptr, SDL_FLIP_NONE);
 }
+
+void Text::RenderStatic()
+{
+
+	SDL_Rect srcRect{0, 0, static_cast<int>(associated.box.w), static_cast<int>(associated.box.h)};
+
+	SDL_Rect dstRect{
+		static_cast<int>(associated.box.x ),
+		static_cast<int>(associated.box.y ),
+		static_cast<int>(associated.box.w),
+		static_cast<int>(associated.box.h)};
+
+	SDL_RenderCopyEx(Game::Instance().GetRenderer(), texture, &srcRect, &dstRect, associated.angleDeg, nullptr, SDL_FLIP_NONE);
+}
