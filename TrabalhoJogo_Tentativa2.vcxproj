@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AttackGeneric.cpp" />
     <ClCompile Include="src\BloodSpell.cpp" />
     <ClCompile Include="src\PawnEnemy.cpp" />
     <ClCompile Include="src\EnemyBase.cpp" />
@@ -186,6 +187,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\AttackGeneric.hpp" />
     <ClInclude Include="includes\BloodSpell.hpp" />
     <ClInclude Include="includes\Bullet.hpp" />
     <ClInclude Include="includes\Camera.hpp" />
