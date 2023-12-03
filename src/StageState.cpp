@@ -2,7 +2,7 @@
 #include "Game.hpp"
 #include "Resources.hpp"
 #include "PawnEnemy.hpp"
-
+#include "HealthDisplay.hpp"
 
 StageState::StageState() : State()
 {
@@ -12,7 +12,6 @@ StageState::~StageState()
 {
 	objectArray.clear();
 	cout << "StageState" << endl;
-	// Resources::ClearAll();
 }
 
 void StageState::LoadAssets()
@@ -45,8 +44,7 @@ void StageState::LoadAssets()
 	rb->AddComponent(collider);
 	rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
 
-
-	rb->AddComponent(new PlayerController(*rb,
+	PlayerController *pc = new PlayerController(*rb,
 					*playerSprite,
 					*(Rigidbody2D*)rb->GetComponent("Rigidbody2D"), 300));
 	
@@ -80,6 +78,14 @@ void StageState::LoadAssets()
 	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
 
 	AddObject(groundObj);
+
+	GameObject *healthDisplayObj = new GameObject("HealthDisplay");
+    HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
+    healthDisplayObj->AddComponent(healthDisplay);
+
+	AddObject(healthDisplayObj);
+
+
 
 	// tileMap->LoadCollisions();
 }

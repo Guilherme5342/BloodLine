@@ -76,6 +76,7 @@ public:
 
 	void Update(float dt);
 	void Render();
+	void RenderStatic();
 	inline bool Is(std::string type)
 	{
 		return type == "Text";
