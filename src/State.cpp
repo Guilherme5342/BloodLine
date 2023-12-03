@@ -9,9 +9,9 @@ State::State()
 
 State::~State()
 {
-	for (auto &obj : objectArray)
+	for (int i = 0; i < objectArray.size(); i++)
 	{
-		obj->RequestDelete();
+		objectArray[i]->RequestDelete();
 	}
 	objectArray.clear();
 
