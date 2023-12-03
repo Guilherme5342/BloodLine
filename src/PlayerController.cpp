@@ -67,7 +67,7 @@ void PlayerController::Update(float dt)
 		bool targetsPlayer = false;
 		int frameCount = 1;
 
-		Atack *atack = new Atack(*atackObject, angle, speed, damage, maxDistance, sprite, targetsPlayer, frameCount);
+		Atack *atack = new Atack(*atackObject, angle, damage, sprite, targetsPlayer, frameCount);
 		atackObject->AddComponent(atack);
 		Game::Instance().GetState().AddObject(atackObject);
 	}

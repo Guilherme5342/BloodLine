@@ -1,7 +1,7 @@
 #include "Atack.hpp"
 #include "Collider.hpp"
 
-Atack::Atack(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite, bool targetsPlayer, int frameCount) : Component(associated)
+Atack::Atack(GameObject &associated, float angle, int damage, string sprite, bool targetsPlayer, int frameCount) : Component(associated)
 {
     associated.angleDeg = angle * 180 / 3.14;
 
