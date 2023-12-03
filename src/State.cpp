@@ -29,9 +29,9 @@ void State::StartArray()
 {
 	LoadAssets();
 
-	for (auto obj : objectArray)
+	for (int i = 0; i < objectArray.size(); i++)
 	{
-		obj->Start();
+		objectArray[i]->Start();
 	}
 	started = true;
 }
