@@ -7,16 +7,27 @@ Atack::Atack(GameObject &associated, float angle, float speed, int damage, float
 
     this->targetsPlayer = targetsPlayer;
     this->damage = damage;
+    canAtack = false;
+    atackElapsedTime = 0;
 
-    associated.box.w = 100;
+    associated.box.w = 20;
     associated.box.h = 100;
     associated.AddComponent(new Collider(associated));
-    associated.box.SetCenter(associated.box.GetCenter() + Vector2(125, 0).GetRotated(angle));
+    associated.box.SetCenter(associated.box.GetCenter() + Vector2(20, -50).GetRotated(angle));
 }
 
 void Atack::Update(float dt)
 {
-
+    if(!canAtack){
+        atackElapsedTime += dt;
+        if (atackElapsedTime >= ATACK_DURATION)
+        {
+            atackElapsedTime = 0;
+            canAtack = true;
+            associated.RequestDelete();
+        }
+    }
+   
 }
 
 void Atack::Render() {}

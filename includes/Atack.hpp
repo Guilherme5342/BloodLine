@@ -3,6 +3,8 @@
 #include "Component.hpp"
 #include "Sprite.hpp"
 
+const float ATACK_DURATION = 0.2f;
+
 class Atack : public Component
 {
 private:
@@ -15,5 +17,7 @@ public:
     bool Is(string type);
     int GetDamage();
 
+    float atackElapsedTime;
+    bool canAtack = true;
     bool targetsPlayer;
 };
