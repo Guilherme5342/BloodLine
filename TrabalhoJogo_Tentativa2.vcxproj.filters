@@ -153,12 +153,22 @@
     <ClCompile Include="src\PlayerAttack.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="src\Atack.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BloodBarrage.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HealthDisplay.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="README.md" />
     <None Include=".gitignore" />
     <None Include=".gitattributes" />
+    <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\MenuState.hpp">
@@ -276,6 +286,15 @@
       <Filter>Arquivos de Cabeçalho\EngineLogic\Components</Filter>
     </ClInclude>
     <ClInclude Include="includes\PlayerAttack.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Atack.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\BloodBarrage.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\HealthDisplay.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
