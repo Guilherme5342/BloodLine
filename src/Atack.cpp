@@ -1,23 +1,34 @@
 #include "Atack.hpp"
 #include "Collider.hpp"
 
-Atack::Atack(GameObject &associated, float angle, int damage, string sprite, bool targetsPlayer, int frameCount) : Component(associated)
+Atack::Atack(GameObject &associated, float angle, int damage, string sprite, bool targetsPlayer, int direction, int frameCount) : Component(associated)
 {
     associated.angleDeg = angle * 180 / 3.14;
 
     this->targetsPlayer = targetsPlayer;
     this->damage = damage;
+    this->direction = direction;
     canAtack = false;
     atackElapsedTime = 0;
 
     associated.box.w = 20;
     associated.box.h = 100;
     associated.AddComponent(new Collider(associated));
-    associated.box.SetCenter(associated.box.GetCenter() + Vector2(20, -50).GetRotated(angle));
+
+    if(direction == 0){
+        direction = 1;
+    }
+
+    if(direction < 0){
+        direction = -2;
+    }
+
+    associated.box.SetCenter(associated.box.GetCenter() + Vector2(20 * direction, -50).GetRotated(angle));
 }
 
 void Atack::Update(float dt)
 {
+    cout << direction << endl;
     if(!canAtack){
         atackElapsedTime += dt;
         if (atackElapsedTime >= ATACK_DURATION)

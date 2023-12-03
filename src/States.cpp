@@ -8,7 +8,7 @@ IdleState::IdleState(Sprite &sprite) : AnimState(sprite)
 
 void IdleState::OnEnter(StateMachine &otherState)
 {
-	cout << "Entrando no Estado de Idle" << endl;
+	// cout << "Entrando no Estado de Idle" << endl;
 	Play(PLAYER_IDLE, 10, 1);
 }
 

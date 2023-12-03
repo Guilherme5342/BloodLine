@@ -11,11 +11,12 @@ private:
     int damage;
 
 public:
-    Atack(GameObject &associated, float angle, int damage, string sprite, bool targetsPlayer, int frameCount = 1);
+    Atack(GameObject &associated, float angle, int damage, string sprite, bool targetsPlayer, int direction, int frameCount = 1);
     void Update(float dt);
     void Render();
     bool Is(string type);
     int GetDamage();
+    int direction;
 
     float atackElapsedTime;
     bool canAtack = true;

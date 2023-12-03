@@ -42,9 +42,9 @@ void PlayerController::Update(float dt)
 	jumping = InputSystem::Instance().KeyPress(SDLK_SPACE) && canJump;
 	playerBody.ApplyForce(Vector2(0, jumping * -jumpForce), IMPULSE);
 
-	int dashDirection = InputSystem::Instance().IsKeyDown(SDLK_a) ? -1 : InputSystem::Instance().IsKeyDown(SDLK_d) ? 1
+	int direction = InputSystem::Instance().IsKeyDown(SDLK_a) ? -1 : InputSystem::Instance().IsKeyDown(SDLK_d) ? 1
 																												   : 0;
-	float dashVelocity = DASH_SPEED_MULTIPLIER * dashDirection;
+	float dashVelocity = DASH_SPEED_MULTIPLIER * direction;
 
 	if (canDash && InputSystem::Instance().KeyPress(SDLK_LSHIFT))
 	{
@@ -67,7 +67,7 @@ void PlayerController::Update(float dt)
 		bool targetsPlayer = false;
 		int frameCount = 1;
 
-		Atack *atack = new Atack(*atackObject, angle, damage, sprite, targetsPlayer, frameCount);
+		Atack *atack = new Atack(*atackObject, angle, damage, sprite, targetsPlayer, direction,frameCount);
 		atackObject->AddComponent(atack);
 		Game::Instance().GetState().AddObject(atackObject);
 	}
@@ -77,7 +77,6 @@ void PlayerController::Update(float dt)
 		dashElapsedTime += dt;
 		if (dashElapsedTime >= DASH_DURATION)
 		{
-
 			playerBody.ApplyVelocity(Vector2(-lastDashVel, 0));
 			canDash = true;
 			dashTimer = 0.0f;
