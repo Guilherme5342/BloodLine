@@ -96,7 +96,7 @@ void Sprite::Update(float dt)
 	if (animColumnCount <= 1 && animRowCount <= 1)
 		return;
 
-	timeElapsed *= 1 + dt;
+	timeElapsed += dt;
 
 	if (timeElapsed > frameTime) {
 		currentFrame++;
