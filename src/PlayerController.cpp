@@ -2,6 +2,8 @@
 #include "Spell.hpp"
 #include "BloodSpell.hpp"
 #include "BloodBarrage.hpp"
+#include "Atack.hpp"
+#include "Game.hpp"
 #include <cmath>
 
 PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed)
@@ -56,7 +58,8 @@ void PlayerController::Update(float dt)
 
 	if(InputSystem::Instance().KeyPress(SDLK_z)){
 		GameObject *atackObject = new GameObject();
-		float angle = 90;
+		atackObject->box.SetCenter(associated.box.GetCenter());
+		float angle = 0;
 		float speed = 200;
 		int damage = 20;
 		float maxDistance = 100;
