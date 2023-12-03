@@ -4,12 +4,6 @@
 #include "PawnEnemy.hpp"
 #include "HealthDisplay.hpp"
 
-#ifdef _WIN32
-const string AUDIO = "assets/audio/stageState.ogg";
-#else
-const string AUDIO = "../assets/audio/stageState.ogg";
-#endif
-
 StageState::StageState() : State()
 {
 }
@@ -23,7 +17,7 @@ StageState::~StageState()
 void StageState::LoadAssets()
 {
 
-	music.Open(AUDIO);
+	music.Open("assets/audio/stageState.ogg");
 
 	Vector2 windowCenter = Game::Instance().GetWindowCenter();
 
@@ -53,7 +47,10 @@ void StageState::LoadAssets()
 	PlayerController *pc = new PlayerController(*rb,
 					*playerSprite,
 					*(Rigidbody2D*)rb->GetComponent("Rigidbody2D"), 300);
-	
+
+
+	rb->AddComponent(pc);
+
 	rb->box.SetCenter(windowCenter - Vector2(0, 200));
 
 	Camera::Follow(rb);
