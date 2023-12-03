@@ -1,6 +1,8 @@
 #include "PlayerController.hpp"
 #include "Spell.hpp"
 #include "BloodSpell.hpp"
+#include "Game.hpp"
+#include "Atack.hpp"
 #include <cmath>
 
 PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed)
@@ -51,6 +53,21 @@ void PlayerController::Update(float dt)
 		canDash = false;
 		dashElapsedTime = 0.0f;
 		animState = new DashState(sprite);
+	}
+
+	if(InputSystem::Instance().KeyPress(SDLK_z)){
+		GameObject *atackObject = new GameObject();
+		float angle = 90;
+		float speed = 200;
+		int damage = 20;
+		float maxDistance = 100;
+		string sprite = "../assets/img/atack.png";
+		bool targetsPlayer = false;
+		int frameCount = 1;
+
+		Atack *atack = new Atack(*atackObject, angle, speed, damage, maxDistance, sprite, targetsPlayer, frameCount);
+		atackObject->AddComponent(atack);
+		Game::Instance().GetState().AddObject(atackObject);
 	}
 
 	if (!canDash)
