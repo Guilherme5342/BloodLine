@@ -9,6 +9,8 @@ Collider::Collider(GameObject &associated, Vector2 scale, Vector2 offset,
 	this->offset = offset;
 	this->isTrigger = trigger;
 	this->setManually = setManually;
+
+	debug = true;
 }
 
 Collider::~Collider()

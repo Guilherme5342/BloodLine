@@ -15,10 +15,8 @@ public:
 	AttackGeneric(GameObject& associated, std::weak_ptr<GameObject> external, Vector2 pos,Vector2 direction);
 	~AttackGeneric();
 
-	virtual void PerformAttack();
+	virtual void PerformAttack() = 0;
 	
-
-
 	// Herdado por meio de Component
 	virtual void Update(float dt) override;
 

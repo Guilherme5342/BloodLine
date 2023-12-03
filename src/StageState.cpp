@@ -49,7 +49,7 @@ void StageState::LoadAssets()
 	rb->AddComponent(new PlayerController(*rb,
 					*playerSprite,
 					*(Rigidbody2D*)rb->GetComponent("Rigidbody2D"), 300));
-
+	
 	rb->box.SetCenter(windowCenter - Vector2(0, 200));
 
 	Camera::Follow(rb);
@@ -72,6 +72,8 @@ void StageState::LoadAssets()
 	AddObject(tileObj);
 	AddObject(enemyObj);
 	AddObject(rb);
+
+	rb->AddComponent(new PlayerAttack(*rb, GetObjectPtr(rb), rb->box.GetCenter(), Vector2(1, 0)));
 
 	GameObject *groundObj = new GameObject("FirstGround","Ground", 1);
 	groundObj->AddComponent(new RectDebugger(*groundObj, windowCenter.x - 256, windowCenter.y, 1100, 150));

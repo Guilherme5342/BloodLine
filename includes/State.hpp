@@ -69,7 +69,7 @@ inline std::weak_ptr<GameObject> State::GetObjectPtr(GameObject *obj)
 {
 	std::weak_ptr<GameObject> ptrToFind;
 
-	for (int i = (int)objectArray.size() - 1; i > 0; i--)
+	for (int i = static_cast<int>(objectArray.size() - 1); i > 0; i--)
 	{
 		if (objectArray[i].get() == obj)
 		{

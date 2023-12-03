@@ -4,18 +4,12 @@ AttackGeneric::AttackGeneric(GameObject& associated, std::weak_ptr<GameObject> e
 	Vector2 pos, Vector2 direction) 
 	: Component(associated) , externalAssociated(external)
 {
-
+	attackCollider = nullptr;
 	pos = pos.DirectionFrom(external.lock()->angleDeg);
-
-	attackCollider = new Collider(associated,{2,2},pos + direction, true,true);
 
 }
 
 AttackGeneric::~AttackGeneric()
-{
-}
-
-void AttackGeneric::PerformAttack()
 {
 }
 

@@ -150,7 +150,7 @@
     <ClCompile Include="src\AttackGeneric.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="includes\PlayerAttack.cpp">
+    <ClCompile Include="src\PlayerAttack.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>

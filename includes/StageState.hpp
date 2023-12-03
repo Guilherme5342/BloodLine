@@ -6,6 +6,7 @@
 #include "Rigidbody2D.hpp"
 #include "RectDebug.hpp"
 #include "PlayerController.hpp"
+#include "PlayerAttack.hpp"
 #include "StateMachine.hpp"
 #include "GlobalDefinitions.hpp"
 #include "TileSet.hpp"
