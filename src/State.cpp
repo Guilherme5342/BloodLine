@@ -83,8 +83,7 @@ void State::UpdateArray(float dt)
 
 void State::RenderArray()
 {
-	for (auto obj : objectArray)
-	{
-		obj->Render();
+	for (int i = 0; i < static_cast<int>(objectArray.size()); i++) {
+		objectArray[i]->Render();
 	}
 }
