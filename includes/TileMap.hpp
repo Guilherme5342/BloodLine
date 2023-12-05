@@ -18,6 +18,8 @@ private:
 	int mapWidth, mapHeight, mapDepth;
 
 public:
+	Vector2 parallaxFactor = Vector2(1,1);
+
 	TileMap(GameObject &associated, std::string filePath, TileSet *tileSet);
 	~TileMap();
 
@@ -35,6 +37,9 @@ public:
 		associated.box.SetSize(tileSet->GetTileWidth(), tileSet->GetTileHeight());
 	}
 
+	inline void SetParallaxFactor(Vector2 f) {
+		parallaxFactor = f;
+	}
 	/// <summary>
 	/// X = Linha
 	/// Y = Coluna

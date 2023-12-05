@@ -75,9 +75,10 @@ void TileMap::RenderLayer(int layer, int cameraX, int cameraY)
 	for (int i = 0; i < mapWidth; i++)
 	{
 		for (int j = 0; j < mapHeight; j++)
-		{
-			tileSet->RenderTile(i * tileX + (associated.box.x - cameraX), j * tileY + (associated.box.y - cameraY),
-								(int)At(i, j, layer));
+		{ 
+			tileSet->RenderTile(i * tileX + (associated.box.x - cameraX),
+				j *  tileY + (associated.box.y - cameraY),
+				static_cast<unsigned>(At(i, j, layer)));
 		}
 	}
 }

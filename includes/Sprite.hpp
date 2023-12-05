@@ -134,8 +134,4 @@ public:
 		frameSpan = frameEnd - frameStart;
 		currentFrame = frameStart;
 	}
-
-	bool useParallax = false;
-
-	Vector2 parallaxFactor = Vector2(1, 1);
 };

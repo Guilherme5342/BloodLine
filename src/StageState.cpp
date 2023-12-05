@@ -114,6 +114,7 @@ void StageState::Start()
 	groundRect.FillRect();
 
 	tileMap->LoadCollisions();
+	//tileMap->SetParallaxFactor(Vector2(.5f, 1));
 }
 
 void StageState::FixedUpdate(float fixedDt)
