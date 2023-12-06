@@ -67,18 +67,19 @@ void State::FixedUpdateArray(float fixedDt)
 
 void State::UpdateArray(float dt)
 {
+	for (int k = 0; k < objectArray.size(); k++)
+	{
+		if (objectArray[k]->isDead())
+		{
+			objectArray.erase(objectArray.begin() + k);
+		}
+	}
+
 	for (int i = 0; i < (int)objectArray.size(); i++)
 	{
 		objectArray[i]->Update(dt);
 	}
 
-	for (int i = (int)objectArray.size() - 1; i >= 0; i--)
-	{
-		if (objectArray[i]->isDead())
-		{
-			objectArray.erase(objectArray.begin() + i);
-		}
-	}
 }
 
 void State::RenderArray()

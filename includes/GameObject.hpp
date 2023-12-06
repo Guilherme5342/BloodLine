@@ -3,9 +3,12 @@
 #include "Rect.hpp"
 #include "Component.hpp"
 #include "Collider.hpp"
+#include "HealthHandler.hpp"
 
 #include <vector>
 #include <array>
+
+class HealthHandler;
 
 class GameObject
 {
@@ -30,6 +33,8 @@ public:
 	GameObject(string name,string tag, int layer = 0);
 	GameObject(string name , Component *compArray, int layer = 0);
 	~GameObject();
+
+	HealthHandler *healthHandler;
 
 	void Start();
 	void Update(float dt);

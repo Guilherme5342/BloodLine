@@ -12,6 +12,8 @@ public:
 	HealthHandler(GameObject& associated, int health);
 	~HealthHandler();
 
+	int GetHealth();
+
 	void Update(float dt);
 	void Render();
 

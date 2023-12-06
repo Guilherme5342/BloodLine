@@ -11,6 +11,10 @@ HealthHandler::~HealthHandler() {
 	
 }
 
+int HealthHandler::GetHealth() {
+	return health;
+}
+
 void HealthHandler::Update(float dt)
 {
 	if (health <= 0) {

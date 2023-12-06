@@ -1,7 +1,9 @@
 #include "GameObject.hpp"
+#include "HealthHandler.hpp"
 
 GameObject::GameObject(string name, int layer) : layer(layer) // Member Initialization Lists
 {
+	healthHandler = new HealthHandler(*this, 20);
 	this->name = name;
 	dead = false;
 	started = false;

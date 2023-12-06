@@ -29,6 +29,12 @@ EnemyBase::~EnemyBase()
 
 void EnemyBase::Update(float dt)
 {
+	if(associated.healthHandler->GetHealth() <= 0 && !associated.isDead())
+	{
+		associated.RequestDelete();
+		return;
+	}
+
 	switch (enemyAction)
 	{
 		case IDLE:

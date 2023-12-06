@@ -1,6 +1,12 @@
 #include "PawnEnemy.hpp"
 #include "Game.hpp"
 
+#ifdef _WIN32
+#define ENEMY_PATH "assets/img/enemies/knight/_Run.png"
+#else
+#define ENEMY_PATH "../assets/img/enemies/knight/_Run.png"
+#endif
+
 PawnEnemy::PawnEnemy(GameObject& associated, std::weak_ptr<GameObject> player, Sprite& filePath, int health,
 	int damage, Action enemyAction, EnemyTypePhysics phys, float radius)
   :  EnemyBase(associated, player,filePath,health,damage, enemyAction,phys), rangeDetection(radius)
@@ -51,12 +57,11 @@ void PawnEnemy::NotifyCollision(GameObject& otherObj)
 	if (otherObj.tag == "Ground") {
 		
 		//cout << edgeRect.x << " " << hitBox.box.x << endl;
-		if (edgeRect.x <= hitBox.box.x) 
-		{
-			sprite.Open("assets/img/enemies/knight/_Idle.png", 10, 1);
-			SetActionState(IDLE);
-			ChangeMovePoint();
-		}
+				
+		sprite.Open(ENEMY_PATH, 10, 1);
+		SetActionState(IDLE);
+		ChangeMovePoint();
+		
 
 	}
 }
@@ -66,7 +71,7 @@ void PawnEnemy::Idle(float dt)
 	waitingTimer.Update(dt);
 	if (waitingTimer.Get() > 1.5f /*&& isOnFloor*/)
 	{
-		sprite.Open("assets/img/enemies/knight/_Run.png", 10, 1);
+		sprite.Open(ENEMY_PATH, 10, 1);
 		ChangeMovePoint();
 		SetActionState(MOVE);
 		waitingTimer.Reset();

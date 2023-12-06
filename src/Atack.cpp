@@ -4,7 +4,7 @@
 Atack::Atack(GameObject &associated, float angle, int damage, string sprite, bool targetsPlayer, int direction, int frameCount) : Component(associated)
 {
     associated.angleDeg = angle * 180 / 3.14;
-
+    
     this->targetsPlayer = targetsPlayer;
     this->damage = damage;
     this->direction = direction;
@@ -13,7 +13,9 @@ Atack::Atack(GameObject &associated, float angle, int damage, string sprite, boo
 
     associated.box.w = 20;
     associated.box.h = 100;
-    associated.AddComponent(new Collider(associated));
+    Collider *collider = new Collider(associated);
+    collider->SetTrigger(true);
+    associated.AddComponent(collider);
 
     if(direction == 0){
         direction = 1;
@@ -51,4 +53,11 @@ bool Atack::Is(string typeIdentifier)
 int Atack::GetDamage()
 {
     return damage;
+}
+
+void Atack::NotifyCollision(GameObject &otherObj)
+{
+    if(otherObj.layer == 0 && otherObj.healthHandler != nullptr && otherObj.healthHandler->GetHealth() > 0 && !targetsPlayer){
+        otherObj.healthHandler->RemoveHealth(damage);
+    }
 }
