@@ -14,6 +14,15 @@ StageState::~StageState()
 	cout << "StageState" << endl;
 }
 
+void StageState::AddGround(Vector2 pos, Vector2 size) 
+{
+	GameObject* rectObj = new GameObject("RectGround", "Ground",1);
+	RectDebugger* newGroundDebug = new RectDebugger(*rectObj, pos.x, pos.y, size.x, size.y);
+	rectObj->AddComponent(newGroundDebug);
+	rectObj->AddComponent(new Collider(*rectObj));
+	AddObject(rectObj);
+}
+
 void StageState::LoadAssets()
 {
 
@@ -75,18 +84,20 @@ void StageState::LoadAssets()
 	AddObject(rb);
 
 	GameObject *groundObj = new GameObject("FirstGround","Ground", 1);
-	groundObj->AddComponent(new RectDebugger(*groundObj, windowCenter.x - 256, windowCenter.y, 1100, 150));
+	groundObj->AddComponent(new RectDebugger(*groundObj, windowCenter.x, windowCenter.y, 1100, 150));
 	groundObj->AddComponent(new Collider(*groundObj, Vector2(groundObj->box.w, groundObj->box.h)));
 
 	AddObject(groundObj);
+
+	AddGround(Vector2(windowCenter.x + 512, 512), Vector2(500, 110));
+	AddGround(Vector2(windowCenter.x + groundObj->box.x, 512), Vector2(750, 110));
+	AddGround(Vector2(windowCenter.x + 128, 256), Vector2(500, 110));
 
 	GameObject *healthDisplayObj = new GameObject("HealthDisplay");
     HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
     healthDisplayObj->AddComponent(healthDisplay);
 
 	AddObject(healthDisplayObj);
-
-
 
 	// tileMap->LoadCollisions();
 }
@@ -112,12 +123,11 @@ void StageState::Start()
 	groundRect.FillRect();
 
 	tileMap->LoadCollisions();
-	//tileMap->SetParallaxFactor(Vector2(.5f, 1));
+	tileMap->SetParallaxFactor(Vector2(.5f, 1));
 }
 
 void StageState::FixedUpdate(float fixedDt)
 {
-
 	FixedUpdateArray(fixedDt);
 }
 

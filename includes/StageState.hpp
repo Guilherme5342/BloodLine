@@ -38,4 +38,7 @@ public:
 	virtual void FixedUpdate(float dt) override;
 	virtual void Update(float dt) override;
 	virtual void Render() override;
+
+
+	void AddGround(Vector2 pos, Vector2 size);
 };

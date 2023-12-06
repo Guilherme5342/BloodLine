@@ -108,6 +108,8 @@ void TileMap::Render()
 {
 	for (int z = 0; z < mapDepth; z++)
 	{
-		RenderLayer(z, Camera::GetCurrentCamPos().x * (z + 1), Camera::GetCurrentCamPos().y * (z + 1));
+		RenderLayer(z,
+			Camera::GetCurrentCamPos().x * (z + parallaxFactor.x), 
+			Camera::GetCurrentCamPos().y * (z + parallaxFactor.y));
 	}
 }
