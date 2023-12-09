@@ -43,6 +43,7 @@ public:
 	}
 
 	virtual void NotifyCollision(GameObject &otherObj) override;
+	virtual void NotifyNoCollision(GameObject &otherObj) override;
 
 	inline void ApplyVelocity(Vector2 velocity)
 	{
@@ -54,4 +55,9 @@ public:
 		velocity += force * forceType;
 		force = Vector2(0, mass * (gravityScale * 10));
 	}
+
+	inline bool HitUp() {return hitUp;}
+	inline bool HitDown() {return hitDown;}
+	inline bool HitLeft() {return hitLeft;}
+	inline bool HitRight() {return hitRight;}
 };

@@ -70,6 +70,7 @@ public:
 	}
 
 	void NotifyCollision(GameObject &otherObj);
+	void NotifyNoCollision(GameObject &otherObj);
 	/// <summary>
 	/// Seta IsDead como True,
 	/// � normalmente usado no Update de GameObjects pra serem destru�dos ap�s o Request

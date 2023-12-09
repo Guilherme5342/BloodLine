@@ -131,6 +131,10 @@ void PlayerController::NotifyCollision(GameObject &otherObj)
 	canJump = otherObj.tag == "Ground";
 }
 
+void PlayerController::NotifyNoCollision(GameObject& otherObj) {
+
+}
+
 void PlayerController::Render()
 {
 	animState->Render(*this);

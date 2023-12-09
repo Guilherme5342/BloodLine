@@ -69,4 +69,5 @@ public:
 	void AddSpell(string spellName, Spell *spell);
 
 	void NotifyCollision(GameObject &otherObj);
+	void NotifyNoCollision(GameObject &otherObj);
 };

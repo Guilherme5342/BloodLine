@@ -31,4 +31,5 @@ public:
 		return std::string(typeid(T).name());
 	}
 	virtual void NotifyCollision(GameObject &otherObj) {}
+	virtual void NotifyNoCollision(GameObject &otherObj) {}
 };

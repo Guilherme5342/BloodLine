@@ -56,6 +56,10 @@ void State::FixedUpdateArray(float fixedDt)
 				objectArray[i]->NotifyCollision(*objectArray[j]);
 				objectArray[j]->NotifyCollision(*objectArray[i]);
 			}
+			else {
+				objectArray[i]->NotifyNoCollision(*objectArray[j]);
+				objectArray[j]->NotifyNoCollision(*objectArray[i]);
+			}
 		}
 	}
 

@@ -111,8 +111,16 @@ void GameObject::RemoveComponent(Component* compToRemove)
 
 void GameObject::NotifyCollision(GameObject &otherObj)
 {
-	for (auto &comp : components)
+	for (int i = 0; i < components.size(); i++)
 	{
-		comp->NotifyCollision(otherObj);
+		components[i]->NotifyCollision(otherObj);
+	}
+}
+
+void GameObject::NotifyNoCollision(GameObject& otherObj) 
+{
+	for (int i = 0; i < components.size(); i++) 
+	{
+		components[i]->NotifyNoCollision(otherObj);
 	}
 }

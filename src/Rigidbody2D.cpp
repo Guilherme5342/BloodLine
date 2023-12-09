@@ -63,9 +63,15 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 			associated.box.y += intersectionRect.h + REPULSION_FACTOR;
 		}
 	}
-	//coll->Update(0);
+	coll->Update(0);
 }
 
+void Rigidbody2D::NotifyNoCollision(GameObject& otherObj) {
+	hitUp = false;
+	hitDown = false;
+	hitLeft = false;
+	hitRight = false;
+}
 void Rigidbody2D::Render()
 {
 }
