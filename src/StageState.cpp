@@ -3,6 +3,7 @@
 #include "Resources.hpp"
 #include "PawnEnemy.hpp"
 #include "HealthDisplay.hpp"
+#include "ColorDefinitions.hpp"
 
 StageState::StageState() : State()
 {
@@ -14,10 +15,10 @@ StageState::~StageState()
 	cout << "StageState" << endl;
 }
 
-void StageState::AddGround(Vector2 pos, Vector2 size) 
+void StageState::AddGround(Vector2 pos, Vector2 size, SDL_Color color) 
 {
 	GameObject* rectObj = new GameObject("RectGround", "Ground",1);
-	RectDebugger* newGroundDebug = new RectDebugger(*rectObj, pos.x, pos.y, size.x, size.y);
+	RectDebugger* newGroundDebug = new RectDebugger(*rectObj, pos.x, pos.y, size.x, size.y, color);
 	rectObj->AddComponent(newGroundDebug);
 	rectObj->AddComponent(new Collider(*rectObj));
 	AddObject(rectObj);
@@ -90,8 +91,9 @@ void StageState::LoadAssets()
 	AddObject(groundObj);
 
 	AddGround(Vector2(windowCenter.x + 512, 512), Vector2(500, 110));
-	AddGround(Vector2(windowCenter.x + groundObj->box.x, 512), Vector2(750, 110));
-	AddGround(Vector2(windowCenter.x + 128, 256), Vector2(500, 110));
+	AddGround(Vector2(windowCenter.x + groundObj->box.x, 512), Vector2(750, 110), Color::Red);
+	AddGround(Vector2(windowCenter.x + 128, 256), Vector2(500, 110), Color::Yellow);
+	AddGround(Vector2(windowCenter.x + 1024, 256), Vector2(500, 110), Color::Magenta);
 
 	GameObject *healthDisplayObj = new GameObject("HealthDisplay");
     HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);

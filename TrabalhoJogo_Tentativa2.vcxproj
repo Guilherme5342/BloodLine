@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="src\Atack.cpp" />
     <ClCompile Include="src\BloodBarrage.cpp" />
+    <ClCompile Include="src\ColorDefinitions.cpp" />
     <ClCompile Include="src\HealthDisplay.cpp" />
     <ClCompile Include="src\PlayerAttack.cpp" />
     <ClCompile Include="src\AttackGeneric.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="includes\CircleCollider.hpp" />
     <ClInclude Include="includes\Collider.hpp" />
     <ClInclude Include="includes\Collision.hpp" />
+    <ClInclude Include="includes\ColorDefinitions.hpp" />
     <ClInclude Include="includes\Command.hpp" />
     <ClInclude Include="includes\Component.hpp" />
     <ClInclude Include="includes\EnemyBase.hpp" />

@@ -40,5 +40,5 @@ public:
 	virtual void Render() override;
 
 
-	void AddGround(Vector2 pos, Vector2 size);
+	void AddGround(Vector2 pos, Vector2 size, SDL_Color color = {255,255,255,255});
 };

@@ -11,8 +11,10 @@ private:
 	SDL_Rect debugRect;
 	Rect gameObjectBox;
 
+	SDL_Color color;
+
 public:
-	RectDebugger(GameObject &associated, float x, float y, float h, float w);
+	RectDebugger(GameObject &associated, float x, float y, float h, float w, SDL_Color color = {255,255,255,255});
 	~RectDebugger();
 	// Herdado por meio de Component
 	virtual void Update(float dt) override;
