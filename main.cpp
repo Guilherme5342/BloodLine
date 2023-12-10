@@ -3,7 +3,6 @@
 int main()
 {
 	State *menuState = new MenuState();
-	State *stageState = new StageState();
 	Game& game = Game::Instance();
 
 	game.PushState(menuState);

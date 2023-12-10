@@ -34,6 +34,28 @@
 
 class Game
 {
+public:
+	static Game &Instance();
+	~Game();
+
+	void Run(); // Roda a Lógica do Loop Principal do Jogo
+
+	void CalculateDeltaTime();
+
+	inline void PushState(State *newState) { storedState = newState; }
+
+	inline void ReRender() { SDL_RenderPresent(GetRenderer()); }
+	inline float GetDeltaTime() { return this->deltaTime; }
+
+	inline SDL_Renderer *GetRenderer() { return renderer; }
+	inline SDL_Window *GetWindow() { return window; }
+	inline State &GetState() { return *stateStack.top(); }
+
+	inline int GetWindowWidth() { return windowWidth; }
+	inline int GetWindowHeight() { return windowHeight; }
+	inline Vector2 GetWindowCenter() { return Vector2(windowWidth, windowHeight) / 2; }
+
+	GameObject *Instantiate(Component *component, Vector2 position);
 
 private:
 	static Game *instance;
@@ -53,78 +75,4 @@ private:
 	float counter = 0;
 
 	int windowWidth, windowHeight;
-
-public:
-	static Game &Instance();
-	~Game();
-
-	SDL_Renderer *GetRenderer();
-	SDL_Window *GetWindow();
-	State &GetState();
-
-	void Run(); // Roda a L�gica do Loop Principal do Jogo
-
-	void PushState(State *newState);
-
-	inline void ReRender()
-	{
-		SDL_RenderPresent(GetRenderer());
-	}
-	inline float GetDeltaTime()
-	{
-		return this->deltaTime;
-	}
-
-	inline void CalculateDeltaTime()
-	{
-		float currentTime = SDL_GetTicks64();			  // Pega o tempo atual
-		deltaTime = (currentTime - frameStart) / 1000.0f; //
-		frameStart = currentTime;
-
-		leftOver = deltaTime - fixedDeltaTime;
-	}
-
-	inline int GetWindowWidth()
-	{
-		return windowWidth;
-	}
-
-	inline int GetWindowHeight()
-	{
-		return windowHeight;
-	}
-
-	inline Vector2 GetWindowCenter()
-	{
-		return Vector2(windowWidth, windowHeight) / 2;
-	}
-
-	inline GameObject* Instantiate(Component* component, Vector2 position) {
-		GameObject* gameObj = new GameObject();
-		gameObj->AddComponent(component);
-		gameObj->box.SetCenter(position);
-		GetState().AddObject(gameObj);
-		return gameObj;
-	}
 };
-
-inline SDL_Renderer *Game::GetRenderer()
-{
-	return renderer;
-}
-
-inline SDL_Window *Game::GetWindow()
-{
-	return window;
-}
-
-inline State &Game::GetState()
-{
-	return *stateStack.top();
-}
-
-inline void Game::PushState(State *newState)
-{
-	storedState = newState;
-	// cout << "Current State: " << typeid(newState).name() << endl;
-}

@@ -2,6 +2,7 @@
   "dotnet.defaultSolution": "TrabalhoJogo_Tentativa2.sln",
   "files.associations": {
     "new": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "xiosbase": "cpp"
   }
 }

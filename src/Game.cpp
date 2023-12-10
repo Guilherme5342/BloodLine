@@ -7,30 +7,48 @@ Game::Game(string windowName, int windowWidth, int windowHeight)
 	storedState = nullptr;
 
 	fixedDeltaTime = FIXED_DELTATIME;
-	int initiationFlag = SDL_Init(SDL_INIT_EVERYTHING);
 
-	int imageInit = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG /* | IMG_INIT_TIF*/);
-
-	int mixInit = Mix_Init(MIX_INIT_EVERYTHING);
-
-	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024);
-
-	Mix_AllocateChannels(MIX_CHANNELS);
-
-	int ttfInit = TTF_Init();
-	cout << imageInit << endl;
-
-	if (initiationFlag != 0 || imageInit == 0 || mixInit == 0 || ttfInit != 0)
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
-		std::cout << "Erro de Inicializao: " << SDL_GetError() << std::endl;
+		throw std::runtime_error(std::string("Erro ao carregar SDL. ") + std::string(SDL_GetError()));
+	}
+
+	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) != (IMG_INIT_JPG | IMG_INIT_PNG))
+	{
+		throw std::runtime_error(std::string("Erro ao carregar SDL_IMG. ") + std::string(SDL_GetError()));
+	}
+
+	if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) != (MIX_INIT_MP3 | MIX_INIT_OGG))
+	{
+		throw std::runtime_error(std::string("Erro ao carregar SDL_MIX. ") + std::string(SDL_GetError()));
+	}
+
+	if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) != 0)
+	{
+		throw std::runtime_error(std::string("Erro ao executar Mix_OpenAudio. ") + std::string(SDL_GetError()));
+	}
+
+	Mix_AllocateChannels(32);
+
+	if (TTF_Init() != 0)
+	{
+		throw std::runtime_error(std::string("Erro ao carregar SDL_Ttf. ") + std::string(SDL_GetError()));
+	}
+
+	window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, 0);
+	if (window == nullptr)
+	{
+		throw std::runtime_error("Erro ao criar janela.");
 	}
 
 	this->windowWidth = windowWidth;
 	this->windowHeight = windowHeight;
 
-	window = SDL_CreateWindow(windowName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, 0);
-
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	if (renderer == nullptr)
+	{
+		throw std::runtime_error("Erro ao criar renderer.");
+	}
 
 	srand(time(NULL));
 }
@@ -42,24 +60,20 @@ Game::~Game()
 		delete storedState;
 	}
 
-	while (!stateStack.empty()) {
+	while (!stateStack.empty())
+	{
 		stateStack.pop();
 	}
 
 	Resources::ClearAll();
 
-	SDL_DestroyRenderer(renderer);
-
-	SDL_DestroyWindow(window);
-
-	Mix_CloseAudio();
-
 	TTF_Quit();
-	
+	Mix_CloseAudio();
 	Mix_Quit();
-
 	IMG_Quit();
 
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 	SDL_Quit();
 
 	cout << "Fechando Jogo" << endl;
@@ -87,8 +101,8 @@ void Game::Run()
 	}
 
 	GetState().Start();
-	// Atualiza��o da GAME ENGINE
-	// Nunca esquecer de colocar as atualiza��es das Features que forem feitas na GameEngine
+	// Atualização da GAME ENGINE
+	// Nunca esquecer de colocar as atualizações das Features que forem feitas na GameEngine
 	// (Ex. InputSystem.Update(), Physics.Update(), Animator.Update())
 
 	// Cria instancia de input fora do loop para não re-criar instancia a cada iteração
@@ -104,10 +118,10 @@ void Game::Run()
 
 		// Update de Física
 		counter -= leftOver;
-		while (counter <= deltaTime) {
+		while (counter <= deltaTime)
+		{
 			GetState().FixedUpdate(fixedDeltaTime);
 			counter += fixedDeltaTime;
-
 		}
 		int x = deltaTime / fixedDeltaTime;
 		leftOver = deltaTime - fixedDeltaTime * x;
@@ -142,4 +156,22 @@ void Game::Run()
 		}
 		SDL_Delay(32);
 	}
+}
+
+void Game::CalculateDeltaTime()
+{
+	float currentTime = SDL_GetTicks64();			  // Pega o tempo atual
+	deltaTime = (currentTime - frameStart) / 1000.0f; //
+	frameStart = currentTime;
+
+	leftOver = deltaTime - fixedDeltaTime;
+}
+
+GameObject *Game::Instantiate(Component *component, Vector2 position)
+{
+	GameObject *gameObj = new GameObject();
+	gameObj->AddComponent(component);
+	gameObj->box.SetCenter(position);
+	GetState().AddObject(gameObj);
+	return gameObj;
 }
