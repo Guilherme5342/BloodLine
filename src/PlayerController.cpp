@@ -29,7 +29,7 @@ void PlayerController::Update(float dt)
 
 	if(dead){
 		animState = new DeathState(sprite);
-		cout << "Player is dead" << endl;
+		std::cout << "Player is dead" << std::endl;
 		return;
 	}
 
@@ -63,7 +63,7 @@ void PlayerController::Update(float dt)
 		float speed = 200;
 		int damage = 20;
 		float maxDistance = 100;
-		string sprite = "../assets/img/atack.png";
+		std::string sprite = "../assets/img/atack.png";
 		bool targetsPlayer = false;
 		int frameCount = 1;
 

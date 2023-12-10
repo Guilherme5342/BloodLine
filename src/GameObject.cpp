@@ -1,7 +1,7 @@
 #include "GameObject.hpp"
 #include "HealthHandler.hpp"
 
-GameObject::GameObject(string name, int layer) : layer(layer) // Member Initialization Lists
+GameObject::GameObject(std::string name, int layer) : layer(layer) // Member Initialization Lists
 {
 	healthHandler = new HealthHandler(*this, 20);
 	this->name = name;
@@ -10,12 +10,12 @@ GameObject::GameObject(string name, int layer) : layer(layer) // Member Initiali
 	angleDeg = 0;
 }
 
-GameObject::GameObject(string name, string tag, int layer) : GameObject(name,layer)
+GameObject::GameObject(std::string name, std::string tag, int layer) : GameObject(name,layer)
 {
 	this->tag = tag;
 }
 
-GameObject::GameObject(string name, Component *compArray, int layer) : GameObject(name, layer)
+GameObject::GameObject(std::string name, Component *compArray, int layer) : GameObject(name, layer)
 {
 	AddComponent(compArray);
 	

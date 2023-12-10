@@ -11,7 +11,7 @@ BloodSpell::BloodSpell(GameObject &associated, float damage, float range, int he
 
 void BloodSpell::Activate()
 {
-    cout << "Shoot -------------" << endl;
+    std::cout << "Shoot -------------" << std::endl;
 
     GameObject *bulletObject = new GameObject();
     bulletObject->box.SetCenter(associated.box.GetCenter());
@@ -19,7 +19,7 @@ void BloodSpell::Activate()
     float speed = 200;
     int damage = 20;
     float maxDistance = 200;
-    string sprite = "../assets/img/bullet.png";
+    std::string sprite = "../assets/img/bullet.png";
     bool targetsPlayer = false;
     int frameCount = 1;
 

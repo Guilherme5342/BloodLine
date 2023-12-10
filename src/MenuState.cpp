@@ -39,7 +39,7 @@ void MenuState::LoadAssets()
 	Vector3 divd2 = Vector2(2.f, 312) * 10;
 
 	// cout << textObj->box.GetCenter() << endl;
-	cout << divd << endl;
+	std::cout << divd << std::endl;
 
 	objectArray.emplace_back(titleObj);
 	// objectArray.emplace_back(textObj);

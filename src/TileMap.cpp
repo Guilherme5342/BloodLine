@@ -18,7 +18,7 @@ TileMap::~TileMap()
 
 void TileMap::Load(std::string filePath)
 {
-	ifstream srcFile(filePath.c_str());
+	std::ifstream srcFile(filePath.c_str());
 
 	char comma;
 
@@ -35,7 +35,7 @@ void TileMap::Load(std::string filePath)
 
 	for (int i = 0; i < (mapWidth * mapHeight) * mapDepth; i++)
 	{
-		string entryString;
+		std::string entryString;
 		std::getline(srcFile, entryString, comma);
 
 		tileMatrix.push_back(atoi(entryString.c_str()));
@@ -48,14 +48,14 @@ void TileMap::LoadCollisions()
 {
 	if (tileMatrix.empty() || tileSet == nullptr)
 	{
-		cout << "Colisoes nao podem" << endl;
+		std::cout << "Colisoes nao podem" << std::endl;
 		return;
 	}
 	
 	Vector2 size = associated.box.GetCenter() + Vector2(tileSet->GetTileWidth() * GetWidth(),
 		tileSet->GetTileHeight() * GetHeight());
 
-	cout << size << endl;
+	std::cout << size << std::endl;
 
 	Collider* coll = new Collider(associated, size);
 

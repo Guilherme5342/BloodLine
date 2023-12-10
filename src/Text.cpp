@@ -17,7 +17,7 @@ Text::Text(GameObject &associated, std::string filePath, int fontSize, TextStyle
 
 	if (!font)
 	{
-		cout << SDL_GetError() << endl;
+		std::cout << SDL_GetError() << std::endl;
 	}
 
 	RedrawTexture();
@@ -38,7 +38,7 @@ void Text::RedrawTexture()
 
 	if (!font)
 	{
-		cout << SDL_GetError() << endl;
+		std::cout << SDL_GetError() << std::endl;
 	}
 
 	SDL_Surface *surface{};

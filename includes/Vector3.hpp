@@ -7,8 +7,6 @@
 
 #define FRAC_PI (180 / M_PI)
 
-using namespace std;
-
 struct Vector3
 {
 
@@ -39,7 +37,7 @@ public:
 		return Vector3(x * cos(angle) - y * sin(angle), y * cos(angle) + x * sin(angle));
 	}
 
-	template <typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
 	static T Angle(const Vector3 &from, const Vector3 &to)
 	{
 		return (T)atan2(to.y - from.y, to.x - from.x);
@@ -80,7 +78,7 @@ public:
 		return nVec;
 	}
 
-	template <typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
 	Vector3 &operator+=(const T n)
 	{
 		this->x += n;
@@ -89,7 +87,7 @@ public:
 		return *this;
 	}
 
-	template <typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
 	Vector3 &operator*=(const T n)
 	{
 		this->x *= n;
@@ -103,7 +101,7 @@ public:
 		return Vector3(x / magnitude(), y / magnitude(), z / magnitude());
 	}
 
-	template <typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
 	static Vector3 Random(T maxX, T maxY)
 	{
 		T randomX = (T)rand() % maxX, randomY = (T)rand() % maxY;
@@ -116,7 +114,7 @@ public:
 		y += vec.y;
 		z += vec.z;
 	}
-	template <typename T, typename = typename enable_if<is_arithmetic<T>::val, T>::type>
+	template <typename T, typename = typename std::enable_if<std::is_arithmetic<T>::val, T>::type>
 	inline void Translate(T const vec) const
 	{
 		x += vec;
@@ -128,7 +126,7 @@ public:
 		return Vector3(std::max(a, std::min(b, target)));
 	}*/
 
-	friend ostream &operator<<(ostream &out, const Vector3 &vec);
+	friend std::ostream &operator<<(std::ostream &out, const Vector3 &vec);
 };
 
 struct Vector2 : public Vector3
@@ -222,7 +220,7 @@ public:
 		return Vector2(cos(angle), sin(angle));
 	}
 
-	friend ostream &operator<<(ostream &out, const Vector2 &vec);
+	friend std::ostream &operator<<(std::ostream &out, const Vector2 &vec);
 };
 
 inline float Distance(Vector3 a, Vector3 b)

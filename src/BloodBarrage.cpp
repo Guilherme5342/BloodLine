@@ -10,7 +10,7 @@ BloodBarrage::BloodBarrage(GameObject &associated, float damage, float range, in
 
 void  BloodBarrage::Activate()
 {
-    cout << "Barrage -------------" << endl;
+    std::cout << "Barrage -------------" << std::endl;
 
     GameObject *bulletObject1 = new GameObject();
     GameObject *bulletObject2 = new GameObject();
@@ -26,7 +26,7 @@ void  BloodBarrage::Activate()
     float speed = 200;
     int damage = 20;
     float maxDistance = 100;
-    string sprite = "../assets/img/bullet.png";
+    std::string sprite = "../assets/img/bullet.png";
     bool targetsPlayer = false;
     int frameCount = 1;
 

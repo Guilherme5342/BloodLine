@@ -98,7 +98,7 @@ DeathState::DeathState(Sprite &sprite) : AnimState(sprite)
 
 void DeathState::OnEnter(StateMachine &stateMachine)
 {
-	cout << "Entrando no Estado de Idle" << endl;
+	std::cout << "Entrando no Estado de Idle" << std::endl;
 }
 
 void DeathState::OnExit(StateMachine &stateMachine)

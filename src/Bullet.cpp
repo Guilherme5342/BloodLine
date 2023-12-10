@@ -1,7 +1,7 @@
 #include "Bullet.hpp"
 #include "Collider.hpp"
 
-Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite, bool targetsPlayer, int frameCount) : Component(associated)
+Bullet::Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, std::string sprite, bool targetsPlayer, int frameCount) : Component(associated)
 {
     Vector2 speedtmp = Vector2(speed, 0);
     associated.angleDeg = angle * 180 / 3.14;
@@ -32,7 +32,7 @@ void Bullet::Update(float dt)
 
 void Bullet::Render() {}
 
-bool Bullet::Is(string typeIdentifier)
+bool Bullet::Is(std::string typeIdentifier)
 {
     return typeIdentifier == "Bullet";
 }

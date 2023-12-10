@@ -46,7 +46,7 @@ private:
 
 	AnimState *animState;
 
-	map<string, Spell *> spells;
+	std::map<std::string, Spell *> spells;
 
 public:
 	PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed);
@@ -58,15 +58,15 @@ public:
 	virtual void Update(float dt) override;
 	virtual void Render() override;
 
-	inline virtual bool Is(string type) override
+	inline virtual bool Is(std::string type) override
 	{
 		return type == "PlayerController";
 	}
 
 	bool IsDead();
 
-	void CastSpell(string spellName);
-	void AddSpell(string spellName, Spell *spell);
+	void CastSpell(std::string spellName);
+	void AddSpell(std::string spellName, Spell *spell);
 
 	void NotifyCollision(GameObject &otherObj);
 	void NotifyNoCollision(GameObject &otherObj);

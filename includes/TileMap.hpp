@@ -11,7 +11,7 @@ class TileMap : public Component
 {
 
 private:
-	vector<int> tileMatrix;
+	std::vector<int> tileMatrix;
 
 	TileSet *tileSet;
 

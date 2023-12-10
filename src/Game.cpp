@@ -2,7 +2,7 @@
 
 Game *Game::instance = nullptr;
 
-Game::Game(string windowName, int windowWidth, int windowHeight)
+Game::Game(std::string windowName, int windowWidth, int windowHeight)
 {
 	storedState = nullptr;
 
@@ -76,7 +76,7 @@ Game::~Game()
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 
-	cout << "Fechando Jogo" << endl;
+	std::cout << "Fechando Jogo" << std::endl;
 }
 
 Game &Game::Instance()

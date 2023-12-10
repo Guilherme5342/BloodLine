@@ -56,7 +56,7 @@ std::shared_ptr<Mix_Chunk> Resources::GetSound(std::string filePath)
 
 std::shared_ptr<TTF_Font> Resources::GetFont(std::string filePath, int fontSize)
 {
-	string uniqueStr = filePath + to_string(fontSize);
+	std::string uniqueStr = filePath + std::to_string(fontSize);
 
 	if (fontTable.find(filePath) != fontTable.end())
 	{
@@ -150,5 +150,5 @@ void Resources::ClearAll()
 	fontTable.clear();
 
 	
-	std::cout << "Tabelas Apagadas" << endl;
+	std::cout << "Tabelas Apagadas" << std::endl;
 }

@@ -14,7 +14,7 @@ protected:
 
 	IState* currentState;
 
-	std::unordered_map<string, bool> transitions;
+	std::unordered_map<std::string, bool> transitions;
 
 	Sprite& sprite;
 

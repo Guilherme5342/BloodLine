@@ -12,7 +12,7 @@ StageState::StageState() : State()
 StageState::~StageState()
 {
 	objectArray.clear();
-	cout << "StageState" << endl;
+	std::cout << "StageState" << std::endl;
 }
 
 void StageState::AddGround(Vector2 pos, Vector2 size, SDL_Color color) 
@@ -118,7 +118,7 @@ void StageState::Start()
 	started = true;
 
 	music.Play();
-	cout << "StageState " << objectArray.size() << endl;
+	std::cout << "StageState " << objectArray.size() << std::endl;
 
 	Rect groundRect = Rect(Game::GetWindowCenter(), 500, 100);
 

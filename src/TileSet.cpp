@@ -9,7 +9,7 @@ TileSet::TileSet(GameObject &associated, int tileWidth, int tileHeight, std::str
 
 	if (!tileSet.IsOpen())
 	{
-		cout << "Erro ao abrir TileSet" << SDL_GetError() << endl;
+		std::cout << "Erro ao abrir TileSet" << SDL_GetError() << std::endl;
 		return;
 	}
 

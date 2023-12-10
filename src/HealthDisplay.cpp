@@ -17,7 +17,7 @@ HealthDisplay::HealthDisplay(GameObject& associated, int health, PlayerControlle
     }
 
 void HealthDisplay::Update(float dt) {
-        text.SetText("Health: " + to_string(pc.GetHealth()));
+        text.SetText("Health: " + std::to_string(pc.GetHealth()));
     }
 
 void HealthDisplay::Render()  {
@@ -25,7 +25,7 @@ void HealthDisplay::Render()  {
         text.RenderStatic(); 
     }
 
-bool HealthDisplay::Is(string type) {
+bool HealthDisplay::Is(std::string type) {
         return type == "HealthDisplay"; 
     }
 

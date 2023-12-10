@@ -1,7 +1,7 @@
 #include "Atack.hpp"
 #include "Collider.hpp"
 
-Atack::Atack(GameObject &associated, float angle, int damage, string sprite, bool targetsPlayer, int direction, int frameCount) : Component(associated)
+Atack::Atack(GameObject &associated, float angle, int damage, std::string sprite, bool targetsPlayer, int direction, int frameCount) : Component(associated)
 {
     associated.angleDeg = angle * 180 / 3.14;
     
@@ -30,7 +30,7 @@ Atack::Atack(GameObject &associated, float angle, int damage, string sprite, boo
 
 void Atack::Update(float dt)
 {
-    cout << direction << endl;
+    std::cout << direction << std::endl;
     if(!canAtack){
         atackElapsedTime += dt;
         if (atackElapsedTime >= ATACK_DURATION)
@@ -45,7 +45,7 @@ void Atack::Update(float dt)
 
 void Atack::Render() {}
 
-bool Atack::Is(string typeIdentifier)
+bool Atack::Is(std::string typeIdentifier)
 {
     return typeIdentifier == "Atack";
 }

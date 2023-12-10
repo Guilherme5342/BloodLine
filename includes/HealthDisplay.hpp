@@ -16,5 +16,5 @@ public:
 
     void Update(float dt);
     void Render();
-    bool Is(string type);
+    bool Is(std::string type);
 };

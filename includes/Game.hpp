@@ -55,7 +55,7 @@ public:
 	void operator=(Game &&) = delete;
 
 private:
-	Game(string windowName = "Enginhoca", int windowW = 1024, int windowH = 600);
+	Game(std::string windowName = "Enginhoca", int windowW = 1024, int windowH = 600);
 
 	static Game &Instance();
 	static Game *instance;

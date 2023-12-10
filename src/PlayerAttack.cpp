@@ -40,7 +40,7 @@ void PlayerAttack::PerformAttack()
     GameObject* gameObject = new GameObject("AttackPlayer", "PlayerAttack", 2);
 
     attackCollider->SetOffset(associated.box.GetCenter() + Vector2(40, associated.box.y));
-    cout << "AttackPerformed" << endl;
+    std::cout << "AttackPerformed" << std::endl;
     gameObject->AddComponent(attackCollider);
 
     Game::GetState().AddObject(gameObject);

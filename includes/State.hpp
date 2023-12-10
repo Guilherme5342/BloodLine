@@ -22,7 +22,7 @@ protected:
 	virtual void UpdateArray(float dt);
 	virtual void RenderArray();
 
-	GameObject* AddStubGameObject(string name,Component* initialComp);
+	GameObject* AddStubGameObject(std::string name,Component* initialComp);
 
 public:
 	State();

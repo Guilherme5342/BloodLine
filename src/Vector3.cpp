@@ -6,7 +6,7 @@
 /// <param name="out"></param>
 /// <param name="vec"></param>
 /// <returns></returns>
-ostream &operator<<(ostream &out, const Vector3 &vec)
+std::ostream &operator<<(std::ostream &out, const Vector3 &vec)
 {
     // ToDO: inserir instru��o return aqui
 
@@ -20,7 +20,7 @@ ostream &operator<<(ostream &out, const Vector3 &vec)
 /// <param name="out"></param>
 /// <param name="vec"></param>
 /// <returns></returns>
-ostream &operator<<(ostream &out, const Vector2 &vec)
+std::ostream &operator<<(std::ostream &out, const Vector2 &vec)
 {
     // TODO: inserir instru��o return aqui
 

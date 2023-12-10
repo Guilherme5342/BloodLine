@@ -11,10 +11,10 @@ private:
     int damage;
 
 public:
-    Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, string sprite, bool targetsPlayer, int frameCount = 1);
+    Bullet(GameObject &associated, float angle, float speed, int damage, float maxDistance, std::string sprite, bool targetsPlayer, int frameCount = 1);
     void Update(float dt);
     void Render();
-    bool Is(string type);
+    bool Is(std::string type);
     int GetDamage();
 
     bool targetsPlayer;

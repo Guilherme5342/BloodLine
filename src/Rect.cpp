@@ -14,14 +14,14 @@ void Rect::FillRect()
 {
 
     SDL_Rect rectToFill = SDL_Rect{(int)(x - Camera::GetCurrentCamPos().x), (int)(y - Camera::GetCurrentCamPos().y), (int)w, (int)h};
-    cout << rectToFill.x << endl;
+    std::cout << rectToFill.x << std::endl;
 
     SDL_SetRenderDrawColor(Game::GetRenderer(), 255, 255, 255, 255);
 
     int rectDrawn = SDL_RenderDrawRect(Game::GetRenderer(), &rectToFill);
 
     if (rectDrawn != 0)
-        cout << SDL_GetError() << endl;
+        std::cout << SDL_GetError() << std::endl;
 
     SDL_RenderFillRect(Game::GetRenderer(), &rectToFill);
 

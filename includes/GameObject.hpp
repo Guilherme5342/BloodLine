@@ -22,7 +22,7 @@ private:
 public:
 	int layer;
 
-	GameObject(string name = "", int layer = 0);
+	GameObject(std::string name = "", int layer = 0);
 	/// <summary>
 	/// 
 	/// 
@@ -30,8 +30,8 @@ public:
 	/// <param name="name">Nome do Objeto</param>
 	/// <param name="tag"> Tag do Objeto (Usado nos Colliders) </param>
 	/// <param name="layer">Layer de Colisão do Objeto</param>
-	GameObject(string name,string tag, int layer = 0);
-	GameObject(string name , Component *compArray, int layer = 0);
+	GameObject(std::string name, std::string tag, int layer = 0);
+	GameObject(std::string name , Component *compArray, int layer = 0);
 	~GameObject();
 
 	HealthHandler *healthHandler;
@@ -48,15 +48,15 @@ public:
 	Component *GetComponent(std::string type);
 	void RemoveComponent(Component* comp);
 
-	template <typename T, typename = is_base_of<Component, T>>
+	template <typename T, typename = std::is_base_of<Component, T>>
 	bool TryGetComponent(T *component)
 	{
 		for (auto &comp : components)
 		{
-			string compName = typeid(T).name();
+			std::string compName = typeid(T).name();
 			compName.erase(compName.begin() + 0, compName.begin() + 6);
 
-			cout << compName << endl;
+			std::cout << compName << std::endl;
 
 			if (comp->Is(compName))
 			{
@@ -85,7 +85,7 @@ public:
 		return dead;
 	}
 
-	inline string Name() const
+	inline std::string Name() const
 	{
 		return name;
 	}

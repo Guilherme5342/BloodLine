@@ -15,10 +15,10 @@ State::~State()
 	}
 	objectArray.clear();
 
-	cout << "Estado " << typeid(State).name() << "Deletado" << endl;
+	std::cout << "Estado " << typeid(State).name() << "Deletado" << std::endl;
 }
 
-GameObject *State::AddStubGameObject(string Name, Component *initialComp)
+GameObject *State::AddStubGameObject(std::string Name, Component *initialComp)
 {
 	GameObject *stubObj = new GameObject("[Stub] " + Name);
 	stubObj->AddComponent(initialComp);

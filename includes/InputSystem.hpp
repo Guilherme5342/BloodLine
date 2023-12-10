@@ -11,35 +11,8 @@
 #include <SDL2/SDL_events.h>
 #endif
 
-using namespace std;
-
 class InputSystem
 {
-
-private:
-	bool mouseState[6];
-	int mouseUpdate[6];
-
-	unordered_map<int, bool> keyState;
-	unordered_map<int, int> keyUpdate;
-
-	int updateCounter;
-
-	bool quitRequested;
-
-	int mouseX, mouseY;
-
-	int currentKey;
-
-	InputSystem();
-	~InputSystem();
-
-	Command *buttonSpace;
-	Command *buttonAlpha1;
-	Command *buttonAlpha2;
-
-	Command *HandleInput();
-
 public:
 	static InputSystem &Instance();
 
@@ -90,4 +63,33 @@ public:
 	{
 		return quitRequested;
 	}
+
+	InputSystem(const InputSystem &) = delete;
+	InputSystem(InputSystem &&) = delete;
+	void operator=(const InputSystem &) = delete;
+	void operator=(InputSystem &&) = delete;
+
+private:
+	bool mouseState[6];
+	int mouseUpdate[6];
+
+	std::unordered_map<int, bool> keyState;
+	std::unordered_map<int, int> keyUpdate;
+
+	int updateCounter;
+
+	bool quitRequested;
+
+	int mouseX, mouseY;
+
+	int currentKey;
+
+	InputSystem();
+	~InputSystem();
+
+	Command *buttonSpace;
+	Command *buttonAlpha1;
+	Command *buttonAlpha2;
+
+	Command *HandleInput();
 };

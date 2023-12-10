@@ -89,12 +89,12 @@ public:
 
 	inline int GetWidth()
 	{
-		return frameWidth * scale.x;
+		return static_cast<int>(frameWidth * scale.x);
 	}
 
 	inline int GetHeight()
 	{
-		return frameHeight * scale.y;
+		return static_cast<int>(frameHeight * scale.y);
 	}
 
 	inline void SetFrame(int frameIndex)
@@ -117,8 +117,8 @@ public:
 		clipRect.w = frameWidth;
 		clipRect.h = frameHeight;
 
-		associated.box.w = GetWidth();
-		associated.box.h = GetHeight();
+		associated.box.w = static_cast<float>(GetWidth());
+		associated.box.h = static_cast<float>(GetHeight());
 	}
 
 	inline void SetFrameTime(float frameTime) {
@@ -126,8 +126,8 @@ public:
 	}
 	
 	inline void SetFrameStart(float frameStart) {
-		this->frameStart = frameStart;
-		currentFrame = frameStart;
+		this->frameStart = static_cast<int>(frameStart);
+		currentFrame = static_cast<int>(frameStart);
 	}
 	inline void SetFrameSpan(int frameStart, int frameEnd) {
 		this->frameStart = frameStart;
