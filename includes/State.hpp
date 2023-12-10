@@ -39,9 +39,7 @@ public:
 	/// </summary>
 	virtual void Resume() = 0;
 	virtual void Start() = 0;
-	virtual void FixedUpdate(float fixedDt) {
-		
-	}
+	virtual void FixedUpdate(float fixedDt) {}
 	virtual void Update(float dt) = 0;
 	virtual void Render() = 0;
 

@@ -100,7 +100,7 @@ void Game::__Run()
 		return;
 	}
 
-	GetState().Start();
+	GetCurrentState().Start();
 	// Atualização da GAME ENGINE
 	// Nunca esquecer de colocar as atualizações das Features que forem feitas na GameEngine
 	// (Ex. InputSystem.Update(), Physics.Update(), Animator.Update())
@@ -108,7 +108,7 @@ void Game::__Run()
 	// Checa quit requested do input, não do state (Mais otimizado), pois
 	// não é necessário criar instância de InputSystem no UpdateState()
 	// CAIO -> Não esta saindo do jogo quando se pressiona ESC no Menu
-	while (!stateStack.empty() && !GetState().QuitRequested() && !InputSystem::QuitRequested())
+	while (!stateStack.empty() && !GetCurrentState().QuitRequested() && !InputSystem::QuitRequested())
 	{
 		CalculateDeltaTime();
 		InputSystem::Update();
@@ -117,36 +117,32 @@ void Game::__Run()
 		counter -= leftOver;
 		while (counter <= deltaTime)
 		{
-			GetState().FixedUpdate(fixedDeltaTime);
+			GetCurrentState().FixedUpdate(fixedDeltaTime);
 			counter += fixedDeltaTime;
 		}
-		int x = deltaTime / fixedDeltaTime;
-		leftOver = deltaTime - fixedDeltaTime * x;
 
-		if (GetState().PopRequested())
+		if (GetCurrentState().PopRequested())
 		{
 			stateStack.pop(); // Desempilha o Estado atual e Resume o Estado Anterior
 			Resources::ClearRemaining();
 			if (!stateStack.empty())
-				GetState().Resume();
+				GetCurrentState().Resume();
 		}
 
 		if (storedState != nullptr)
 		{
-
-			GetState().Pause();
+			GetCurrentState().Pause();
 
 			stateStack.emplace(storedState);
-			GetState().Start();
+			GetCurrentState().Start();
 			storedState = nullptr;
 		}
 
-		// Atualiza��o do Estado atual e seus componentes do Jogo
+		// Atualização do Estado atual e seus componentes do Jogo
 		if (!stateStack.empty())
 		{
-
-			GetState().Update(deltaTime);
-			GetState().Render();
+			GetCurrentState().Update(deltaTime);
+			GetCurrentState().Render();
 
 			SDL_RenderPresent(renderer);
 			SDL_RenderClear(renderer);
@@ -169,6 +165,6 @@ GameObject *Game::__Instantiate(Component *component, Vector2 position)
 	GameObject *gameObj = new GameObject();
 	gameObj->AddComponent(component);
 	gameObj->box.SetCenter(position);
-	GetState().AddObject(gameObj);
+	GetCurrentState().AddObject(gameObj);
 	return gameObj;
 }

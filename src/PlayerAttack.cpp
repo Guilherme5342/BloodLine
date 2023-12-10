@@ -43,5 +43,5 @@ void PlayerAttack::PerformAttack()
     std::cout << "AttackPerformed" << std::endl;
     gameObject->AddComponent(attackCollider);
 
-    Game::GetState().AddObject(gameObject);
+    Game::GetCurrentState().AddObject(gameObject);
 }
