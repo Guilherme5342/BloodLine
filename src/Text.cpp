@@ -41,7 +41,7 @@ void Text::RedrawTexture()
 		std::cout << SDL_GetError() << std::endl;
 	}
 
-	SDL_Surface *surface{};
+	SDL_Surface *surface = nullptr;
 	switch (style)
 	{
 	case SOLID:
@@ -53,6 +53,12 @@ void Text::RedrawTexture()
 	case BLENDED:
 		surface = TTF_RenderText_Blended(font.get(), text.c_str(), color);
 		break;
+	}
+
+	if (!surface)
+	{
+		std::cerr << "Nao foi possivel carregar o texto.";
+		return;
 	}
 
 	texture = SDL_CreateTextureFromSurface(Game::GetRenderer(), surface);

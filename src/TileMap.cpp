@@ -85,7 +85,7 @@ void TileMap::RenderLayer(int layer, int cameraX, int cameraY)
 
 int TileMap::Hash(std::vector<int>& vector)
 {
-	int hash;
+	int hash = 0;
 
 	for (int i = 0; i < vector.size(); i++)
 	{
