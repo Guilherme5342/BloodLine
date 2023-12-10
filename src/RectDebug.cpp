@@ -21,12 +21,12 @@ void RectDebugger::Render()
     SDL_Rect rectToFill = SDL_Rect{(int)(gameObjectBox.x - Camera::GetCurrentCamPos().x),
                                    (int)(gameObjectBox.y - Camera::GetCurrentCamPos().y), (int)gameObjectBox.w, (int)gameObjectBox.h};
 
-    SDL_SetRenderDrawColor(Game::Instance().GetRenderer(), color.r, color.g, color.b, color.a);
+    SDL_SetRenderDrawColor(Game::GetRenderer(), color.r, color.g, color.b, color.a);
 
-    int rectDrawn = SDL_RenderDrawRect(Game::Instance().GetRenderer(), &rectToFill);
+    int rectDrawn = SDL_RenderDrawRect(Game::GetRenderer(), &rectToFill);
 
     if (rectDrawn != 0)
         cout << SDL_GetError() << endl;
 
-    SDL_RenderFillRect(Game::Instance().GetRenderer(), &rectToFill);
+    SDL_RenderFillRect(Game::GetRenderer(), &rectToFill);
 }

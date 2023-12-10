@@ -3,10 +3,7 @@
 int main()
 {
 	State *menuState = new MenuState();
-	Game& game = Game::Instance();
-
-	game.PushState(menuState);
-	game.Run();
-	delete& game;
+	Game::PushState(menuState);
+	Game::Run();
 	return 0;
 }

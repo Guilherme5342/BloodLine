@@ -50,9 +50,9 @@ void  BloodBarrage::Activate()
     bulletObject5->box.SetCenter(associated.box.GetCenter());
     bulletObject5->AddComponent(bullet5);
 
-    Game::Instance().GetState().AddObject(bulletObject1);
-    Game::Instance().GetState().AddObject(bulletObject2);
-    Game::Instance().GetState().AddObject(bulletObject3);
-    Game::Instance().GetState().AddObject(bulletObject4);
-    Game::Instance().GetState().AddObject(bulletObject5);
+    Game::GetState().AddObject(bulletObject1);
+    Game::GetState().AddObject(bulletObject2);
+    Game::GetState().AddObject(bulletObject3);
+    Game::GetState().AddObject(bulletObject4);
+    Game::GetState().AddObject(bulletObject5);
 }

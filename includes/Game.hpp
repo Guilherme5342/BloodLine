@@ -35,44 +35,52 @@
 class Game
 {
 public:
-	static Game &Instance();
 	~Game();
 
-	void Run(); // Roda a Lógica do Loop Principal do Jogo
+	inline static void Run() { Game::Instance().__Run(); }// Roda a Lógica do Loop Principal do Jogo
+	inline static void PushState(State *newState) { Game::Instance().__PushState(newState); }
+	inline static void ReRender() { SDL_RenderPresent(Game::Instance().__GetRenderer()); }
+	inline static float GetDeltaTime() { return Game::Instance().__GetDeltaTime(); }
+	inline static SDL_Renderer *GetRenderer() { return Game::Instance().__GetRenderer(); }
+	inline static SDL_Window *GetWindow() { return Game::Instance().__GetWindow(); }
+	inline static State &GetState() { return Game::Instance().__GetState(); }
+	inline static int GetWindowWidth() { return Game::Instance().__GetWindowWidth(); }
+	inline static int GetWindowHeight() { return Game::Instance().__GetWindowHeight(); }
+	inline static Vector2 GetWindowCenter() { return Game::Instance().__GetWindowCenter(); }
+	inline static GameObject *Instantiate(Component *component, Vector2 position) { return Game::Instance().__Instantiate(component, position); }
+
+	Game(const Game &) = delete;
+	Game(Game &&) = delete;
+	void operator=(const Game &) = delete;
+	void operator=(Game &&) = delete;
+
+private:
+	Game(string windowName = "Enginhoca", int windowW = 1024, int windowH = 600);
+
+	static Game &Instance();
+	static Game *instance;
+
+	void __Run(); // Roda a Lógica do Loop Principal do Jogo
+	inline void __PushState(State *newState) { storedState = newState; }
+	inline void __ReRender() { SDL_RenderPresent(__GetRenderer()); }
+	inline float __GetDeltaTime() { return this->deltaTime; }
+	inline SDL_Renderer *__GetRenderer() { return renderer; }
+	inline SDL_Window *__GetWindow() { return window; }
+	inline State &__GetState() { return *stateStack.top(); }
+	inline int __GetWindowWidth() { return windowWidth; }
+	inline int __GetWindowHeight() { return windowHeight; }
+	inline Vector2 __GetWindowCenter() { return Vector2(windowWidth, windowHeight) / 2; }
+	GameObject *__Instantiate(Component *component, Vector2 position);
 
 	void CalculateDeltaTime();
 
-	inline void PushState(State *newState) { storedState = newState; }
-
-	inline void ReRender() { SDL_RenderPresent(GetRenderer()); }
-	inline float GetDeltaTime() { return this->deltaTime; }
-
-	inline SDL_Renderer *GetRenderer() { return renderer; }
-	inline SDL_Window *GetWindow() { return window; }
-	inline State &GetState() { return *stateStack.top(); }
-
-	inline int GetWindowWidth() { return windowWidth; }
-	inline int GetWindowHeight() { return windowHeight; }
-	inline Vector2 GetWindowCenter() { return Vector2(windowWidth, windowHeight) / 2; }
-
-	GameObject *Instantiate(Component *component, Vector2 position);
-
-private:
-	static Game *instance;
-	Game(string windowName = "Enginhoca", int windowW = 1024, int windowH = 600);
-
 	std::stack<std::unique_ptr<State>> stateStack;
-
 	SDL_Renderer *renderer;
 	SDL_Window *window;
 	State *storedState;
-
 	int frameStart = 0; // Come�o do Frame do Jogo
 	float deltaTime, fixedDeltaTime;
-
 	float leftOver = 0;
-
 	float counter = 0;
-
 	int windowWidth, windowHeight;
 };

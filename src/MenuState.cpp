@@ -29,8 +29,8 @@ void MenuState::LoadAssets()
 	textObj->AddComponent(new Text(*textObj, FONT, 75, TextStyle::SOLID,
 								   "Bloodline", SDL_Color{255, 0, 0, 255})); 
 
-	// cout << Game::Instance().GetWindowCenter() << endl;
-	textObj->box.SetCenter(Game::Instance().GetWindowCenter());
+	// cout << Game::GetWindowCenter() << endl;
+	textObj->box.SetCenter(Game::GetWindowCenter());
 
 	Vector3 divd = Vector3(2, 2, 2);
 
@@ -60,7 +60,7 @@ void MenuState::Update(float dt)
 	}
 	if (input.KeyPress(SDLK_SPACE))
 	{
-		Game::Instance().PushState(new StageState());
+		Game::PushState(new StageState());
 	}
 
 	UpdateArray(dt);

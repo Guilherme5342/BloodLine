@@ -68,8 +68,8 @@ void Collider::Render()
 	point = (Vector2(box.x, box.y + box.h) - center).GetRotated(associated.angleDeg / (FRAC_PI)) + center - Camera::GetCurrentCamPos();
 	points[3] = { (int)point.x, (int)point.y };
 
-	SDL_SetRenderDrawColor(Game::Instance().GetRenderer(), 255, 0, 0, SDL_ALPHA_OPAQUE);
-	SDL_RenderDrawLines(Game::Instance().GetRenderer(), points, 5);
+	SDL_SetRenderDrawColor(Game::GetRenderer(), 255, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_RenderDrawLines(Game::GetRenderer(), points, 5);
 
 #pragma endregion
 }

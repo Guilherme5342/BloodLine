@@ -87,7 +87,7 @@ Game &Game::Instance()
 	return *instance;
 }
 
-void Game::Run()
+void Game::__Run()
 {
 	if (storedState != nullptr)
 	{
@@ -167,7 +167,7 @@ void Game::CalculateDeltaTime()
 	leftOver = deltaTime - fixedDeltaTime;
 }
 
-GameObject *Game::Instantiate(Component *component, Vector2 position)
+GameObject *Game::__Instantiate(Component *component, Vector2 position)
 {
 	GameObject *gameObj = new GameObject();
 	gameObj->AddComponent(component);

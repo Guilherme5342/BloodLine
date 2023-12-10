@@ -69,7 +69,7 @@ void PlayerController::Update(float dt)
 
 		Atack *atack = new Atack(*atackObject, angle, damage, sprite, targetsPlayer, direction,frameCount);
 		atackObject->AddComponent(atack);
-		Game::Instance().GetState().AddObject(atackObject);
+		Game::GetState().AddObject(atackObject);
 	}
 
 	if (!canDash)

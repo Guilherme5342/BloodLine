@@ -25,5 +25,5 @@ void BloodSpell::Activate()
 
     Bullet *bullet = new Bullet(*bulletObject, angle, speed, damage, maxDistance, sprite, targetsPlayer, frameCount);
     bulletObject->AddComponent(bullet);
-    Game::Instance().GetState().AddObject(bulletObject);
+    Game::GetState().AddObject(bulletObject);
 }

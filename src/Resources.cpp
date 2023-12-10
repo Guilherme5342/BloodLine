@@ -14,7 +14,7 @@ std::shared_ptr<SDL_Texture> Resources::GetImage(std::string filePath)
 		return imageTable[filePath];
 	}
 
-	SDL_Texture* texture = IMG_LoadTexture(Game::Instance().GetRenderer(), filePath.c_str());
+	SDL_Texture* texture = IMG_LoadTexture(Game::GetRenderer(), filePath.c_str());
 
 	// Construtor + Destrutor do Shared Pointer
 	imageTable[filePath] = std::shared_ptr<SDL_Texture>(texture, [](SDL_Texture *ptr)

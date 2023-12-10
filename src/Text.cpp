@@ -55,7 +55,7 @@ void Text::RedrawTexture()
 		break;
 	}
 
-	texture = SDL_CreateTextureFromSurface(Game::Instance().GetRenderer(), surface);
+	texture = SDL_CreateTextureFromSurface(Game::GetRenderer(), surface);
 
 	associated.box.w = surface->w;
 	associated.box.h = surface->h;
@@ -77,7 +77,7 @@ void Text::Render()
 		static_cast<int>(associated.box.w),
 		static_cast<int>(associated.box.h)};
 
-	SDL_RenderCopyEx(Game::Instance().GetRenderer(), texture, &srcRect, &dstRect, associated.angleDeg, nullptr, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(Game::GetRenderer(), texture, &srcRect, &dstRect, associated.angleDeg, nullptr, SDL_FLIP_NONE);
 }
 
 void Text::RenderStatic()
@@ -91,5 +91,5 @@ void Text::RenderStatic()
 		static_cast<int>(associated.box.w),
 		static_cast<int>(associated.box.h)};
 
-	SDL_RenderCopyEx(Game::Instance().GetRenderer(), texture, &srcRect, &dstRect, associated.angleDeg, nullptr, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(Game::GetRenderer(), texture, &srcRect, &dstRect, associated.angleDeg, nullptr, SDL_FLIP_NONE);
 }

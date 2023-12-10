@@ -28,7 +28,7 @@ void PawnEnemy::Start()
 	Collider* squareDetectorRight = new Collider(associated, { 25,25 }, { associated.box.x + 50,0 }, true);
 	Collider* squareDetectorLeft = new Collider(associated, { 25,25 }, { -associated.box.x - 50,0 }, true);
 
-	Game::Instance().Instantiate(squareDetectorLeft, Vector2(25, 25));
+	Game::Instantiate(squareDetectorLeft, Vector2(25, 25));
 }
 
 void PawnEnemy::Render() {
@@ -41,10 +41,10 @@ void PawnEnemy::Render() {
 
 	SDL_Point offsetPoints[] = {pointLeft,pointRight};
 
-	SDL_SetRenderDrawColor(Game::Instance().GetRenderer(), 255, 255, 8, 255);
-	SDL_SetRenderDrawBlendMode(Game::Instance().GetRenderer(), SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(Game::GetRenderer(), 255, 255, 8, 255);
+	SDL_SetRenderDrawBlendMode(Game::GetRenderer(), SDL_BLENDMODE_BLEND);
 
-	SDL_RenderDrawPoints(Game::Instance().GetRenderer(), offsetPoints,2);
+	SDL_RenderDrawPoints(Game::GetRenderer(), offsetPoints,2);
 
 }
 

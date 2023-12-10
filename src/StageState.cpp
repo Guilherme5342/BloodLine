@@ -29,7 +29,7 @@ void StageState::LoadAssets()
 
 	music.Open("assets/audio/stageState.ogg");
 
-	Vector2 windowCenter = Game::Instance().GetWindowCenter();
+	Vector2 windowCenter = Game::GetWindowCenter();
 
 	GameObject *bgObj = new GameObject("Background");
 	bgObj->AddComponent(new Sprite(*bgObj, BACKGROUND_IMAGE));
@@ -120,7 +120,7 @@ void StageState::Start()
 	music.Play();
 	cout << "StageState " << objectArray.size() << endl;
 
-	Rect groundRect = Rect(Game::Instance().GetWindowCenter(), 500, 100);
+	Rect groundRect = Rect(Game::GetWindowCenter(), 500, 100);
 
 	groundRect.FillRect();
 

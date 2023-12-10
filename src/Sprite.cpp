@@ -78,7 +78,7 @@ void Sprite::Render(int x, int y, int w, int h)
 {
 	SDL_Rect dstrect = SDL_Rect{x, y, w, h};
 
-	SDL_RenderCopyEx(Game::Instance().GetRenderer(), texture.get(),
+	SDL_RenderCopyEx(Game::GetRenderer(), texture.get(),
 					 &clipRect, &dstrect, associated.angleDeg, nullptr, flipRenderer);
 }
 

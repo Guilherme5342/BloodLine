@@ -12,7 +12,7 @@ void Camera::Update(float dt)
 {
 	if (focus != nullptr)
 	{
-		pos = focus->box.GetCenter() - Game::Instance().GetWindowCenter();
+		pos = focus->box.GetCenter() - Game::GetWindowCenter();
 
 		return;
 	}
