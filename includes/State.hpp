@@ -31,7 +31,7 @@ public:
 	virtual void LoadAssets() = 0;
 
 	/// <summary>
-	/// Pausa o Estado Atual ap�s o empilhamento de um Estado Novp
+	/// Pausa o Estado Atual após o empilhamento de um Estado Novo
 	/// </summary>
 	virtual void Pause() = 0;
 	/// <summary>

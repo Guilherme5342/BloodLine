@@ -135,7 +135,7 @@ void StageState::FixedUpdate(float fixedDt)
 
 void StageState::Update(float dt)
 {
-	if (InputSystem::Instance().KeyPress(SDLK_ESCAPE))
+	if (InputSystem::KeyPress(SDLK_ESCAPE))
 	{
 		popRequested = true;
 	}

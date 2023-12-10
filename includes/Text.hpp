@@ -8,7 +8,7 @@
 #include <SDL2/SDL_ttf.h>
 #endif
 
-typedef enum FontStyle
+enum FontStyle
 {
 	DEFAULT = TTF_STYLE_NORMAL,
 	BOLD = TTF_STYLE_BOLD,
@@ -16,7 +16,7 @@ typedef enum FontStyle
 	UNDERLINE = TTF_STYLE_UNDERLINE
 };
 
-typedef enum TextStyle
+enum TextStyle
 {
 	SOLID,
 	SHADED,

@@ -21,7 +21,7 @@ void PlayerAttack::Start()
 
 void PlayerAttack::Update(float dt)
 {
-    if (InputSystem::Instance().KeyPress(SDLK_z)) {
+    if (InputSystem::KeyPress(SDLK_z)) {
         PerformAttack();
     }
 }

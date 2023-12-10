@@ -3,7 +3,7 @@
 
 Atack::Atack(GameObject &associated, float angle, int damage, std::string sprite, bool targetsPlayer, int direction, int frameCount) : Component(associated)
 {
-    associated.angleDeg = angle * 180 / 3.14;
+    associated.angleDeg = angle * 180.0 / 3.14;
     
     this->targetsPlayer = targetsPlayer;
     this->damage = damage;

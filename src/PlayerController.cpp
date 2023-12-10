@@ -33,20 +33,20 @@ void PlayerController::Update(float dt)
 		return;
 	}
 
-	moving = (!jumping) && (InputSystem::Instance().IsKeyDown(SDLK_a) || InputSystem::Instance().IsKeyDown(SDLK_d));
+	moving = (!jumping) && (InputSystem::IsKeyDown(SDLK_a) || InputSystem::IsKeyDown(SDLK_d));
 
 	moveDir = {0, 0};
-	moveDir.x += InputSystem::Instance().IsKeyDown(SDLK_a) * (-speed * dt);
-	moveDir.x -= InputSystem::Instance().IsKeyDown(SDLK_d) * (-speed * dt);
+	moveDir.x += InputSystem::IsKeyDown(SDLK_a) * (-speed * dt);
+	moveDir.x -= InputSystem::IsKeyDown(SDLK_d) * (-speed * dt);
 
-	jumping = InputSystem::Instance().KeyPress(SDLK_SPACE) && canJump;
+	jumping = InputSystem::KeyPress(SDLK_SPACE) && canJump;
 	playerBody.ApplyForce(Vector2(0, jumping * -jumpForce), IMPULSE);
 
-	int direction = InputSystem::Instance().IsKeyDown(SDLK_a) ? -1 : InputSystem::Instance().IsKeyDown(SDLK_d) ? 1
+	int direction = InputSystem::IsKeyDown(SDLK_a) ? -1 : InputSystem::IsKeyDown(SDLK_d) ? 1
 																												   : 0;
 	float dashVelocity = DASH_SPEED_MULTIPLIER * direction;
 
-	if (canDash && InputSystem::Instance().KeyPress(SDLK_LSHIFT))
+	if (canDash && InputSystem::KeyPress(SDLK_LSHIFT))
 	{
 		lastDashVel = dashVelocity;
 
@@ -56,7 +56,7 @@ void PlayerController::Update(float dt)
 		animState = new DashState(sprite);
 	}
 
-	if(InputSystem::Instance().KeyPress(SDLK_z)){
+	if(InputSystem::KeyPress(SDLK_z)){
 		GameObject *atackObject = new GameObject();
 		atackObject->box.SetCenter(associated.box.GetCenter());
 		float angle = 0;
@@ -92,17 +92,17 @@ void PlayerController::Update(float dt)
 		animState = new MovingState(sprite);
 	}
 
-	if (InputSystem::Instance().KeyPress(SDLK_z))
+	if (InputSystem::KeyPress(SDLK_z))
 	{
 		animState = new AttackState(sprite, 10, 30, .2f);
 	}
 
-	if (InputSystem::Instance().KeyPress(SDLK_b))
+	if (InputSystem::KeyPress(SDLK_b))
 	{
 		CastSpell("BloodSpell");
 	}
 
-	if (InputSystem::Instance().KeyPress(SDLK_l))
+	if (InputSystem::KeyPress(SDLK_l))
 	{
 		CastSpell("BloodBarrage");
 	}

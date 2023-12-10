@@ -105,16 +105,13 @@ void Game::__Run()
 	// Nunca esquecer de colocar as atualizações das Features que forem feitas na GameEngine
 	// (Ex. InputSystem.Update(), Physics.Update(), Animator.Update())
 
-	// Cria instancia de input fora do loop para não re-criar instancia a cada iteração
-	InputSystem &input = InputSystem::Instance();
-
 	// Checa quit requested do input, não do state (Mais otimizado), pois
 	// não é necessário criar instância de InputSystem no UpdateState()
 	// CAIO -> Não esta saindo do jogo quando se pressiona ESC no Menu
-	while (!stateStack.empty() && !GetState().QuitRequested() && !input.QuitRequested())
+	while (!stateStack.empty() && !GetState().QuitRequested() && !InputSystem::QuitRequested())
 	{
 		CalculateDeltaTime();
-		input.Update();
+		InputSystem::Update();
 
 		// Update de Física
 		counter -= leftOver;

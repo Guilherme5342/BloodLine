@@ -17,20 +17,20 @@ void Camera::Update(float dt)
 		return;
 	}
 
-	if (InputSystem::Instance().IsKeyDown(SDLK_w))
+	if (InputSystem::IsKeyDown(SDLK_w))
 	{
 		speed.y = -1;
 		// cout << speed.y << endl;
 	}
-	if (InputSystem::Instance().IsKeyDown(SDLK_s))
+	if (InputSystem::IsKeyDown(SDLK_s))
 	{
 		speed.y = 1;
 	}
-	if (InputSystem::Instance().IsKeyDown(SDLK_a))
+	if (InputSystem::IsKeyDown(SDLK_a))
 	{
 		speed.x = -1;
 	}
-	if (InputSystem::Instance().IsKeyDown(SDLK_d))
+	if (InputSystem::IsKeyDown(SDLK_d))
 	{
 		speed.x = 1;
 	}

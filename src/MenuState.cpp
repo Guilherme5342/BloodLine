@@ -52,13 +52,11 @@ void MenuState::Start()
 
 void MenuState::Update(float dt)
 {
-	InputSystem &input = InputSystem::Instance();
-
-	if (input.KeyPress(SDLK_ESCAPE) || input.QuitRequested())
+	if (InputSystem::KeyPress(SDLK_ESCAPE) || InputSystem::QuitRequested())
 	{
 		quitRequested = true;
 	}
-	if (input.KeyPress(SDLK_SPACE))
+	if (InputSystem::KeyPress(SDLK_SPACE))
 	{
 		Game::PushState(new StageState());
 	}

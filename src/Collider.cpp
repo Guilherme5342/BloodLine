@@ -43,7 +43,7 @@ void Collider::Update(float dt)
 // Vector2::Rotate( float rad )		- Rotaciona um Vector2 pelo �ngulo em radianos passado
 void Collider::Render()
 {
-	if (InputSystem::Instance().KeyPress(SDLK_TAB)) {
+	if (InputSystem::KeyPress(SDLK_TAB)) {
 		debug = !debug;
 	}
 
