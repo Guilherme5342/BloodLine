@@ -15,7 +15,7 @@ public:
         BLENDED
     };
 
-    Text(GameObject &associated, std::string fontFile, std::int32_t fontSize, Style style, std::string text, SDL_Color color);
+    Text(GameObject& associated, std::int32_t fontSize, Style style, std::string text, SDL_Color color, std::string fontFile = "");
     ~Text();
 
     void Update(float deltaTime) override;

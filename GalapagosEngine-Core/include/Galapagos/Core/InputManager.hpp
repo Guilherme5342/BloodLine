@@ -8,16 +8,6 @@
 #include "Camera.hpp"
 #include "KeyCodes.hpp"
 
-// TODO Enum class teclas
-
-#define LEFT_ARROW_KEY SDLK_LEFT
-#define RIGHT_ARROW_KEY SDLK_RIGHT
-#define UP_ARROW_KEY SDLK_UP
-#define DOWN_ARROW_KEY SDLK_DOWN
-#define ESCAPE_KEY SDLK_ESCAPE
-#define LEFT_MOUSE_BUTTON SDL_BUTTON_LEFT
-#define RIGHT_MOUSE_BUTTON SDL_BUTTON_RIGHT
-
 class InputManager
 {
 public:
@@ -29,9 +19,9 @@ public:
     static inline bool KeyRelease(Key key) { return GetInstance().__KeyRelease(key); }
     static inline bool IsKeyDown(Key key) { return GetInstance().__IsKeyDown(key); }
 
-    static inline bool MousePress(Uint8 button) { return GetInstance().__MousePress(button); }
-    static inline bool MouseRelease(Uint8 button) { return GetInstance().__MouseRelease(button); }
-    static inline bool IsMouseDown(Uint8 button) { return GetInstance().__IsMouseDown(button); }
+    static inline bool MousePress(MouseButton button) { return GetInstance().__MousePress(button); }
+    static inline bool MouseRelease(MouseButton button) { return GetInstance().__MouseRelease(button); }
+    static inline bool IsMouseDown(MouseButton button) { return GetInstance().__IsMouseDown(button); }
 
     static inline std::int32_t GetMouseX() { return GetInstance().__GetMouseX(); }
     static inline std::int32_t GetMouseY() { return GetInstance().__GetMouseY(); }
@@ -56,9 +46,9 @@ private:
     bool __KeyRelease(Key key) const;
     bool __IsKeyDown(Key key) const;
 
-    bool __MousePress(Uint8 button) const;
-    bool __MouseRelease(Uint8 button) const;
-    bool __IsMouseDown(Uint8 button) const;
+    bool __MousePress(MouseButton button) const;
+    bool __MouseRelease(MouseButton button) const;
+    bool __IsMouseDown(MouseButton button) const;
 
     std::int32_t __GetMouseX() const;
     std::int32_t __GetMouseY() const;

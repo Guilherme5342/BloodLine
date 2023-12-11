@@ -76,19 +76,19 @@ bool InputManager::__IsKeyDown(Key key) const
     return m_keyState[GetKeyIndex(key)];
 }
 
-bool InputManager::__MousePress(Uint8 button) const
+bool InputManager::__MousePress(MouseButton button) const
 {
-    return m_mouseState[button] && (m_mouseUpdate[button] == m_updateCounter);
+    return m_mouseState[static_cast<std::int32_t>(button)] && (m_mouseUpdate[static_cast<std::int32_t>(button)] == m_updateCounter);
 }
 
-bool InputManager::__MouseRelease(Uint8 button) const
+bool InputManager::__MouseRelease(MouseButton button) const
 {
-    return (!m_mouseState[button]) && (m_mouseUpdate[button] == m_updateCounter);
+    return (!m_mouseState[static_cast<std::int32_t>(button)]) && (m_mouseUpdate[static_cast<std::int32_t>(button)] == m_updateCounter);
 }
 
-bool InputManager::__IsMouseDown(Uint8 button) const
+bool InputManager::__IsMouseDown(MouseButton button) const
 {
-    return m_mouseState[button];
+    return m_mouseState[static_cast<std::int32_t>(button)];
 }
 
 std::int32_t InputManager::__GetMouseX() const

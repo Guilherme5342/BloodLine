@@ -40,7 +40,7 @@ void EndState::LoadAssets()
     m_objectArray.emplace_back(endImage);
 
     GameObject* textObject = new GameObject();
-    Text* text = new Text(*textObject, "res/font/Call me maybe.ttf", 30, Text::Style::BLENDED, "Presione Espaco para Jogar novamente ou esc para sair.", SDL_Color{ 63, 72, 204, 255 });
+    Text* text = new Text(*textObject, 30, Text::Style::BLENDED, "Presione Espaco para Jogar novamente ou esc para sair.", SDL_Color{ 63, 72, 204, 255 });
     textObject->AddComponent(text);
     textObject->m_box.SetCenter({ 512, 300 });
 

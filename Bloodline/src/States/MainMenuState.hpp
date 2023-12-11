@@ -1,5 +1,6 @@
 #pragma once
 #include "Galapagos/Core/State.hpp"
+#include "Galapagos/Core/Music.hpp"
 
 class MainMenuState : public State
 {
@@ -15,4 +16,5 @@ public:
     void Pause();
     void Resume();
 private:
+    Music m_music;
 };

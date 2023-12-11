@@ -4,9 +4,10 @@
 #include "Galapagos/Components/Sprite.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 #include "Galapagos/Core/Game.hpp"
-#include "MainMenuState.hpp"
 #include "Galapagos/Components/CameraFollower.hpp"
 #include "Galapagos/Components/Text.hpp"
+
+#include "MainMenuState.hpp"
 
 TitleState::TitleState()
 {

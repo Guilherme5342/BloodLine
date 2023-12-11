@@ -37,7 +37,7 @@ void PenguinCannon::Update(float deltaTime)
     float angle = m_associated.m_box.GetCenter().InclinationDeg(InputManager::GetWorldMousePos());
     m_associated.m_angleDeg = angle;
 
-    if (InputManager::MousePress(LEFT_MOUSE_BUTTON))
+    if (InputManager::MousePress(MouseButton::Left))
     {
         Shoot();
     }

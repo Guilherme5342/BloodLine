@@ -3,14 +3,18 @@
 #include "Galapagos/Core/Game.hpp"
 #include "Galapagos/Core/Camera.hpp"
 #include "Galapagos/Core/Resources.hpp"
+#include "Galapagos/Config/ResourceConfig.hpp"
 
-Text::Text(GameObject &associated, std::string fontFile, std::int32_t fontSize, Style style, std::string text, SDL_Color color)
+Text::Text(GameObject &associated, std::int32_t fontSize, Style style, std::string text, SDL_Color color, std::string fontFile)
     : Component(associated)
 {
     m_font = nullptr;
     m_texture = nullptr;
     m_text = text;
     m_style = style;
+    if (fontFile == "") {
+        fontFile = ResourceConfig::fontPath;
+    }
     m_fontFile = fontFile;
     m_fontSize = fontSize;
     m_color = color;
