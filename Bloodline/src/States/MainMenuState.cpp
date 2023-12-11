@@ -1,27 +1,27 @@
-#include "TitleState.hpp"
+#include "MainMenuState.hpp"
 
 #include "Galapagos/Core/GameObject.hpp"
 #include "Galapagos/Components/Sprite.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 #include "Galapagos/Core/Game.hpp"
-#include "MainMenuState.hpp"
+#include "StageState.hpp"
 #include "Galapagos/Components/CameraFollower.hpp"
 #include "Galapagos/Components/Text.hpp"
 
-TitleState::TitleState()
+MainMenuState::MainMenuState()
 {
 }
 
-TitleState::~TitleState()
+MainMenuState::~MainMenuState()
 {
     m_objectArray.clear();
 }
 
-void TitleState::LoadAssets()
+void MainMenuState::LoadAssets()
 {
     GameObject *titleImage = new GameObject();
 
-    Sprite *background = new Sprite(*titleImage, "res/img/Title.png");
+    Sprite *background = new Sprite(*titleImage, "res/img/MainMenuBg.png", 40, 0.2f, true, 7, 6);
     titleImage->AddComponent(background);
 
     CameraFollower *cameraFollower = new CameraFollower(*titleImage);
@@ -30,39 +30,35 @@ void TitleState::LoadAssets()
     m_objectArray.emplace_back(titleImage);
 }
 
-void TitleState::Update(float deltaTime)
+void MainMenuState::Update(float deltaTime)
 {
     UpdateArray(deltaTime);
-    m_timer.Update(deltaTime);
-    if (InputManager::QuitRequested())
+    if (InputManager::KeyPress(Key::Escape) || InputManager::QuitRequested())
     {
         m_quitRequested = true;
     }
-    if (InputManager::KeyPress(Key::Escape) || InputManager::KeyPress(Key::Space) ||
-        InputManager::KeyPress(Key::Return) || InputManager::KeyPress(Key::Return2) || 
-        InputManager::KeyPress(Key::Numpad_enter) || m_timer.Get() > 5)
+    if (InputManager::KeyPress(Key::Space))
     {
-        m_popRequested = true;
-        Game::Push(new MainMenuState());
+        Game::Push(new StageState());
     }
 }
 
-void TitleState::Render() const
+void MainMenuState::Render() const
 {
     RenderArray();
 }
 
-void TitleState::Start()
+void MainMenuState::Start()
 {
     Camera::position = { 0, 0 };
     LoadAssets();
 }
 
-void TitleState::Pause()
+void MainMenuState::Pause()
 {
 }
 
-void TitleState::Resume()
+void MainMenuState::Resume()
 {
     Camera::position = { 0, 0 };
 }

@@ -89,7 +89,7 @@ void PenguinBody::NotifyCollision(GameObject &other)
         GameObject *explosion = new GameObject();
         explosion->m_angleDeg = m_associated.m_angleDeg;
 
-        Sprite *sprite = new Sprite(*explosion, "res/img/penguindeath.png", 5, 0.1, false, 5 * 0.1);
+        Sprite *sprite = new Sprite(*explosion, "res/img/penguindeath.png", 5, 0.1, false, 5, 1, 5 * 0.1);
         explosion->AddComponent(sprite);
         explosion->m_box.SetCenter(m_associated.m_box.GetCenter());
 

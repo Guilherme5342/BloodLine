@@ -117,7 +117,7 @@ void Alien::NotifyCollision(GameObject &other)
         GameObject *explosion = new GameObject();
         explosion->m_angleDeg = m_associated.m_angleDeg;
 
-        Sprite *sprite = new Sprite(*explosion, "res/img/aliendeath.png", 4, 0.3, false, 4 * 0.3);
+        Sprite *sprite = new Sprite(*explosion, "res/img/aliendeath.png", 4, 0.3, false, 4, 1, 4 * 0.3);
         explosion->AddComponent(sprite);
         explosion->m_box.SetCenter(m_associated.m_box.GetCenter());
 

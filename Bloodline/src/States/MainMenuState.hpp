@@ -1,12 +1,11 @@
 #pragma once
 #include "Galapagos/Core/State.hpp"
-#include "Galapagos/Utils/Timer.hpp"
 
-class TitleState : public State
+class MainMenuState : public State
 {
 public:
-    TitleState();
-    ~TitleState();
+    MainMenuState();
+    ~MainMenuState();
 
     void LoadAssets();
     void Update(float deltaTime);
@@ -16,6 +15,4 @@ public:
     void Pause();
     void Resume();
 private:
-
-    Timer m_timer;
 };

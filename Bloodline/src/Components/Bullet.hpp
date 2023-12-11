@@ -7,7 +7,8 @@
 class Bullet : public Component
 {
 public:
-    Bullet(GameObject &associated, float angle, float maxDistance, bool targetsPlayer, std::string sprite, std::uint32_t frameCount = 1, float frameTime = 1, bool loop = true);
+    Bullet(GameObject &associated, float angle, float maxDistance, bool targetsPlayer, std::string sprite, std::uint32_t frameCount, float frameTime, bool loop);
+    Bullet(GameObject &associated, float angle, float maxDistance, bool targetsPlayer, std::string sprite, std::uint32_t frameCount, float frameTime, bool loop, std::uint32_t columnCount, std::uint32_t rowCount);
     ~Bullet() override;
 
     void Update(float deltaTime) override;

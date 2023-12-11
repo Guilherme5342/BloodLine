@@ -118,11 +118,17 @@ void Game::__Run()
         if (m_stateStack.top()->PopRequested())
         {
             m_stateStack.pop();
-            m_stateStack.top()->Resume();
+            if (!m_stateStack.empty())
+            {
+                m_stateStack.top()->Resume();
+            }
         }
         if (m_storedState)
         {
-            m_stateStack.top()->Pause();
+            if (!m_stateStack.empty())
+            {
+                m_stateStack.top()->Pause();
+            }
             m_stateStack.emplace(m_storedState);
             m_stateStack.top()->Start();
             m_storedState = nullptr;

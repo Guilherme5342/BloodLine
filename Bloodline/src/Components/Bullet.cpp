@@ -2,10 +2,27 @@
 #include "Galapagos/Components/Sprite.hpp"
 #include "Galapagos/Components/Collider.hpp"
 
-Bullet::Bullet(GameObject &associated, float angle, float maxDistance, bool targetsPlayer, std::string sprite, std::uint32_t frameCount, float frameTime, bool loop)
+Bullet::Bullet(GameObject& associated, float angle, float maxDistance, bool targetsPlayer, std::string sprite, std::uint32_t frameCount, float frameTime, bool loop)
     : Component(associated)
 {
-    Sprite *bulletSprite = new Sprite(associated, sprite, frameCount, frameTime, loop);
+    Sprite* bulletSprite = new Sprite(associated, sprite, frameCount, frameTime, loop, frameCount, 1);
+    associated.AddComponent(bulletSprite);
+
+    Collider* collider = new Collider(associated);
+    associated.AddComponent(collider);
+
+    m_targetsPlayer = targetsPlayer;
+    m_damage = 10;
+    m_speed = { 1, 0 };
+    m_speed.RotateDeg(angle);
+
+    m_distanceLeft = maxDistance;
+}
+
+Bullet::Bullet(GameObject& associated, float angle, float maxDistance, bool targetsPlayer, std::string sprite, std::uint32_t frameCount, float frameTime, bool loop, std::uint32_t columnCount, std::uint32_t rowCount)
+    : Component(associated)
+{
+    Sprite *bulletSprite = new Sprite(associated, sprite, frameCount, frameTime, loop, columnCount, rowCount);
     associated.AddComponent(bulletSprite);
 
     Collider *collider = new Collider(associated);

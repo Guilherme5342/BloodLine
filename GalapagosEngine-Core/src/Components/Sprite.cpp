@@ -11,14 +11,42 @@ Sprite::Sprite(GameObject &associated) : Component(associated)
 {
     m_texture = nullptr;
     m_scale = {1.f, 1.f};
-    m_frameCount = 1;
+    m_rowCount = 1;
+    m_columnCount = 1;
     m_currentFrame = 1;
+
+    m_width = 0;
+    m_height = 0;
+    m_clipRect = {0, 0, 0, 0};
 }
-Sprite::Sprite(GameObject &associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop, float secondsToSelfDestruct) : Component(associated)
+
+Sprite::Sprite(GameObject& associated, std::string filePath) : Component (associated)
 {
     m_texture = nullptr;
-    Open(filePath, frameCount, frameTime);
-    m_scale = {1.f, 1.f};
+    Open(filePath, 1, 1, 1);
+    m_scale = { 1.f, 1.f };
+    m_loop = true;
+    m_secondsToSelfDestruct = 0;
+}
+
+Sprite::Sprite(GameObject& associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop)
+    : Component(associated)
+{
+    m_texture = nullptr;
+    m_frameCount = frameCount;
+    Open(filePath, frameTime, 1, frameTime);
+    m_scale = { 1.f, 1.f };
+    m_loop = loop;
+    m_secondsToSelfDestruct = 0;
+}
+
+Sprite::Sprite(GameObject& associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop, std::uint32_t columnCount, std::uint32_t rowCount, float secondsToSelfDestruct )
+    : Component(associated)
+{
+    m_texture = nullptr;
+    m_frameCount = frameCount;
+    Open(filePath, columnCount, rowCount, frameTime);
+    m_scale = { 1.f, 1.f };
     m_loop = loop;
     m_secondsToSelfDestruct = secondsToSelfDestruct;
 }
@@ -27,9 +55,10 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::Open(std::string filePath, std::uint32_t frameCount, float frameTime)
+void Sprite::Open(std::string filePath, std::uint32_t columnCount, std::uint32_t rowCount, float frameTime)
 {
-    m_frameCount = frameCount;
+    m_columnCount = columnCount;
+    m_rowCount = rowCount;
     m_frameTime = frameTime;
     m_timeElapsed = 0;
     m_currentFrame = 1;
@@ -38,10 +67,13 @@ void Sprite::Open(std::string filePath, std::uint32_t frameCount, float frameTim
 
     SDL_QueryTexture(m_texture, nullptr, nullptr, &m_width, &m_height);
 
-    m_clipRect = {0, 0, m_width / static_cast<std::int32_t>(frameCount), m_height};
+    int32_t frameWidth = m_width / static_cast<std::int32_t>(m_columnCount);
+    int32_t frameHeight = m_height / static_cast<std::int32_t>(m_rowCount);
 
-    m_associated.m_box.w = m_width / static_cast<std::int32_t>(frameCount);
-    m_associated.m_box.h = m_height;
+    m_clipRect = {0, 0, frameWidth, frameHeight};
+
+    m_associated.m_box.w = frameWidth;
+    m_associated.m_box.h = frameHeight;
 }
 
 void Sprite::SetClip(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h)
@@ -52,8 +84,10 @@ void Sprite::SetClip(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_
 void Sprite::Update(float deltaTime)
 {
     m_selfDestructCount.Update(deltaTime);
-    if(m_secondsToSelfDestruct > 0){
-        if(m_secondsToSelfDestruct < m_selfDestructCount.Get()){
+    if (m_secondsToSelfDestruct > 0)
+    {
+        if (m_secondsToSelfDestruct < m_selfDestructCount.Get())
+        {
             m_associated.RequestDelete();
         }
     }
@@ -62,7 +96,8 @@ void Sprite::Update(float deltaTime)
     {
         m_currentFrame++;
         m_currentFrame -= (m_currentFrame > m_frameCount) * m_frameCount;
-        m_clipRect.x = (m_currentFrame - 1) * GetWidth();
+        m_clipRect.x = ((m_currentFrame - 1) % m_columnCount) * GetWidth();
+        m_clipRect.y = ((m_currentFrame - 1) / m_columnCount) * GetHeight();
         m_timeElapsed = 0;
     }
 }
@@ -85,12 +120,12 @@ bool Sprite::Is(std::string type) const
 
 std::int32_t Sprite::GetWidth() const
 {
-    return m_width / static_cast<std::int32_t>(m_frameCount) * m_scale.x;
+    return m_width / static_cast<std::int32_t>(m_columnCount) * m_scale.x;
 }
 
 std::int32_t Sprite::GetHeight() const
 {
-    return m_height * m_scale.y;
+    return m_height / static_cast<std::int32_t>(m_rowCount) * m_scale.y;
 }
 
 bool Sprite::IsOpen() const
@@ -121,13 +156,19 @@ void Sprite::SetScale(Vec2 scale)
 void Sprite::SetFrame(std::uint32_t frame)
 {
     frame += (frame == 0);
-    m_currentFrame = frame % m_frameCount;
+    m_currentFrame = frame % (m_columnCount * m_rowCount);
 }
 
-void Sprite::SetFrameCount(std::uint32_t frameCount)
+void Sprite::SetRowCount(std::uint32_t rowCount)
 {
-    m_frameCount = frameCount;
-    m_currentFrame = 0;
+    m_rowCount = rowCount;
+    m_currentFrame = 1;
+}
+
+void Sprite::SetColumnCount(std::uint32_t columnCount)
+{
+    m_columnCount = columnCount;
+    m_currentFrame = 1;
 }
 
 void Sprite::SetFrameTime(float frameTime)
