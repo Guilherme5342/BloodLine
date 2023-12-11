@@ -12,8 +12,10 @@ struct Rect
 
     Vec2 GetCenter() const;
     void SetCenter(Vec2 pos);
-    void Scale(float x, float y);
-    void Scale(Vec2 scale);
+    void SetSize(float x, float y);
+    void SetSize(Vec2 size);
+    Rect Scaled(float x, float y) const;
+    Rect Scaled(Vec2 scale) const;
     float Distance(const Rect &other) const;
     float Distance(const Vec2 &other) const;
     bool IsColliding(const Vec2 &point) const;

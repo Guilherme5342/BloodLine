@@ -15,9 +15,10 @@ Sprite::Sprite(GameObject &associated) : Component(associated)
     m_columnCount = 1;
     m_currentFrame = 1;
 
-    m_width = 0;
-    m_height = 0;
+    m_totalWidth = 0;
+    m_totalHeight = 0;
     m_clipRect = {0, 0, 0, 0};
+    m_distRect = {0, 0, 0, 0};
 }
 
 Sprite::Sprite(GameObject& associated, std::string filePath) : Component (associated)
@@ -34,7 +35,7 @@ Sprite::Sprite(GameObject& associated, std::string filePath, std::uint32_t frame
 {
     m_texture = nullptr;
     m_frameCount = frameCount;
-    Open(filePath, frameTime, 1, frameTime);
+    Open(filePath, frameCount, 1, frameTime);
     m_scale = { 1.f, 1.f };
     m_loop = loop;
     m_secondsToSelfDestruct = 0;
@@ -65,20 +66,26 @@ void Sprite::Open(std::string filePath, std::uint32_t columnCount, std::uint32_t
 
     m_texture = Resources::GetImage(filePath);
 
-    SDL_QueryTexture(m_texture, nullptr, nullptr, &m_width, &m_height);
+    SDL_QueryTexture(m_texture, nullptr, nullptr, &m_totalWidth, &m_totalHeight);
 
-    int32_t frameWidth = m_width / static_cast<std::int32_t>(m_columnCount);
-    int32_t frameHeight = m_height / static_cast<std::int32_t>(m_rowCount);
+    m_frameWidth = m_totalWidth / static_cast<std::int32_t>(m_columnCount);
+    m_frameHeight = m_totalHeight / static_cast<std::int32_t>(m_rowCount);
 
-    m_clipRect = {0, 0, frameWidth, frameHeight};
+    m_clipRect = {0, 0, m_frameWidth, m_frameHeight};
+    m_distRect = m_clipRect;
 
-    m_associated.m_box.w = frameWidth;
-    m_associated.m_box.h = frameHeight;
+    m_associated.m_box.w = m_frameWidth;
+    m_associated.m_box.h = m_frameHeight;
 }
 
 void Sprite::SetClip(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h)
 {
     m_clipRect = {x, y, w, h};
+}
+
+void Sprite::SetDist(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h)
+{
+    m_distRect = { x, y, w, h };
 }
 
 void Sprite::Update(float deltaTime)
@@ -96,8 +103,8 @@ void Sprite::Update(float deltaTime)
     {
         m_currentFrame++;
         m_currentFrame -= (m_currentFrame > m_frameCount) * m_frameCount;
-        m_clipRect.x = ((m_currentFrame - 1) % m_columnCount) * GetWidth();
-        m_clipRect.y = ((m_currentFrame - 1) / m_columnCount) * GetHeight();
+        m_clipRect.x = ((m_currentFrame - 1) % m_columnCount) * m_frameWidth;
+        m_clipRect.y = ((m_currentFrame - 1) / m_columnCount) * m_frameHeight;
         m_timeElapsed = 0;
     }
 }
@@ -109,7 +116,7 @@ void Sprite::Render() const
 
 void Sprite::Render(float x, float y) const
 {
-    SDL_Rect distRect = SDL_Rect{static_cast<int>(x), static_cast<int>(y), static_cast<int>(m_clipRect.w * m_scale.x), static_cast<int>(m_clipRect.h * m_scale.y)};
+    SDL_Rect distRect = SDL_Rect{static_cast<int>(x), static_cast<int>(y), static_cast<int>(m_distRect.w * m_scale.x), static_cast<int>(m_distRect.h * m_scale.y)};
     SDL_RenderCopyEx(Game::GetRenderer(), m_texture, &m_clipRect, &distRect, m_associated.m_angleDeg, nullptr, SDL_FLIP_NONE);
 }
 
@@ -120,12 +127,12 @@ bool Sprite::Is(std::string type) const
 
 std::int32_t Sprite::GetWidth() const
 {
-    return m_width / static_cast<std::int32_t>(m_columnCount) * m_scale.x;
+    return m_frameWidth * m_scale.x;
 }
 
 std::int32_t Sprite::GetHeight() const
 {
-    return m_height / static_cast<std::int32_t>(m_rowCount) * m_scale.y;
+    return m_frameHeight * m_scale.y;
 }
 
 bool Sprite::IsOpen() const
@@ -138,9 +145,9 @@ void Sprite::SetScale(float x, float y)
     x = ((x != 0) * x) + ((x == 0) * m_scale.x);
     y = ((y != 0) * y) + ((y == 0) * m_scale.y);
 
-    m_associated.m_box.Scale(x, y);
-
     m_scale = {x, y};
+
+    m_associated.m_box.SetSize(GetWidth(), GetHeight());
 }
 
 void Sprite::SetScale(float x)
@@ -151,29 +158,6 @@ void Sprite::SetScale(float x)
 void Sprite::SetScale(Vec2 scale)
 {
     SetScale(scale.x, scale.y);
-}
-
-void Sprite::SetFrame(std::uint32_t frame)
-{
-    frame += (frame == 0);
-    m_currentFrame = frame % (m_columnCount * m_rowCount);
-}
-
-void Sprite::SetRowCount(std::uint32_t rowCount)
-{
-    m_rowCount = rowCount;
-    m_currentFrame = 1;
-}
-
-void Sprite::SetColumnCount(std::uint32_t columnCount)
-{
-    m_columnCount = columnCount;
-    m_currentFrame = 1;
-}
-
-void Sprite::SetFrameTime(float frameTime)
-{
-    m_frameTime = frameTime;
 }
 
 Vec2 Sprite::GetScale() const

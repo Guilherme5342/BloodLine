@@ -31,6 +31,7 @@ void MainMenuState::LoadAssets()
 
     CameraFollower *cameraFollower = new CameraFollower(*titleImage);
     titleImage->AddComponent(cameraFollower);
+    background->SetDist(0, 0, 1440 , 810);
     m_objectArray.emplace_back(titleImage);
 
 
@@ -77,9 +78,11 @@ void MainMenuState::Start()
 
 void MainMenuState::Pause()
 {
+    m_music.Stop(0);
 }
 
 void MainMenuState::Resume()
 {
     Camera::position = { 0, 0 };
+    m_music.Play(-1);
 }

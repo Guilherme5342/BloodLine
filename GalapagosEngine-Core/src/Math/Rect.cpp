@@ -21,17 +21,32 @@ void Rect::SetCenter(Vec2 pos)
     this->y = pos.y - h / 2;
 }
 
-void Rect::Scale(float x, float y)
+void Rect::SetSize(float x, float y)
 {
     Vec2 center = GetCenter();
-    this->w *= x;
-    this->h *= y;
+    this->w = x;
+    this->h = y;
     SetCenter(center);
 }
 
-void Rect::Scale(Vec2 scale)
+void Rect::SetSize(Vec2 size)
 {
-    Scale(scale.x, scale.y);
+    SetSize(size.x, size.y);
+}
+
+Rect Rect::Scaled(float x, float y) const
+{
+    Rect scaledRect = *this;
+    Vec2 center = scaledRect.GetCenter();
+    scaledRect.w *= x;
+    scaledRect.h *= y;
+    scaledRect.SetCenter(center);
+    return scaledRect;
+}
+
+Rect Rect::Scaled(Vec2 scale) const
+{
+    return Scaled(scale.x, scale.y);
 }
 
 float Rect::Distance(const Rect &other) const

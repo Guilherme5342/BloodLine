@@ -33,16 +33,16 @@ public:
     void SetScale(float x);
     void SetScale(Vec2 scale);
     void SetClip(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h);
-    void SetFrame(std::uint32_t frame);
-    void SetRowCount(std::uint32_t rowCount);
-    void SetColumnCount(std::uint32_t columnCount);
-    void SetFrameTime(float frameTime);
+    void SetDist(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h);
 
 private:
     SDL_Texture *m_texture;
     SDL_Rect m_clipRect;
-    std::int32_t m_width;
-    std::int32_t m_height;
+    SDL_Rect m_distRect;
+    std::int32_t m_totalWidth = 0;
+    std::int32_t m_totalHeight = 0;
+    std::int32_t m_frameWidth = 0;
+    std::int32_t m_frameHeight = 0;
     std::uint32_t m_frameCount = 1;
     std::uint32_t m_columnCount = 1;
     std::uint32_t m_rowCount = 1;

@@ -17,7 +17,7 @@ Game &Game::GetInstance()
 {
     if (m_instance == nullptr)
     {
-        m_instance = new Game("Enzo Crisostomo - 190086751", 1024, 600);
+        m_instance = new Game("Enzo Crisostomo - 190086751", 1440, 810);
     }
     return *m_instance;
 }

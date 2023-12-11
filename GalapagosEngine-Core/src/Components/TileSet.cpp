@@ -19,6 +19,7 @@ void TileSet::RenderTile(std::uint32_t index, float x, float y)
     std::int32_t xClip = (index % m_columns) * m_tileWidth;
     std::int32_t yClip = (index / m_columns) * m_tileHeight;
     m_tileSet.SetClip(xClip, yClip, m_tileWidth, m_tileHeight);
+    m_tileSet.SetDist(0, 0, m_tileWidth, m_tileHeight);
     m_tileSet.Render(x, y);
 }
 
