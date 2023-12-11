@@ -1,6 +1,6 @@
 #pragma once
-#include "Galapagos/Core/State.h"
-#include "Galapagos/Core/Music.h"
+#include "Galapagos/Core/State.hpp"
+#include "Galapagos/Core/Music.hpp"
 
 class EndState : public State
 {

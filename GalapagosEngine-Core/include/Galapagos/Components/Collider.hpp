@@ -1,10 +1,10 @@
 #pragma once
 #include <cstdint>
 
-#include "Galapagos/Core/Component.h"
-#include "Galapagos/Core/GameObject.h"
-#include "Galapagos/Math/Vec2.h"
-#include "Galapagos/Math/Rect.h"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Core/GameObject.hpp"
+#include "Galapagos/Math/Vec2.hpp"
+#include "Galapagos/Math/Rect.hpp"
 
 class Collider : public Component
 {

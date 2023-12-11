@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Galapagos/Math/Rect.h"
-#include "Galapagos/Math/Vec2.h"
+#include "Galapagos/Math/Rect.hpp"
+#include "Galapagos/Math/Vec2.hpp"
 
 #include <algorithm>
 #include <cmath>

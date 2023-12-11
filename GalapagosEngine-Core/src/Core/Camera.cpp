@@ -1,6 +1,6 @@
-#include "Galapagos/Core/Camera.h"
-#include "Galapagos/Core/GameObject.h"
-#include "Galapagos/Core/InputManager.h"
+#include "Galapagos/Core/Camera.hpp"
+#include "Galapagos/Core/GameObject.hpp"
+#include "Galapagos/Core/InputManager.hpp"
 
 Vec2 Camera::position = {0, 0};
 Vec2 Camera::speed = {0, 0};

@@ -4,9 +4,9 @@
 #include <cstdint>
 #include <SDL2/SDL.h>
 
-#include "Galapagos/Math/Vec2.h"
-#include "Camera.h"
-#include "KeyCodes.h"
+#include "Galapagos/Math/Vec2.hpp"
+#include "Camera.hpp"
+#include "KeyCodes.hpp"
 
 // TODO Enum class teclas
 

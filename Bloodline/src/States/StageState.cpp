@@ -1,20 +1,20 @@
-#include "StageState.h"
+#include "StageState.hpp"
 
-#include <math.h>
+#include <cmath>
 #include <memory>
 
-#include "Galapagos/Components/Sound.h"
-#include "Galapagos/Components/TileMap.h"
-#include "Galapagos/Components/TileSet.h"
-#include "Galapagos/Components/CameraFollower.h"
-#include "Galapagos/Core/InputManager.h"
-#include "Galapagos/Core/Camera.h"
-#include "Components/Alien.h"
-#include "Components/PenguinBody.h"
-#include "Galapagos/Utils/Collision.h"
-#include "Galapagos/Core/Game.h"
-#include "EndState.h"
-#include "GameData.h"
+#include "Galapagos/Components/Sound.hpp"
+#include "Galapagos/Components/TileMap.hpp"
+#include "Galapagos/Components/TileSet.hpp"
+#include "Galapagos/Components/CameraFollower.hpp"
+#include "Galapagos/Core/InputManager.hpp"
+#include "Galapagos/Core/Camera.hpp"
+#include "Components/Alien.hpp"
+#include "Components/PenguinBody.hpp"
+#include "Galapagos/Utils/Collision.hpp"
+#include "Galapagos/Core/Game.hpp"
+#include "EndState.hpp"
+#include "GameData.hpp"
 
 StageState::StageState() : m_music()
 {

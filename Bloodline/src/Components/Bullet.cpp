@@ -1,6 +1,6 @@
-#include "Bullet.h"
-#include "Galapagos/Components/Sprite.h"
-#include "Galapagos/Components/Collider.h"
+#include "Bullet.hpp"
+#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/Collider.hpp"
 
 Bullet::Bullet(GameObject &associated, float angle, float maxDistance, bool targetsPlayer, std::string sprite, std::uint32_t frameCount, float frameTime, bool loop)
     : Component(associated)

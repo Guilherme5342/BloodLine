@@ -2,7 +2,7 @@
 #include <string>
 #include <cstdint>
 
-#include "Galapagos/Components/Sprite.h"
+#include "Galapagos/Components/Sprite.hpp"
 
 class TileSet
 {

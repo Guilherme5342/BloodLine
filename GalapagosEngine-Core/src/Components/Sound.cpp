@@ -1,9 +1,9 @@
-#include "Galapagos/Components/Sound.h"
+#include "Galapagos/Components/Sound.hpp"
 
 #include <iostream>
 #include <SDL2/SDL_mixer.h>
 
-#include "Galapagos/Core/Resources.h"
+#include "Galapagos/Core/Resources.hpp"
 
 Sound::Sound(GameObject &associated) : Component(associated)
 {

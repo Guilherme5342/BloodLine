@@ -1,4 +1,4 @@
-#include "Galapagos/Core/Component.h"
+#include "Galapagos/Core/Component.hpp"
 
 Component::Component(GameObject &associated) : m_associated(associated) {}
 

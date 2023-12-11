@@ -5,9 +5,9 @@
 #include <vector>
 #include <memory>
 
-#include "Galapagos/Core/Component.h"
-#include "Galapagos/Math/Vec2.h"
-#include "Galapagos/Utils/Timer.h"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Math/Vec2.hpp"
+#include "Galapagos/Utils/Timer.hpp"
 
 class Alien : public Component
 {

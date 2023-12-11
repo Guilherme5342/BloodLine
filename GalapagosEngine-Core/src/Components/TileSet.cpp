@@ -1,4 +1,4 @@
-#include "Galapagos/Components/TileSet.h"
+#include "Galapagos/Components/TileSet.hpp"
 
 TileSet::TileSet(std::int32_t tileWidth, std::int32_t tileHeight, std::string file) : m_tileSet(m_none, file)
 {

@@ -1,8 +1,8 @@
-#include "Galapagos/Components/Text.h"
+#include "Galapagos/Components/Text.hpp"
 
-#include "Galapagos/Core/Game.h"
-#include "Galapagos/Core/Camera.h"
-#include "Galapagos/Core/Resources.h"
+#include "Galapagos/Core/Game.hpp"
+#include "Galapagos/Core/Camera.hpp"
+#include "Galapagos/Core/Resources.hpp"
 
 Text::Text(GameObject &associated, std::string fontFile, std::int32_t fontSize, Style style, std::string text, SDL_Color color)
     : Component(associated)

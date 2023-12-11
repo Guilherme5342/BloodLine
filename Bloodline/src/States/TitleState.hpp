@@ -1,5 +1,5 @@
 #pragma once
-#include "Galapagos/Core/State.h"
+#include "Galapagos/Core/State.hpp"
 
 class TitleState : public State
 {

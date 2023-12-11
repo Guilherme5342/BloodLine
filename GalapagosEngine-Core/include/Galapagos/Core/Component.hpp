@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameObject.h"
+#include "GameObject.hpp"
 #include <string>
 
 class Component

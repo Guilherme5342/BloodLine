@@ -1,6 +1,6 @@
-#include "Galapagos/Components/CameraFollower.h"
+#include "Galapagos/Components/CameraFollower.hpp"
 
-#include "Galapagos/Core/Camera.h"
+#include "Galapagos/Core/Camera.hpp"
 
 CameraFollower::CameraFollower(GameObject &associated) : Component(associated)
 {

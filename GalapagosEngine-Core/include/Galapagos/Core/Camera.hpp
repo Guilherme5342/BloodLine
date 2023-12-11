@@ -1,5 +1,5 @@
 #pragma once
-#include "Galapagos/Math/Vec2.h"
+#include "Galapagos/Math/Vec2.hpp"
 
 class GameObject;
 

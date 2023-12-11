@@ -4,7 +4,7 @@
 #include <stack>
 #include <memory>
 
-#include "State.h"
+#include "State.hpp"
 
 class Game
 {

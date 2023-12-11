@@ -1,11 +1,11 @@
-#include "Galapagos/Components/Sprite.h"
+#include "Galapagos/Components/Sprite.hpp"
 
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
-#include "Galapagos/Core/Game.h"
-#include "Galapagos/Core/Resources.h"
-#include "Galapagos/Core/Camera.h"
+#include "Galapagos/Core/Game.hpp"
+#include "Galapagos/Core/Resources.hpp"
+#include "Galapagos/Core/Camera.hpp"
 
 Sprite::Sprite(GameObject &associated) : Component(associated)
 {

@@ -2,10 +2,10 @@
 #include <vector>
 #include <memory>
 
-#include "Galapagos/Core/State.h"
-#include "Galapagos/Components/Sprite.h"
-#include "Galapagos/Core/Music.h"
-#include "Galapagos/Utils/Timer.h"
+#include "Galapagos/Core/State.hpp"
+#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Core/Music.hpp"
+#include "Galapagos/Utils/Timer.hpp"
 
 class StageState : public State
 {

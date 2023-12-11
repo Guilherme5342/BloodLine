@@ -2,9 +2,9 @@
 #include <cstdint>
 #include <memory>
 
-#include "Galapagos/Core/Component.h"
-#include "Galapagos/Core/GameObject.h"
-#include "Galapagos/Math/Vec2.h"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Core/GameObject.hpp"
+#include "Galapagos/Math/Vec2.hpp"
 
 class PenguinBody : public Component
 {

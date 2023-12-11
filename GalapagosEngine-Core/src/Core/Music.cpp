@@ -1,7 +1,7 @@
-#include "Galapagos/Core/Music.h"
+#include "Galapagos/Core/Music.hpp"
 #include <iostream>
 
-#include "Galapagos/Core/Resources.h"
+#include "Galapagos/Core/Resources.hpp"
 
 Music::Music()
 {

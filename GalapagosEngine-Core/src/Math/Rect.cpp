@@ -1,4 +1,4 @@
-#include "Galapagos/Math/Rect.h"
+#include "Galapagos/Math/Rect.hpp"
 
 Rect::Rect() {}
 

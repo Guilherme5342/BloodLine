@@ -3,8 +3,8 @@
 #include <vector>
 #include <cstdint>
 
-#include "Galapagos/Core/Component.h"
-#include "Galapagos/Core/GameObject.h"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Core/GameObject.hpp"
 
 class TileSet;
 

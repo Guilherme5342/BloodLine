@@ -2,8 +2,8 @@
 #include <cstdint>
 #include <SDL2/SDL_ttf.h>
 
-#include "Galapagos/Core/Component.h"
-#include "Galapagos/Core/GameObject.h"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Core/GameObject.hpp"
 
 class Text : public Component
 {

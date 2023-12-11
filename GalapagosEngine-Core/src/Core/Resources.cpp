@@ -1,9 +1,9 @@
-#include "Galapagos/Core/Resources.h"
+#include "Galapagos/Core/Resources.hpp"
 
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
-#include "Galapagos/Core/Game.h"
+#include "Galapagos/Core/Game.hpp"
 
 std::unordered_map<std::string, SDL_Texture *> Resources::m_imageTable;
 std::unordered_map<std::string, Mix_Music *> Resources::m_musicTable;

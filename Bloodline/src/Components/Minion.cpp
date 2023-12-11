@@ -1,9 +1,9 @@
-#include "Minion.h"
-#include "Galapagos/Components/Sprite.h"
-#include "Bullet.h"
-#include "Galapagos/Core/Game.h"
-#include "Galapagos/Components/Collider.h"
-#include "Galapagos/Components/Sound.h"
+#include "Minion.hpp"
+#include "Galapagos/Components/Sprite.hpp"
+#include "Bullet.hpp"
+#include "Galapagos/Core/Game.hpp"
+#include "Galapagos/Components/Collider.hpp"
+#include "Galapagos/Components/Sound.hpp"
 
 constexpr float arcSpeed = 30;
 

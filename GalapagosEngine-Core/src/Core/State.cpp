@@ -1,6 +1,6 @@
-#include "Galapagos/Core/State.h"
+#include "Galapagos/Core/State.hpp"
 
-#include "Galapagos/Core/GameObject.h"
+#include "Galapagos/Core/GameObject.hpp"
 
 State::State()
 {

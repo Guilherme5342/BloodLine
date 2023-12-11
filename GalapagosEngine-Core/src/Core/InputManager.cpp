@@ -1,4 +1,4 @@
-#include "Galapagos/Core/InputManager.h"
+#include "Galapagos/Core/InputManager.hpp"
 
 constexpr std::int32_t keyOffsetThreshold = 1073741824;
 constexpr std::int32_t keyOffset = 1073741697;

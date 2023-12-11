@@ -1,8 +1,8 @@
-#include "Galapagos/Components/Collider.h"
+#include "Galapagos/Components/Collider.hpp"
 #include <SDL2/SDL.h>
 
-#include "Galapagos/Core/Camera.h"
-#include "Galapagos/Core/Game.h"
+#include "Galapagos/Core/Camera.hpp"
+#include "Galapagos/Core/Game.hpp"
 
 Collider::Collider(GameObject &associated, Vec2 scale, Vec2 offset) : Component(associated)
 {

@@ -1,11 +1,11 @@
-#include "PenguinBody.h"
-#include "Galapagos/Components/Sprite.h"
-#include "PenguinCannon.h"
-#include "Galapagos/Core/Game.h"
-#include "Galapagos/Core/InputManager.h"
-#include "Galapagos/Components/Collider.h"
-#include "Bullet.h"
-#include "Galapagos/Components/Sound.h"
+#include "PenguinBody.hpp"
+#include "Galapagos/Components/Sprite.hpp"
+#include "PenguinCannon.hpp"
+#include "Galapagos/Core/Game.hpp"
+#include "Galapagos/Core/InputManager.hpp"
+#include "Galapagos/Components/Collider.hpp"
+#include "Bullet.hpp"
+#include "Galapagos/Components/Sound.hpp"
 
 PenguinBody *PenguinBody::m_player = nullptr;
 

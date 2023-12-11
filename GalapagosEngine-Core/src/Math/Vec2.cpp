@@ -1,4 +1,4 @@
-#include "Galapagos/Math/Vec2.h"
+#include "Galapagos/Math/Vec2.hpp"
 #include <cmath>
 
 #define M_PI 3.14159265358979323846

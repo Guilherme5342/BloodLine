@@ -1,4 +1,4 @@
-#include "Galapagos/Core/Game.h"
+#include "Galapagos/Core/Game.hpp"
 
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
@@ -8,8 +8,8 @@
 #include <cstdint>
 #include <ctime>
 
-#include "Galapagos/Core/Resources.h"
-#include "Galapagos/Core/InputManager.h"
+#include "Galapagos/Core/Resources.hpp"
+#include "Galapagos/Core/InputManager.hpp"
 
 Game *Game::m_instance = nullptr;
 

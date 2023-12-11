@@ -1,12 +1,12 @@
-#include "TitleState.h"
+#include "TitleState.hpp"
 
-#include "Galapagos/Core/GameObject.h"
-#include "Galapagos/Components/Sprite.h"
-#include "Galapagos/Core/InputManager.h"
-#include "Galapagos/Core/Game.h"
-#include "StageState.h"
-#include "Galapagos/Components/CameraFollower.h"
-#include "Galapagos/Components/Text.h"
+#include "Galapagos/Core/GameObject.hpp"
+#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Core/InputManager.hpp"
+#include "Galapagos/Core/Game.hpp"
+#include "StageState.hpp"
+#include "Galapagos/Components/CameraFollower.hpp"
+#include "Galapagos/Components/Text.hpp"
 
 TitleState::TitleState()
 {

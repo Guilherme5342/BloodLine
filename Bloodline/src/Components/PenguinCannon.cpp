@@ -1,12 +1,12 @@
-#include "PenguinCannon.h"
+#include "PenguinCannon.hpp"
 
 #include <cmath>
 
-#include "Galapagos/Components/Sprite.h"
-#include "Galapagos/Core/InputManager.h"
-#include "Galapagos/Core/Game.h"
-#include "Bullet.h"
-#include "Galapagos/Components/Collider.h"
+#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Core/InputManager.hpp"
+#include "Galapagos/Core/Game.hpp"
+#include "Bullet.hpp"
+#include "Galapagos/Components/Collider.hpp"
 
 PenguinCannon::PenguinCannon(GameObject &associated, std::weak_ptr<GameObject> penguinBody) : Component(associated)
 {

@@ -1,6 +1,6 @@
 #define SDL_MAIN_HANDLED
-#include "Galapagos/Core/Game.h"
-#include "States/TitleState.h"
+#include "Galapagos/Core/Game.hpp"
+#include "States/TitleState.hpp"
 
 int main(int argc, const char **argv)
 {

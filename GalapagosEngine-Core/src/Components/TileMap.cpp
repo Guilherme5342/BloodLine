@@ -1,11 +1,11 @@
-#include "Galapagos/Components/TileMap.h"
+#include "Galapagos/Components/TileMap.hpp"
 
 #include <fstream>
 #include <string>
 #include <iostream>
 
-#include "Galapagos/Components/TileSet.h"
-#include "Galapagos/Core/Camera.h"
+#include "Galapagos/Components/TileSet.hpp"
+#include "Galapagos/Core/Camera.hpp"
 
 TileMap::TileMap(GameObject &associated, std::string file, TileSet *tileSet) : Component(associated)
 {

@@ -1,5 +1,5 @@
-#include "Galapagos/Core/GameObject.h"
-#include "Galapagos/Core/Component.h"
+#include "Galapagos/Core/GameObject.hpp"
+#include "Galapagos/Core/Component.hpp"
 
 GameObject::GameObject()
 {

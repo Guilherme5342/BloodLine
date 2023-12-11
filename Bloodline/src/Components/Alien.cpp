@@ -1,13 +1,13 @@
-#include "Alien.h"
-#include "Galapagos/Components/Sound.h"
-#include "Galapagos/Core/InputManager.h"
-#include "Galapagos/Core/Camera.h"
-#include "Galapagos/Components/Sprite.h"
-#include "Minion.h"
-#include "Galapagos/Core/Game.h"
-#include "Galapagos/Components/Collider.h"
-#include "Bullet.h"
-#include "PenguinBody.h"
+#include "Alien.hpp"
+#include "Galapagos/Components/Sound.hpp"
+#include "Galapagos/Core/InputManager.hpp"
+#include "Galapagos/Core/Camera.hpp"
+#include "Galapagos/Components/Sprite.hpp"
+#include "Minion.hpp"
+#include "Galapagos/Core/Game.hpp"
+#include "Galapagos/Components/Collider.hpp"
+#include "Bullet.hpp"
+#include "PenguinBody.hpp"
 
 #include <limits>
 #include <iostream>
