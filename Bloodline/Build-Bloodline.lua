@@ -1,7 +1,7 @@
 project (AppName)
     kind "ConsoleApp"
     language "C++"
-    cppdialect "C++20"
+    cppdialect "C++17"
     targetdir "Binaries/%{cfg.buildcfg}"
     staticruntime "off"
 
@@ -52,7 +52,7 @@ project (AppName)
         symbols "On"
 
     filter "configurations:Release"
-        defines { "RELEASE" }
+        defines { "RELEASE", "NDEBUG" }
         runtime "Release"
         optimize "On"
         symbols "On"

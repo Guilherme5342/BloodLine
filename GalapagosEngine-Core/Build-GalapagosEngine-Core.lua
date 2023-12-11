@@ -1,7 +1,7 @@
 project (CoreName)
     kind "StaticLib"
     language "C++"
-    cppdialect "C++20"
+    cppdialect "C++17"
     targetdir "Binaries/%{cfg.buildcfg}"
     staticruntime "off"
 
@@ -31,7 +31,6 @@ project (CoreName)
 
     filter "system:windows"
         systemversion "latest"
-        defines { }
         libdirs {
             WindowsSDLPath.. "/lib",
             WindowsSDLPath.."/lib/%{cfg.architecture}"
@@ -43,7 +42,7 @@ project (CoreName)
         symbols "On"
 
     filter "configurations:Release"
-        defines { "RELEASE" }
+        defines { "RELEASE", "NDEBUG" }
         runtime "Release"
         optimize "On"
         symbols "On"

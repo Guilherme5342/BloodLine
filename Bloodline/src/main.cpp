@@ -1,4 +1,5 @@
 #define SDL_MAIN_HANDLED
+
 #include "Galapagos/Core/Game.hpp"
 #include "States/TitleState.hpp"
 

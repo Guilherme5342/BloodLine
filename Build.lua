@@ -22,9 +22,10 @@ workspace "Bloodline"
       symbols "On" -- 'equivalente a usar -g'
       runtime "Debug"
    
-      filter "configurations:Release"
+   filter "configurations:Release"
       symbols "Off" -- Retira -g
       optimize "On"  -- 'equivalente a usar -O2'
+      defines { "NDEBUG" }
       runtime "Release"
 
 group "Core"
