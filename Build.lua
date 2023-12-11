@@ -13,7 +13,7 @@ workspace "Bloodline"
    filter "system:linux"
       pic "On"
    -- Workspace-wide build options for MSVC
-   filter "system:windows"
+   filter {"system:windows", "action:vs2022"}
       buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
 
    filter "configurations:Debug"

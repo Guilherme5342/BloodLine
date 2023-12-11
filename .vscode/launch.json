@@ -1,0 +1,60 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Debug",
+            "cwd": "",
+            "program": "",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "environment": [],
+            "preLaunchTask": "Build Debug",
+            "windows": {
+                "console": "externalTerminal",
+                "cwd": "${workspaceFolder}/Binaries/windows-x86/Debug/Bloodline/",
+                "program": "${workspaceFolder}/Binaries/windows-x86/Debug/Bloodline/Bloodline.exe",
+            },
+            "linux": {
+                "console": "externalTerminal",
+                "cwd": "${workspaceFolder}/Binaries/linux-x86/Debug/Bloodline/",
+                "program": "${workspaceFolder}/Binaries/linux-x86/Debug/Bloodline/Bloodline",
+            },
+            "osx": {
+                "console": "integratedTerminal",
+                "cwd": "${workspaceFolder}/Binaries/macos-x86/Debug/Bloodline",
+                "program": "${workspaceFolder}/Binaries/macos-x86/Debug/Bloodline/Bloodline",
+            }
+        },
+        {
+            "name": "Launch Release",
+            "cwd": "",
+            "program": "",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "environment": [],
+            "preLaunchTask": "Build Release",
+            "windows": {
+                "console": "externalTerminal",
+                "cwd": "${workspaceFolder}/Binaries/windows-x86/Release/Bloodline/",
+                "program": "${workspaceFolder}/Binaries/windows-x86/Release/Bloodline/Bloodline.exe",
+            },
+            "linux": {
+                "console": "externalTerminal",
+                "cwd": "${workspaceFolder}/Binaries/linux-x86/Release/Bloodline/",
+                "program": "${workspaceFolder}/Binaries/linux-x86/Release/Bloodline/Bloodline",
+            },
+            "osx": {
+                "console": "integratedTerminal",
+                "cwd": "${workspaceFolder}/Binaries/macos-x86/Release/Bloodline",
+                "program": "${workspaceFolder}/Binaries/macos-x86/Release/Bloodline/Bloodline",
+            }
+        }
+    ]
+}

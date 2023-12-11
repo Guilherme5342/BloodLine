@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build make file",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceFolder}/Vendor/Binaries/Premake/Windows/premake5.exe"
+            },
+            "linux": {
+                "command": "${workspaceFolder}/Vendor/Binaries/Premake/Linux/premake5"
+            },
+            "osx": {
+                "command": "${workspaceFolder}/Vendor/Binaries/Premake/macOS/premake5"
+            },
+            "args": ["--file=Build.lua", "gmake2"],
+            "group": "build"
+        },
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "windows": {
+                "command": "mingw32-make"
+            },
+            "linux": {
+                "command": "make"
+            },
+            "osx": {
+                "command": "make"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": "Build make file"
+        },
+        {
+            "label": "Build Release",
+            "type": "shell",
+            "windows": {
+                "command": "mingw32-make"
+            },
+            "linux": {
+                "command": "make"
+            },
+            "osx": {
+                "command": "make"
+            },
+            "args": ["config=release"],
+            "group": "build",
+            "dependsOn": "Build make file"
+        }
+    ]
+}
