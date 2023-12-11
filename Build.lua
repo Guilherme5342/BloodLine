@@ -15,17 +15,6 @@ workspace "Bloodline"
    -- Workspace-wide build options for MSVC
    filter {"system:windows", "action:vs2022"}
       buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
-      nuget {
-         "sdl2.nuget:2.28.3",
-         "sdl2.nuget.redist:2.28.3",
-         "sdl2_image.nuget:2.6.3",
-         "sdl2_image.nuget.redist:2.6.3",
-         "sdl2_mixer.nuget:2.6.3",
-         "sdl2_mixer.nuget.redist:2.6.3",
-         "sdl2_ttf.nuget:2.20.2",
-         "sdl2_ttf.nuget.redist:2.20.2"
-      }
-
 
    filter "configurations:Debug"
       buildoptions { "-Wall", "-O0" }
