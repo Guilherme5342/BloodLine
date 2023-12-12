@@ -71,8 +71,8 @@ void MainMenuState::Render() const
 void MainMenuState::Start()
 {
     Camera::position = { 0, 0 };
-    StartArray();
     LoadAssets();
+    StartArray();
     m_music.Play(-1);
 }
 

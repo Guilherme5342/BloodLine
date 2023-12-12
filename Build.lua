@@ -1,4 +1,3 @@
--- premake5.lua
 CoreName = "GalapagosEngine-Core"
 AppName = "Bloodline"
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
