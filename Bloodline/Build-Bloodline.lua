@@ -34,6 +34,10 @@ project (AppName)
     targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
     objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
+    postbuildcommands{
+        "{COPYDIR} %{prj.location}/res %{cfg.targetdir}/res",
+    }
+
     filter "system:windows"
         systemversion "latest"
         defines { "WINDOWS" }

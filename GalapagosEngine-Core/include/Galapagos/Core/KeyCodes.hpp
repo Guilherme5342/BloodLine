@@ -251,9 +251,5 @@ enum class Key : std::int32_t
     App1 = SDLK_APP1,
     App2 = SDLK_APP2,
     Audiorewind = SDLK_AUDIOREWIND,
-    Audiofastforward = SDLK_AUDIOFASTFORWARD,
-    Softleft = SDLK_SOFTLEFT,
-    Softright = SDLK_SOFTRIGHT,
-    Call = SDLK_CALL,
-    Endcall = SDLK_ENDCALL
+    Audiofastforward = SDLK_AUDIOFASTFORWARD
 };

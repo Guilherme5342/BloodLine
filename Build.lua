@@ -5,13 +5,16 @@ WindowsSDLPath = "C:/SDL32"
 SDLIncludePath = "C:/SDL32/include"
 
 workspace "Bloodline"
-   architecture "x86"
+   architecture "x64"
    configurations { "Debug", "Release", "Dist" }
    startproject "Bloodline"
 
    filter "system:linux"
+      architecture "x64"
       pic "On"
    -- Workspace-wide build options for MSVC
+   filter "system:windows"
+      architecture "x86"
    filter {"system:windows", "action:vs2022"}
       buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
 
