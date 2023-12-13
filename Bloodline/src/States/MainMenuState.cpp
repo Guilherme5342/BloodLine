@@ -36,29 +36,29 @@ void MainMenuState::LoadAssets()
     m_objectArray.emplace_back(titleImage);
 
     GameObject* buttonStartObject = new GameObject();
-    Button* startButton = new Button(*buttonStartObject, [&]() {Game::Push(new StageState()); }, "Novo Jogo", "res/img/UI/botao.png");
+    Button* startButton = new Button(*buttonStartObject, [&]() {Game::Push(new StageState()); }, "Novo Jogo", "res/img/UI/Novo jogo.png");
     buttonStartObject->AddComponent(startButton);
     m_objectArray.emplace_back(buttonStartObject);
-    buttonStartObject->m_box.y = 100;
+    buttonStartObject->m_box.SetCenter({ 720, 300 });
 
-    GameObject* buttonConfigObject = new GameObject();
-    Button* configButton = new Button(*buttonConfigObject, [&]() {Game::Push(new StageState()); }, "Config", "res/img/UI/botao.png");
-    buttonConfigObject->AddComponent(configButton);
-    m_objectArray.emplace_back(buttonConfigObject);
-    buttonConfigObject->m_box.y = 150;
+    //GameObject* buttonConfigObject = new GameObject();
+    //Button* configButton = new Button(*buttonConfigObject, [&]() {Game::Push(new StageState()); }, "Config", "res/img/UI/botao.png");
+    //buttonConfigObject->AddComponent(configButton);
+    //m_objectArray.emplace_back(buttonConfigObject);
+    //buttonConfigObject->m_box.y = 150;
 
     GameObject* leaveButtonObject = new GameObject();
-    Button* leaveButton = new Button(*leaveButtonObject, [&]() {m_quitRequested = true; }, "Sair", "res/img/UI/botao.png");
+    Button* leaveButton = new Button(*leaveButtonObject, [&]() {m_quitRequested = true; }, "Sair", "res/img/UI/Sair.png");
     leaveButtonObject->AddComponent(leaveButton);
     m_objectArray.emplace_back(leaveButtonObject);
-    leaveButtonObject->m_box.y = 200;
+    leaveButtonObject->m_box.SetCenter({ 720, 500 });
 
     GameObject* emmiterObject = new GameObject();
     ParticleEmmiter* partEmm = new ParticleEmmiter(*emmiterObject, 1000);
     emmiterObject->AddComponent(partEmm);
 
     m_emmiter = partEmm;
-    m_particleConfig = ParticlePreset::Rain;
+    m_particleConfig = ParticlePreset::Fire;
     //m_particleConfig.lifeTime = 5.f;
     //m_particleConfig.startColor = { 0, 150, 200, 100 };
     //m_particleConfig.startSize = 20;

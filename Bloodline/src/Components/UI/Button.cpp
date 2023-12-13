@@ -1,6 +1,5 @@
 #include "Button.h"
 #include "Galapagos/Components/Sprite.hpp"
-#include "Galapagos/Components/Text.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 
 Button::Button(GameObject& associated, std::function<void(void)> onClick, std::string text, std::string bgFile, std::string fontFile)
@@ -9,10 +8,8 @@ Button::Button(GameObject& associated, std::function<void(void)> onClick, std::s
 	m_text = text;
 
     Sprite* sprite = new Sprite(associated, bgFile);
+    sprite->SetScale(2);
     associated.AddComponent(sprite);
-
-    Text* textComp = new Text(associated, 30, Text::Style::BLENDED, text, SDL_Color{ 63, 72, 204, 255 });
-    associated.AddComponent(textComp);
 }
 
 Button::~Button()

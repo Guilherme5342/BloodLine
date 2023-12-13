@@ -1,6 +1,12 @@
 #include "Galapagos/Core/GameObject.hpp"
 #include "Galapagos/Core/Component.hpp"
 
+#ifdef DEBUG
+    #include <SDL2/SDL.h>
+    #include "Galapagos/Core/Game.hpp"
+    #include "Galapagos/Core/Camera.hpp"
+#endif // DEBUG
+
 GameObject::GameObject()
 {
     m_isDead = false;
@@ -44,6 +50,12 @@ void GameObject::Render() const
     {
         m_componentList[i]->Render();
     }
+#ifdef DEBUG
+    SDL_SetRenderDrawBlendMode(Game::GetRenderer(), SDL_BLENDMODE_NONE);
+    SDL_SetRenderDrawColor(Game::GetRenderer(), 0, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_Rect distRect = { m_box.x - Camera::position.x, m_box.y - Camera::position.y, m_box.w, m_box.h };
+    SDL_RenderDrawRect(Game::GetRenderer(), &distRect);
+#endif // DEBUG
 }
 
 bool GameObject::IsDead() const
