@@ -1,6 +1,5 @@
 #pragma once
 #include "Galapagos/Core/Component.hpp"
-#include "Galapagos/Components/ParticleEmmiter.hpp"
 #include <functional>
 
 class Button : public Component
@@ -16,7 +15,5 @@ private:
     std::string m_text;
 
     std::function<void(void)> m_onClick;
-
-    ParticleConfig m_particleConfig;
 };
 

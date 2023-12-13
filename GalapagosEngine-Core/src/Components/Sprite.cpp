@@ -98,6 +98,7 @@ void Sprite::Update(float deltaTime)
             m_associated.RequestDelete();
         }
     }
+
     m_timeElapsed += deltaTime;
     if ((m_timeElapsed > m_frameTime) && (m_frameCount > 1) && (m_currentFrame != m_frameCount || m_loop))
     {
@@ -105,7 +106,7 @@ void Sprite::Update(float deltaTime)
         m_currentFrame -= (m_currentFrame > m_frameCount) * m_frameCount;
         m_clipRect.x = ((m_currentFrame - 1) % m_columnCount) * m_frameWidth;
         m_clipRect.y = ((m_currentFrame - 1) / m_columnCount) * m_frameHeight;
-        m_timeElapsed = 0;
+        m_timeElapsed -= m_frameTime;
     }
 }
 

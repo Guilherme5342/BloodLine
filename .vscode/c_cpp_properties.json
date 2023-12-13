@@ -19,7 +19,7 @@
             "compilerArgs": ["-Wall", "-Wextra", "-O0"]
         },
         {
-            "name": "linux32gcc",
+            "name": "linux64gcc",
             "includePath": ["${myIncludePath}", "/usr/include"],
             "defines": ["_DEBUG", "DEBUG", "UNICODE", "_UNICODE"],
             "windowsSdkVersion": "10.0.22000.0",
@@ -30,7 +30,7 @@
             "compilerArgs": ["-Wall", "-Wextra", "-O0"]
         },
         {
-            "name": "mac32gcc",
+            "name": "macos32gcc",
             "includePath": ["${myIncludePath}", "/usr/include"],
             "defines": ["_DEBUG", "DEBUG", "UNICODE", "_UNICODE"],
             "windowsSdkVersion": "10.0.22000.0",

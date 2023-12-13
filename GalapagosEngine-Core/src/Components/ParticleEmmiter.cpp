@@ -42,7 +42,8 @@ void ParticleEmmiter::Render() const
 		SDL_Rect distRect = SDL_Rect{ static_cast<int>(particle.position.x),static_cast<int>(particle.position.y),
 									  static_cast<int>(particle.startSize), static_cast<int>(particle.startSize) };
 
-		SDL_SetRenderDrawColor(Game::GetRenderer(), particle.startColor.r, particle.startColor.g, particle.startColor.b, particle.startColor.a);
+		SDL_SetRenderDrawBlendMode(Game::GetRenderer(), SDL_BLENDMODE_ADD);
+		SDL_SetRenderDrawColor(Game::GetRenderer(), particle.startColor.r, particle.startColor.g, particle.startColor.b, particle.startColor.a * lifePercent);
 		SDL_RenderFillRect(Game::GetRenderer(), &distRect);
 	}
 

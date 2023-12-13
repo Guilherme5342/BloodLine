@@ -26,14 +26,13 @@ void MainMenuState::LoadAssets()
 
     GameObject *titleImage = new GameObject();
 
-    Sprite *background = new Sprite(*titleImage, "res/img/MainMenuBg.png", 40, 0.2f, true, 7, 6);
+    Sprite *background = new Sprite(*titleImage, "res/img/MainMenuBg.png", 40, 0.084f, true, 7, 6);
     titleImage->AddComponent(background);
 
     CameraFollower *cameraFollower = new CameraFollower(*titleImage);
     titleImage->AddComponent(cameraFollower);
     background->SetDist(0, 0, 1440 , 810);
     m_objectArray.emplace_back(titleImage);
-
 
     GameObject* buttonStartObject = new GameObject();
     Button* startButton = new Button(*buttonStartObject, [&]() {Game::Push(new StageState()); }, "Novo Jogo", "res/img/UI/botao.png");
@@ -52,6 +51,19 @@ void MainMenuState::LoadAssets()
     leaveButtonObject->AddComponent(leaveButton);
     m_objectArray.emplace_back(leaveButtonObject);
     leaveButtonObject->m_box.y = 200;
+
+    GameObject* emmiterObject = new GameObject();
+    ParticleEmmiter* partEmm = new ParticleEmmiter(*emmiterObject, 1000);
+    emmiterObject->AddComponent(partEmm);
+
+    m_emmiter = partEmm;
+    m_particleConfig.lifeTime = 5.f;
+    m_particleConfig.startColor = { 0, 150, 200, 100 };
+    m_particleConfig.startSize = 20;
+    m_particleConfig.sizeVariation = 10;
+    m_particleConfig.velocity = { 0, 50 };
+    m_particleConfig.velocityVariation = { 100, 100 };
+    m_objectArray.emplace_back(emmiterObject);
 }
 
 void MainMenuState::Update(float deltaTime)
@@ -60,6 +72,14 @@ void MainMenuState::Update(float deltaTime)
     if (InputManager::QuitRequested())
     {
         m_quitRequested = true;
+    }
+    if (m_emmiter && InputManager::IsMouseDown(MouseButton::Left)) {
+        m_particleConfig.startColor.b++;
+
+        m_particleConfig.position = InputManager::GetMousePos();
+        m_particleConfig.startColor.r++;
+        m_emmiter->Emit(m_particleConfig);
+
     }
 }
 

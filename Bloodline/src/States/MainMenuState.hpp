@@ -1,6 +1,7 @@
 #pragma once
 #include "Galapagos/Core/State.hpp"
 #include "Galapagos/Core/Music.hpp"
+#include "Galapagos/Components/ParticleEmmiter.hpp"
 
 class MainMenuState : public State
 {
@@ -17,4 +18,6 @@ public:
     void Resume();
 private:
     Music m_music;
+    ParticleEmmiter* m_emmiter;
+    ParticleConfig m_particleConfig;
 };
