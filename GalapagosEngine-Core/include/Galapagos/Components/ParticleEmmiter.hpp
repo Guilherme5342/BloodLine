@@ -6,7 +6,7 @@
 #include "Galapagos/Utils/Timer.hpp"
 #include "Galapagos/Utils/Particle.hpp"
 
-class SDL_Texture;
+struct SDL_Texture;
 
 struct ParticleConfig
 {
@@ -15,16 +15,23 @@ struct ParticleConfig
     Vec2 velocityVariation;
     SDL_Color startColor;
     SDL_Color endColor;
-    float startSize;
-    float endSize;
-    float sizeVariation;
-    float lifeTime;
+    float startSize = 1.0f;
+    float endSize = 1.0f;
+    float sizeVariation = 0.0f;
+    float lifeTime = 1.0f;
+    float rate = 0.5f;
 };
 
 class ParticleEmmiter : public Component
 {
 public:
-    ParticleEmmiter(GameObject& associated, std::uint32_t numberOfParticles);
+    enum class Type {
+        Rect = 0,
+        Texture,
+        Circle
+    };
+
+    ParticleEmmiter(GameObject& associated, std::uint32_t numberOfParticles, Type type = Type::Rect, std::string textureFile = "");
     void Start() override;
     void Update(float deltaTime) override;
     void Render() const override;
@@ -50,6 +57,11 @@ private:
 
     Timer m_timer;
     bool m_emit = true;
+
+    SDL_Texture* m_texture = nullptr;
+    Type m_type = Type::Rect;
+    SDL_Rect m_textureClipRect = { 0, 0, 0, 0 };
+
 
     std::vector<Particle> m_particleList;
     std::uint32_t m_currentParticle;

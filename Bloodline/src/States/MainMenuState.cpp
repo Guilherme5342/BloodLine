@@ -6,6 +6,7 @@
 #include "Galapagos/Core/Game.hpp"
 #include "Galapagos/Components/CameraFollower.hpp"
 #include "Galapagos/Components/Text.hpp"
+#include "Galapagos/Utils/ParticlePresets.hpp"
 
 #include "StageState.hpp"
 #include "Components/UI/Button.h"
@@ -57,12 +58,14 @@ void MainMenuState::LoadAssets()
     emmiterObject->AddComponent(partEmm);
 
     m_emmiter = partEmm;
-    m_particleConfig.lifeTime = 5.f;
-    m_particleConfig.startColor = { 0, 150, 200, 100 };
-    m_particleConfig.startSize = 20;
-    m_particleConfig.sizeVariation = 10;
-    m_particleConfig.velocity = { 0, 50 };
-    m_particleConfig.velocityVariation = { 100, 100 };
+    m_particleConfig = ParticlePreset::Fire;
+    //m_particleConfig.lifeTime = 5.f;
+    //m_particleConfig.startColor = { 0, 150, 200, 100 };
+    //m_particleConfig.startSize = 20;
+    //m_particleConfig.sizeVariation = 10;
+    //m_particleConfig.velocity = { 0, 50 };
+    //m_particleConfig.velocityVariation = { 100, 100 };
+    //m_particleConfig.rate = 0.02;
     m_objectArray.emplace_back(emmiterObject);
 }
 
@@ -74,10 +77,8 @@ void MainMenuState::Update(float deltaTime)
         m_quitRequested = true;
     }
     if (m_emmiter && InputManager::IsMouseDown(MouseButton::Left)) {
-        m_particleConfig.startColor.b++;
 
         m_particleConfig.position = InputManager::GetMousePos();
-        m_particleConfig.startColor.r++;
         m_emmiter->Emit(m_particleConfig);
 
     }

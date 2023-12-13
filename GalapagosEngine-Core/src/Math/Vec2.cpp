@@ -3,7 +3,10 @@
 
 #define M_PI 3.14159265358979323846
 
-Vec2::Vec2() {}
+Vec2::Vec2() {
+    this->x = 0;
+    this->y = 0;
+}
 
 Vec2::Vec2(float x, float y)
 {
