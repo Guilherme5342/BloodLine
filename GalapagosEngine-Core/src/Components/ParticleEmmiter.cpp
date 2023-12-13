@@ -53,7 +53,7 @@ void ParticleEmmiter::Render() const
 		float renderSize = std::lerp(particle.endSize, particle.startSize, lifePercent);
 
 		SDL_Rect distRect = SDL_Rect{ static_cast<int>(particle.position.x),static_cast<int>(particle.position.y),
-									  static_cast<int>(particle.startSize), static_cast<int>(particle.startSize) };
+									  static_cast<int>(renderSize), static_cast<int>(renderSize) };
 		switch (m_type)
 		{
 		case ParticleEmmiter::Type::Rect:
@@ -92,8 +92,8 @@ void ParticleEmmiter::Emit(const ParticleConfig& particleConfig)
 	particle.rotation = Random::SlowFloat() * 360;
 
 	particle.velocity = particleConfig.velocity;
-	particle.velocity.x = particleConfig.velocityVariation.x * (Random::SlowFloat() - 0.5f);
-	particle.velocity.y = particleConfig.velocityVariation.y * (Random::SlowFloat() - 0.5f);
+	particle.velocity.x += particleConfig.velocityVariation.x * (Random::SlowFloat() - 0.5f);
+	particle.velocity.y += particleConfig.velocityVariation.y * (Random::SlowFloat() - 0.5f);
 
 	particle.startColor = particleConfig.startColor;
 	particle.endColor = particleConfig.endColor;

@@ -58,7 +58,7 @@ void MainMenuState::LoadAssets()
     emmiterObject->AddComponent(partEmm);
 
     m_emmiter = partEmm;
-    m_particleConfig = ParticlePreset::Fire;
+    m_particleConfig = ParticlePreset::Rain;
     //m_particleConfig.lifeTime = 5.f;
     //m_particleConfig.startColor = { 0, 150, 200, 100 };
     //m_particleConfig.startSize = 20;
