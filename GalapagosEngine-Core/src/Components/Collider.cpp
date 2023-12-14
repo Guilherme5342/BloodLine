@@ -10,13 +10,15 @@ Collider::Collider(GameObject &associated, Vec2 scale, Vec2 offset) : Component(
     m_offset = offset;
 }
 
-void Collider::Update(float deltaTime)
+void Collider::FixedUpdate(float fixedDeltaime)
 {
     m_box = m_associated.m_box.Scaled(m_scale);
     Vec2 rotatedOffset = m_offset.RotatedDeg(m_associated.m_angleDeg);
     m_box.x += rotatedOffset.x;
     m_box.y += rotatedOffset.y;
 }
+
+void Collider::Update(float deltaTime) {}
 
 void Collider::Render() const
 {

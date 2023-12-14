@@ -12,6 +12,7 @@ public:
     Collider(GameObject &associated, Vec2 scale = {1, 1}, Vec2 offset = {0, 0});
 
     Rect m_box;
+    void FixedUpdate(float fixedDeltaime) override;
     void Update(float deltaTime) override;
     void Render() const override;
     inline bool Is(std::string type) const override { return type == "Collider"; }
