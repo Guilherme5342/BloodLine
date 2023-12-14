@@ -29,6 +29,8 @@ Game::Game(const char *title, std::int32_t width, std::int32_t height)
         m_instance = this;
     }
 
+    m_fixedDeltaTime = 0.006f;
+
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) != 0)
     {
         throw std::runtime_error(std::string("Erro ao carregar SDL. ") + std::string(SDL_GetError()));
@@ -48,7 +50,7 @@ Game::Game(const char *title, std::int32_t width, std::int32_t height)
     {
         throw std::runtime_error(std::string("Erro ao executar Mix_OpenAudio. ") + std::string(SDL_GetError()));
     }
-
+    
     Mix_AllocateChannels(32);
 
     m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
