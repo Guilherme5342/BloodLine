@@ -8,6 +8,7 @@ Collider::Collider(GameObject &associated, Vec2 scale, Vec2 offset) : Component(
 {
     m_scale = scale;
     m_offset = offset;
+    isTrigger = false;
 }
 
 void Collider::FixedUpdate(float fixedDeltaime)

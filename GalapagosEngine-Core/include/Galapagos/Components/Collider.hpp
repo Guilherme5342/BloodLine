@@ -12,6 +12,8 @@ public:
     Collider(GameObject &associated, Vec2 scale = {1, 1}, Vec2 offset = {0, 0});
 
     Rect m_box;
+    bool isTrigger;
+
     void FixedUpdate(float fixedDeltaime) override;
     void Update(float deltaTime) override;
     void Render() const override;
@@ -22,4 +24,6 @@ public:
 private:
     Vec2 m_scale = {1, 1};
     Vec2 m_offset = {0, 0};
+
+    
 };
