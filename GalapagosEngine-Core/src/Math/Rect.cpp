@@ -64,6 +64,15 @@ bool Rect::IsColliding(const Vec2 &point) const
     return point.x >= x && point.x <= (x + w) && point.y >= y && point.y <= (y + h);
 }
 
+Rect Rect::GetIntersection(Rect& otherRect)
+{
+    Rect intersection = Rect(std::max(otherRect.x, this->x), std::max(otherRect.x, this->y), 0, 0);
+
+    intersection.SetSize(std::min(this->x + this->w, otherRect.x + otherRect.w) - intersection.x,
+        std::min(this->y + this->h, otherRect.y + otherRect.h) - intersection.y);
+    return Rect();
+}
+
 std::ostream &operator<<(std::ostream &stream, const Rect &rect)
 {
     stream << "{x: " << rect.x << ", y: " << rect.y << ", w: " << rect.w << ", h: " << rect.h << "}";

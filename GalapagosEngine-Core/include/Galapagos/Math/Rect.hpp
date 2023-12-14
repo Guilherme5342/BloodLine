@@ -19,6 +19,8 @@ struct Rect
     float Distance(const Rect &other) const;
     float Distance(const Vec2 &other) const;
     bool IsColliding(const Vec2 &point) const;
+
+    Rect GetIntersection(Rect& otherRect);
 };
 
 std::ostream &operator<<(std::ostream &stream, const Rect &rect);
