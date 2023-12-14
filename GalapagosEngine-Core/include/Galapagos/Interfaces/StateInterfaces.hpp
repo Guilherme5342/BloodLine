@@ -23,5 +23,5 @@ protected:
 
 public:
 	AnimState(Sprite& sprite);
-	void Play(std::string animFile,int columns = 1,int rows = 1);
+	void Play(std::string animFile,std::uint32_t columns = 1,std::uint32_t rows = 1, float frameTime = .05f);
 };
