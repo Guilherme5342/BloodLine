@@ -44,6 +44,10 @@ private:
 
     std::uint32_t m_frameStart;
     float m_deltaTime;
+    float m_fixedDeltaTime;
+
+    float m_leftOver = 0;
+    float m_counter = 0;
 
     static Game *m_instance;
 };

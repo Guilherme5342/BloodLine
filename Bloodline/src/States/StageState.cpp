@@ -71,6 +71,10 @@ void StageState::Start()
     m_started = true;
 }
 
+void StageState::FixedUpdate(float fixedDeltaTime) 
+{
+    FixedUpdateArray(fixedDeltaTime);
+}
 void StageState::Update(float deltaTime)
 {
     if (InputManager::QuitRequested())

@@ -7,3 +7,5 @@ Component::~Component() {}
 void Component::NotifyCollision(GameObject &other) {}
 
 void Component::Start() {}
+
+void Component::FixedUpdate(float fixedDt) {}

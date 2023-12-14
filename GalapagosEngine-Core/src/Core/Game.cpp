@@ -135,6 +135,16 @@ void Game::__Run()
         }
         CalculateDeltaTime();
         InputManager::Update();
+
+        m_counter -= m_leftOver;
+        while (m_counter <= m_deltaTime) 
+        {
+            m_stateStack.top()->FixedUpdate(m_fixedDeltaTime);
+            m_counter += m_fixedDeltaTime;
+        }
+        int xPos = m_deltaTime / m_fixedDeltaTime;
+        m_leftOver = m_deltaTime - m_fixedDeltaTime * xPos;
+
         m_stateStack.top()->Update(m_deltaTime);
         m_stateStack.top()->Render();
         SDL_RenderPresent(m_renderer);
@@ -157,6 +167,7 @@ void Game::CalculateDeltaTime()
     m_frameStart = SDL_GetTicks();
     m_deltaTime = (!firstFrame) * (m_frameStart - previousFrame) / 1000.f;
     firstFrame = false;
+    m_leftOver = m_deltaTime - m_fixedDeltaTime;
 }
 
 void Game::__Push(State *state)

@@ -14,6 +14,8 @@ State::~State()
     m_objectArray.clear();
 }
 
+void State::FixedUpdate(float fixedDt) {}
+
 std::weak_ptr<GameObject> State::AddObject(GameObject *object)
 {
     std::shared_ptr<GameObject> objPtr(object);
@@ -42,6 +44,14 @@ void State::StartArray()
     for (size_t i = 0; i < m_objectArray.size(); i++)
     {
         m_objectArray[i]->Start();
+    }
+}
+
+void State::FixedUpdateArray(float fixedDt)
+{
+    for (size_t i = 0; i < m_objectArray.size(); i++)
+    {
+        m_objectArray[i]->FixedUpdate(fixedDt);
     }
 }
 

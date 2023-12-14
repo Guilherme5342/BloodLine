@@ -17,6 +17,8 @@ public:
     virtual void Pause() = 0;
     virtual void Resume() = 0;
 
+    virtual void FixedUpdate(float fixedDt);
+
     virtual std::weak_ptr<GameObject> AddObject(GameObject *object);
     virtual std::weak_ptr<GameObject> GetObjectPtr(GameObject *object);
 
@@ -25,6 +27,7 @@ public:
 
 protected:
     virtual void StartArray();
+    virtual void FixedUpdateArray(float fixedDt);
     virtual void UpdateArray(float deltaTime);
     virtual void RenderArray() const;
 

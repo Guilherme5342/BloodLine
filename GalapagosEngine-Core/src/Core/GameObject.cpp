@@ -28,6 +28,14 @@ void GameObject::Start()
     m_started = true;
 }
 
+void GameObject::FixedUpdate(float fixedDt)
+{
+    for (size_t i = 0; i < m_componentList.size(); i++)
+    {
+        m_componentList[i]->FixedUpdate(fixedDt);
+    }
+}
+
 void GameObject::Update(float deltaTime)
 {
     for (size_t i = 0; i < m_componentList.size(); i++)

@@ -15,6 +15,7 @@ public:
     ~GameObject();
 
     void Start();
+    void FixedUpdate(float fixedDt);
     void Update(float deltaTime);
     void NotifyCollision(GameObject& other);
     void Render() const;

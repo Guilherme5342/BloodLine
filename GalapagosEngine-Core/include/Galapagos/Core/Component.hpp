@@ -10,6 +10,7 @@ public:
     virtual ~Component();
 
     virtual void Start();
+    virtual void FixedUpdate(float fixedDt);
     virtual void Update(float deltaTime) = 0;
     virtual void NotifyCollision(GameObject& other);
     virtual void Render() const = 0;

@@ -21,6 +21,7 @@ public:
     void Pause() override {};
     void Resume() override;
 
+    void FixedUpdate(float fixedDt) override;
 private:
     Music m_music;
     Timer m_timer;
