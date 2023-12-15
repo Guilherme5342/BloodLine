@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EnemyBase.hpp"
+#include "Components/Enemy/EnemyBase.hpp"
 
 
 class PawnEnemy : public EnemyBase {
@@ -10,12 +10,12 @@ private:
 
 	bool invertMove = false;
 
-	Vector2 destination = Vector2(0,0);
+	Vec2 destination = Vec2(0,0);
 	float distanceBetweenPoint = 0;
 
 public:
-	PawnEnemy(GameObject& associated, std::weak_ptr<GameObject> player,Sprite& sprite,int health,int damage, Action enemyAction,EnemyTypePhysics phys, 
-		float radius);
+	PawnEnemy(GameObject& associated, std::weak_ptr<GameObject> player,Sprite& sprite,int health,int damage, 
+		Action enemyAction,EnemyTypePhysics phys, float radius);
 	~PawnEnemy();
 
 	void Start();
@@ -36,10 +36,10 @@ public:
 	}
 
 	inline void ChangeMovePoint() {
-		Vector2 pos = associated.box.GetCenter();
+		Vec2 pos = m_associated.m_box.GetCenter();
 
-		Vector2 leftPoint = pos.DirectionFrom(270);
-		Vector2 rightPoint = pos.DirectionFrom(0);
+		Vec2 leftPoint = pos.RotatedDeg(270);
+		Vec2 rightPoint = pos.RotatedDeg(0);
 
 		destination = !invertMove ? leftPoint : rightPoint;
 		//distanceBetweenPoint = Distance(pos, destination);

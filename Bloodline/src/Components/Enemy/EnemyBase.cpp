@@ -13,9 +13,9 @@ EnemyBase::EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player, S
 {
 	enemyAction = initialAction;
 
-	Vector2 spriteScale = Vector2(sprite.GetWidth(), sprite.GetHeight());
+	Vec2 spriteScale = Vec2(sprite.GetWidth(), sprite.GetHeight());
 
-	associated.box.SetSize(spriteScale);
+	associated.m_box.SetSize(spriteScale);
 
 	associated.AddComponent(&sprite);
 	associated.AddComponent(&this->health);
@@ -29,9 +29,9 @@ EnemyBase::~EnemyBase()
 
 void EnemyBase::Update(float dt)
 {
-	if(associated.healthHandler->GetHealth() <= 0 && !associated.isDead())
+	if(health.GetHealth() <= 0 && !m_associated.IsDead())
 	{
-		associated.RequestDelete();
+		m_associated.RequestDelete();
 		return;
 	}
 
@@ -58,5 +58,5 @@ void EnemyBase::Render()
 
 void EnemyBase::NotifyCollision(GameObject& other)
 {
-	isOnFloor = associated.CompareLayer(other);
+	isOnFloor = m_associated.layer == other.layer;
 }

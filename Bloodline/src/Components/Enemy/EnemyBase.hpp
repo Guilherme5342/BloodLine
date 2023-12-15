@@ -1,15 +1,17 @@
 #pragma once
 
 
-#include "Component.hpp"
-#include "GameObject.hpp"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Core/GameObject.hpp"
 
-#include "Sprite.hpp"
-#include "Rigidbody2D.hpp"
-#include "HealthHandler.hpp"
+#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/Rigidbody2D.hpp"
+#include "Galapagos/Components/Collider.hpp"
 
-#include "GlobalDefinitions.hpp"
-#include "Timer.hpp";
+#include "Components/HealthHandler.hpp"
+
+#include "GameDefines/GlobalDefinitions.hpp"
+#include "Galapagos/Utils/Timer.hpp";
 
 class EnemyBase : public Component
 {
@@ -25,7 +27,7 @@ protected:
 	Timer waitingTimer;
 	Sprite& sprite;
 
-	Vector2 speed = { 1,1 };
+	Vec2 speed = { 1,1 };
 
 	int damage;
 	bool isOnFloor = false;
