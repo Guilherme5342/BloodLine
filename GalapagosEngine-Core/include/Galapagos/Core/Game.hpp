@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "State.hpp"
+#include "Galapagos/Math/Vec2.hpp"
 
 class Game
 {
