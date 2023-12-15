@@ -21,6 +21,6 @@ void HealthHandler::Update(float dt)
 	}
 }
 
-void HealthHandler::Render()
+void HealthHandler::Render() const
 {
 }

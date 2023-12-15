@@ -15,9 +15,9 @@ public:
 	int GetHealth();
 
 	void Update(float dt);
-	void Render();
+	void Render() const;
 
-	inline bool Is(std::string type) {
+	inline bool Is(std::string type) const {
 		return type == "HealthHandler";
 	}
 
