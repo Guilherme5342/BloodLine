@@ -52,7 +52,7 @@ void StageState::LoadAssets()
     CameraFollower *cameraFollower = new CameraFollower(*level);
     level->AddComponent(cameraFollower);
 
-    m_objectArray.emplace_back(level);
+    AddObject(level);
 
     /*for (std::int32_t i = 0; i < 6; i++)
     {
@@ -108,8 +108,8 @@ void StageState::LoadAssets()
 
     //enemyTest->GetHitBox().SetScale(Vec2(25, 50));
 
-    m_objectArray.emplace_back(enemyObj);
-    m_objectArray.emplace_back(rb);
+    AddObject(enemyObj);
+    AddObject(rb);
     AddObject(enemyObj);
 
     AddSquare(Game::GetWindowCenter() + Vec2(100, 512), Vec2(1100, 150));
@@ -119,7 +119,7 @@ void StageState::LoadAssets()
     HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
     healthDisplayObj->AddComponent(healthDisplay);
 
-    m_objectArray.emplace_back(healthDisplayObj);
+    AddObject(healthDisplayObj);
 }
 
 void StageState::Start()
@@ -142,7 +142,7 @@ GameObject* StageState::AddSquare(Vec2 pos, Vec2 size, SDL_Color color)
     RectDebugger* newGround = new RectDebugger(*rectObj, pos.x, pos.y, size.x, size.y, color);
     rectObj->AddComponent(newGround);
     rectObj->AddComponent(new Collider(*rectObj));
-    m_objectArray.emplace_back(rectObj);
+    AddObject(rectObj);
     return rectObj;
 }
 
