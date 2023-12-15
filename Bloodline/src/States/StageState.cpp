@@ -106,30 +106,33 @@ void StageState::LoadAssets()
     PlayerController* pc = new PlayerController(*player,*playerSprite,*rigid, 300);
     player->AddComponent(pc);
 
-    //GameObject* healthDisplayObj = new GameObject("HealthDisplay");
-    //HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
-    //healthDisplayObj->AddComponent(healthDisplay);
+    GameObject* healthDisplayObj = new GameObject("HealthDisplay");
+    HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
+    healthDisplayObj->AddComponent(healthDisplay);
 
-    //AddObject(healthDisplayObj);
+    AddObject(healthDisplayObj);
 
     player->m_box.SetCenter(Game::GetWindowCenter());
     Camera::Follow(player);
     AddObject(player);
 
     // Enemies 
-    //GameObject* enemyObj = new GameObject("Enemy1");
+    GameObject* enemyObj = new GameObject("Enemy1");
     //AnimatedSprite* enemySprite = new AnimatedSprite(*enemyObj, PAWN_ENEMY_IDLE, 10, 1, .3f);
 
-    //EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(player), 10, 1, Action::IDLE, EnemyTypePhysics::GROUND, 4);
+    EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(player), 10, 1, Action::IDLE, EnemyTypePhysics::GROUND, 4);
 
-    //enemyObj->AddComponent(enemyTest);
+    enemyObj->AddComponent(enemyTest);
 
-    //enemyObj->m_box.SetCenter(player->m_box.GetCenter() + Vec2(20, 0));
+    enemyObj->m_box.SetCenter(player->m_box.GetCenter() + Vec2(20, 0));
+
 
     //enemyTest->GetHitBox().SetScale(Vec2(25, 50));
 
-    //AddObject(enemyObj);
+    AddObject(enemyObj);
 
+
+    LoadEnemy(Vec2(0, 0), Vec2(25, 25), GetObjectPtr(player));
 }
 
 void StageState::Start()
@@ -162,6 +165,23 @@ void StageState::FixedUpdate(float fixedDeltaTime)
             }
         }
     }
+}
+
+void StageState::LoadEnemy(Vec2 pos, Vec2 size, std::weak_ptr<GameObject> player)
+{
+    GameObject* enemyObj = new GameObject("Enemy1");
+    //AnimatedSprite* enemySprite = new AnimatedSprite(*enemyObj, PAWN_ENEMY_IDLE, 10, 1, .3f);
+
+    EnemyBase* enemyTest = new PawnEnemy(*enemyObj, player, 10, 1, Action::IDLE, EnemyTypePhysics::GROUND, 4);
+
+    enemyObj->AddComponent(enemyTest);
+
+    enemyObj->m_box.SetCenter(player.lock()->m_box.GetCenter() + Vec2(20, 0));
+
+
+    //enemyTest->GetHitBox().SetScale(Vec2(25, 50));
+
+    AddObject(enemyObj);
 }
 
 void StageState::LoadTMX(std::string file)

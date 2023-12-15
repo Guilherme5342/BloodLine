@@ -28,6 +28,7 @@ public:
     void FixedUpdate(float fixedDt) override;
 private:
 
+    void LoadEnemy(Vec2 pos, Vec2 size, std::weak_ptr<GameObject> player);
     void LoadTMX(std::string file);
 
     Music m_music;
