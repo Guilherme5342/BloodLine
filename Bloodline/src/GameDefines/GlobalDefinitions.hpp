@@ -6,14 +6,14 @@
 
 #define PLAYER_IDLE "res/img/player/run.png"//"res/img/player/idle.png"
 #define PLAYER_JUMP "res/img/player/run.png" //"res/img/player/jump.png"
-#define PLAYER_RUNNING "res/img/player/run.png"
-#define PLAYER_ATTACK "res/img/player/run.png"//"res/img/player/jump.png"
+#define PLAYER_RUNNING "res/img/player/dash.png"
+#define PLAYER_ATTACK "res/img/player/attack.png"//"res/img/player/jump.png"
 
 
-#define PAWN_ENEMY_IDLE "res/img/enemies/knight/_Idle.png"
-#define PAWN_ENEMY_MOVE "res/img/enemies/knight/_Run.png"
-#define PAWN_ENEMY_ATTACK "res/img/enemies/knight/_Attack.png"
-#define PAWN_ENEMY_SPECIAL_ATTACK "res/img/enemies/knight/_SpecialAttack.png"
+#define PAWN_ENEMY_IDLE "res/img/enemies/priest/Idle.png"
+#define PAWN_ENEMY_MOVE "res/img/enemies/priest/Idle.png"
+#define PAWN_ENEMY_ATTACK "res/img/enemies/priest/Idle.png"
+#define PAWN_ENEMY_SPECIAL_ATTACK "res/img/enemies/priest/Idle.png"
 
 
 /*TileSets FilePaths*/

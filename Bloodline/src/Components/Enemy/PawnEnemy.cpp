@@ -50,7 +50,7 @@ void PawnEnemy::NotifyCollision(GameObject &otherObj)
 
 		// cout << edgeRect.x << " " << hitBox.m_box.x << endl;
 
-		m_sprite->Open(PAWN_ENEMY_IDLE, 14, 1, .05f);
+		m_sprite->Open(PAWN_ENEMY_IDLE, 3, 1, .05f);
 		SetActionState(Action::IDLE);
 		ChangeMovePoint();
 
@@ -63,7 +63,7 @@ void PawnEnemy::Idle(float dt)
 	m_waitingTimer.Update(dt);
 	if (m_waitingTimer.Get() > 1.5f /*&& isOnFloor*/)
 	{
-		m_sprite->Open(PAWN_ENEMY_MOVE, 14, 1, .05f);
+		m_sprite->Open(PAWN_ENEMY_MOVE, 3, 1, .05f);
 		ChangeMovePoint();
 		SetActionState(Action::MOVE);
 		m_waitingTimer.Restart();
