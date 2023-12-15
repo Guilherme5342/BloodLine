@@ -55,7 +55,7 @@ StageState::~StageState()
 
 void StageState::LoadAssets()
 {
-    m_music.Open("res/audio/stageState.ogg");
+    m_music.Open("res/audio/BossFightIdea.mp3");
 
     GameObject* level = new GameObject();
 
