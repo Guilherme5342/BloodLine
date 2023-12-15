@@ -5,17 +5,22 @@
 
 #include "Galapagos/Core/Component.hpp"
 #include "Galapagos/Core/GameObject.hpp"
-#include "tmxlite/Map.hpp"
+
+#include <tmxlite/Map.hpp>
+#include <tmxlite/ObjectGroup.hpp>
+#include <tmxlite/LayerGroup.hpp>
+#include <tmxlite/TileLayer.hpp>
 
 class TileSet;
 
 class TileMap : public Component
 {
 public:
-    TileMap(GameObject &associated, std::string file, TileSet *tileSet);
+    TileMap(GameObject &associated, TileSet* tileSet, std::string file);
+    TileMap(GameObject &associated, TileSet* tileSet, const tmx::Map &map);
 
     void Load(std::string file);
-    void LoadCollisions();
+    void Load(const tmx::Map& map);
 
     void SetTileSet(TileSet *tileSet);
     std::int32_t At(std::int32_t x, std::int32_t y, std::int32_t z = 0) const;
@@ -31,7 +36,6 @@ public:
 
 private:
     std::vector<int> m_tileMatrix;
-    tmx::Map m_map;
     TileSet *m_tileSet;
     std::int32_t m_mapWidth;
     std::int32_t m_mapHeight;

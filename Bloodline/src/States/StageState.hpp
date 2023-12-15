@@ -27,8 +27,9 @@ public:
 
     void FixedUpdate(float fixedDt) override;
 private:
+
+    void LoadTMX(std::string file);
+
     Music m_music;
     Timer m_timer;
-
-    GameObject* AddSquare(Vec2 pos, Vec2 size, SDL_Color color = { 255,255,255,255 });
 };

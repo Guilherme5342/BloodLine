@@ -27,6 +27,20 @@
 #include "EndState.hpp"
 #include "GameData.hpp"
 
+#include <tmxlite/Map.hpp>
+#include <tmxlite/ObjectGroup.hpp>
+#include <tmxlite/LayerGroup.hpp>
+#include <tmxlite/TileLayer.hpp>
+
+
+const std::array<std::string, 4u> LayerStrings =
+{
+    std::string("terrain"),
+    std::string("Collision"),
+    std::string("prototype"),
+};
+
+
 StageState::StageState() : m_music()
 {
     m_quitRequested = false;
@@ -41,31 +55,25 @@ StageState::~StageState()
 
 void StageState::LoadAssets()
 {
-    //m_music.Open("res/audio/stageState.ogg");
+    m_music.Open("res/audio/stageState.ogg");
 
-    GameObject *level = new GameObject();
+    LoadTMX("res/map/mapa1.tmx");
+    GameObject* level = new GameObject();
 
-    AnimatedSprite*background = new AnimatedSprite(*level, "res/img/stageStateLuaBG.png");
+    AnimatedSprite* background = new AnimatedSprite(*level, "res/img/stageStateLuaBG.png");
     level->AddComponent(background);
-    
-    TileSet *tileSet = new TileSet(16, 16, "res/map/TilesetPlaceholder.png");
-    TileMap *tileMap = new TileMap(*level, "res/map/testecolisao/mapa1_terrain.csv", tileSet);
+
+    TileSet* tileSet = new TileSet(16, 16, "res/map/TilesetPlaceholder.png");
+    TileMap* tileMap = new TileMap(*level, tileSet, "res/map/testecolisao/mapa1_terrain.csv");
 
     level->AddComponent(tileMap);
-    CameraFollower *cameraFollower = new CameraFollower(*level);
+    CameraFollower* cameraFollower = new CameraFollower(*level);
     level->AddComponent(cameraFollower);
 
     level->m_box.SetSize(Game::GetWindowSize());
     background->SetScale(Vec2(3, 3));
     AddObject(level);
 
-    GameObject* chao = new GameObject();
-    Collider* col = new Collider(*chao, true);
-    chao->m_box = { 0, 0, 600, 40 };
-    chao->m_box.SetCenter(Game::GetWindowCenter() + Vec2{ 0, 300 });
-
-
-    AddObject(chao);
     /*for (std::int32_t i = 0; i < 6; i++)
     {
         GameObject *alien = new GameObject();
@@ -126,8 +134,6 @@ void StageState::LoadAssets()
 
     //AddObject(enemyObj);
 
-    AddSquare(Game::GetWindowCenter() + Vec2(100, 512), Vec2(1100, 150));
-    AddSquare(Game::GetWindowCenter() + Vec2(0, 512), Vec2(450, 150));
 }
 
 void StageState::Start()
@@ -162,14 +168,57 @@ void StageState::FixedUpdate(float fixedDeltaTime)
     }
 }
 
-GameObject* StageState::AddSquare(Vec2 pos, Vec2 size, SDL_Color color)
+void StageState::LoadTMX(std::string file)
 {
-    GameObject* rectObj = new GameObject("Ground", 1);
-    RectDebugger* newGround = new RectDebugger(*rectObj, pos.x, pos.y, size.x, size.y, color);
-    rectObj->AddComponent(newGround);
-    rectObj->AddComponent(new Collider(*rectObj));
-    AddObject(rectObj);
-    return rectObj;
+    tmx::Map map;
+    if (map.load(file))
+    {
+        std::cout << "Loaded Map version: " << map.getVersion().upper << ", " << map.getVersion().lower << std::endl;
+        if (map.isInfinite())
+        {
+            std::cout << "Map is infinite.\n";
+        }
+        else
+        {
+            std::cout << "Map Dimensions: " << map.getBounds() << std::endl;
+        }
+
+        const auto& layers = map.getLayers();
+        std::cout << "Map has " << layers.size() << " layers" << std::endl;
+        for (const auto& layer : layers)
+        {
+            std::cout << "Found Layer: " << layer->getName() << std::endl;
+            std::cout << "Layer Type: " << LayerStrings[static_cast<std::int32_t>(layer->getType())] << std::endl;
+            std::cout << "Layer Dimensions: " << layer->getSize() << std::endl;
+            std::cout << "Layer Tint: " << layer->getTintColour() << std::endl;
+
+            if (layer->getType() == tmx::Layer::Type::Object)
+            {
+                const auto& objects = layer->getLayerAs<tmx::ObjectGroup>().getObjects();
+                std::cout << "Found " << objects.size() << " objects in layer" << std::endl;
+                for (const auto& object : objects)
+                {
+                    std::cout << "Object " << object.getUID() << ", " << object.getName() << std::endl;
+                    const auto& properties = object.getProperties();
+                    std::cout << "Object has " << properties.size() << " properties" << std::endl;
+                    for (const auto& prop : properties)
+                    {
+                        std::cout << "Found property: " << prop.getName() << std::endl;
+                        std::cout << "Type: " << int(prop.getType()) << std::endl;
+                    }
+                    GameObject* chao = new GameObject();
+                    chao->m_box = { object.getAABB().left, object.getAABB().top, object.getAABB().width, object.getAABB().height};
+                    Collider* col = new Collider(*chao, true);
+                    auto teste = AddObject(chao);
+                    std::cout << "Chao: " << teste.lock()->m_box << "\n";
+                }
+            }
+        }
+    }
+    else
+    {
+        std::cout << "Failed loading map" << std::endl;
+    }
 }
 
 void StageState::Update(float deltaTime)

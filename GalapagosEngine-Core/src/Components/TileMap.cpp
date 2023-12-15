@@ -11,14 +11,16 @@
 
 #include "tmxlite/Map.hpp"
 
-TileMap::TileMap(GameObject &associated, std::string file, TileSet *tileSet) : Component(associated)
+TileMap::TileMap(GameObject &associated, TileSet* tileSet, std::string file) : Component(associated)
 {
     m_tileSet = tileSet;
     Load(file);
-    m_map.load("res/map/mapa1.tmx");
-    for (auto& teste : m_map.getLayers()) {
-        std::cout << teste.get()->getName() << '\n';
-   }
+}
+
+TileMap::TileMap(GameObject& associated, TileSet* tileSet, const tmx::Map& map) : Component(associated)
+{
+    m_tileSet = tileSet;
+    Load(map);
 }
 
 void TileMap::Load(std::string file)
@@ -35,22 +37,34 @@ void TileMap::Load(std::string file)
     }
 }
 
-void TileMap::LoadCollisions()
+void TileMap::Load(const tmx::Map& map)
 {
-    if (m_tileMatrix.empty() || m_tileSet == nullptr) {
-        return;
-    }
-
-    for (size_t i = 0; i < m_tileMatrix.size(); i++)
+    const auto& layers = map.getLayers();
+    std::cout << "Map has " << layers.size() << " layers" << std::endl;
+    for (const auto& layer : layers)
     {
-        int tile = m_tileMatrix[i];
-        if (tile == 8) 
+        if (layer->getType() == tmx::Layer::Type::Tile)
         {
-            GameObject* colliderObj = new GameObject("TileCollider", 0);
-            Collider* tileCollider = new Collider(*colliderObj);
-            colliderObj->m_box.SetSize(Vec2(16, 16));
-            colliderObj->AddComponent(tileCollider);
-            Game::GetCurrentState().AddObject(colliderObj);
+            const auto& tiles = layer->getLayerAs<tmx::TileLayer>().getTiles();
+            if (tiles.empty())
+            {
+                const auto& chunks = layer->getLayerAs<tmx::TileLayer>().getChunks();
+                if (chunks.empty())
+                {
+                    std::cout << "Layer has missing tile data\n";
+                }
+                else
+                {
+                    std::cout << "Layer has " << chunks.size() << " tile chunks.\n";
+                }
+            }
+            else
+            {
+                std::cout << "Layer has " << tiles.size() << " tiles.\n";
+                for (auto& aaa : tiles) {
+                    std::cout << aaa.ID;
+                }
+            }
         }
     }
 }
