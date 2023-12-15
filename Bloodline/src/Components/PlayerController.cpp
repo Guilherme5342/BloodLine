@@ -1,9 +1,9 @@
 #include "PlayerController.hpp"
-#include "Spell.hpp"
-#include "BloodSpell.hpp"
-#include "BloodBarrage.hpp"
-#include "Atack.hpp"
-#include "Game.hpp"
+#include "Components/Spells/Spell.hpp"
+#include "Components/Spells/BloodSpell.hpp"
+#include "Components/Spells/BloodBarrage.hpp"
+#include "Components/Atack.hpp"
+#include "Galapagos/Core/Game.hpp"
 #include <cmath>
 
 PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed)

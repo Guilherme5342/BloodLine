@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Component.hpp"
-#include "GameObject.hpp"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Core/GameObject.hpp"
 
-#include "Rigidbody2D.hpp"
-#include "InputSystem.hpp"
-#include "Command.hpp"
+#include "Galapagos/Components/Rigidbody2D.hpp"
+#include "Galapagos/Core/InputManager.hpp"
+
 #include "States.hpp"
-#include "StateMachine.hpp"
-#include "Spell.hpp"
+#include "Galapagos/Components/StateMachine.hpp"
+#include "Components/Spells/Spell.hpp"
 
 #include <map>
 
@@ -46,7 +46,7 @@ private:
 
 	AnimState *animState;
 
-	map<string, Spell *> spells;
+	map<std::string, Spell *> spells;
 
 public:
 	PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed);
@@ -58,15 +58,15 @@ public:
 	virtual void Update(float dt) override;
 	virtual void Render() override;
 
-	inline virtual bool Is(string type) override
+	inline virtual bool Is(std::string type) override
 	{
 		return type == "PlayerController";
 	}
 
 	bool IsDead();
 
-	void CastSpell(string spellName);
-	void AddSpell(string spellName, Spell *spell);
+	void CastSpell(std::string spellName);
+	void AddSpell(std::string spellName, Spell *spell);
 
 	void NotifyCollision(GameObject &otherObj);
 	void NotifyNoCollision(GameObject &otherObj);
