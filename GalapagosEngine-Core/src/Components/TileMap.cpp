@@ -43,8 +43,14 @@ void TileMap::Load(const tmx::Map& map)
     std::cout << "Map has " << layers.size() << " layers" << std::endl;
     for (const auto& layer : layers)
     {
+        m_mapWidth = layer->getSize().x;
+        m_mapHeight = layer->getSize().y;
+        m_mapDepth = 1;
         if (layer->getType() == tmx::Layer::Type::Tile)
         {
+            if (layer->getName().find("") == std::string::npos) {
+                continue;
+            }
             const auto& tiles = layer->getLayerAs<tmx::TileLayer>().getTiles();
             if (tiles.empty())
             {
@@ -61,8 +67,8 @@ void TileMap::Load(const tmx::Map& map)
             else
             {
                 std::cout << "Layer has " << tiles.size() << " tiles.\n";
-                for (auto& aaa : tiles) {
-                    std::cout << aaa.ID;
+                for (auto& tile : tiles) {
+                    m_tileMatrix.push_back(tile.ID - 1);
                 }
             }
         }

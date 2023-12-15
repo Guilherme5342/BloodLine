@@ -57,16 +57,11 @@ void StageState::LoadAssets()
 {
     m_music.Open("res/audio/stageState.ogg");
 
-    LoadTMX("res/map/mapa1.tmx");
     GameObject* level = new GameObject();
 
     AnimatedSprite* background = new AnimatedSprite(*level, "res/img/stageStateLuaBG.png");
     level->AddComponent(background);
 
-    TileSet* tileSet = new TileSet(16, 16, "res/map/TilesetPlaceholder.png");
-    TileMap* tileMap = new TileMap(*level, tileSet, "res/map/testecolisao/mapa1_terrain.csv");
-
-    level->AddComponent(tileMap);
     CameraFollower* cameraFollower = new CameraFollower(*level);
     level->AddComponent(cameraFollower);
 
@@ -74,6 +69,7 @@ void StageState::LoadAssets()
     background->SetScale(Vec2(3, 3));
     AddObject(level);
 
+    LoadTMX("res/map/mapa1.tmx");
     /*for (std::int32_t i = 0; i < 6; i++)
     {
         GameObject *alien = new GameObject();
@@ -173,6 +169,11 @@ void StageState::LoadTMX(std::string file)
     tmx::Map map;
     if (map.load(file))
     {
+        GameObject* go = new GameObject();
+        TileSet* tileSet = new TileSet(16, 16, "res/map/TilesetPlaceholder.png");
+        TileMap* tileMap = new TileMap(*go, tileSet, map);
+        go->AddComponent(tileMap);
+        AddObject(go);
         std::cout << "Loaded Map version: " << map.getVersion().upper << ", " << map.getVersion().lower << std::endl;
         if (map.isInfinite())
         {
@@ -209,8 +210,7 @@ void StageState::LoadTMX(std::string file)
                     GameObject* chao = new GameObject();
                     chao->m_box = { object.getAABB().left, object.getAABB().top, object.getAABB().width, object.getAABB().height};
                     Collider* col = new Collider(*chao, true);
-                    auto teste = AddObject(chao);
-                    std::cout << "Chao: " << teste.lock()->m_box << "\n";
+                    AddObject(chao);
                 }
             }
         }
