@@ -56,7 +56,7 @@ public:
 
 	// Herdado por meio de Component
 	virtual void Update(float dt) override;
-	virtual void Render() override;
+	virtual void Render() const override;
 
 	inline virtual bool Is(std::string type) const override
 	{

@@ -134,7 +134,7 @@ void PlayerController::NotifyNoCollision(GameObject& otherObj) {
 
 }
 
-void PlayerController::Render()
+void PlayerController::Render() const
 {
 	animState->Render(*this);
 }
