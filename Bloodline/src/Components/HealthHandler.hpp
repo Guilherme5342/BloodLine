@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Component.hpp"
-#include "GameObject.hpp"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Core/GameObject.hpp"
 
 class HealthHandler : public Component {
 

@@ -1,9 +1,10 @@
 #include "Atack.hpp"
-#include "Collider.hpp"
+#include "Galapagos/Components/Collider.hpp"
+#include "Components/HealthHandler.hpp"
 
-Atack::Atack(GameObject &associated, float angle, int damage, string sprite, bool targetsPlayer, int direction, int frameCount) : Component(associated)
+Atack::Atack(GameObject &associated, float angle, int damage, std::string sprite, bool targetsPlayer, int direction, int frameCount) : Component(associated)
 {
-    associated.angleDeg = angle * 180 / 3.14;
+    associated.m_angleDeg = angle * 180 / 3.14;
     
     this->targetsPlayer = targetsPlayer;
     this->damage = damage;
@@ -11,10 +12,10 @@ Atack::Atack(GameObject &associated, float angle, int damage, string sprite, boo
     canAtack = false;
     atackElapsedTime = 0;
 
-    associated.box.w = 20;
-    associated.box.h = 100;
+    associated.m_box.w = 20;
+    associated.m_box.h = 100;
     Collider *collider = new Collider(associated);
-    collider->SetTrigger(true);
+    collider->isTrigger = true;
     associated.AddComponent(collider);
 
     if(direction == 0){
@@ -25,19 +26,19 @@ Atack::Atack(GameObject &associated, float angle, int damage, string sprite, boo
         direction = -2;
     }
 
-    associated.box.SetCenter(associated.box.GetCenter() + Vector2(20 * direction, -50).GetRotated(angle));
+    associated.m_box.SetCenter(associated.m_box.GetCenter() + Vec2(20 * direction, -50).RotatedDeg(angle));
 }
 
 void Atack::Update(float dt)
 {
-    cout << direction << endl;
+    std::cout << direction << std::endl;
     if(!canAtack){
         atackElapsedTime += dt;
         if (atackElapsedTime >= ATACK_DURATION)
         {
             atackElapsedTime = 0;
             canAtack = true;
-            associated.RequestDelete();
+            m_associated.RequestDelete();
         }
     }
    
@@ -45,7 +46,7 @@ void Atack::Update(float dt)
 
 void Atack::Render() {}
 
-bool Atack::Is(string typeIdentifier)
+bool Atack::Is(std::string typeIdentifier)
 {
     return typeIdentifier == "Atack";
 }
@@ -57,7 +58,8 @@ int Atack::GetDamage()
 
 void Atack::NotifyCollision(GameObject &otherObj)
 {
-    if(otherObj.layer == 0 && otherObj.healthHandler != nullptr && otherObj.healthHandler->GetHealth() > 0 && !targetsPlayer){
-        otherObj.healthHandler->RemoveHealth(damage);
+    HealthHandler* otherHealth = (HealthHandler*)otherObj.GetComponent("HealthHandler");
+    if(otherObj.layer == 0 && otherHealth != nullptr && otherHealth->GetHealth() > 0 && !targetsPlayer){
+        otherHealth->RemoveHealth(damage);
     }
 }

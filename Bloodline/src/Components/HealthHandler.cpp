@@ -1,6 +1,5 @@
 #include "HealthHandler.hpp"
-#include "GameObject.hpp"
-#include "States.hpp"
+#include "Galapagos/Core/GameObject.hpp"
 
 HealthHandler::HealthHandler(GameObject& associated, int health) : Component(associated), health(health)
 {
@@ -18,7 +17,7 @@ int HealthHandler::GetHealth() {
 void HealthHandler::Update(float dt)
 {
 	if (health <= 0) {
-		associated.RequestDelete();
+		m_associated.RequestDelete();
 	}
 }
 
