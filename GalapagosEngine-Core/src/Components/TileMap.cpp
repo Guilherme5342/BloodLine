@@ -16,6 +16,9 @@ TileMap::TileMap(GameObject &associated, std::string file, TileSet *tileSet) : C
     m_tileSet = tileSet;
     Load(file);
     m_map.load("res/map/mapa1.tmx");
+    for (auto& teste : m_map.getLayers()) {
+        std::cout << teste.get()->getName() << '\n';
+   }
 }
 
 void TileMap::Load(std::string file)
