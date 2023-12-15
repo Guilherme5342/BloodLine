@@ -133,6 +133,9 @@ void StageState::LoadAssets()
 
 
     LoadEnemy(Vec2(0, 0), Vec2(25, 25), GetObjectPtr(player));
+    LoadEnemy(Vec2(100, 100), Vec2(25, 25), GetObjectPtr(player));
+    LoadEnemy(Vec2(50, 500), Vec2(50, 25), GetObjectPtr(player));
+    LoadEnemy(Vec2(40, 200), Vec2(55, 25), GetObjectPtr(player));
 }
 
 void StageState::Start()
@@ -176,9 +179,9 @@ void StageState::LoadEnemy(Vec2 pos, Vec2 size, std::weak_ptr<GameObject> player
 
     enemyObj->AddComponent(enemyTest);
 
-    enemyObj->m_box.SetCenter(player.lock()->m_box.GetCenter() + Vec2(20, 0));
+    enemyObj->m_box.SetCenter(player.lock()->m_box.GetCenter() + pos);
 
-
+    enemyObj->m_box.SetSize(size);
     //enemyTest->GetHitBox().SetScale(Vec2(25, 50));
 
     AddObject(enemyObj);
