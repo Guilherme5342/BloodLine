@@ -14,8 +14,8 @@ public:
     Atack(GameObject &associated, float angle, int damage, std::string sprite, bool targetsPlayer, int direction, int frameCount = 1);
     void Update(float dt);
     void NotifyCollision(GameObject &otherObj);
-    void Render();
-    bool Is(std::string type);
+    void Render() const;
+    bool Is(std::string type) const;
     int GetDamage();
     int direction;
 

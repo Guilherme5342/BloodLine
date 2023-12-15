@@ -54,7 +54,7 @@ void PawnEnemy::NotifyCollision(GameObject& otherObj)
 	
 	Rect edgeRect = hitBox.m_box.GetIntersection(otherColl->m_box);
 
-	if (otherObj.tag == "Ground") {
+	if (otherObj.tag == "Ground" && !onGround) {
 		
 		//cout << edgeRect.x << " " << hitBox.m_box.x << endl;
 				
@@ -62,7 +62,7 @@ void PawnEnemy::NotifyCollision(GameObject& otherObj)
 		SetActionState(IDLE);
 		ChangeMovePoint();
 		
-
+		onGround = true;
 	}
 }
 
@@ -80,7 +80,13 @@ void PawnEnemy::Idle(float dt)
 
 void PawnEnemy::Move(float dt)
 {
-	m_associated.m_box += speed.Normalized() * dt * 100;
+	
+	if (distanceBetweenPoint <= 1) {
+		SetActionState(IDLE);
+	}
+	else {
+		m_associated.m_box.SetCenter(m_associated.m_box.GetCenter() + speed.Normalized() * dt * 100);
+	}
 }
 
 void PawnEnemy::Attack(float dt)

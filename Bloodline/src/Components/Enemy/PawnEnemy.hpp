@@ -9,7 +9,7 @@ private:
 	float rangeDetection;
 
 	bool invertMove = false;
-
+	bool onGround = false;
 	Vec2 destination = Vec2(0,0);
 	float distanceBetweenPoint = 0;
 
@@ -38,11 +38,11 @@ public:
 	inline void ChangeMovePoint() {
 		Vec2 pos = m_associated.m_box.GetCenter();
 
-		Vec2 leftPoint = pos.RotatedDeg(270);
-		Vec2 rightPoint = pos.RotatedDeg(0);
+		Vec2 leftPoint = Vec2(-10,0);
+		Vec2 rightPoint = Vec2(10,0);
 
 		destination = !invertMove ? leftPoint : rightPoint;
-		//distanceBetweenPoint = Distance(pos, destination);
+		distanceBetweenPoint = pos.Distance(destination);
 
 	}
 };
