@@ -56,6 +56,20 @@ void Text::Render() const
     
 }
 
+void Text::RenderStatic() const
+{
+
+    SDL_Rect srcRect{ 0, 0, static_cast<int>(m_associated.m_box.w), static_cast<int>(m_associated.m_box.h) };
+
+    SDL_Rect dstRect{
+        static_cast<int>(m_associated.m_box.x),
+        static_cast<int>(m_associated.m_box.y),
+        static_cast<int>(m_associated.m_box.w),
+        static_cast<int>(m_associated.m_box.h) };
+
+    SDL_RenderCopyEx(Game::GetRenderer(), m_texture, &srcRect, &dstRect, m_associated.m_angleDeg, nullptr, SDL_FLIP_NONE);
+}
+
 void Text::SetText(std::string text)
 {
     m_text = text;
