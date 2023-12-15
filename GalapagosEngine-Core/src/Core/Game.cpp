@@ -13,6 +13,9 @@
 
 Game *Game::m_instance = nullptr;
 
+int Game::windowWidth = 0;
+int Game::windowHeight = 0;
+
 Game &Game::GetInstance()
 {
     if (m_instance == nullptr)
@@ -58,6 +61,9 @@ Game::Game(const char *title, std::int32_t width, std::int32_t height)
     {
         throw std::runtime_error("Erro ao criar janela.");
     }
+
+    windowWidth = width;
+    windowHeight = height;
 
     m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
     if (m_renderer == nullptr)

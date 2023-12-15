@@ -18,6 +18,7 @@ public:
 
     inline static void Push(State* state) { return GetInstance().__Push(state); }
 
+    inline static Vec2 GetWindowCenter() { return Vec2(windowWidth, windowHeight) / 2; }
     Game(const Game &) = delete;
     Game(Game &&) = delete;
     void operator=(const Game &) = delete;
@@ -48,6 +49,9 @@ private:
 
     float m_leftOver = 0;
     float m_counter = 0;
+
+    static int windowHeight;
+    static int windowWidth;
 
     static Game *m_instance;
 };

@@ -1,6 +1,7 @@
 #include "Galapagos/Core/Camera.hpp"
 #include "Galapagos/Core/GameObject.hpp"
 #include "Galapagos/Core/InputManager.hpp"
+#include "Galapagos/Core/Game.hpp"
 
 Vec2 Camera::position = {0, 0};
 Vec2 Camera::speed = {0, 0};
@@ -30,4 +31,9 @@ void Camera::Update(float deltaTime)
 
         position += speed;
     }
+}
+
+void Camera::Reset()
+{
+    position = Vec2(0,0);
 }
