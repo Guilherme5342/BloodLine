@@ -44,9 +44,9 @@ void Atack::Update(float dt)
    
 }
 
-void Atack::Render() {}
+void Atack::Render() const {}
 
-bool Atack::Is(std::string typeIdentifier)
+bool Atack::Is(std::string typeIdentifier) const
 {
     return typeIdentifier == "Atack";
 }

@@ -6,9 +6,9 @@
 #include "Galapagos/Core/Game.hpp"
 #include <cmath>
 
-PlayerController::PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed)
-	: StateMachine(associated, sprite),
-	  speed(speed), playerBody(body), spells({{"BloodSpell", new BloodSpell(associated, 10.0, 10.0, 10, *this)}, {"BloodBarrage", new BloodBarrage(associated, 10.0, 10.0, 15, *this) }})
+PlayerController::PlayerController(GameObject &m_associated, Sprite &sprite, Rigidbody2D &body, int speed)
+	: StateMachine(m_associated, sprite),
+	  speed(speed), playerBody(body), spells({{"BloodSpell", new BloodSpell(m_associated, 10.0, 10.0, 10, *this)}, {"BloodBarrage", new BloodBarrage(m_associated, 10.0, 10.0, 15, *this) }})
 {
 	animState = nullptr;
 	canDash = true;
@@ -29,47 +29,46 @@ void PlayerController::Update(float dt)
 
 	if(dead){
 		animState = new DeathState(sprite);
-		cout << "Player is dead" << endl;
+		std::cout << "Player is dead" << std::endl;
 		return;
 	}
 
-	moving = (!jumping) && (InputSystem::Instance().IsKeyDown(SDLK_a) || InputSystem::Instance().IsKeyDown(SDLK_d));
+	moving = (!jumping) && (InputManager::IsKeyDown(Key::A) || InputManager::IsKeyDown(Key::D));
 
 	moveDir = {0, 0};
-	moveDir.x += InputSystem::Instance().IsKeyDown(SDLK_a) * (-speed * dt);
-	moveDir.x -= InputSystem::Instance().IsKeyDown(SDLK_d) * (-speed * dt);
+	moveDir.x += InputManager::IsKeyDown(Key::A) * (-speed * dt);
+	moveDir.x -= InputManager::IsKeyDown(Key::D) * (-speed * dt);
 
-	jumping = InputSystem::Instance().KeyPress(SDLK_SPACE) && canJump;
-	playerBody.ApplyForce(Vector2(0, jumping * -jumpForce), IMPULSE);
+	jumping = InputManager::KeyPress(Key::Space) && canJump;
+	playerBody.ApplyForce(Vec2(0, jumping * -jumpForce), IMPULSE);
 
-	int direction = InputSystem::Instance().IsKeyDown(SDLK_a) ? -1 : InputSystem::Instance().IsKeyDown(SDLK_d) ? 1
-																												   : 0;
+	int direction = InputManager::IsKeyDown(Key::A) ? -1 : InputManager::IsKeyDown(Key::D) ? 1 : 0;
 	float dashVelocity = DASH_SPEED_MULTIPLIER * direction;
 
-	if (canDash && InputSystem::Instance().KeyPress(SDLK_LSHIFT))
+	if (canDash && InputManager::KeyPress(Key::Lshift))
 	{
 		lastDashVel = dashVelocity;
 
-		playerBody.ApplyVelocity(Vector2(dashVelocity, 0));
+		playerBody.ApplyVelocity(Vec2(dashVelocity, 0));
 		canDash = false;
 		dashElapsedTime = 0.0f;
 		animState = new DashState(sprite);
 	}
 
-	if(InputSystem::Instance().KeyPress(SDLK_z)){
+	if(InputManager::KeyPress(Key::Z)){
 		GameObject *atackObject = new GameObject();
-		atackObject->box.SetCenter(associated.box.GetCenter());
+		atackObject->m_box.SetCenter(m_associated.m_box.GetCenter());
 		float angle = 0;
 		float speed = 200;
 		int damage = 20;
 		float maxDistance = 100;
-		string sprite = "../assets/img/atack.png";
+		std::string sprite = "../assets/img/atack.png";
 		bool targetsPlayer = false;
 		int frameCount = 1;
 
 		Atack *atack = new Atack(*atackObject, angle, damage, sprite, targetsPlayer, direction,frameCount);
 		atackObject->AddComponent(atack);
-		Game::Instance().GetState().AddObject(atackObject);
+		Game::GetCurrentState().AddObject(atackObject);
 	}
 
 	if (!canDash)
@@ -77,14 +76,14 @@ void PlayerController::Update(float dt)
 		dashElapsedTime += dt;
 		if (dashElapsedTime >= DASH_DURATION)
 		{
-			playerBody.ApplyVelocity(Vector2(-lastDashVel, 0));
+			playerBody.ApplyVelocity(Vec2(-lastDashVel, 0));
 			canDash = true;
 			dashTimer = 0.0f;
 		}
 	}
 
-	// cout << associated.box.x << endl;
-	associated.box += moveDir;
+	// cout << m_associated.m_box.x << endl;
+	m_associated.m_box.SetCenter(m_associated.m_box.GetCenter() + moveDir);
 
 	animState = new IdleState(sprite);
 	if (moving && canJump)
@@ -92,17 +91,17 @@ void PlayerController::Update(float dt)
 		animState = new MovingState(sprite);
 	}
 
-	if (InputSystem::Instance().KeyPress(SDLK_z))
+	if (InputManager::KeyPress(Key::Z))
 	{
 		animState = new AttackState(sprite, 10, 30, .2f);
 	}
 
-	if (InputSystem::Instance().KeyPress(SDLK_b))
+	if (InputManager::KeyPress(Key::B))
 	{
 		CastSpell("BloodSpell");
 	}
 
-	if (InputSystem::Instance().KeyPress(SDLK_l))
+	if (InputManager::KeyPress(Key::L))
 	{
 		CastSpell("BloodBarrage");
 	}

@@ -6,7 +6,7 @@
 #include "Galapagos/Components/Rigidbody2D.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 
-#include "States.hpp"
+#include "Interfaces/AnimationStates.hpp"
 #include "Galapagos/Components/StateMachine.hpp"
 #include "Components/Spells/Spell.hpp"
 
@@ -40,13 +40,13 @@ private:
 
 	bool dead = false;
 
-	Vector2 moveDir;
+	Vec2 moveDir;
 
 	Rigidbody2D &playerBody;
 
 	AnimState *animState;
 
-	map<std::string, Spell *> spells;
+	std::map<std::string, Spell *> spells;
 
 public:
 	PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed);
@@ -58,7 +58,7 @@ public:
 	virtual void Update(float dt) override;
 	virtual void Render() override;
 
-	inline virtual bool Is(std::string type) override
+	inline virtual bool Is(std::string type) const override
 	{
 		return type == "PlayerController";
 	}
