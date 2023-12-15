@@ -45,8 +45,9 @@ void StageState::LoadAssets()
 
     GameObject *level = new GameObject();
 
-    AnimatedSprite*background = new AnimatedSprite(*level, "res/img/ocean.jpg");
+    AnimatedSprite*background = new AnimatedSprite(*level, "res/img/stageStateLuaBG.png");
     level->AddComponent(background);
+    
     TileSet *tileSet = new TileSet(16, 16, "res/map/TilesetPlaceholder.png");
     TileMap *tileMap = new TileMap(*level, "res/map/testecolisao/mapa1_terrain.csv", tileSet);
 
@@ -54,6 +55,8 @@ void StageState::LoadAssets()
     CameraFollower *cameraFollower = new CameraFollower(*level);
     level->AddComponent(cameraFollower);
 
+    level->m_box.SetSize(Game::GetWindowSize());
+    background->SetScale(Vec2(3, 3));
     AddObject(level);
 
     GameObject* chao = new GameObject();
@@ -139,6 +142,24 @@ void StageState::Start()
 void StageState::FixedUpdate(float fixedDeltaTime) 
 {
     FixedUpdateArray(fixedDeltaTime);
+
+    for (size_t i = 0; i < m_objectArray.size(); i++)
+    {
+        for (size_t j = i + 1; j < m_objectArray.size(); j++)
+        {
+            Collider* a = (Collider*)m_objectArray[i]->GetComponent("Collider");
+            Collider* b = (Collider*)m_objectArray[j]->GetComponent("Collider");
+            if (!a || !b)
+                continue;
+
+            if (Collision::IsColliding(m_objectArray[i]->m_box, m_objectArray[j]->m_box, m_objectArray[i]->m_angleDeg, m_objectArray[j]->m_angleDeg))
+            {
+                m_objectArray[i]->NotifyCollision(*(m_objectArray[j]));
+                m_objectArray[j]->NotifyCollision(*(m_objectArray[i]));
+                //std::cout << "aaaaaaaaaasadfasdf\n";
+            }
+        }
+    }
 }
 
 GameObject* StageState::AddSquare(Vec2 pos, Vec2 size, SDL_Color color)
@@ -168,24 +189,6 @@ void StageState::Update(float deltaTime)
 
     UpdateArray(deltaTime);
 
-
-    for (size_t i = 0; i < m_objectArray.size(); i++)
-    {
-        for (size_t j = i + 1; j < m_objectArray.size(); j++)
-        {
-            Collider* a = (Collider*)m_objectArray[i]->GetComponent("Collider");
-            Collider* b = (Collider*)m_objectArray[j]->GetComponent("Collider");
-            if (!a || !b)
-                continue;
-
-            if (Collision::IsColliding(m_objectArray[i]->m_box, m_objectArray[j]->m_box, m_objectArray[i]->m_angleDeg, m_objectArray[j]->m_angleDeg))
-            {
-                m_objectArray[i]->NotifyCollision(*(m_objectArray[j]));
-                m_objectArray[j]->NotifyCollision(*(m_objectArray[i]));
-                std::cout << "aaaaaaaaaasadfasdf\n";
-            }
-        }
-    }
 
     for (size_t i = 0; i < m_objectArray.size(); i++)
     {

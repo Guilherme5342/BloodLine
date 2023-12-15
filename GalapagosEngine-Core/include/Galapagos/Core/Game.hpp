@@ -20,6 +20,8 @@ public:
     inline static void Push(State* state) { return GetInstance().__Push(state); }
 
     inline static Vec2 GetWindowCenter() { return Vec2(windowWidth, windowHeight) / 2; }
+    inline static Vec2 GetWindowSize() { return Vec2(windowWidth, windowHeight); }
+
     Game(const Game &) = delete;
     Game(Game &&) = delete;
     void operator=(const Game &) = delete;
