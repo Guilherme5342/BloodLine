@@ -7,11 +7,13 @@
     #include "Galapagos/Core/Camera.hpp"
 #endif // DEBUG
 
-GameObject::GameObject()
+GameObject::GameObject(std::string tag, int layer)
 {
     m_isDead = false;
     m_started = false;
     m_angleDeg = 0.0;
+    this->tag = tag;
+    this->layer = layer;
 }
 
 GameObject::~GameObject()

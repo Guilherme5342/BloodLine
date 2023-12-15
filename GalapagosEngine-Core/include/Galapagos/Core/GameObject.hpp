@@ -11,7 +11,7 @@ class Component;
 class GameObject
 {
 public:
-    GameObject();
+    GameObject(std::string tag = "Default", int layer = 0);
     ~GameObject();
 
     void Start();
@@ -27,6 +27,8 @@ public:
 
     Rect m_box;
     double m_angleDeg;
+    int layer;
+    std::string tag;
 
 private:
     std::vector<std::unique_ptr<Component>> m_componentList;
