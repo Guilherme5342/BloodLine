@@ -2,9 +2,9 @@
 #include "Galapagos/Components/Collider.hpp"
 
 Rigidbody2D::Rigidbody2D(GameObject &m_associated, float mass, float gravityScale)
-	: Component(m_associated), mass(mass), gravityScale(gravityScale)
+	: Component(m_associated), m_mass(mass), m_gravityScale(gravityScale)
 {
-	force = Vec2(0, mass * gravityScale);
+	m_force = Vec2(0, mass * gravityScale);
 }
 
 Rigidbody2D::~Rigidbody2D()
@@ -13,17 +13,16 @@ Rigidbody2D::~Rigidbody2D()
 
 void Rigidbody2D::FixedUpdate(float fdt)
 {
-	acceleration = (force / mass) * 10;
+	m_acceleration = (m_force / m_mass) * 10;
 
-	velocity += acceleration * fdt;
+	m_velocity += m_acceleration * fdt;
 
-	m_associated.m_box.x += velocity.x * fdt;
-	m_associated.m_box.y += velocity.y * fdt;
+	m_associated.m_box.x += m_velocity.x * fdt;
+	m_associated.m_box.y += m_velocity.y * fdt;
 }
 
 void Rigidbody2D::Update(float dt)
 {
-	
 }
 
 void Rigidbody2D::NotifyCollision(GameObject &otherObj)
@@ -34,29 +33,31 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 	Rect intersectionRect = coll->m_box.GetIntersection(otherColl->m_box);
 	
 
-	if (coll->isTrigger || otherColl->isTrigger) {
+	if (coll->isTrigger || otherColl->isTrigger)
+	{
 		return;
 	}
 
-	for (std::string label : collisionLabels) {
-		
+	for (std::string label : collisionLabels)
+	{
 	}
 
 	if ((intersectionRect.w < intersectionRect.h) || ((intersectionRect.w < 1.5f) && (intersectionRect.h < 2.0f)))
 	{
-		hitRight = intersectionRect.x > coll->m_box.x;
-		hitLeft = !hitRight;
-		m_associated.m_box.x += (intersectionRect.w + REPULSION_FACTOR) * (hitRight ?  (- 1) : 1);
+		m_hitRight = intersectionRect.x > coll->m_box.x;
+		m_hitLeft = !m_hitRight;
+		m_associated.m_box.x += (intersectionRect.w + REPULSION_FACTOR) * (m_hitRight ? (-1) : 1);
 
-		velocity.x = 0;
+		m_velocity.x = 0;
 	}
-	else 
+	else
 	{
 		// Batendo em cima / baixo
 		if (intersectionRect.y > coll->m_box.y)
 		{
-			if (velocity.y > 0) {
-				velocity.y = 0;
+			if (m_velocity.y > 0)
+			{
+				m_velocity.y = 0;
 			}
 			m_associated.m_box.y -= intersectionRect.h + REPULSION_FACTOR;
 		}
@@ -68,12 +69,6 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 	coll->Update(0);
 }
 
-/*void Rigidbody2D::NotifyNoCollision(GameObject& otherObj) {
-	hitUp = false;
-	hitDown = false;
-	hitLeft = false;
-	hitRight = false;
-}*/
 void Rigidbody2D::Render() const
 {
 }

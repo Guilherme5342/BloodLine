@@ -9,7 +9,7 @@
 
 const float damping = 0.95f;
 
-enum ForceType
+enum class ForceType
 {
 	FORCE = 1,
 	IMPULSE = 10
@@ -17,17 +17,6 @@ enum ForceType
 
 class Rigidbody2D : public Component
 {
-
-private:
-	float mass, gravityScale;
-	Vec2 velocity, friction, acceleration, force, position;
-
-	bool jumping;
-
-	bool hitRight, hitLeft, hitDown, hitUp;
-
-	std::vector<std::string> collisionLabels;
-
 public:
 	Rigidbody2D(GameObject &associated, float mass = 1.0f, float gravityScale = 9.81f);
 	~Rigidbody2D();
@@ -37,27 +26,25 @@ public:
 	virtual void Update(float dt) override;
 	void Render() const override;
 
-	inline virtual bool Is(std::string type) const override
-	{
-		return type == "Rigidbody2D";
-	}
+	inline virtual bool Is(std::string type) const override { return type == "Rigidbody2D"; }
 
 	virtual void NotifyCollision(GameObject &otherObj) override;
-	//virtual void NotifyNoCollision(GameObject &otherObj) override;
 
-	inline void ApplyVelocity(Vec2 velocity)
-	{
-		this->velocity += velocity;
-	}
+	inline void ApplyVelocity(Vec2 velocity) { this->m_velocity += velocity; }
 
 	inline void ApplyForce(Vec2 force, ForceType forceType = ForceType::FORCE)
 	{
-		velocity += force * forceType;
-		force = Vec2(0, mass * (gravityScale * 10));
+		m_velocity += force * static_cast<float>(forceType);
+		force = Vec2(0, m_mass * (m_gravityScale * 10));
 	}
 
-	inline bool HitUp() {return hitUp;}
-	inline bool HitDown() {return hitDown;}
-	inline bool HitLeft() {return hitLeft;}
-	inline bool HitRight() {return hitRight;}
+private:
+	float m_mass, m_gravityScale;
+	Vec2 m_velocity, m_friction, m_acceleration, m_force, m_position;
+
+	bool m_jumping;
+
+	bool m_hitRight, m_hitLeft, m_hitDown, m_hitUp;
+
+	std::vector<std::string> collisionLabels;
 };

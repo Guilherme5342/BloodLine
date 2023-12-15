@@ -94,22 +94,22 @@ void StageState::LoadAssets()
     rb->m_box.SetCenter(Game::GetWindowCenter());
 
     Camera::Follow(rb);
+    AddObject(rb);
 
     // Enemies 
     GameObject* enemyObj = new GameObject("Enemy1");
     Sprite* enemySprite = new Sprite(*enemyObj, PAWN_ENEMY_IDLE, 10, 1, .3f);
 
-    EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(rb),
-        *enemySprite, 10, 1, IDLE, GROUND, 4);
+    //EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(rb),
+    //    *enemySprite, 10, 1, Action::IDLE, EnemyTypePhysics::GROUND, 4);
 
-    enemyObj->AddComponent(enemyTest);
+    //enemyObj->AddComponent(enemyTest);
 
     enemyObj->m_box.SetCenter(rb->m_box.GetCenter() + Vec2(20, 0));
 
-    enemyTest->GetHitBox().SetScale(Vec2(25, 50));
+    //enemyTest->GetHitBox().SetScale(Vec2(25, 50));
 
     AddObject(enemyObj);
-    AddObject(rb);
 
     AddSquare(Game::GetWindowCenter() + Vec2(100, 512), Vec2(1100, 150));
     

@@ -7,21 +7,17 @@
 
 class RectDebugger : public Component
 {
-
-private:
-	SDL_Rect debugRect;
-	Rect gameObjectBox;
-
-	SDL_Color color;
-
 public:
-	RectDebugger(GameObject &associated, float x, float y, float h, float w, SDL_Color color = {255,255,255,255});
+	RectDebugger(GameObject &associated, float x, float y, float h, float w, SDL_Color color = {255, 255, 255, 255});
 	~RectDebugger();
 	// Herdado por meio de Component
 	virtual void Update(float dt) override;
 	virtual void Render() const override;
-	inline virtual bool Is(std::string type) const override
-	{
-		return type == "RectDebugger";
-	}
+	inline virtual bool Is(std::string type) const override { return type == "RectDebugger"; }
+
+private:
+	SDL_Rect m_debugRect;
+	Rect m_gameObjectBox;
+
+	SDL_Color m_color;
 };

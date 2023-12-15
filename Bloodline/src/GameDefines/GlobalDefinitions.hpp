@@ -44,14 +44,14 @@
 #define MAP_STUB "../res/map/mapaStub2.csv"
 #endif
 
-enum Action {
+enum class Action {
 	IDLE = 0,
 	MOVE = 1,
 	ATTACK = 2,
 	MAGIC_SPELL = 3
 };
 
-enum EnemyTypePhysics { // A Física que define os tipos de inimigos
+enum class EnemyTypePhysics { // A Fï¿½sica que define os tipos de inimigos
 	GROUND = (1),   
 	FLY = (1,0),
 };

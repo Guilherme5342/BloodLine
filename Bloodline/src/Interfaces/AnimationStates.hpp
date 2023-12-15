@@ -8,7 +8,6 @@
 
 class IdleState : public AnimState
 {
-
 public:
 	IdleState(Sprite &sprite);
 
@@ -22,10 +21,6 @@ public:
 
 class MovingState : public AnimState
 {
-
-private:
-	Timer moveTimer;
-
 public:
 	MovingState(Sprite &sprite);
 	~MovingState();
@@ -35,20 +30,15 @@ public:
 
 	virtual void Update(StateMachine &state, float dt) override;
 	virtual void Render(const StateMachine &state) override;
+
+private:
+	Timer m_moveTimer;
 };
 /// <summary>
 /// Estado Generico de Ataque
 /// </summary>
 class AttackState : public AnimState
 {
-
-private:
-	int damage;
-
-	int range, timer;
-
-	Timer attackTimer;
-
 public:
 	AttackState(Sprite &sprite, int damageAmount, int range, int timer = 1);
 	~AttackState();
@@ -58,6 +48,13 @@ public:
 
 	void Update(StateMachine &stateMachine, float dt);
 	void Render(const StateMachine &stateMachine);
+
+private:
+	int m_damage;
+
+	int m_range, m_timer;
+
+	Timer m_attackTimer;
 };
 
 /// <summary>
@@ -65,7 +62,6 @@ public:
 /// </summary>
 class DeathState : public AnimState
 {
-
 public:
 	DeathState(Sprite &sprite);
 	void OnEnter(StateMachine &stateMachine);
@@ -77,15 +73,15 @@ public:
 
 class DashState : public AnimState
 {
-private:
-	Sprite &sprite;
-	float dashTime;
-	static const float DASH_DURATION; // Duration of the dash animation/state
-
 public:
 	DashState(Sprite &sprite);
 	virtual ~DashState();
 
 	void Update(StateMachine &state, float dt) override;
 	void Render(const StateMachine &state) override;
+
+private:
+	Sprite &m_sprite;
+	float m_dashTime;
+	static const float DASH_DURATION; // Duration of the dash animation/state
 };

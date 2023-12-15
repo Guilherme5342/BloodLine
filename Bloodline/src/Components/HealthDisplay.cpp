@@ -10,22 +10,20 @@
 #define FONT "../res/font/Call me maybe.ttf"
 #endif
 
-HealthDisplay::HealthDisplay(GameObject& associated, int health, PlayerController& pc)
+HealthDisplay::HealthDisplay(GameObject &associated, int health, PlayerController &pc)
     : Component(associated),
-      text(associated,60, Text::Style::BLENDED, "Health: " + std::to_string(health), SDL_Color{255, 0, 0, 255}, FONT),
-      pc(pc) {
-    }
+      m_text(associated, 60, Text::Style::BLENDED, "Health: " + std::to_string(health), SDL_Color{255, 0, 0, 255}, FONT),
+      m_pc(pc)
+{
+}
 
-void HealthDisplay::Update(float dt) {
-        text.SetText("Health: " + std::to_string(pc.GetHealth()));
-    }
+void HealthDisplay::Update(float dt)
+{
+        m_text.SetText("Health: " + std::to_string(m_pc.GetHealth()));
+}
 
-void HealthDisplay::Render() const {
+void HealthDisplay::Render() const
+{
         m_associated.m_box.SetCenter(Vec2(250, 50));
-        text.RenderStatic(); 
+        m_text.RenderStatic();
 }
-
-bool HealthDisplay::Is(std::string type) const {
-        return type == "HealthDisplay"; 
-}
-

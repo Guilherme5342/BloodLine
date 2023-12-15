@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Galapagos/Core/Component.hpp"
 #include "Galapagos/Core/GameObject.hpp"
 
@@ -11,29 +10,10 @@
 #include "Components/HealthHandler.hpp"
 
 #include "GameDefines/GlobalDefinitions.hpp"
-#include "Galapagos/Utils/Timer.hpp";
+#include "Galapagos/Utils/Timer.hpp"
 
 class EnemyBase : public Component
 {
-
-protected:
-	Action enemyAction;
-
-	std::weak_ptr<GameObject> player;
-
-	HealthHandler health;
-	Rigidbody2D rb;
-
-	Timer waitingTimer;
-	Sprite& sprite;
-
-	Vec2 speed = { 1,1 };
-
-	int damage;
-	bool isOnFloor = false;
-
-	Collider hitBox;
-
 public:
 	/// <summary>
 	/// Esta � a classe base abstrata do Inimigo
@@ -44,35 +24,45 @@ public:
 	/// <param name="health">Vida do Inimigo</param>
 	/// <param name="damage"> Dano do Inimigo </param>
 	/// <param name="enemyPhys"> Comportamento da F�sica do Inimigo</param>
-	EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player,
-		Sprite& sprite,int health, int damage, Action initialAction = IDLE, EnemyTypePhysics enemyPhys = GROUND);
+	EnemyBase(GameObject &associated, std::weak_ptr<GameObject> player,
+			  Sprite &sprite, int health, int damage, Action initialAction = Action::IDLE, EnemyTypePhysics enemyPhys = EnemyTypePhysics::GROUND);
 
 	virtual ~EnemyBase();
 
-	virtual void Start(){}
+	virtual void Start() {}
 	// Herdado por meio de Component
 	virtual void Update(float dt);
 
 	virtual void Render();
 
-	inline virtual bool Is(std::string type)
-	{
-		return type == "EnemyBase";
-	}
+	inline virtual bool Is(std::string type) { return type == "EnemyBase"; }
 
-	virtual void NotifyCollision(GameObject& other);
+	virtual void NotifyCollision(GameObject &other);
 
 	virtual void Idle(float dt) {}
 	virtual void Move(float dt) = 0;
 	virtual void Attack(float dt) = 0;
 	virtual void SpecialAttack(float dt) = 0;
 
+	inline void SetActionState(Action action) { this->m_enemyAction = action; }
 
-	inline void SetActionState(Action action) {
-		this->enemyAction = action;
-	}
+	inline Collider GetHitBox() const { return this->m_hitBox; }
 
-	inline Collider GetHitBox() const {
-		return this->hitBox;
-	}
+protected:
+	Action m_enemyAction;
+
+	std::weak_ptr<GameObject> m_player;
+
+	HealthHandler m_health;
+	Rigidbody2D m_rb;
+
+	Timer m_waitingTimer;
+	Sprite &m_sprite;
+
+	Vec2 m_speed = {1, 1};
+
+	int m_damage;
+	bool m_isOnFloor = false;
+
+	Collider m_hitBox;
 };

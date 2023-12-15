@@ -44,7 +44,7 @@ void MovingState::OnExit(StateMachine &otherState)
 
 void MovingState::Update(StateMachine &state, float dt)
 {
-	moveTimer.Update(dt);
+	m_moveTimer.Update(dt);
 }
 
 void MovingState::Render(const StateMachine &state)
@@ -55,8 +55,8 @@ void MovingState::Render(const StateMachine &state)
 AttackState::AttackState(Sprite &sprite, int damageAmount, int range, int timeAmount)
 	: AnimState(sprite)
 {
-	this->damage = damageAmount, this->range = range;
-	this->timer = timeAmount;
+	this->m_damage = damageAmount, this->m_range = range;
+	this->m_timer = timeAmount;
 }
 
 AttackState::~AttackState()
@@ -76,14 +76,14 @@ void AttackState::OnExit(StateMachine &stateMachine)
 
 void AttackState::Update(StateMachine &stateMachine, float dt)
 {
-	if (attackTimer.Get() > timer)
+	if (m_attackTimer.Get() > m_timer)
 	{
 
-		attackTimer.Restart();
+		m_attackTimer.Restart();
 		stateMachine.SetState(new IdleState(spriteAnim));
 	}
 
-	attackTimer.Update(dt);
+	m_attackTimer.Update(dt);
 }
 void AttackState::Render(const StateMachine &stateMachine)
 {
@@ -120,7 +120,7 @@ void DeathState::Render(const StateMachine &stateMachine)
 const float DashState::DASH_DURATION = 0.2f; // Initialize the constant
 
 DashState::DashState(Sprite &sprite)
-	: sprite(sprite), dashTime(0.0f), AnimState(sprite)
+	: m_sprite(sprite), m_dashTime(0.0f), AnimState(sprite)
 {
 	// Constructor body, if needed
 }
@@ -135,10 +135,10 @@ void DashState::Update(StateMachine &state, float dt)
 	auto *player = dynamic_cast<PlayerController *>(&state);
 	if (player)
 	{
-		dashTime += dt;
-		if (dashTime >= DASH_DURATION)
+		m_dashTime += dt;
+		if (m_dashTime >= DASH_DURATION)
 		{
-			player->SetState(new IdleState(sprite));
+			player->SetState(new IdleState(m_sprite));
 		}
 	}
 }
@@ -146,7 +146,7 @@ void DashState::Update(StateMachine &state, float dt)
 void DashState::Render(const StateMachine &state)
 {
 	// Render the sprite with the dash animation frame
-	sprite.Render();
+	m_sprite.Render();
 }
 
 #pragma endregion

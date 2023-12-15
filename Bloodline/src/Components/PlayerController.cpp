@@ -8,12 +8,12 @@
 
 PlayerController::PlayerController(GameObject &m_associated, Sprite &sprite, Rigidbody2D &body, int speed)
 	: StateMachine(m_associated, sprite),
-	  speed(speed), playerBody(body), spells({{"BloodSpell", new BloodSpell(m_associated, 10.0, 10.0, 10, *this)}, {"BloodBarrage", new BloodBarrage(m_associated, 10.0, 10.0, 15, *this) }})
+	  m_speed(speed), m_playerBody(body), m_spells({{"BloodSpell", new BloodSpell(m_associated, 10.0, 10.0, 10, *this)}, {"BloodBarrage", new BloodBarrage(m_associated, 10.0, 10.0, 15, *this)}})
 {
-	animState = nullptr;
-	canDash = true;
-	dashTimer = 0.0f;
-	dashElapsedTime = 0.0f;
+	m_animState = nullptr;
+	m_canDash = true;
+	m_dashTimer = 0.0f;
+	m_dashElapsedTime = 0.0f;
 }
 
 PlayerController::~PlayerController()
@@ -23,39 +23,43 @@ PlayerController::~PlayerController()
 float lastDashVel;
 void PlayerController::Update(float dt)
 {
-	if(health <= 0) {
-		dead = true;
+	if (m_health <= 0)
+	{
+		m_dead = true;
 	}
 
-	if(dead){
-		animState = new DeathState(sprite);
+	if (m_dead)
+	{
+		m_animState = new DeathState(sprite);
 		std::cout << "Player is dead" << std::endl;
 		return;
 	}
 
-	moving = (!jumping) && (InputManager::IsKeyDown(Key::A) || InputManager::IsKeyDown(Key::D));
+	m_moving = (!m_jumping) && (InputManager::IsKeyDown(Key::A) || InputManager::IsKeyDown(Key::D));
 
-	moveDir = {0, 0};
-	moveDir.x += InputManager::IsKeyDown(Key::A) * (-speed * dt);
-	moveDir.x -= InputManager::IsKeyDown(Key::D) * (-speed * dt);
+	m_moveDir = {0, 0};
+	m_moveDir.x += InputManager::IsKeyDown(Key::A) * (-m_speed * dt);
+	m_moveDir.x -= InputManager::IsKeyDown(Key::D) * (-m_speed * dt);
 
-	jumping = InputManager::KeyPress(Key::Space) && canJump;
-	playerBody.ApplyForce(Vec2(0, jumping * -jumpForce), IMPULSE);
+	m_jumping = InputManager::KeyPress(Key::Space) && m_canJump;
+	m_playerBody.ApplyForce(Vec2(0, m_jumping * -m_jumpForce), ForceType::IMPULSE);
 
-	int direction = InputManager::IsKeyDown(Key::A) ? -1 : InputManager::IsKeyDown(Key::D) ? 1 : 0;
+	int direction = InputManager::IsKeyDown(Key::A) ? -1 : InputManager::IsKeyDown(Key::D) ? 1
+																						   : 0;
 	float dashVelocity = DASH_SPEED_MULTIPLIER * direction;
 
-	if (canDash && InputManager::KeyPress(Key::Lshift))
+	if (m_canDash && InputManager::KeyPress(Key::Lshift))
 	{
 		lastDashVel = dashVelocity;
 
-		playerBody.ApplyVelocity(Vec2(dashVelocity, 0));
-		canDash = false;
-		dashElapsedTime = 0.0f;
-		animState = new DashState(sprite);
+		m_playerBody.ApplyVelocity(Vec2(dashVelocity, 0));
+		m_canDash = false;
+		m_dashElapsedTime = 0.0f;
+		m_animState = new DashState(sprite);
 	}
 
-	if(InputManager::KeyPress(Key::Z)){
+	if (InputManager::KeyPress(Key::Z))
+	{
 		GameObject *atackObject = new GameObject();
 		atackObject->m_box.SetCenter(m_associated.m_box.GetCenter());
 		float angle = 0;
@@ -66,34 +70,34 @@ void PlayerController::Update(float dt)
 		bool targetsPlayer = false;
 		int frameCount = 1;
 
-		Atack *atack = new Atack(*atackObject, angle, damage, sprite, targetsPlayer, direction,frameCount);
+		Atack *atack = new Atack(*atackObject, angle, damage, sprite, targetsPlayer, direction, frameCount);
 		atackObject->AddComponent(atack);
 		Game::GetCurrentState().AddObject(atackObject);
 	}
 
-	if (!canDash)
+	if (!m_canDash)
 	{
-		dashElapsedTime += dt;
-		if (dashElapsedTime >= DASH_DURATION)
+		m_dashElapsedTime += dt;
+		if (m_dashElapsedTime >= DASH_DURATION)
 		{
-			playerBody.ApplyVelocity(Vec2(-lastDashVel, 0));
-			canDash = true;
-			dashTimer = 0.0f;
+			m_playerBody.ApplyVelocity(Vec2(-lastDashVel, 0));
+			m_canDash = true;
+			m_dashTimer = 0.0f;
 		}
 	}
 
 	// cout << m_associated.m_box.x << endl;
-	m_associated.m_box.SetCenter(m_associated.m_box.GetCenter() + moveDir);
+	m_associated.m_box.SetCenter(m_associated.m_box.GetCenter() + m_moveDir);
 
-	animState = new IdleState(sprite);
-	if (moving && canJump)
+	m_animState = new IdleState(sprite);
+	if (m_moving && m_canJump)
 	{
-		animState = new MovingState(sprite);
+		m_animState = new MovingState(sprite);
 	}
 
 	if (InputManager::KeyPress(Key::Z))
 	{
-		animState = new AttackState(sprite, 10, 30, .2f);
+		m_animState = new AttackState(sprite, 10, 30, .2f);
 	}
 
 	if (InputManager::KeyPress(Key::B))
@@ -106,45 +110,45 @@ void PlayerController::Update(float dt)
 		CastSpell("BloodBarrage");
 	}
 
-	animState->Update(*this, dt);
+	m_animState->Update(*this, dt);
 
-	SetState(animState);
+	SetState(m_animState);
 }
 
 void PlayerController::CastSpell(std::string spellName)
 {
-	if (spells.find(spellName) != spells.end() && spells[spellName]->canCast(*this))
+	if (m_spells.find(spellName) != m_spells.end() && m_spells[spellName]->canCast(*this))
 	{
-		spells[spellName]->Activate();
-		health -= spells[spellName]->GetHealthCost(); // Assuming each spell has a health cost
+		m_spells[spellName]->Activate();
+		m_health -= m_spells[spellName]->GetHealthCost(); // Assuming each spell has a health cost
 	}
 }
 
 void PlayerController::AddSpell(std::string spellName, Spell *spell)
 {
-	spells[spellName] = spell;
+	m_spells[spellName] = spell;
 }
 
 void PlayerController::NotifyCollision(GameObject &otherObj)
 {
-	canJump = otherObj.tag == "Ground";
+	m_canJump = otherObj.tag == "Ground";
 }
 
-void PlayerController::NotifyNoCollision(GameObject& otherObj) {
-
+void PlayerController::NotifyNoCollision(GameObject &otherObj)
+{
 }
 
 void PlayerController::Render() const
 {
-	animState->Render(*this);
+	m_animState->Render(*this);
 }
 
 int PlayerController::GetHealth()
 {
-	return health;
+	return m_health;
 }
 
 bool PlayerController::IsDead()
 {
-	return dead;
+	return m_dead;
 }

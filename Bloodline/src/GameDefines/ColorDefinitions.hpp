@@ -3,8 +3,6 @@
 #include <SDL2/SDL.h>
 
 struct Color {
-
-public:
 	static const SDL_Color Red;//{255,0,0,255};
 	static const SDL_Color Magenta;//{ 255,0,255,255 };
 	static const SDL_Color Blue;//{ 0,0,255,255 };
