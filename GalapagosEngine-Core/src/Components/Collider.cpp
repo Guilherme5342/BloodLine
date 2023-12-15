@@ -4,11 +4,12 @@
 #include "Galapagos/Core/Camera.hpp"
 #include "Galapagos/Core/Game.hpp"
 
-Collider::Collider(GameObject &associated, Vec2 scale, Vec2 offset) : Component(associated)
+Collider::Collider(GameObject &associated, bool fixed, Vec2 scale, Vec2 offset) : Component(associated)
 {
     m_scale = scale;
     m_offset = offset;
     isTrigger = false;
+    m_fixed = fixed;
 }
 
 void Collider::FixedUpdate(float fixedDeltaime)

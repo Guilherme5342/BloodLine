@@ -9,10 +9,13 @@
 #include "Galapagos/Components/Collider.hpp"
 #include "Galapagos/Core/Game.hpp"
 
+#include "tmxlite/Map.hpp"
+
 TileMap::TileMap(GameObject &associated, std::string file, TileSet *tileSet) : Component(associated)
 {
     m_tileSet = tileSet;
     Load(file);
+    m_map.load("res/map/mapa1.tmx");
 }
 
 void TileMap::Load(std::string file)

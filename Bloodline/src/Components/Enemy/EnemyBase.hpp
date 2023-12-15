@@ -3,7 +3,7 @@
 #include "Galapagos/Core/Component.hpp"
 #include "Galapagos/Core/GameObject.hpp"
 
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "Galapagos/Components/Rigidbody2D.hpp"
 #include "Galapagos/Components/Collider.hpp"
 
@@ -56,7 +56,7 @@ protected:
 	Rigidbody2D* m_rb;
 
 	Timer m_waitingTimer;
-	Sprite* m_sprite;
+	AnimatedSprite* m_sprite;
 
 	Vec2 m_speed = {1, 1};
 

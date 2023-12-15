@@ -1,6 +1,6 @@
 #include "Galapagos/Interfaces/StateInterfaces.hpp"
 
-AnimState::AnimState(Sprite& sprite) : spriteAnim(sprite)
+AnimState::AnimState(AnimatedSprite& sprite) : spriteAnim(sprite)
 {
 }
 

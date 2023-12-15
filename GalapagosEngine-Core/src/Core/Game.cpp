@@ -156,6 +156,7 @@ void Game::__Run()
         m_stateStack.top()->Update(m_deltaTime);
         m_stateStack.top()->Render();
         SDL_RenderPresent(m_renderer);
+        SDL_SetRenderDrawColor(Game::GetRenderer(), 0, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderClear(m_renderer);
         SDL_Delay(2);
     }

@@ -15,10 +15,12 @@ project (CoreName)
 
     includedirs{
         "include",
+        "../tmxlite/include",
         SDLIncludePath
     }
 
     links {
+        "tmxlite",
         "SDL2main",
         "SDL2",
         "SDL2_image",
@@ -37,7 +39,7 @@ project (CoreName)
         }
 
     filter "configurations:Debug"
-        defines { "DEBUG" }
+        defines { "DEBUG", "D_DEBUG_", "DTMXLITE_STATIC" }
         runtime "Debug"
         symbols "On"
 

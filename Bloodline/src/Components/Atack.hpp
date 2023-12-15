@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Galapagos/Core/Component.hpp"
-#include "Galapagos/Components/Sprite.hpp"
 
 const float ATACK_DURATION = 0.2f;
 

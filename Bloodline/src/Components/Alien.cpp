@@ -2,7 +2,8 @@
 #include "Galapagos/Components/Sound.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 #include "Galapagos/Core/Camera.hpp"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/StaticSprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "Minion.hpp"
 #include "Galapagos/Core/Game.hpp"
 #include "Galapagos/Components/Collider.hpp"
@@ -18,7 +19,7 @@ std::int32_t Alien::m_alienCount = 0;
 Alien::Alien(GameObject &associated, std::int32_t minionCount)
     : Component(associated)
 {
-    Sprite *sprite = new Sprite(associated, "res/img/alien.png");
+    StaticSprite*sprite = new StaticSprite(associated, "res/img/alien.png");
     associated.AddComponent(sprite);
 
     Collider *collider = new Collider(associated);
@@ -117,7 +118,7 @@ void Alien::NotifyCollision(GameObject &other)
         GameObject *explosion = new GameObject();
         explosion->m_angleDeg = m_associated.m_angleDeg;
 
-        Sprite *sprite = new Sprite(*explosion, "res/img/aliendeath.png", 4, 0.3, false, 4, 1, 4 * 0.3);
+        AnimatedSprite *sprite = new AnimatedSprite(*explosion, "res/img/aliendeath.png", 4, 0.3, false, 4, 1, 4 * 0.3);
         explosion->AddComponent(sprite);
         explosion->m_box.SetCenter(m_associated.m_box.GetCenter());
 

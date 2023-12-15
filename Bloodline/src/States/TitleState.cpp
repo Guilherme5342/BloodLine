@@ -1,7 +1,7 @@
 #include "TitleState.hpp"
 
 #include "Galapagos/Core/GameObject.hpp"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 #include "Galapagos/Core/Game.hpp"
 #include "Galapagos/Components/CameraFollower.hpp"
@@ -22,7 +22,7 @@ void TitleState::LoadAssets()
 {
     GameObject *titleImage = new GameObject();
 
-    Sprite *background = new Sprite(*titleImage, "res/img/Title.png");
+    AnimatedSprite*background = new AnimatedSprite(*titleImage, "res/img/Title.png");
     titleImage->AddComponent(background);
 
     CameraFollower *cameraFollower = new CameraFollower(*titleImage);

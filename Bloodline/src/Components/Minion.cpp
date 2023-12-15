@@ -1,5 +1,6 @@
 #include "Minion.hpp"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/StaticSprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "Bullet.hpp"
 #include "Galapagos/Core/Game.hpp"
 #include "Galapagos/Components/Collider.hpp"
@@ -11,7 +12,7 @@ Minion::Minion(GameObject &associated, std::weak_ptr<GameObject> alienCenter, fl
     : Component(associated), m_alienCenter(alienCenter)
 {
     m_arc = arcOffsetDeg;
-    Sprite *sprite = new Sprite(associated, "res/img/minion.png");
+    StaticSprite*sprite = new StaticSprite(associated, "res/img/minion.png");
     associated.AddComponent(sprite);
 
     Collider *collider = new Collider(associated);
@@ -65,7 +66,7 @@ void Minion::NotifyCollision(GameObject &other)
         GameObject *explosion = new GameObject();
         explosion->m_angleDeg = m_associated.m_angleDeg;
 
-        Sprite *sprite = new Sprite(*explosion, "res/img/miniondeath.png", 4, 0.3, false, 4, 1, 4 * 0.3);
+        AnimatedSprite *sprite = new AnimatedSprite(*explosion, "res/img/miniondeath.png", 4, 0.3, false, 4, 1, 4 * 0.3);
         explosion->AddComponent(sprite);
         explosion->m_box.SetCenter(m_associated.m_box.GetCenter());
 

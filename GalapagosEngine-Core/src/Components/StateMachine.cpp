@@ -1,7 +1,7 @@
 #include "Galapagos/Components/StateMachine.hpp"
 
 
-StateMachine::StateMachine(GameObject& associated, Sprite& sprite)
+StateMachine::StateMachine(GameObject& associated, AnimatedSprite& sprite)
 : Component(associated) , sprite(sprite)
 {
 	currentState = nullptr;

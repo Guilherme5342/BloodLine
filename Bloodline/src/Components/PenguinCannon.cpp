@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/StaticSprite.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 #include "Galapagos/Core/Game.hpp"
 #include "Bullet.hpp"
@@ -10,7 +10,7 @@
 
 PenguinCannon::PenguinCannon(GameObject &associated, std::weak_ptr<GameObject> penguinBody) : Component(associated)
 {
-    Sprite *sprite = new Sprite(associated, "res/img/cubngun.png");
+    StaticSprite*sprite = new StaticSprite(associated, "res/img/cubngun.png");
     associated.AddComponent(sprite);
 
     Collider *collider = new Collider(associated);

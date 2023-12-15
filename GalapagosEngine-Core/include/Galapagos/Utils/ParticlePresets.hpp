@@ -15,15 +15,15 @@ namespace ParticlePreset {
 		.rate = 80
 	};
 	const ParticleConfig Rain = {
-	.position = {0, 0},
-	.velocity = {20, 80},
-	.velocityVariation = {10, 20},
-	.startColor = {180, 255, 255, 255},
-	.endColor = {49, 228, 247, 255},
-	.startSize = 4,
-	.endSize = 1,
-	.sizeVariation = 2,
-	.lifeTime = 10,
-	.rate = 50
+		.position = {0, 0},
+		.velocity = {20, 80},
+		.velocityVariation = {10, 20},
+		.startColor = {180, 255, 255, 255},
+		.endColor = {49, 228, 247, 255},
+		.startSize = 4,
+		.endSize = 1,
+		.sizeVariation = 2,
+		.lifeTime = 10,
+		.rate = 50
 	};
 };

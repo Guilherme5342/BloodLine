@@ -1,7 +1,7 @@
 #include "MainMenuState.hpp"
 
 #include "Galapagos/Core/GameObject.hpp"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 #include "Galapagos/Core/Game.hpp"
 #include "Galapagos/Components/CameraFollower.hpp"
@@ -27,7 +27,7 @@ void MainMenuState::LoadAssets()
 
     GameObject *titleImage = new GameObject();
 
-    Sprite *background = new Sprite(*titleImage, "res/img/MainMenu.png", 40, 0.084f, true, 7, 6);
+    AnimatedSprite *background = new AnimatedSprite(*titleImage, "res/img/MainMenu.png", 40, 0.084f, true, 7, 6);
     titleImage->AddComponent(background);
 
     CameraFollower *cameraFollower = new CameraFollower(*titleImage);

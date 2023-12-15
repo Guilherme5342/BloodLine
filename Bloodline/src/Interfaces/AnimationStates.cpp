@@ -2,7 +2,7 @@
 #include "Galapagos/Components/Collider.hpp"
 #include "Galapagos/Core/Game.hpp"
 
-IdleState::IdleState(Sprite &sprite) : AnimState(sprite)
+IdleState::IdleState(AnimatedSprite&sprite) : AnimState(sprite)
 {
 }
 
@@ -25,7 +25,7 @@ void IdleState::Render(const StateMachine &state)
 {
 }
 
-MovingState::MovingState(Sprite &sprite) : AnimState(sprite)
+MovingState::MovingState(AnimatedSprite&sprite) : AnimState(sprite)
 {
 }
 
@@ -52,7 +52,7 @@ void MovingState::Render(const StateMachine &state)
 }
 
 #pragma region AttackState
-AttackState::AttackState(Sprite &sprite, int damageAmount, int range, int timeAmount)
+AttackState::AttackState(AnimatedSprite&sprite, int damageAmount, int range, int timeAmount)
 	: AnimState(sprite)
 {
 	this->m_damage = damageAmount, this->m_range = range;
@@ -92,7 +92,7 @@ void AttackState::Render(const StateMachine &stateMachine)
 
 #pragma region DeathState
 
-DeathState::DeathState(Sprite &sprite) : AnimState(sprite)
+DeathState::DeathState(AnimatedSprite&sprite) : AnimState(sprite)
 {
 }
 
@@ -119,7 +119,7 @@ void DeathState::Render(const StateMachine &stateMachine)
 
 const float DashState::DASH_DURATION = 0.2f; // Initialize the constant
 
-DashState::DashState(Sprite &sprite)
+DashState::DashState(AnimatedSprite&sprite)
 	: m_sprite(sprite), m_dashTime(0.0f), AnimState(sprite)
 {
 	// Constructor body, if needed

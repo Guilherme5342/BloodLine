@@ -17,6 +17,7 @@ project (AppName)
         "src",
 
         -- Include Core
+        "../tmxlite/include",
         "../" ..CoreName.. "/include",
         SDLIncludePath
     }
@@ -24,11 +25,12 @@ project (AppName)
 
     links {
         CoreName,
+        "tmxlite",
         "SDL2main",
         "SDL2",
         "SDL2_image",
         "SDL2_mixer",
-        "SDL2_ttf"
+        "SDL2_ttf",
     }
 
     targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
@@ -49,21 +51,19 @@ project (AppName)
         --    "{COPYFILE} " ..WindowsSDLPath.. "/bin/** %{cfg.targetdir}",
         --    "{COPYDIR} %{prj.location}/res %{cfg.targetdir}/res",
         --}
-
     filter "configurations:Debug"
-        defines { "DEBUG" }
+        defines { "DEBUG", "D_DEBUG_", "DTMXLITE_STATIC" }
         runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
-        defines { "RELEASE", "NDEBUG" }
+        defines { "RELEASE", "NDEBUG", "DNDEBUG", "DTMXLITE_STATIC" }
         runtime "Release"
         optimize "On"
         symbols "On"
 
     filter "configurations:Dist"
-        defines { "DIST" }
-        kind "WindowedApp"
+        defines { "DIST", "TMXLITE_STATIC_LIB", "DNDEBUG", "DTMXLITE_STATIC" }
         runtime "Release"
         optimize "On"
         symbols "Off"

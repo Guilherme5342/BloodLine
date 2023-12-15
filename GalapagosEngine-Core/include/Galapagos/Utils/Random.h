@@ -5,11 +5,7 @@
 class Random
 {
 public:
-	static float SlowFloat();
-private:
-	Random();
-	Random& GetInstance();
-	static std::mt19937 m_engine;
-	static std::uniform_int_distribution<std::mt19937::result_type> m_distribution;
+	static std::uint64_t Long();
+	static double Double();
 };
 

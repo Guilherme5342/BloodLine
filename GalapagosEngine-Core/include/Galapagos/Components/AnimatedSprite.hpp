@@ -5,35 +5,34 @@
 #include <cstdint>
 
 #include "Galapagos/Core/Component.hpp"
-#include "Galapagos/Core/GameObject.hpp"
 #include "Galapagos/Utils/Timer.hpp"
 
-class Sprite : public Component
+class AnimatedSprite : public Component
 {
 public:
-    Sprite(GameObject &associated);
-    Sprite(GameObject &associated, std::string filePath);
-    Sprite(GameObject &associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop = true);
-    Sprite(GameObject &associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop, std::uint32_t columnCount, std::uint32_t rowCount, float secondsToSelfDestruct = 0);
-    ~Sprite() override;
+    AnimatedSprite(GameObject &associated);
+    AnimatedSprite(GameObject &associated, std::string filePath);
+    AnimatedSprite(GameObject &associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop = true);
+    AnimatedSprite(GameObject &associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop, std::uint32_t columnCount, std::uint32_t rowCount, float secondsToSelfDestruct = 0);
+    ~AnimatedSprite() override;
 
     void Open(std::string filePath, std::uint32_t columnCount, std::uint32_t rowCount, float frameTime);
 
     void Update(float deltaTime) override;
     void Render() const override;
     void Render(float x, float y) const;
-    bool Is(std::string type) const override;
+    inline bool Is(std::string type) const override{return type == "AnimatedSprite";}
 
     std::int32_t GetWidth() const;
     std::int32_t GetHeight() const;
-    bool IsOpen() const;
+    inline bool IsOpen() const { return m_texture != nullptr; }
     Vec2 GetScale() const;
 
     void SetScale(float x, float y);
     void SetScale(float x);
     void SetScale(Vec2 scale);
-    void SetClip(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h);
-    void SetDist(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h);
+    inline void SetClip(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h) { m_clipRect = { x, y, w, h }; }
+    inline void SetDist(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h) { m_distRect = { x, y, w, h }; }
 
 private:
     SDL_Texture *m_texture;
@@ -49,8 +48,8 @@ private:
     std::uint32_t m_currentFrame = 1;
     float m_timeElapsed = 0;
     float m_frameTime = 1;
-    Vec2 m_scale = {1.f, 1.f};
     bool m_loop = true;
+    Vec2 m_scale = {1.f, 1.f};
     Timer m_selfDestructCount;
     float m_secondsToSelfDestruct = 0;
 };

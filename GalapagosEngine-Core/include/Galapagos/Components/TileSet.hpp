@@ -2,7 +2,7 @@
 #include <string>
 #include <cstdint>
 
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/StaticSprite.hpp"
 
 class TileSet
 {
@@ -15,7 +15,7 @@ public:
     std::int32_t GetTileHeight() const;
 
 private:
-    Sprite m_tileSet;
+    StaticSprite m_tileSet;
     GameObject m_none;
     std::int32_t m_rows;
     std::int32_t m_columns;

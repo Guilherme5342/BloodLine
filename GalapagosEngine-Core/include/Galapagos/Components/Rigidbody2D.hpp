@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Galapagos/Core/Component.hpp"
-#include "Galapagos/Core/GameObject.hpp"
 
 #define REPULSION_FACTOR 1e-4
 
@@ -32,11 +31,7 @@ public:
 
 	inline void ApplyVelocity(Vec2 velocity) { this->m_velocity += velocity; }
 
-	inline void ApplyForce(Vec2 force, ForceType forceType = ForceType::FORCE)
-	{
-		m_velocity += force * static_cast<float>(forceType);
-		force = Vec2(0, m_mass * (m_gravityScale * 10));
-	}
+	void ApplyForce(Vec2 force, ForceType forceType = ForceType::FORCE);
 
 private:
 	float m_mass, m_gravityScale;

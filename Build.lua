@@ -31,6 +31,7 @@ workspace "Bloodline"
       runtime "Release"
 
 group "Core"
+include ("tmxlite/Build-tmxlite.lua")
 	include (CoreName.. "/Build-" ..CoreName.. ".lua")
 group ""
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 
 class StateMachine;
 
@@ -19,9 +19,9 @@ public:
 class AnimState : public IState {
 
 protected:
-	Sprite& spriteAnim;
+	AnimatedSprite& spriteAnim;
 
 public:
-	AnimState(Sprite& sprite);
+	AnimState(AnimatedSprite& sprite);
 	void Play(std::string animFile,std::uint32_t columns = 1,std::uint32_t rows = 1, float frameTime = .05f);
 };

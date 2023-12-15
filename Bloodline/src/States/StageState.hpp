@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "Galapagos/Core/State.hpp"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "Galapagos/Core/Music.hpp"
 #include "Galapagos/Utils/Timer.hpp"
 

@@ -20,7 +20,7 @@ class Spell;
 class PlayerController : public StateMachine
 {
 public:
-	PlayerController(GameObject &associated, Sprite &sprite, Rigidbody2D &body, int speed);
+	PlayerController(GameObject &associated, AnimatedSprite &sprite, Rigidbody2D &body, int speed);
 	~PlayerController();
 
 	int GetHealth();

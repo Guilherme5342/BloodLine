@@ -5,6 +5,7 @@
 
 #include "Galapagos/Core/Component.hpp"
 #include "Galapagos/Core/GameObject.hpp"
+#include "tmxlite/Map.hpp"
 
 class TileSet;
 
@@ -30,6 +31,7 @@ public:
 
 private:
     std::vector<int> m_tileMatrix;
+    tmx::Map m_map;
     TileSet *m_tileSet;
     std::int32_t m_mapWidth;
     std::int32_t m_mapHeight;

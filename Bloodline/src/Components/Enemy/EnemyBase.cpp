@@ -9,7 +9,7 @@ EnemyBase::EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player
 {
 	m_enemyAction = initialAction;
 
-	m_sprite = new Sprite(associated, PAWN_ENEMY_IDLE);
+	m_sprite = new AnimatedSprite(associated, PAWN_ENEMY_IDLE);
 
 	associated.AddComponent(m_sprite);
 

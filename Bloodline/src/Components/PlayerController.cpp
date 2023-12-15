@@ -6,7 +6,7 @@
 #include "Galapagos/Core/Game.hpp"
 #include <cmath>
 
-PlayerController::PlayerController(GameObject &m_associated, Sprite &sprite, Rigidbody2D &body, int speed)
+PlayerController::PlayerController(GameObject &m_associated, AnimatedSprite &sprite, Rigidbody2D &body, int speed)
 	: StateMachine(m_associated, sprite),
 	  m_speed(speed), m_playerBody(body), m_spells({{"BloodSpell", new BloodSpell(m_associated, 10.0, 10.0, 10, *this)}, {"BloodBarrage", new BloodBarrage(m_associated, 10.0, 10.0, 15, *this)}})
 {

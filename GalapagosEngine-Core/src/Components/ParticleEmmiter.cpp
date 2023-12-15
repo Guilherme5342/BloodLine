@@ -89,18 +89,18 @@ void ParticleEmmiter::Emit(const ParticleConfig& particleConfig)
 	Particle& particle = m_particleList[m_currentParticle];
 	particle.active = true;
 	particle.position = particleConfig.position;
-	particle.rotation = Random::SlowFloat() * 360;
+	particle.rotation = Random::Double() * 360;
 
 	particle.velocity = particleConfig.velocity;
-	particle.velocity.x += particleConfig.velocityVariation.x * (Random::SlowFloat() - 0.5f);
-	particle.velocity.y += particleConfig.velocityVariation.y * (Random::SlowFloat() - 0.5f);
+	particle.velocity.x += particleConfig.velocityVariation.x * (Random::Double() - 0.5);
+	particle.velocity.y += particleConfig.velocityVariation.y * (Random::Double() - 0.5);
 
 	particle.startColor = particleConfig.startColor;
 	particle.endColor = particleConfig.endColor;
 
 	particle.lifeTime = particleConfig.lifeTime;
 	particle.lifeRemaning = particleConfig.lifeTime;
-	particle.startSize = particleConfig.startSize + particleConfig.sizeVariation * (Random::SlowFloat() - 0.5f);
+	particle.startSize = particleConfig.startSize + particleConfig.sizeVariation * (Random::Double() - 0.5);
 	particle.endSize = particleConfig.endSize;
 
 	m_currentParticle = --m_currentParticle % m_particleList.size();

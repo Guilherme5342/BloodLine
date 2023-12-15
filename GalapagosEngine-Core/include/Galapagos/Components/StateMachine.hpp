@@ -7,7 +7,7 @@
 
 #include "Galapagos/Core/Component.hpp"
 #include "Galapagos/Core/GameObject.hpp"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "Galapagos/Interfaces/StateInterfaces.hpp"
 
 
@@ -19,10 +19,10 @@ protected:
 
 	std::unordered_map<std::string, bool> transitions;
 
-	Sprite& sprite;
+	AnimatedSprite& sprite;
 
 public:
-	StateMachine(GameObject& associated, Sprite& sprite);
+	StateMachine(GameObject& associated, AnimatedSprite& sprite);
 	virtual ~StateMachine();
 
 	virtual void Update(float dt);

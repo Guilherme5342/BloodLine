@@ -1,5 +1,5 @@
 #include "Button.h"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 
 Button::Button(GameObject& associated, std::function<void(void)> onClick, std::string text, std::string bgFile, std::string fontFile)
@@ -7,7 +7,7 @@ Button::Button(GameObject& associated, std::function<void(void)> onClick, std::s
 {
 	m_text = text;
 
-    Sprite* sprite = new Sprite(associated, bgFile);
+    AnimatedSprite* sprite = new AnimatedSprite(associated, bgFile);
     sprite->SetScale(2);
     associated.AddComponent(sprite);
 }

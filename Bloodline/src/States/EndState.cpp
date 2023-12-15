@@ -1,6 +1,6 @@
 #include "EndState.hpp"
 #include "Galapagos/Core/GameObject.hpp"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/StaticSprite.hpp"
 #include "Galapagos/Core/InputManager.hpp"
 #include "Galapagos/Core/Game.hpp"
 #include "StageState.hpp"
@@ -31,7 +31,7 @@ void EndState::LoadAssets()
         musicFile = "res/audio/endStateWin.ogg";
     }
 
-    Sprite* background = new Sprite(*endImage, imgFile);
+    StaticSprite* background = new StaticSprite(*endImage, imgFile);
     endImage->AddComponent(background);
 
     CameraFollower* cameraFollower = new CameraFollower(*endImage);

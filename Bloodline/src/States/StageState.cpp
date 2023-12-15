@@ -22,6 +22,8 @@
 #include "Components/PenguinBody.hpp"
 #include "Galapagos/Utils/Collision.hpp"
 #include "Galapagos/Core/Game.hpp"
+
+#include "Components/Player.hpp"
 #include "EndState.hpp"
 #include "GameData.hpp"
 
@@ -43,10 +45,10 @@ void StageState::LoadAssets()
 
     GameObject *level = new GameObject();
 
-    Sprite *background = new Sprite(*level, "res/img/ocean.jpg");
+    AnimatedSprite*background = new AnimatedSprite(*level, "res/img/ocean.jpg");
     level->AddComponent(background);
     TileSet *tileSet = new TileSet(16, 16, "res/map/TilesetPlaceholder.png");
-    TileMap *tileMap = new TileMap(*level, "res/map/mapa1_terrain.csv", tileSet);
+    TileMap *tileMap = new TileMap(*level, "res/map/testecolisao/mapa1_terrain.csv", tileSet);
 
     level->AddComponent(tileMap);
     CameraFollower *cameraFollower = new CameraFollower(*level);
@@ -54,6 +56,13 @@ void StageState::LoadAssets()
 
     AddObject(level);
 
+    GameObject* chao = new GameObject();
+    Collider* col = new Collider(*chao, true);
+    chao->m_box = { 0, 0, 600, 40 };
+    chao->m_box.SetCenter(Game::GetWindowCenter() + Vec2{ 0, 300 });
+
+
+    AddObject(chao);
     /*for (std::int32_t i = 0; i < 6; i++)
     {
         GameObject *alien = new GameObject();
@@ -72,39 +81,43 @@ void StageState::LoadAssets()
 
     m_objectArray.emplace_back(penguin);*/
 
-    GameObject* rb = new GameObject("PlayerBody", 1);
-    Sprite* playerSprite = new Sprite(*rb, PLAYER_IDLE, 3, 2, .1f);
+    GameObject* player = new GameObject("PlayerBody", 1);
 
-    rb->AddComponent(playerSprite);
+    Player* playerComponent = new Player(*player);
+    player->AddComponent(playerComponent);
 
-    Collider* collider = new Collider(*rb);
-    collider->SetScale({ 25,35 });
+    //AnimatedSprite* playerSprite = new AnimatedSprite(*player, PLAYER_IDLE, 3, 2, .1f);
+    //player->AddComponent(playerSprite);
 
-    rb->AddComponent(collider);
-    Rigidbody2D* rigid = new Rigidbody2D(*rb, 100, 100);
-    rb->AddComponent(rigid);
+    //Collider* collider = new Collider(*player);
+    //collider->SetScale({ 25,35 });
+    //player->AddComponent(collider);
 
-    PlayerController* pc = new PlayerController(*rb,
-        *playerSprite,
-        *rigid, 300);
+    //Rigidbody2D* rigid = new Rigidbody2D(*player, 100, 100);
+    //player->AddComponent(rigid);
 
+    //PlayerController* pc = new PlayerController(*player,*playerSprite,*rigid, 300);
+    //player->AddComponent(pc);
 
-    rb->AddComponent(pc);
+    //GameObject* healthDisplayObj = new GameObject("HealthDisplay");
+    //HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
+    //healthDisplayObj->AddComponent(healthDisplay);
 
-    rb->m_box.SetCenter(Game::GetWindowCenter());
+    //AddObject(healthDisplayObj);
 
-    Camera::Follow(rb);
-    AddObject(rb);
+    player->m_box.SetCenter(Game::GetWindowCenter());
+    Camera::Follow(player);
+    AddObject(player);
 
     // Enemies 
     //GameObject* enemyObj = new GameObject("Enemy1");
-    //Sprite* enemySprite = new Sprite(*enemyObj, PAWN_ENEMY_IDLE, 10, 1, .3f);
+    //AnimatedSprite* enemySprite = new AnimatedSprite(*enemyObj, PAWN_ENEMY_IDLE, 10, 1, .3f);
 
-    //EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(rb), 10, 1, Action::IDLE, EnemyTypePhysics::GROUND, 4);
+    //EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(player), 10, 1, Action::IDLE, EnemyTypePhysics::GROUND, 4);
 
     //enemyObj->AddComponent(enemyTest);
 
-    //enemyObj->m_box.SetCenter(rb->m_box.GetCenter() + Vec2(20, 0));
+    //enemyObj->m_box.SetCenter(player->m_box.GetCenter() + Vec2(20, 0));
 
     //enemyTest->GetHitBox().SetScale(Vec2(25, 50));
 
@@ -112,12 +125,6 @@ void StageState::LoadAssets()
 
     AddSquare(Game::GetWindowCenter() + Vec2(100, 512), Vec2(1100, 150));
     AddSquare(Game::GetWindowCenter() + Vec2(0, 512), Vec2(450, 150));
-    
-    GameObject* healthDisplayObj = new GameObject("HealthDisplay");
-    HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
-    healthDisplayObj->AddComponent(healthDisplay);
-
-    AddObject(healthDisplayObj);
 }
 
 void StageState::Start()
@@ -161,6 +168,7 @@ void StageState::Update(float deltaTime)
 
     UpdateArray(deltaTime);
 
+
     for (size_t i = 0; i < m_objectArray.size(); i++)
     {
         for (size_t j = i + 1; j < m_objectArray.size(); j++)
@@ -174,6 +182,7 @@ void StageState::Update(float deltaTime)
             {
                 m_objectArray[i]->NotifyCollision(*(m_objectArray[j]));
                 m_objectArray[j]->NotifyCollision(*(m_objectArray[i]));
+                std::cout << "aaaaaaaaaasadfasdf\n";
             }
         }
     }

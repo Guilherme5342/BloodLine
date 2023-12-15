@@ -1,4 +1,4 @@
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 
 #include <SDL2/SDL_image.h>
 #include <iostream>
@@ -7,7 +7,7 @@
 #include "Galapagos/Core/Resources.hpp"
 #include "Galapagos/Core/Camera.hpp"
 
-Sprite::Sprite(GameObject &associated) : Component(associated)
+AnimatedSprite::AnimatedSprite(GameObject &associated) : Component(associated)
 {
     m_texture = nullptr;
     m_scale = {1.f, 1.f};
@@ -21,7 +21,7 @@ Sprite::Sprite(GameObject &associated) : Component(associated)
     m_distRect = {0, 0, 0, 0};
 }
 
-Sprite::Sprite(GameObject& associated, std::string filePath) : Component (associated)
+AnimatedSprite::AnimatedSprite(GameObject& associated, std::string filePath) : Component (associated)
 {
     m_texture = nullptr;
     Open(filePath, 1, 1, 1);
@@ -30,7 +30,7 @@ Sprite::Sprite(GameObject& associated, std::string filePath) : Component (associ
     m_secondsToSelfDestruct = 0;
 }
 
-Sprite::Sprite(GameObject& associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop)
+AnimatedSprite::AnimatedSprite(GameObject& associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop)
     : Component(associated)
 {
     m_texture = nullptr;
@@ -41,7 +41,7 @@ Sprite::Sprite(GameObject& associated, std::string filePath, std::uint32_t frame
     m_secondsToSelfDestruct = 0;
 }
 
-Sprite::Sprite(GameObject& associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop, std::uint32_t columnCount, std::uint32_t rowCount, float secondsToSelfDestruct )
+AnimatedSprite::AnimatedSprite(GameObject& associated, std::string filePath, std::uint32_t frameCount, float frameTime, bool loop, std::uint32_t columnCount, std::uint32_t rowCount, float secondsToSelfDestruct )
     : Component(associated)
 {
     m_texture = nullptr;
@@ -52,11 +52,11 @@ Sprite::Sprite(GameObject& associated, std::string filePath, std::uint32_t frame
     m_secondsToSelfDestruct = secondsToSelfDestruct;
 }
 
-Sprite::~Sprite()
+AnimatedSprite::~AnimatedSprite()
 {
 }
 
-void Sprite::Open(std::string filePath, std::uint32_t columnCount, std::uint32_t rowCount, float frameTime)
+void AnimatedSprite::Open(std::string filePath, std::uint32_t columnCount, std::uint32_t rowCount, float frameTime)
 {
     m_columnCount = columnCount;
     m_rowCount = rowCount;
@@ -78,17 +78,7 @@ void Sprite::Open(std::string filePath, std::uint32_t columnCount, std::uint32_t
     m_associated.m_box.h = m_frameHeight;
 }
 
-void Sprite::SetClip(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h)
-{
-    m_clipRect = {x, y, w, h};
-}
-
-void Sprite::SetDist(std::int32_t x, std::int32_t y, std::int32_t w, std::int32_t h)
-{
-    m_distRect = { x, y, w, h };
-}
-
-void Sprite::Update(float deltaTime)
+void AnimatedSprite::Update(float deltaTime)
 {
     m_selfDestructCount.Update(deltaTime);
     if (m_secondsToSelfDestruct > 0)
@@ -110,38 +100,28 @@ void Sprite::Update(float deltaTime)
     }
 }
 
-void Sprite::Render() const
+void AnimatedSprite::Render() const
 {
     Render(m_associated.m_box.x - Camera::position.x, m_associated.m_box.y - Camera::position.y);
 }
 
-void Sprite::Render(float x, float y) const
+void AnimatedSprite::Render(float x, float y) const
 {
     SDL_Rect distRect = SDL_Rect{static_cast<int>(x), static_cast<int>(y), static_cast<int>(m_distRect.w * m_scale.x), static_cast<int>(m_distRect.h * m_scale.y)};
     SDL_RenderCopyEx(Game::GetRenderer(), m_texture, &m_clipRect, &distRect, m_associated.m_angleDeg, nullptr, SDL_FLIP_NONE);
 }
 
-bool Sprite::Is(std::string type) const
-{
-    return type == "Sprite";
-}
-
-std::int32_t Sprite::GetWidth() const
+std::int32_t AnimatedSprite::GetWidth() const
 {
     return m_frameWidth * m_scale.x;
 }
 
-std::int32_t Sprite::GetHeight() const
+std::int32_t AnimatedSprite::GetHeight() const
 {
     return m_frameHeight * m_scale.y;
 }
 
-bool Sprite::IsOpen() const
-{
-    return m_texture != nullptr;
-}
-
-void Sprite::SetScale(float x, float y)
+void AnimatedSprite::SetScale(float x, float y)
 {
     x = ((x != 0) * x) + ((x == 0) * m_scale.x);
     y = ((y != 0) * y) + ((y == 0) * m_scale.y);
@@ -151,17 +131,17 @@ void Sprite::SetScale(float x, float y)
     m_associated.m_box.SetSize(GetWidth(), GetHeight());
 }
 
-void Sprite::SetScale(float x)
+void AnimatedSprite::SetScale(float x)
 {
     SetScale(x, x);
 }
 
-void Sprite::SetScale(Vec2 scale)
+void AnimatedSprite::SetScale(Vec2 scale)
 {
     SetScale(scale.x, scale.y);
 }
 
-Vec2 Sprite::GetScale() const
+Vec2 AnimatedSprite::GetScale() const
 {
     return m_scale;
 }

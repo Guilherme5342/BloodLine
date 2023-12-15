@@ -9,10 +9,17 @@ Rigidbody2D::Rigidbody2D(GameObject &m_associated, float mass, float gravityScal
 	m_hitLeft = false;
 	m_hitRight = false;
 	m_hitUp = false;
+	m_jumping = false;
 }
 
 Rigidbody2D::~Rigidbody2D()
 {
+}
+
+void Rigidbody2D::ApplyForce(Vec2 force, ForceType forceType)
+{
+	force += Vec2(0, m_mass * (m_gravityScale * 10));
+	m_velocity += force * static_cast<float>(forceType);
 }
 
 void Rigidbody2D::FixedUpdate(float fdt)

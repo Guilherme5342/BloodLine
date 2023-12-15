@@ -1,5 +1,6 @@
 #include "PenguinBody.hpp"
-#include "Galapagos/Components/Sprite.hpp"
+#include "Galapagos/Components/StaticSprite.hpp"
+#include "Galapagos/Components/AnimatedSprite.hpp"
 #include "PenguinCannon.hpp"
 #include "Galapagos/Core/Game.hpp"
 #include "Galapagos/Core/InputManager.hpp"
@@ -13,7 +14,7 @@ PenguinBody::PenguinBody(GameObject &associated) : Component(associated)
 {
     PenguinBody::m_player = this;
 
-    Sprite *sprite = new Sprite(associated, "res/img/penguin.png");
+    StaticSprite *sprite = new StaticSprite(associated, "res/img/penguin.png");
     associated.AddComponent(sprite);
 
     Collider *collider = new Collider(associated);
@@ -89,7 +90,7 @@ void PenguinBody::NotifyCollision(GameObject &other)
         GameObject *explosion = new GameObject();
         explosion->m_angleDeg = m_associated.m_angleDeg;
 
-        Sprite *sprite = new Sprite(*explosion, "res/img/penguindeath.png", 5, 0.1, false, 5, 1, 5 * 0.1);
+        AnimatedSprite*sprite = new AnimatedSprite(*explosion, "res/img/penguindeath.png", 5, 0.1, false, 5, 1, 5 * 0.1);
         explosion->AddComponent(sprite);
         explosion->m_box.SetCenter(m_associated.m_box.GetCenter());
 

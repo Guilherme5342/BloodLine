@@ -1,20 +1,19 @@
 #include "Galapagos/Utils/Random.h"
 
-std::mt19937 Random::m_engine;
-std::uniform_int_distribution<std::mt19937::result_type> Random::m_distribution;
-
-float Random::SlowFloat()
+std::uint64_t Random::Long()
 {
-	return static_cast<float>(m_distribution(m_engine)) / static_cast<float>(std::numeric_limits<std::uint32_t>::max());
+	static std::uint64_t x = std::random_device()();
+	std::uint64_t z = (x += UINT64_C(0x9E3779B97F4A7C15));
+	z = (z ^ (z >> 30)) * UINT64_C(0xBF58476D1CE4E5B9);
+	z = (z ^ (z >> 27)) * UINT64_C(0x94D049BB133111EB);
+	return z ^ (z >> 31);
 }
 
-Random::Random()
+double Random::Double()
 {
-	m_engine.seed(std::random_device()());
-}
-
-Random& Random::GetInstance()
-{
-	static Random instance;
-	return instance;
+	static std::uint64_t x = std::random_device()();
+	std::uint64_t z = (x += UINT64_C(0x9E3779B97F4A7C15));
+	z = (z ^ (z >> 30)) * UINT64_C(0xBF58476D1CE4E5B9);
+	z = (z ^ (z >> 27)) * UINT64_C(0x94D049BB133111EB);
+	return static_cast<double>(z ^ (z >> 31)) / static_cast<double>(std::numeric_limits<std::uint64_t>::max());
 }
