@@ -86,21 +86,21 @@ void StageState::LoadAssets()
 
     GameObject* player = new GameObject("PlayerBody", 1);
 
-    Player* playerComponent = new Player(*player);
-    player->AddComponent(playerComponent);
+    //Player* playerComponent = new Player(*player);
+    //player->AddComponent(playerComponent);
 
-    //AnimatedSprite* playerSprite = new AnimatedSprite(*player, PLAYER_IDLE, 3, 2, .1f);
-    //player->AddComponent(playerSprite);
+    AnimatedSprite* playerSprite = new AnimatedSprite(*player, PLAYER_IDLE, 3, 2, .1f);
+    player->AddComponent(playerSprite);
 
     //Collider* collider = new Collider(*player);
     //collider->SetScale({ 25,35 });
     //player->AddComponent(collider);
 
-    //Rigidbody2D* rigid = new Rigidbody2D(*player, 100, 100);
-    //player->AddComponent(rigid);
+    Rigidbody2D* rigid = new Rigidbody2D(*player, 100, 100);
+    player->AddComponent(rigid);
 
-    //PlayerController* pc = new PlayerController(*player,*playerSprite,*rigid, 300);
-    //player->AddComponent(pc);
+    PlayerController* pc = new PlayerController(*player,*playerSprite,*rigid, 300);
+    player->AddComponent(pc);
 
     //GameObject* healthDisplayObj = new GameObject("HealthDisplay");
     //HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
