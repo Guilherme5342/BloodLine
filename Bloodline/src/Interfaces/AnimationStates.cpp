@@ -21,7 +21,7 @@ void IdleState::Update(StateMachine &state, float dt)
 {
 }
 
-void IdleState::Render(StateMachine &state)
+void IdleState::Render(const StateMachine &state)
 {
 }
 
@@ -47,7 +47,7 @@ void MovingState::Update(StateMachine &state, float dt)
 	moveTimer.Update(dt);
 }
 
-void MovingState::Render(StateMachine &state)
+void MovingState::Render(const StateMachine &state)
 {
 }
 
@@ -85,7 +85,7 @@ void AttackState::Update(StateMachine &stateMachine, float dt)
 
 	attackTimer.Update(dt);
 }
-void AttackState::Render(StateMachine &stateMachine)
+void AttackState::Render(const StateMachine &stateMachine)
 {
 }
 #pragma endregion
@@ -109,7 +109,7 @@ void DeathState::Update(StateMachine &stateMachine, float dt)
 {
 }
 
-void DeathState::Render(StateMachine &stateMachine)
+void DeathState::Render(const StateMachine &stateMachine)
 {
 }
 
@@ -143,7 +143,7 @@ void DashState::Update(StateMachine &state, float dt)
 	}
 }
 
-void DashState::Render(StateMachine &state)
+void DashState::Render(const StateMachine &state)
 {
 	// Render the sprite with the dash animation frame
 	sprite.Render();

@@ -17,7 +17,7 @@ public:
 	virtual void OnExit(StateMachine &otherState) override;
 
 	virtual void Update(StateMachine &state, float dt) override;
-	virtual void Render(StateMachine &state) override;
+	virtual void Render(const StateMachine &state) override;
 };
 
 class MovingState : public AnimState
@@ -34,7 +34,7 @@ public:
 	virtual void OnExit(StateMachine &otherState) override;
 
 	virtual void Update(StateMachine &state, float dt) override;
-	virtual void Render(StateMachine &state) override;
+	virtual void Render(const StateMachine &state) override;
 };
 /// <summary>
 /// Estado Generico de Ataque
@@ -57,7 +57,7 @@ public:
 	void OnExit(StateMachine &stateMachine);
 
 	void Update(StateMachine &stateMachine, float dt);
-	void Render(StateMachine &stateMachine);
+	void Render(const StateMachine &stateMachine);
 };
 
 /// <summary>
@@ -72,7 +72,7 @@ public:
 	void OnExit(StateMachine &stateMachine);
 
 	void Update(StateMachine &stateMachine, float dt);
-	void Render(StateMachine &stateMachine);
+	void Render(const StateMachine &stateMachine);
 };
 
 class DashState : public AnimState
@@ -87,5 +87,5 @@ public:
 	virtual ~DashState();
 
 	void Update(StateMachine &state, float dt) override;
-	void Render(StateMachine &state) override;
+	void Render(const StateMachine &state) override;
 };

@@ -22,10 +22,22 @@ void StateMachine::Update(float dt)
 }
 
 
-void StateMachine::Render()
+void StateMachine::Render() const
 {
 	if (currentState == nullptr) {
 		return;
 	}
 	GetCurrentState().Render(*this);
+}
+
+
+void StateMachine::SetState(IState* newState)
+{
+	if (currentState != nullptr) {
+		GetCurrentState().OnExit(*this);
+	}
+
+	currentState = newState;
+
+	GetCurrentState().OnEnter(*this);
 }

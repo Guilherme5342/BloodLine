@@ -12,7 +12,7 @@ public:
 	virtual void OnExit(StateMachine& otherState) {}
 
 	virtual void Update(StateMachine& state, float dt) = 0;
-	virtual void Render(StateMachine& state) = 0;
+	virtual void Render(const StateMachine& state) = 0;
 };
 
 

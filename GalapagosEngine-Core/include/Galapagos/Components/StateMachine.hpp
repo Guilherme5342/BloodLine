@@ -26,13 +26,14 @@ public:
 	virtual ~StateMachine();
 
 	virtual void Update(float dt);
-	virtual void Render();
+	virtual void Render() const;
 
-	inline bool Is(std::string type) {
+
+	inline bool Is(std::string type) const {
 		return type == "StateMachine";
 	}
 
-	inline IState& GetCurrentState() {
+	inline IState& GetCurrentState() const {
 		return *currentState;
 	}
 
