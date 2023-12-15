@@ -34,9 +34,9 @@ project (AppName)
     targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
     objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
-    postbuildcommands{
-        "{COPYDIR} %{prj.location}/res %{cfg.targetdir}/res",
-    }
+    --postbuildcommands{
+    --    "{COPYDIR} %{prj.location}/res %{cfg.targetdir}/res",
+    --}
 
     filter "system:windows"
         systemversion "latest"
@@ -45,10 +45,10 @@ project (AppName)
             WindowsSDLPath.. "/lib",
             WindowsSDLPath.."/lib/%{cfg.architecture}"
         }
-        postbuildcommands{
-            "{COPYFILE} " ..WindowsSDLPath.. "/bin/** %{cfg.targetdir}",
-            "{COPYDIR} %{prj.location}/res %{cfg.targetdir}/res",
-        }
+        --postbuildcommands{
+        --    "{COPYFILE} " ..WindowsSDLPath.. "/bin/** %{cfg.targetdir}",
+        --    "{COPYDIR} %{prj.location}/res %{cfg.targetdir}/res",
+        --}
 
     filter "configurations:Debug"
         defines { "DEBUG" }
