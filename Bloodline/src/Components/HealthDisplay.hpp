@@ -1,10 +1,10 @@
 // HealthDisplay.hpp
 #pragma once
 
-#include "Component.hpp"
-#include "Text.hpp"
-#include "GameObject.hpp"
-#include "PlayerController.hpp"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Components/Text.hpp"
+#include "Galapagos/Core/GameObject.hpp"
+#include "Components/PlayerController.hpp"
 
 class HealthDisplay : public Component {
 private:
@@ -15,6 +15,6 @@ public:
     HealthDisplay(GameObject& associated, int health, PlayerController& pc);
 
     void Update(float dt);
-    void Render();
-    bool Is(string type);
+    void Render() const;
+    bool Is(std::string type) const;
 };

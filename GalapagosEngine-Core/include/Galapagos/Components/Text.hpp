@@ -28,6 +28,7 @@ public:
     void SetFontFile(std::string filePath);
     void SetFontSize(std::int32_t fontSize);
 
+    void RenderStatic() const;
 private:
     void RemakeTexture();
 
