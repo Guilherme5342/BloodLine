@@ -1,26 +1,26 @@
 #include "EnemyBase.hpp"
 
 
-EnemyBase::EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player, Sprite& sprite
+EnemyBase::EnemyBase(GameObject& associated, std::weak_ptr<GameObject> player
 	, int health, int damage,Action initialAction, EnemyTypePhysics enemyPhys)
 	: Component(associated),
 	m_player(player),
-	m_sprite(sprite),
-	m_health(associated,health),
-	m_rb(associated),
-	m_damage(damage),
-	m_hitBox(associated)
+	m_damage(damage)
 {
 	m_enemyAction = initialAction;
 
-	Vec2 spriteScale = Vec2(sprite.GetWidth(), sprite.GetHeight());
+	m_sprite = new Sprite(associated, PAWN_ENEMY_IDLE);
 
-	associated.m_box.SetSize(spriteScale);
+	associated.AddComponent(m_sprite);
 
-	associated.AddComponent(&sprite);
-	associated.AddComponent(&this->m_health);
-	associated.AddComponent(&m_rb);
-	associated.AddComponent(&m_hitBox);
+	m_health = new HealthHandler(associated, health);
+	associated.AddComponent(m_health);
+
+	m_rb = new Rigidbody2D(associated);
+	associated.AddComponent(m_rb);
+
+	m_hitBox = new Collider(associated);
+	associated.AddComponent(m_hitBox);
 }
 
 EnemyBase::~EnemyBase()
@@ -29,7 +29,7 @@ EnemyBase::~EnemyBase()
 
 void EnemyBase::Update(float dt)
 {
-	if(m_health.GetHealth() <= 0 && !m_associated.IsDead())
+	if(m_health->GetHealth() <= 0 && !m_associated.IsDead())
 	{
 		m_associated.RequestDelete();
 		return;

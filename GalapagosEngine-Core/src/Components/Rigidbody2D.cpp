@@ -5,6 +5,10 @@ Rigidbody2D::Rigidbody2D(GameObject &m_associated, float mass, float gravityScal
 	: Component(m_associated), m_mass(mass), m_gravityScale(gravityScale)
 {
 	m_force = Vec2(0, mass * gravityScale);
+	m_hitDown = false;
+	m_hitLeft = false;
+	m_hitRight = false;
+	m_hitUp = false;
 }
 
 Rigidbody2D::~Rigidbody2D()

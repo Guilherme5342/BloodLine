@@ -19,7 +19,7 @@ void BloodSpell::Activate()
     float speed = 200;
     int damage = 20;
     float maxDistance = 200;
-    std::string sprite = "../assets/img/bullet.png";
+    std::string sprite = "../res/img/bullet.png";
     bool targetsPlayer = false;
     int frameCount = 1;
 

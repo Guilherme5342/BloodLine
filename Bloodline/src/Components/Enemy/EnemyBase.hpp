@@ -24,8 +24,7 @@ public:
 	/// <param name="health">Vida do Inimigo</param>
 	/// <param name="damage"> Dano do Inimigo </param>
 	/// <param name="enemyPhys"> Comportamento da F�sica do Inimigo</param>
-	EnemyBase(GameObject &associated, std::weak_ptr<GameObject> player,
-			  Sprite &sprite, int health, int damage, Action initialAction = Action::IDLE, EnemyTypePhysics enemyPhys = EnemyTypePhysics::GROUND);
+	EnemyBase(GameObject &associated, std::weak_ptr<GameObject> player, int health, int damage, Action initialAction = Action::IDLE, EnemyTypePhysics enemyPhys = EnemyTypePhysics::GROUND);
 
 	virtual ~EnemyBase();
 
@@ -46,23 +45,23 @@ public:
 
 	inline void SetActionState(Action action) { this->m_enemyAction = action; }
 
-	inline Collider GetHitBox() const { return this->m_hitBox; }
+	inline Collider& GetHitBox() const { return *this->m_hitBox; }
 
 protected:
 	Action m_enemyAction;
 
 	std::weak_ptr<GameObject> m_player;
 
-	HealthHandler m_health;
-	Rigidbody2D m_rb;
+	HealthHandler* m_health;
+	Rigidbody2D* m_rb;
 
 	Timer m_waitingTimer;
-	Sprite &m_sprite;
+	Sprite* m_sprite;
 
 	Vec2 m_speed = {1, 1};
 
 	int m_damage;
 	bool m_isOnFloor = false;
 
-	Collider m_hitBox;
+	Collider* m_hitBox;
 };

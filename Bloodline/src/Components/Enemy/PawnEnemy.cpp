@@ -3,8 +3,8 @@
 #include "GameDefines/GlobalDefinitions.hpp"
 
 
-PawnEnemy::PawnEnemy(GameObject &m_associated, std::weak_ptr<GameObject> player, Sprite &filePath, int health, int damage,
-	Action enemyAction, EnemyTypePhysics phys, float radius) : EnemyBase(m_associated, player, filePath, health, damage, enemyAction, phys), m_rangeDetection(radius)
+PawnEnemy::PawnEnemy(GameObject &m_associated, std::weak_ptr<GameObject> player, int health, int damage,
+	Action enemyAction, EnemyTypePhysics phys, float radius) : EnemyBase(m_associated, player, health, damage, enemyAction, phys), m_rangeDetection(radius)
 {
 }
 
@@ -14,11 +14,11 @@ PawnEnemy::~PawnEnemy()
 
 void PawnEnemy::Start()
 {
-	m_hitBox.SetScale(Vec2(12, 35));
-	m_hitBox.SetOffset({-1, 10});
+	//m_hitBox.SetScale(Vec2(12, 35));
+	//m_hitBox.SetOffset({-1, 10});
 
-	Collider *squareDetectorRight = new Collider(m_associated, {25, 25}, {m_associated.m_box.x + 50, 0});
-	Collider *squareDetectorLeft = new Collider(m_associated, {25, 25}, {-m_associated.m_box.x - 50, 0});
+	//Collider *squareDetectorRight = new Collider(m_associated, {25, 25}, {m_associated.m_box.x + 50, 0});
+	//Collider *squareDetectorLeft = new Collider(m_associated, {25, 25}, {-m_associated.m_box.x - 50, 0});
 
 	// Game::Instantiate(squareDetectorLeft, Vec2(25, 25));
 }
@@ -43,14 +43,14 @@ void PawnEnemy::NotifyCollision(GameObject &otherObj)
 {
 	Collider *otherColl = (Collider *)otherObj.GetComponent("Collider");
 
-	Rect edgeRect = m_hitBox.m_box.GetIntersection(otherColl->m_box);
+	Rect edgeRect = m_hitBox->m_box.GetIntersection(otherColl->m_box);
 
 	if (otherObj.tag == "Ground" && !m_onGround)
 	{
 
 		// cout << edgeRect.x << " " << hitBox.m_box.x << endl;
 
-		m_sprite.Open(PAWN_ENEMY_IDLE, 10, 1, .05f);
+		m_sprite->Open(PAWN_ENEMY_IDLE, 14, 1, .05f);
 		SetActionState(Action::IDLE);
 		ChangeMovePoint();
 
@@ -63,7 +63,7 @@ void PawnEnemy::Idle(float dt)
 	m_waitingTimer.Update(dt);
 	if (m_waitingTimer.Get() > 1.5f /*&& isOnFloor*/)
 	{
-		m_sprite.Open(PAWN_ENEMY_MOVE, 10, 1, .05f);
+		m_sprite->Open(PAWN_ENEMY_MOVE, 14, 1, .05f);
 		ChangeMovePoint();
 		SetActionState(Action::MOVE);
 		m_waitingTimer.Restart();

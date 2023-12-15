@@ -5,7 +5,7 @@
 class PawnEnemy : public EnemyBase
 {
 public:
-	PawnEnemy(GameObject &associated, std::weak_ptr<GameObject> player, Sprite &sprite, int health, int damage,
+	PawnEnemy(GameObject &associated, std::weak_ptr<GameObject> player, int health, int damage,
 			  Action enemyAction, EnemyTypePhysics phys, float radius);
 	~PawnEnemy();
 

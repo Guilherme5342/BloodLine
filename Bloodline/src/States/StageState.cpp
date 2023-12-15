@@ -100,24 +100,26 @@ void StageState::LoadAssets()
     GameObject* enemyObj = new GameObject("Enemy1");
     Sprite* enemySprite = new Sprite(*enemyObj, PAWN_ENEMY_IDLE, 10, 1, .3f);
 
-    //EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(rb),
-    //    *enemySprite, 10, 1, Action::IDLE, EnemyTypePhysics::GROUND, 4);
+    EnemyBase* enemyTest = new PawnEnemy(*enemyObj, GetObjectPtr(rb), 10, 1, Action::IDLE, EnemyTypePhysics::GROUND, 4);
 
-    //enemyObj->AddComponent(enemyTest);
+    enemyObj->AddComponent(enemyTest);
 
     enemyObj->m_box.SetCenter(rb->m_box.GetCenter() + Vec2(20, 0));
 
     //enemyTest->GetHitBox().SetScale(Vec2(25, 50));
 
+    m_objectArray.emplace_back(enemyObj);
+    m_objectArray.emplace_back(rb);
     AddObject(enemyObj);
 
     AddSquare(Game::GetWindowCenter() + Vec2(100, 512), Vec2(1100, 150));
+    AddSquare(Game::GetWindowCenter() + Vec2(0, 512), Vec2(450, 150));
     
     GameObject* healthDisplayObj = new GameObject("HealthDisplay");
     HealthDisplay* healthDisplay = new HealthDisplay(*healthDisplayObj, 100, *pc);
     healthDisplayObj->AddComponent(healthDisplay);
 
-    AddObject(healthDisplayObj);
+    m_objectArray.emplace_back(healthDisplayObj);
 }
 
 void StageState::Start()
