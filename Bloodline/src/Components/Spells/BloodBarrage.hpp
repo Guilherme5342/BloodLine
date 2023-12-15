@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Spell.hpp"
-#include "Bullet.hpp"
-#include "GameObject.hpp"
-#include "PlayerController.hpp"
+#include "Components/Bullet.hpp"
+#include "Components/PlayerController.hpp"
+#include "Galapagos/Core/GameObject.hpp"
 
 class BloodBarrage : public Spell
 {

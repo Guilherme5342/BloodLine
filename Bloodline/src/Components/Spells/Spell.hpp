@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Component.hpp"
-#include "GameObject.hpp"
-#include "PlayerController.hpp"
+#include "Galapagos/Core/Component.hpp"
+#include "Galapagos/Core/GameObject.hpp"
+//#include "PlayerController.hpp"
 
 class PlayerController;
 
@@ -22,6 +22,6 @@ public:
 
     virtual void Activate() = 0; // Pure virtual function for spell activation
     virtual void Update(float dt) override;
-    virtual void Render() override;
-    virtual bool Is(std::string type) override;
+    virtual void Render() const override;
+    virtual bool Is(std::string type) const override;
 };

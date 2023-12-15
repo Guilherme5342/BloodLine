@@ -1,5 +1,5 @@
 #include "BloodBarrage.hpp"
-#include "Game.hpp"
+#include "Galapagos/Core/Game.hpp"
 
 const float PI = 3.1415;
 
@@ -10,7 +10,7 @@ BloodBarrage::BloodBarrage(GameObject &associated, float damage, float range, in
 
 void  BloodBarrage::Activate()
 {
-    cout << "Barrage -------------" << endl;
+    std::cout << "Barrage -------------" << std::endl;
 
     GameObject *bulletObject1 = new GameObject();
     GameObject *bulletObject2 = new GameObject();
@@ -26,33 +26,33 @@ void  BloodBarrage::Activate()
     float speed = 200;
     int damage = 20;
     float maxDistance = 100;
-    string sprite = "../assets/img/bullet.png";
+    std::string sprite = "../assets/img/bullet.png";
     bool targetsPlayer = false;
     int frameCount = 1;
 
-    Bullet *bullet1 = new Bullet(*bulletObject2, angle2, speed, damage, maxDistance, sprite, targetsPlayer, frameCount);
-    bulletObject1->box.SetCenter(associated.box.GetCenter());
+    Bullet *bullet1 = new Bullet(*bulletObject2, angle2, speed, maxDistance, sprite, targetsPlayer, frameCount,false);
+    bulletObject1->m_box.SetCenter(associated.m_box.GetCenter());
     bulletObject1->AddComponent(bullet1);
 
-    Bullet *bullet2 = new Bullet(*bulletObject3, angle3, speed, damage, maxDistance, sprite, targetsPlayer, frameCount);
-    bulletObject2->box.SetCenter(associated.box.GetCenter());
+    Bullet *bullet2 = new Bullet(*bulletObject3, angle3, speed, maxDistance, sprite, targetsPlayer, frameCount,false);
+    bulletObject2->m_box.SetCenter(associated.m_box.GetCenter());
     bulletObject2->AddComponent(bullet2);
 
-    Bullet *bullet3 = new Bullet(*bulletObject4, angle4, speed, damage, maxDistance, sprite, targetsPlayer, frameCount);
-    bulletObject3->box.SetCenter(associated.box.GetCenter());
+    Bullet *bullet3 = new Bullet(*bulletObject4, angle4, speed, maxDistance, sprite, targetsPlayer, frameCount,false);
+    bulletObject3->m_box.SetCenter(associated.m_box.GetCenter());
     bulletObject3->AddComponent(bullet3);
 
-    Bullet *bullet4 = new Bullet(*bulletObject5, angle5, speed, damage, maxDistance, sprite, targetsPlayer, frameCount);
-    bulletObject4->box.SetCenter(associated.box.GetCenter());
+    Bullet *bullet4 = new Bullet(*bulletObject5, angle5, speed, maxDistance, sprite, targetsPlayer, frameCount,false);
+    bulletObject4->m_box.SetCenter(associated.m_box.GetCenter());
     bulletObject4->AddComponent(bullet4);
 
-    Bullet *bullet5 = new Bullet(*bulletObject1, angle1, speed, damage, maxDistance, sprite, targetsPlayer, frameCount);
-    bulletObject5->box.SetCenter(associated.box.GetCenter());
+    Bullet *bullet5 = new Bullet(*bulletObject1, angle1, speed, maxDistance, sprite, targetsPlayer, frameCount,false);
+    bulletObject5->m_box.SetCenter(associated.m_box.GetCenter());
     bulletObject5->AddComponent(bullet5);
 
-    Game::Instance().GetState().AddObject(bulletObject1);
-    Game::Instance().GetState().AddObject(bulletObject2);
-    Game::Instance().GetState().AddObject(bulletObject3);
-    Game::Instance().GetState().AddObject(bulletObject4);
-    Game::Instance().GetState().AddObject(bulletObject5);
+    Game::GetCurrentState().AddObject(bulletObject1);
+    Game::GetCurrentState().AddObject(bulletObject2);
+    Game::GetCurrentState().AddObject(bulletObject3);
+    Game::GetCurrentState().AddObject(bulletObject4);
+    Game::GetCurrentState().AddObject(bulletObject5);
 }
