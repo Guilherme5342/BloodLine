@@ -32,6 +32,7 @@ void Rigidbody2D::NotifyCollision(GameObject &otherObj)
 	Collider *otherColl = (Collider *)otherObj.GetComponent("Collider");
 
 	Rect intersectionRect = coll->m_box.GetIntersection(otherColl->m_box);
+	
 
 	if (coll->isTrigger || otherColl->isTrigger) {
 		return;

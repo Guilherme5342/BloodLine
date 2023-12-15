@@ -25,7 +25,7 @@ void TileMap::Load(std::string file)
     std::int32_t value;
     while (fileStream >> value >> virgula)
     {
-        m_tileMatrix.push_back(value - 1);
+        m_tileMatrix.push_back(value);
     }
 }
 
@@ -38,7 +38,7 @@ void TileMap::LoadCollisions()
     for (size_t i = 0; i < m_tileMatrix.size(); i++)
     {
         int tile = m_tileMatrix[i];
-        if (tile != 0) 
+        if (tile == 8) 
         {
             GameObject* colliderObj = new GameObject("TileCollider", 0);
             Collider* tileCollider = new Collider(*colliderObj);
@@ -60,7 +60,7 @@ void TileMap::SetTileSet(TileSet *tileSet)
 
 std::int32_t TileMap::At(std::int32_t x, std::int32_t y, std::int32_t z) const
 {
-    return m_tileMatrix.at(x + y * m_mapWidth + z * m_mapHeight * m_mapWidth);
+    return m_tileMatrix.at(x + (y * m_mapWidth) + (z * m_mapHeight * m_mapWidth));
 }
 
 void TileMap::Render() const

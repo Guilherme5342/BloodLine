@@ -4,16 +4,16 @@
 #define BALL_PNG "res/img/ball2.png"
 #define STUB_ANIMATED_SPRITE "res/img/packedSpriteSheet1.png"s
 
-#define PLAYER_IDLE "res/img/player/idle.png"
-#define PLAYER_JUMP "res/img/player/jump.png"
+#define PLAYER_IDLE "res/img/player/run.png"//"res/img/player/idle.png"
+#define PLAYER_JUMP "res/img/player/run.png" //"res/img/player/jump.png"
 #define PLAYER_RUNNING "res/img/player/run.png"
-#define PLAYER_ATTACK "res/img/player/jump.png"
+#define PLAYER_ATTACK "res/img/player/run.png"//"res/img/player/jump.png"
 
 
 #define PAWN_ENEMY_IDLE "res/img/enemies/knight/_Idle.png"
 #define PAWN_ENEMY_MOVE "res/img/enemies/knight/_Run.png"
 #define PAWN_ENEMY_ATTACK "res/img/enemies/knight/_Attack.png"
-#define PAWN_ENEMY_SPECIAL_ATTACK "res/img/enemies/knight/_AttackCombo.png"
+#define PAWN_ENEMY_SPECIAL_ATTACK "res/img/enemies/knight/_SpecialAttack.png"
 
 
 /*TileSets FilePaths*/

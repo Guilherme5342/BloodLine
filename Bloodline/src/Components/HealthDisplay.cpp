@@ -5,9 +5,9 @@
 #include "Galapagos/Core/Game.hpp"
 
 #ifdef _WIN32
-#define FONT "assets/font/Call me maybe.ttf"
+#define FONT "res/font/Call me maybe.ttf"
 #else
-#define FONT "../assets/font/Call me maybe.ttf"
+#define FONT "../res/font/Call me maybe.ttf"
 #endif
 
 HealthDisplay::HealthDisplay(GameObject& associated, int health, PlayerController& pc)

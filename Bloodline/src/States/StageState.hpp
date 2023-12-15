@@ -10,6 +10,7 @@
 #include "GameDefines/GlobalDefinitions.hpp"
 #include "GameDefines/ColorDefinitions.hpp"
 
+
 class StageState : public State
 {
 public:
@@ -28,4 +29,6 @@ public:
 private:
     Music m_music;
     Timer m_timer;
+
+    GameObject* AddSquare(Vec2 pos, Vec2 size, SDL_Color color = { 255,255,255,255 });
 };

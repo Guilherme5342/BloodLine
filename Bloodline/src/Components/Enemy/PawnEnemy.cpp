@@ -1,12 +1,6 @@
 #include "PawnEnemy.hpp"
 #include "Galapagos/Core/Game.hpp"
 
-#ifdef _WIN32
-#define ENEMY_PATH "assets/img/enemies/knight/_Run.png"
-#else
-#define ENEMY_PATH "../assets/img/enemies/knight/_Run.png"
-#endif
-
 PawnEnemy::PawnEnemy(GameObject& m_associated, std::weak_ptr<GameObject> player, Sprite& filePath, int health,
 	int damage, Action enemyAction, EnemyTypePhysics phys, float radius)
   :  EnemyBase(m_associated, player,filePath,health,damage, enemyAction,phys), rangeDetection(radius)
@@ -31,7 +25,7 @@ void PawnEnemy::Start()
 	//Game::Instantiate(squareDetectorLeft, Vec2(25, 25));
 }
 
-void PawnEnemy::Render() {
+void PawnEnemy::Render() const {
 
 	Vec2 leftPoint = m_associated.m_box.GetCenter() - Vec2(102, m_associated.m_box.y);
 	Vec2 rightPoint = m_associated.m_box.GetCenter() + Vec2(102, m_associated.m_box.y);
@@ -51,14 +45,14 @@ void PawnEnemy::Render() {
 void PawnEnemy::NotifyCollision(GameObject& otherObj)
 {
 	Collider* otherColl = (Collider*)otherObj.GetComponent("Collider");
-	
+
 	Rect edgeRect = hitBox.m_box.GetIntersection(otherColl->m_box);
 
 	if (otherObj.tag == "Ground" && !onGround) {
 		
 		//cout << edgeRect.x << " " << hitBox.m_box.x << endl;
 				
-		sprite.Open(ENEMY_PATH, 10, 1,.05f);
+		sprite.Open(PAWN_ENEMY_IDLE, 10, 1,.05f);
 		SetActionState(IDLE);
 		ChangeMovePoint();
 		
@@ -71,7 +65,7 @@ void PawnEnemy::Idle(float dt)
 	waitingTimer.Update(dt);
 	if (waitingTimer.Get() > 1.5f /*&& isOnFloor*/)
 	{
-		sprite.Open(ENEMY_PATH, 10, 1,.05f);
+		sprite.Open(PAWN_ENEMY_MOVE, 10, 1,.05f);
 		ChangeMovePoint();
 		SetActionState(MOVE);
 		waitingTimer.Restart();

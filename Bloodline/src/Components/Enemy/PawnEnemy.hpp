@@ -19,10 +19,10 @@ public:
 	~PawnEnemy();
 
 	void Start();
-	inline bool Is(std::string type) {
+	inline bool Is(std::string type) const {
 		return type == "PawnEnemy";
 	}
-	void Render();
+	void Render() const;
 	void NotifyCollision(GameObject& otherObj);
 
 	// Herdado por meio de EnemyBase
@@ -43,6 +43,6 @@ public:
 
 		destination = !invertMove ? leftPoint : rightPoint;
 		distanceBetweenPoint = pos.Distance(destination);
-
+		rb.ApplyVelocity(destination);
 	}
 };
