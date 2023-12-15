@@ -81,11 +81,12 @@ void StageState::LoadAssets()
     collider->SetScale({ 25,35 });
 
     rb->AddComponent(collider);
-    rb->AddComponent(new Rigidbody2D(*rb, 100, 100));
+    Rigidbody2D* rigid = new Rigidbody2D(*rb, 100, 100);
+    rb->AddComponent(rigid);
 
     PlayerController* pc = new PlayerController(*rb,
         *playerSprite,
-        *(Rigidbody2D*)rb->GetComponent("Rigidbody2D"), 300);
+        *rigid, 300);
 
 
     rb->AddComponent(pc);
@@ -163,6 +164,11 @@ void StageState::Update(float deltaTime)
     {
         for (size_t j = i + 1; j < m_objectArray.size(); j++)
         {
+            Collider* a = (Collider*)m_objectArray[i]->GetComponent("Collider");
+            Collider* b = (Collider*)m_objectArray[j]->GetComponent("Collider");
+            if (!a || !b)
+                continue;
+
             if (Collision::IsColliding(m_objectArray[i]->m_box, m_objectArray[j]->m_box, m_objectArray[i]->m_angleDeg, m_objectArray[j]->m_angleDeg))
             {
                 m_objectArray[i]->NotifyCollision(*(m_objectArray[j]));
@@ -191,7 +197,7 @@ void StageState::Update(float deltaTime)
             Game::Push(new EndState());
         }
     }*/
-    if (PenguinBody::m_player == nullptr)
+   /* if (PenguinBody::m_player == nullptr)
     {
         m_music.Stop(3000);
         m_timer.Update(deltaTime);
@@ -202,7 +208,7 @@ void StageState::Update(float deltaTime)
             GameData::playerVictory = false;
             Game::Push(new EndState());
         }
-    }
+    }*/
 }
 
 void StageState::Render() const
