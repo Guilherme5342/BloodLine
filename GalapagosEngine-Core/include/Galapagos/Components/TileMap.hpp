@@ -14,6 +14,7 @@ public:
     TileMap(GameObject &associated, std::string file, TileSet *tileSet);
 
     void Load(std::string file);
+    void LoadCollisions();
 
     void SetTileSet(TileSet *tileSet);
     std::int32_t At(std::int32_t x, std::int32_t y, std::int32_t z = 0) const;

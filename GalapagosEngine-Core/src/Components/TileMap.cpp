@@ -6,6 +6,8 @@
 
 #include "Galapagos/Components/TileSet.hpp"
 #include "Galapagos/Core/Camera.hpp"
+#include "Galapagos/Components/Collider.hpp"
+#include "Galapagos/Core/Game.hpp"
 
 TileMap::TileMap(GameObject &associated, std::string file, TileSet *tileSet) : Component(associated)
 {
@@ -24,6 +26,26 @@ void TileMap::Load(std::string file)
     while (fileStream >> value >> virgula)
     {
         m_tileMatrix.push_back(value - 1);
+    }
+}
+
+void TileMap::LoadCollisions()
+{
+    if (m_tileMatrix.empty() || m_tileSet == nullptr) {
+        return;
+    }
+
+    for (size_t i = 0; i < m_tileMatrix.size(); i++)
+    {
+        int tile = m_tileMatrix[i];
+        if (tile != 0) 
+        {
+            GameObject* colliderObj = new GameObject("TileCollider", 0);
+            Collider* tileCollider = new Collider(*colliderObj);
+            colliderObj->m_box.SetSize(Vec2(16, 16));
+            colliderObj->AddComponent(tileCollider);
+            Game::GetCurrentState().AddObject(colliderObj);
+        }
     }
 }
 
