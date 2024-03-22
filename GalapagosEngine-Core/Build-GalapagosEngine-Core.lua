@@ -33,9 +33,15 @@ project (CoreName)
 
     filter "system:windows"
         systemversion "latest"
+
+    filter {"system:windows", "action:vs2022"}
         libdirs {
-            WindowsSDLPath.. "/lib",
             WindowsSDLPath.."/lib/%{cfg.architecture}"
+        }
+        
+    filter {"system:windows", "action:gmake2"}
+        libdirs {
+            WindowsSDLPath.."/lib"
         }
 
     filter "configurations:Debug"
