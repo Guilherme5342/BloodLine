@@ -1,6 +1,6 @@
 # Directories
 .vs/
-Binaries/
+./Binaries/
 
 # Files
 *.vcxproj

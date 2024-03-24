@@ -31,8 +31,8 @@ workspace "Bloodline"
       runtime "Release"
 
 group "Core"
-include ("tmxlite/Build-tmxlite.lua")
+   include ("tmxlite/Build-tmxlite.lua")
 	include (CoreName.. "/Build-" ..CoreName.. ".lua")
-group ""
 
-include (AppName.. "/Build-" ..AppName.. ".lua")
+group ""
+   include (AppName.. "/Build-" ..AppName.. ".lua")

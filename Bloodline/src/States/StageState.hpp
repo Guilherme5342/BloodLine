@@ -8,7 +8,6 @@
 #include "Galapagos/Utils/Timer.hpp"
 
 #include "GameDefines/GlobalDefinitions.hpp"
-#include "GameDefines/ColorDefinitions.hpp"
 
 
 class StageState : public State
